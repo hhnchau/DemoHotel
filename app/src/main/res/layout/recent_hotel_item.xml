@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/line"
+        android:background="@color/wh" />
+
+    <com.appromobile.hotel.widgets.TextViewSFMedium
+        android:id="@+id/tvSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sort_org_bg"
+        android:gravity="center"
+        android:text="@string/recent_hotels"
+        android:textColor="@color/wh"
+        android:textSize="18sp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:visibility="visible" />
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/tvHotelName"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="New world"
+        android:paddingBottom="2dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bg_head">#FFFFFF</color>
+    <color name="footer_bg">#FFFFFF</color>
+    <color name="hotel_footer_item_bg">#88ffffff</color>
+    <color name="semi_transparent">#cc000000</color>
+    <color name="semi_transparent1">#99000000</color>
+    <color name="black">#000000</color>
+    <color name="red_color">#ff2851</color>
+    <color name="button_color_enable">#ff2581</color>
+    <color name="button_color_disable">#5a5a5a </color>
+
+    <color name="wh">#ffffff</color>
+    <color name="bk">#000000</color>
+    <color name="lg">#e6e6e6</color>
+    <color name="org">#ff6400</color>
+    <color name="org_80">#ffab91</color>
+    <color name="rg">#00ce00</color>
+    <color name="lb">#00ceff</color>
+    <color name="pk">#dd4dff</color>
+    <color name="yl">#ffff00</color>
+    <color name="bk_50p">#80000000</color>
+    <color name="bk_85p">#D9000000</color>
+    <color name="wh_50p">#80FFFFFF</color>
+    <color name="org_10">#19ff6400</color>
+    <color name="wh_15">#26ffffff</color>
+    <color name="bk_15p">#26000000</color>
+    <color name="org_15p">#26ff6400</color>
+    <color name="org_20p">#34ff6400</color>
+    <color name="border_color">#cccccc</color>
+    <color name="g">#aaaaaa</color>
+    <color name="dg">#646464</color>
+    <color name="gr">#00ce00</color>
+    <color name="midg">#b5b5b5</color>
+    <color name="transparent_40">#40000000</color>
+    <color name="shadow">#66000000</color>
+
+</resources>

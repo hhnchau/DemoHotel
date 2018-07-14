@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "170640652110",
+    "firebase_url": "https://go2joy-2d23b.firebaseio.com",
+    "project_id": "go2joy-2d23b",
+    "storage_bucket": "go2joy-2d23b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170640652110:android:95c46bc5a857f708",
+        "android_client_info": {
+          "package_name": "com.appromobile.hotel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170640652110-j84efkc8sc039fna3lls6cc13uhivbdq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appromobile.hotel",
+            "certificate_hash": "4D0E6165491EF7FC7DF11E5CCB003003ED26AB8B"
+          }
+        },
+        {
+          "client_id": "170640652110-55hp7vlimrjg2jcodsamd07k3i9dh8b0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appromobile.hotel",
+            "certificate_hash": "4D77CE5731D0A01723DB5254E0A4FF3C2EE0E37E"
+          }
+        },
+        {
+          "client_id": "170640652110-tc01mpf2ucq65o8dejksatq699ofnfc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9iEoX7KBms3y2-I1CPwMfhJS1DCU48eg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170640652110-tc01mpf2ucq65o8dejksatq699ofnfc0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "170640652110-gsidt51ggup7sju99bgddajq9nn5vv2m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appromobile.Hotel"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

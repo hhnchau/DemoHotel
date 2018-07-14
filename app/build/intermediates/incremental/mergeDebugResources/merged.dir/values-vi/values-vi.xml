@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Điều hướng về trang chủ"</string>
+    <string msgid="1594238315039666878" name="abc_action_bar_up_description">"Điều hướng lên trên"</string>
+    <string msgid="3588849162933574182" name="abc_action_menu_overflow_description">"Thêm tùy chọn"</string>
+    <string msgid="4076576682505996667" name="abc_action_mode_done">"Xong"</string>
+    <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Xem tất cả"</string>
+    <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Chọn một ứng dụng"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"TẮT"</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"BẬT"</string>
+    <string msgid="7723749260725869598" name="abc_search_hint">"Tìm kiếm…"</string>
+    <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Xóa truy vấn"</string>
+    <string msgid="2550479030709304392" name="abc_searchview_description_query">"Tìm kiếm truy vấn"</string>
+    <string msgid="8264924765203268293" name="abc_searchview_description_search">"Tìm kiếm"</string>
+    <string msgid="8928215447528550784" name="abc_searchview_description_submit">"Gửi truy vấn"</string>
+    <string msgid="893419373245838918" name="abc_searchview_description_voice">"Tìm kiếm bằng giọng nói"</string>
+    <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Chia sẻ với"</string>
+    <string msgid="3300176832234831527" name="abc_shareactionprovider_share_with_application">"Chia sẻ với <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Thu gọn"</string>
+    <string name="account_cannot_used">Tài khoản của bạn tạm thời không sử dụng được. Vui lòng liên hệ với quản trị hệ thống để được hỗ trợ.</string>
+    <string name="account_setting">Thiết lập tài khoản</string>
+    <string name="address">Địa chỉ</string>
+    <string name="address_not_found">Không tìm thấy địa chỉ</string>
+    <string name="address_title">Địa chỉ</string>
+    <string name="agree_service_policy">Tôi đồng ký với điều khoản và chính sách bảo mật</string>
+    <string name="agree_service_policy_button">Xem điều khoản và chính sách bảo mật</string>
+    <string name="alphabet">Tên khách sạn A-Z</string>
+    <string name="app_name">Go2Joy</string>
+    <string name="app_need_to_connect_internet_please_turn_on_the_internet">Ứng dụng cần kết nối Internet khi sử dụng. Vui lòng bật Wifi hoặc 3G.</string>
+    <string name="app_need_to_query_location_please_turn_on_the_gps">Ứng dụng cần sử dụng VỊ TRÍ để định vị. Vui lòng bật VỊ TRÍ và đặt Phương pháp định vị sang "Wi-Fi và mạng di động".</string>
+    <string name="applied">Đã áp dụng</string>
+    <string name="applied_fail">Áp dụng không thành công</string>
+    <string name="applied_sucessful">Áp dụng thành công</string>
+    <string name="apply">Áp dụng</string>
+    <string name="apply_period">Thời gian áp dụng</string>
+    <string name="area_setting">Chọn địa điểm</string>
+    <string name="auto_log_in">Tự động đăng nhập</string>
+    <string name="availability">Còn phòng</string>
+    <string msgid="233061162317617848" name="back_button_content_description">"quay lại"</string>
+    <string name="birthday">Ngày sinh</string>
+    <string name="book_now">Đặt ngay</string>
+    <string name="booking_date">Ngày đặt phòng</string>
+    <string name="booking_time">Giờ đặt phòng</string>
+    <string name="booking_type">Loại đặt phòng</string>
+    <string name="btn_12_2_get_coupon">Nhận khuyến mãi</string>
+    <string name="btn_6_9_3_agree">Đồng ý</string>
+    <string name="btn_6_9_3_back">Trở lại</string>
+    <string name="btn_6_9_3_cancel">Từ chối</string>
+    <string name="call_hotel">Bạn muốn gọi cho khách sạn</string>
+    <string name="camera">Máy ảnh</string>
+    <string name="can_not_access_internet">Không thể kết nối với Internet.</string>
+    <string name="cancel">Hủy</string>
+    <string name="cancel_booking">Hủy đặt phòng</string>
+    <string name="cancel_booking_failure">Hủy đặt phòng thất bại</string>
+    <string name="cancel_booking_successfully">Hủy đặt phòng thành công</string>
+    <string msgid="2401572676578172896" name="cancel_button">"Hủy"</string>
+    <string name="cannot_connect_to_server">Không thể kết nối đến máy chủ.</string>
+    <string name="change">Thay đổi</string>
+    <string name="change_password">Đổi mật khẩu</string>
+    <string name="check_in_time">Giờ vào</string>
+    <string name="check_out_time">Giờ ra</string>
+    <string name="checkin">Check-In</string>
+    <string name="checkin_failure">Nhận phòng không thành công</string>
+    <string name="checkin_successfully">Nhận phòng thành công</string>
+    <string name="choose">Chọn</string>
+    <string name="choose_area">Chọn địa điểm</string>
+    <string name="choose_coupon">Chọn coupon</string>
+    <string name="choose_from_list">Chọn từ danh sách</string>
+    <string name="choose_image_from">Chọn ảnh từ</string>
+    <string name="choose_link_to_cast">Choose link to cast</string>
+    <string name="choose_location">Chọn vị trí</string>
+    <string name="choose_photo_message">Chọn ảnh để đăng</string>
+    <string name="choose_room_type">Chọn loại phòng</string>
+    <string name="city_province">TỈNH/THÀNH</string>
+    <string name="close">Đóng</string>
+    <string gender="unknown" name="com_facebook_device_auth_instructions">Truy cập &lt;b>facebook.com/device&lt;/b> và nhập mã được hiển thị bên trên.</string>
+    <string gender="unknown" name="com_facebook_image_download_unknown_error">Lỗi không mong muốn khi tải hình ảnh xuống.</string>
+    <string gender="unknown" name="com_facebook_internet_permission_error_message">Đăng nhập chế độ xem web yêu cầu quyền INTERNET</string>
+    <string gender="unknown" name="com_facebook_internet_permission_error_title">Lỗi AndroidManifest</string>
+    <string gender="unknown" name="com_facebook_like_button_liked">Đã thích</string>
+    <string gender="unknown" name="com_facebook_like_button_not_liked">Thích</string>
+    <string gender="unknown" name="com_facebook_loading">Đang tải…</string>
+    <string gender="unknown" name="com_facebook_loginview_cancel_action">Hủy</string>
+    <string gender="unknown" name="com_facebook_loginview_log_in_button">Đăng nhập</string>
+    <string gender="unknown" name="com_facebook_loginview_log_in_button_continue">Tiếp tục với Facebook</string>
+    <string gender="unknown" name="com_facebook_loginview_log_in_button_long">Đăng nhập bằng Facebook</string>
+    <string gender="unknown" name="com_facebook_loginview_log_out_action">Đăng xuất</string>
+    <string gender="unknown" name="com_facebook_loginview_log_out_button">Đăng xuất</string>
+    <string gender="unknown" name="com_facebook_loginview_logged_in_as">Đã đăng nhập với tên: %1$s</string>
+    <string gender="unknown" name="com_facebook_loginview_logged_in_using_facebook">Đã đăng nhập bằng Facebook</string>
+    <string gender="unknown" name="com_facebook_send_button_text">Gửi</string>
+    <string gender="unknown" name="com_facebook_share_button_text">Chia sẻ</string>
+    <string gender="unknown" name="com_facebook_smart_device_instructions">Để kết nối tài khoản của bạn, hãy mở ứng dụng Facebook trên thiết bị di động và kiểm tra thông báo.</string>
+    <string gender="unknown" name="com_facebook_smart_device_instructions_or">- HOẶC -</string>
+    <string gender="unknown" name="com_facebook_smart_login_confirmation_cancel">Không phải bạn?</string>
+    <string gender="unknown" name="com_facebook_smart_login_confirmation_continue_as">Tiếp tục dưới tên %1$s</string>
+    <string gender="unknown" name="com_facebook_smart_login_confirmation_title">Xác nhận đăng nhập</string>
+    <string gender="unknown" name="com_facebook_tooltip_default">Bạn nắm quyền kiểm soát - chọn thông tin bạn muốn chia sẻ với ứng dụng.</string>
+    <string msgid="8585111718777012708" name="common_google_play_services_enable_button">"Bật"</string>
+    <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> sẽ không hoạt động nếu bạn không bật dịch vụ của Google Play."</string>
+    <string msgid="3147157405986503375" name="common_google_play_services_enable_title">"Bật dịch vụ của Google Play"</string>
+    <string msgid="9115728400623041681" name="common_google_play_services_install_button">"Cài đặt"</string>
+    <string msgid="8179894293032530091" name="common_google_play_services_install_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> sẽ không chạy nếu không có dịch vụ của Google Play. Thiết bị của bạn bị thiếu dịch vụ này."</string>
+    <string msgid="7442193194585196676" name="common_google_play_services_install_title">"Cài đặt dịch vụ của Google Play"</string>
+    <string msgid="180394615667698242" name="common_google_play_services_notification_ticker">"Lỗi dịch vụ của Google Play"</string>
+    <string msgid="2518680582564677258" name="common_google_play_services_unknown_issue">"<ns1:g id="APP_NAME">%1$s</ns1:g> đang gặp sự cố với các dịch vụ của Google Play. Hãy thử lại."</string>
+    <string msgid="5501187292256987189" name="common_google_play_services_unsupported_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> sẽ không chạy nếu không có các dịch vụ của Google Play. Thiết bị của bạn không hỗ trợ các dịch vụ này."</string>
+    <string msgid="8172070149091615356" name="common_google_play_services_update_button">"Cập nhật"</string>
+    <string msgid="7773943415006962566" name="common_google_play_services_update_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> sẽ không chạy trừ khi bạn cập nhật Dịch vụ của Google Play."</string>
+    <string msgid="8706675115216073244" name="common_google_play_services_update_title">"Cập nhật dịch vụ của Google Play"</string>
+    <string msgid="7894275749778928941" name="common_google_play_services_updating_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> sẽ không chạy nếu không có dịch vụ của Google Play. Dịch vụ này hiện đang cập nhật."</string>
+    <string msgid="2804989272736383918" name="common_google_play_services_wear_update_text">"Cần phiên bản mới của dịch vụ Google Play. Dịch vụ sẽ sớm tự động cập nhật."</string>
+    <string msgid="5201977337835724196" name="common_open_on_phone">"Mở trên điện thoại"</string>
+    <string msgid="3441753203274453993" name="common_signin_button_text">"Đăng nhập"</string>
+    <string msgid="669893613918351210" name="common_signin_button_text_long">"Đăng nhập bằng Google"</string>
+    <string name="commonrule">Điều lệ</string>
+    <string name="confirm_new_password">Nhập lại mật khẩu mới</string>
+    <string name="confirm_password">Nhắc lại mật khẩu</string>
+    <string name="content">Nội dung</string>
+    <string name="coupon">Phiếu đổi thưởng</string>
+    <string name="coupon_validity">Hiệu lực đổi thưởng</string>
+    <string name="create_new">Giới thiệu</string>
+    <string name="create_question_fail">Lỗi tạo câu hỏi.</string>
+    <string name="create_question_successful">Tạo thành công câu hỏi.</string>
+    <string name="currency">đồng</string>
+    <string name="current_password">Mật khẩu hiện tại</string>
+    <string name="current_password_wrong">Mật khẩu hiện tại chưa đúng</string>
+    <string name="daily">Hàng ngày</string>
+    <string name="date">Ngày</string>
+    <string name="date_format">DD/MM/YYYY</string>
+    <string name="date_from">Từ ngày: </string>
+    <string name="date_invalid">Ngày không hợp lệ</string>
+    <string name="date_title">Ngày</string>
+    <string name="date_to">Đến ngày: </string>
+    <string name="default_birthday">01/01/1950</string>
+    <string name="detail_call">Gọi</string>
+    <string name="detail_view">Xem</string>
+    <string msgid="2482357845034618478" name="dialog_button_got_it">"OK"</string>
+    <string msgid="4505853433204459373" name="dialog_button_open_help_center">"MỞ TRUNG TÂM TRỢ GIÚP"</string>
+    <string msgid="4028688231551615655" name="dialog_message_incompatible_phone">"Yêu cầu điện thoại sẵn sàng cho Daydream. Hãy truy cập Trung tâm trợ giúp của Daydream để biết thêm thông tin."</string>
+    <string msgid="3560856374975640601" name="dialog_message_no_cardboard">"Hãy tải ứng dụng Cardboard để định cấu hình thiết bị xem của bạn."</string>
+    <string msgid="7887077605817014784" name="dialog_title">"Định cấu hình"</string>
+    <string msgid="4515090705573059650" name="dialog_title_incompatible_phone">"Điện thoại không tương thích"</string>
+    <string msgid="2594928940370730859" name="dialog_title_vr_core_not_enabled">"Yêu cầu thiết lập"</string>
+    <string msgid="6322165810291059770" name="dialog_title_vr_core_not_installed">"Yêu cầu cài đặt"</string>
+    <string msgid="455961049302726493" name="dialog_title_warning">"Cảnh báo"</string>
+    <string msgid="1966424794507569244" name="dialog_vr_core_not_enabled">"Ứng dụng này có thể không hoạt động chính xác khi không có Dịch vụ VR của Google, vui lòng bật dịch vụ này trong Cài đặt của điện thoại trước khi tiếp tục."</string>
+    <string msgid="7122144659930752678" name="dialog_vr_core_not_installed">"Ứng dụng này có thể không hoạt động chính xác khi không có Dịch vụ VR của Google. Vui lòng cài đặt Dịch vụ VR của Google từ Cửa hàng Play trước khi tiếp tục."</string>
+    <string name="discount">Giảm</string>
+    <string name="distance">Khoảng cách</string>
+    <string name="district">Quận</string>
+    <string name="done">Hoàn tất</string>
+    <string name="done_have_notice">Chưa có thông báo trong kết quả tìm kiếm</string>
+    <string name="done_have_question">Chưa có câu hỏi trong kết quả tìm kiếm</string>
+    <string name="dont_have_any_comment">Chưa có bình luận cho khách sạn này</string>
+    <string name="dont_have_any_coupon_in_result">Chưa có coupon trong kết quả tìm kiếm</string>
+    <string name="dont_have_any_history_in_result">Chưa có lịch sử đặt phòng trong kết quả tìm kiếm</string>
+    <string name="dont_have_any_hotel_in_result">Không có khách sạn nào trong kết quả tìm kiếm.</string>
+    <string name="dont_have_hotel_in_district">Không có khách sạn nào trong quận:</string>
+    <string name="duplicate_check">Kiểm tra</string>
+    <string name="edit">Sửa</string>
+    <string name="email">Email</string>
+    <string name="email_already_exists">Email đã tồn tại trên hệ thống.</string>
+    <string name="email_format_not_valid">Định dạng email không hợp lệ</string>
+    <string name="email_not_exist_in_system">Email không tồn tại trên hệ thống</string>
+    <string name="email_sign_up">Tạo tài khoản bằng email</string>
+    <string name="end_date_after_booking_date">Ngày kết thúc phải sau ngày bắt đầu.</string>
+    <string name="enter_your_comment">Nhập bình luận của bạn</string>
+    <string name="enter_your_passcode">Nhập khóa mật mã</string>
+    <string name="enter_your_passcode_one_more_time">Nhập lại khóa mật mã</string>
+    <string name="estimated_hotel_fee">Tiền phòng (tạm tính)</string>
+    <string name="exit">Vui lòng nhấn một lần nữa để thoát.</string>
+    <string name="expired">Hết hạn</string>
+    <string name="facebook">Facebook</string>
+    <string name="facilities">Tiện nghi</string>
+    <string name="favorite">Khách sạn yêu thích</string>
+    <string name="favorite_area">Địa điểm yêu thích</string>
+    <string name="favorite_hotel">Khách sạn yêu thích</string>
+    <string name="favorited">Yêu thích</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"Khác"</string>
+    <string name="female">Nữ</string>
+    <string name="filters">Chọn lựa danh mục</string>
+    <string name="forgot_my_password">Quên mật khẩu</string>
+    <string name="forgot_password">Quên mật khẩu</string>
+    <string name="fri">T6</string>
+    <string name="gender">Giới tính</string>
+    <string name="get_code">Lấy mã</string>
+    <string name="go2joy_hotel">GO2JOY\'S HOTELS</string>
+    <string msgid="6145412853379876634" name="go_to_playstore_button">"Chuyển tới Cửa hàng Play"</string>
+    <string msgid="6878752668266068283" name="go_to_vr_listeners_settings_button">"Chuyển tới Cài đặt"</string>
+    <string name="google_plus">Google+</string>
+    <string name="googleplus">Google+</string>
+    <string name="history">Lịch sử</string>
+    <string name="hot">Khách sạn nổi bật</string>
+    <string name="hotel">Khách sạn</string>
+    <string name="hotel_don_have_roomtype">Khách sạn không phân biệt loại phòng</string>
+    <string name="hotel_info">Giới thiệu</string>
+    <string name="hotel_name">Tên khách sạn</string>
+    <string name="hotels">KHÁCH SẠN</string>
+    <string name="hour">Giờ</string>
+    <string name="hourly">Giờ</string>
+    <string name="id">ID</string>
+    <string name="img_decscription"> </string>
+    <string name="incorrect_email_or_password_please_try_again">Không đúng email hoặc mật khẩu. Vui lòng thử lại.</string>
+    <string name="input_comment">Vui lòng nhập bình luận</string>
+    <string name="input_email_id">Vui lòng nhập địa chỉ email</string>
+    <string name="installed_version">Phiên bản đã cài đặt</string>
+    <string name="invite_code">Invite code</string>
+    <string name="invite_friend">Mời bạn bè</string>
+    <string name="invite_friends">Mời bạn bè</string>
+    <string name="labels">Danh mục</string>
+    <string name="lastest_version">Phiên bản mới nhất</string>
+    <string name="limit_area_user_favorite_message">Danh sách địa điểm yêu thích đã đầy. Để thêm địa điểm này vào danh sách yêu thích, bạn cần gỡ bỏ địa điểm yêu thích khác trước.</string>
+    <string name="list">LIST</string>
+    <string name="location">Vị trí</string>
+    <string name="login">Đăng nhập</string>
+    <string name="login_button">Đăng nhập</string>
+    <string name="login_with">Đăng nhập với</string>
+    <string name="make_a_reservation">Đặt phòng</string>
+    <string name="make_private">Riêng tư</string>
+    <string name="make_reservation_success">Đặt phòng thành công</string>
+    <string name="male">Nam</string>
+    <string name="member_profile">Thông tin thành viên</string>
+    <string name="menu_event">Sự kiện</string>
+    <string name="menu_event_promotion">Khuyến mãi/Sự kiện</string>
+    <string name="menu_home">Trang chủ</string>
+    <string name="menu_map">Bản đồ</string>
+    <string name="menu_my_page">Trang của tôi</string>
+    <string name="mobile">Di động</string>
+    <string name="mon">T2</string>
+    <string name="msg_0_upgrade_app">Ứng dụng cần được cập nhật phiên bản mới để hoạt động. Bạn có muốn cập nhật ngay không?</string>
+    <string name="msg_10_1_share_content">Bạn được tặng 1 coupon giảm myDiscount ngay khi tải app và đăng nhập thành công. Với Go2Joy đặt phòng nhanh, tiện lợi và luôn có khuyến mãi.</string>
+    <string name="msg_11_1_please_choose_one_of_theme">Vui lòng chọn một trong số các lựa chọn!</string>
+    <string name="msg_12_2_join_event_successful">Bạn đã đăng ký thành công ! Cảm ơn bạn đã tham gia vào chương trình “THỬ VẬN MAY – RINH NGAY DẾ XỊN”. Chương trình sẽ tiến hành rút thăm may mắn trực tuyến vào ngày 21/10/2017. Kết quả sẽ được công bố trên fanpage của chương trình : https://www.facebook.com/go2joy.hotels . Bạn cùng theo dõi bạn nhé. Chúc bạn may mắn , Go2Joy</string>
+    <string name="msg_1_4_no_resent_booking">Bạn chưa đặt phòng nào được khách sạn xác nhận.</string>
+    <string name="msg_1_4_not_yet_confirmed">Phòng bạn đặt vẫn chưa được khách sạn chấp nhận.</string>
+    <string name="msg_1_5_no_reservation_to_checkin">Không có đặt phòng nào để nhận phòng</string>
+    <string name="msg_3_1_min_price">Số tiền thanh toán tối thiểu phải là </string>
+    <string name="msg_3_1_soldout_room">Ôi tiếc quá! Phòng này vừa hết. Bạn vui lòng chọn phòng loại khác nha.</string>
+    <string name="msg_3_9_booking_only">Số giờ tối thiểu bạn phải đặt cho loại phòng này là %d giờ</string>
+    <string name="msg_3_9_booking_successful">Đặt phòng thành công!!</string>
+    <string name="msg_3_9_cancel_in_weekend">Khách sạn này tạm thời không nhận đặt phòng bạn vào cuối tuần này. Go2Joy xin lỗi về sự bất tiện này, các bạn hãy chọn khách sạn khác để trải nghiệm nhé. Go2Joy sẽ sớm phát triển thêm khách sạn để các bạn có thể đặt phòng không giới hạn. Cảm ơn các bạn !</string>
+    <string name="msg_3_9_change_date">Chọn ngày</string>
+    <string name="msg_3_9_congrat_receive_coupon_successful">Chúc mừng bạn vừa được nhận couponNumber coupon giảm giá couponMoney cho lần đặt phòng tiếp theo. Xem chi tiết thể lệ tại mục Promotion nhé. Chúc bạn vui vẻ!</string>
+    <string name="msg_3_9_disbale_booking">Phòng tại khách sạn này vừa được đặt hết, vui lòng đặt phòng vào ngày khác hay khách sạn khác của Go2Joy</string>
+    <string name="msg_3_9_flashsale_pay_in_advance">Vui lòng thanh toán trước đối với phòng Giảm sốc.</string>
+    <string name="msg_3_9_flashsale_soldout">Phòng FlashSale đã hết. Vui lòng đặt phòng khác.</string>
+    <string name="msg_3_9_maximun_coupon_value_1">Đặt phòng của bạn có giá trị trên %d.</string>
+    <string name="msg_3_9_maximun_coupon_value_2"> Coupon giảm giá sẽ được áp dụng tối đa là %d.</string>
+    <string name="msg_3_9_overnight_time">Giờ bạn chọn thuộc loại Qua đêm. Vui lòng chọn mục Qua đêm hoặc chọn giờ khác.</string>
+    <string name="msg_3_9_pay_online_inday_only">Vui lòng thanh toán trước để giữ phòng hoặc bạn có thể đặt phòng vào ngày khác hay khách sạn khác</string>
+    <string name="msg_3_9_pay_online_only">Vui lòng thanh toán trước để giữ phòng hoặc bạn có thể đặt phòng tại khách sạn khác của Go2Joy</string>
+    <string name="msg_3_9_payment_fail">Lỗi thanh toán</string>
+    <string name="msg_3_9_payment_process_failed">Đặt phòng của bạn không thành công do chưa hoàn tất quá trình thanh toán.</string>
+    <string name="msg_3_9_payment_successful">Bạn đã thanh toán thành công</string>
+    <string name="msg_3_9_payment_unpaid">Bạn chưa thanh toán đặt phòng.</string>
+    <string name="msg_3_9_promotion_time_frame">Coupon giảm giá 50% áp dụng cho khung giờ key_time, Mời bạn chọn lại thời gian phù hợp.</string>
+    <string name="msg_3_9_promotion_time_frame_2">Coupon giảm giá 50% áp dụng cho khung giờ 8h-20h, từ thứ Hai đến thứ Sáu bạn nhé! Mời bạn chọn lại thời gian phù hợp.</string>
+    <string name="msg_3_9_promotion_time_frame_4">Coupon giảm giá không áp dụng cho thời gian này. Mời bạn chọn lại thời gian phù hợp!</string>
+    <string name="msg_3_9_reservation_is_exits_in_system">Lịch đặt phòng đã tồn tại trên hệ thống. Vui lòng đặt lại lịch khác.</string>
+    <string name="msg_3_9_reservation_successful_and_confirm_payment">Bạn đã đặt phòng thành công. Bạn có muốn thanh toán trước để giữ phòng?</string>
+    <string name="msg_3_9_reward_after_check_in">Nhớ check-in phòng này để nhận ngay couponNumber coupon giảm giá couponMoney cho lần tiếp theo nha bạn ơi!</string>
+    <string name="msg_3_9_search_hotel">Tìm khách sạn</string>
+    <string name="msg_3_9_time_in_past">Thời gian không thể ở quá khứ.</string>
+    <string name="msg_6_12_stamp_coupon_is_using">Bạn đang sử dụng Coupon nên không thể sử dụng Tem cho cùng 1 phòng</string>
+    <string name="msg_6_12_stamp_not_condition">Thời gian bạn chọn không đủ điều kiện để sử dụng Tem</string>
+    <string name="msg_6_12_stamp_redeemed">Bạn đã đổi Tem nên không thể sử dụng Coupon cho cùng 1 phòng</string>
+    <string name="msg_6_12_stamp_redeemed_asking">Chúc mừng! Bạn đã đủ Tem để đổi thưởng. Nếu không đổi thưởng thì không thể tích lũy thêm Tem. Bạn có muốn đổi Tem để lấy thưởng không?</string>
+    <string name="msg_6_12_tip_stamp">Xem chi tiết Tem tích điểm</string>
+    <string name="msg_6_3_1_booking_was_canceled">Đặt phòng của bạn vừa bị huỷ do khách sạn không xếp được phòng. Vui lòng đặt lại phòng khác.</string>
+    <string name="msg_6_3_1_check_in_successful">Bạn đã nhận phòng thành công</string>
+    <string name="msg_6_9_3_cancel_message">Bạn không đồng ý với điều khoản sử dụng dịch vụ. Ứng dụng sẽ ngừng hoạt động trên thiết bị.</string>
+    <string name="msg_6_9_3_notification_message">Điều khoản sử dụng dịch vụ có nội dung cập nhật mới.\nXem chi tiết</string>
+    <string name="msg_6_9_3_popup_exit_agreement_page">Tôi đã xem và đồng ý với điều khoản sử dụng dịch vụ của Go2Joy.</string>
+    <string name="msg_6_9_3_see_detail">Xem chi tiết</string>
+    <string name="msg_7_3_can_not_send_email">Không thể gửi mail ngay lúc này được. Vui lòng gửi lại sau.</string>
+    <string name="msg_8_1_long_click_map">Nhấn giữ trên bản đồ để chọn địa chỉ mới</string>
+    <string name="msg_can_not_payment_trial">Không thể thanh toán online vì khách sạn chưa liên kết với Go2Joy.</string>
+    <string name="my_coupon">Coupon của tôi</string>
+    <string name="my_favorite">Địa điểm yêu thích</string>
+    <string name="my_favorite_hotels">Khách sạn yêu thích</string>
+    <string name="my_profile">Thông tin của tôi</string>
+    <string name="my_review">Bình luận của tôi</string>
+    <string name="near_by">Tất cả</string>
+    <string name="nearby_place">Hoặc chọn địa điểm gần bạn</string>
+    <string name="new_password">Mật khẩu mới</string>
+    <string name="new_text">Khách sạn mới</string>
+    <string name="next">Tiếp</string>
+    <string name="nick_name">Nickname</string>
+    <string name="nickname_already_exists">Nickname đã tồn tại trên hệ thống</string>
+    <string name="no">Không</string>
+    <string msgid="5324772199357788720" name="no_browser_text">"Không có trình duyệt nào để mở trang web"</string>
+    <string name="no_history">Chưa có lịch sử đặt phòng nào</string>
+    <string name="no_result_found">Không có kết quả được tìm thấy</string>
+    <string name="normal">Bình thường</string>
+    <string name="notice">Thông báo</string>
+    <string name="notice_and_qa">Thông báo/ Hỏi đáp</string>
+    <string name="notification_birthday_7_days">Bạn còn 1 coupon giảm giá coupon_money nhân dịp sinh nhật sẽ hết hạn vào ngày coupon_date. Nhanh tay đặt phòng và hưởng ưu đãi cùng Go2Joy bạn nhé!</string>
+    <string name="notification_birthday_coupon_issued">Go2Joy chúc mừng sinh nhật bạn! Xin tặng bạn 1 coupon giảm giá coupon_money để đặt phòng với Go2Joy. Chúc bạn tuổi mới mọi điều như ý.</string>
+    <string name="notification_flashsale">HOT! Bạn biết tin gì chưa? Có thêm Hotel giảm sốc đến 80%. Số lượng và thời gian có hạn. Chỉ có tại Go2Joy. Đặt phòng ngay với Go2Joy!</string>
+    <string name="notification_stamp_checkin_time">Bạn có 1 đặt phòng sắp đến giờ check-in. Hãy check-in tại khách sạn để nhận ngay 1 Tem tích điểm nhé! Truy cập mục Tem của tôi để xem chi tiết.</string>
+    <string name="notification_stamp_enough">Chúc mừng bạn vừa nhận thêm 1 Tem tích điểm. Bạn đã đủ số Tem để đổi thưởng. Hãy đổi thưởng trong lần đặt phòng sau cùng Go2Joy nhé! Truy cập mục Tem của tôi để xem chi tiết.</string>
+    <string name="notification_stamp_expired">Bạn có 1 Tem tích điểm vừa hết hạn. Hãy tiếp tục đặt phòng cùng Go2Joy để đủ số Tem đổi thưởng nhé! Truy cập mục Tem của tôi để xem chi tiết.</string>
+    <string name="notification_stamp_first_stamp_added">Chúc mừng bạn đã nhận được Tem tích điểm đầu tiên! Hãy tiếp tục đặt phòng với Go2Joy để hưởng ưu đãi khi đủ số Tem nhé! Truy cập mục Tem của tôi để xem chi tiết.</string>
+    <string name="notification_stamp_new_stamp_added">Chúc mừng bạn vừa nhận được thêm 1 Tem tích điểm. Hãy tiếp tục đặt phòng với Go2Joy để hưởng ưu đãi khi đủ số Tem nhé! Truy cập mục Tem của tôi để xem chi tiết.</string>
+    <string name="notification_stamp_one_day_expire">Chúc mừng bạn đã đủ số Tem để đổi thưởng. 1 Tem của bạn sẽ hết hạn vào đêm nay. Hãy đổi Tem và đặt phòng ngay để hưởng ưu đãi cùng Go2Joy nào! Truy cập mục Tem của tôi để xem chi tiết.</string>
+    <string name="notification_stamp_one_left">Chúc mừng bạn vừa nhận thêm 1 Tem tích điểm. Chỉ còn 1 Tem nữa thôi là bạn có thể đổi thưởng. Tiếp tục đặt phòng cùng Go2Joy nhé! Truy cập mục Tem của tôi để xem chi tiết.</string>
+    <string name="notification_stamp_two_weeks_expire">Chúc mừng bạn đã đủ số Tem để đổi thưởng. 1 Tem của bạn sẽ hết hạn vào 2 tuần nữa. Nhanh tay đổi Tem đặt phòng hưởng ưu đãi cùng Go2Joy nào! Truy cập mục Tem của tôi để xem chi tiết.</string>
+    <string name="number_is_wrong_format">Số điện thoại không hợp lệ</string>
+    <string name="ok">Đồng ý</string>
+    <string name="optional">(Tùy chọn)</string>
+    <string name="over_night">Qua đêm</string>
+    <string name="passcode_lock">Khóa mật mã</string>
+    <string name="passcode_not_match">Mật mã không đúng</string>
+    <string name="passcode_setting">Thiết lập khóa mật mã</string>
+    <string name="password">Mật khẩu</string>
+    <string name="password_and_confirm_not_match">Mật khẩu và Mật khẩu nhắc lại không khớp</string>
+    <string name="password_format_message">Mật khẩu phải là 6~12 ký tự tiếng Anh và số.</string>
+    <string name="password_format_not_valid">Mật khẩu không hợp lệ</string>
+    <string name="percent">%</string>
+    <string name="photo_album">Bộ sưu tập ảnh</string>
+    <string msgid="1303870564366209730" name="place_autocomplete_clear_button">"Xóa tìm kiếm"</string>
+    <string msgid="2809095107724486040" name="place_autocomplete_search_hint">"Tìm kiếm"</string>
+    <string msgid="2306297166333705530" name="place_your_phone_into_cardboard">"Đặt điện thoại vào thiết bị xem Cardboard của bạn"</string>
+    <string msgid="5433369525545709510" name="place_your_viewer_into_viewer_format">"Đặt điện thoại vào thiết bị xem <ns1:g id="VIEWER_NAME">%s</ns1:g> của bạn"</string>
+    <string name="please_agree_policy">Vui lòng chọn đồng ý điều khoản</string>
+    <string name="please_check_email_first">Vui lòng kiểm tra địa chỉ email</string>
+    <string name="please_check_nickname_first">Vui lòng kiểm tra nickname</string>
+    <string name="please_choose_birthday">Vui lòng nhập ngày sinh</string>
+    <string name="please_choose_room_type">Vui lòng chọn loại phòng</string>
+    <string name="please_duplicate_check_email">Vui lòng kiểm tra email</string>
+    <string name="please_enter_confirm_password">Vui lòng nhập lại mật khẩu mới</string>
+    <string name="please_enter_new_password">Vui lòng nhập mật khẩu mới</string>
+    <string name="please_enter_your_email">Vui lòng nhập email</string>
+    <string name="please_enter_your_password">Vui lòng nhập mật khẩu</string>
+    <string name="please_input_area_number">Vui lòng nhập mã vùng</string>
+    <string name="please_input_content">Vui lòng nhập nội dung</string>
+    <string name="please_input_current_password">Vui lòng nhập mật khẩu hiện tại</string>
+    <string name="please_input_district">Vui lòng nhập quận/ huyện</string>
+    <string name="please_input_email">Vui lòng nhập email</string>
+    <string name="please_input_hotel_address">Vui lòng nhập địa chỉ</string>
+    <string name="please_input_hotel_name">Vui lòng nhập tên khách sạn</string>
+    <string name="please_input_key_to_search">Vui lòng nhập từ khóa tìm kiếm</string>
+    <string name="please_input_nickname">Vui lòng nhập nickname</string>
+    <string name="please_input_phone_number">Vui lòng nhập số điện thoại</string>
+    <string name="please_input_province">Vui lòng nhập tỉnh/thành phố</string>
+    <string name="please_input_title">Vui lòng nhập tiêu đề</string>
+    <string name="please_input_verify_code">Vui lòng nhập mã xác nhận</string>
+    <string name="please_up_load_image">Vui lòng chọn ảnh đăng</string>
+    <string name="post_a_report_fail">Gửi thông tin không thành công. Vui lòng thử lại</string>
+    <string name="price">Giá</string>
+    <string name="privacy_policy">Chính sách bảo mật</string>
+    <string name="privacy_policy_content">Privacy Policy Content</string>
+    <string name="promotion">Khuyến mãi</string>
+    <string name="province">Tỉnh</string>
+    <string name="push_notification">Nhận thông báo</string>
+    <string name="question_answer">Hỏi Đáp</string>
+    <string name="quit">Thoát</string>
+    <string name="rate">Đánh giá</string>
+    <string name="rate_review"><![CDATA[Đánh giá & Bình luận]]></string>
+    <string name="recent_hotels">Vừa đặt</string>
+    <string name="report">Đăng tin</string>
+    <string name="report_a_new_hotel_title">Giới thiệu khách sạn mới</string>
+    <string name="report_is_sent_to">Thông tin đã được gửi tới Go2Joy. Chúng tôi sẽ xem xét và liên lạc sớm nhất.</string>
+    <string name="reporter">Người đăng</string>
+    <string name="required">(Bắt buộc)</string>
+    <string name="reservation">Đặt phòng</string>
+    <string name="retry">Thử lại</string>
+    <string name="review">Bình luận</string>
+    <string name="room_available">Còn phòng</string>
+    <string name="room_no">Số phòng</string>
+    <string name="room_type">Loại phòng</string>
+    <string name="sat">T7</string>
+    <string name="search_hint_text">Tìm..</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Tìm kiếm"</string>
+    <string name="search_result">Kết quả tìm kiếm</string>
+    <string name="search_title">Tìm</string>
+    <string name="select_this_location">Chọn địa điểm này</string>
+    <string name="send">Gửi</string>
+    <string name="send_to">Gửi đến</string>
+    <string name="server_cannot_send_sms">Hệ thống không thể gửi SMS</string>
+    <string name="server_side_can_not_handle">Máy chủ không thể xử lý tự động. Vui lòng xử lý bằng tay trên web admin</string>
+    <string name="service_agreement">Thỏa thuận dịch vụ</string>
+    <string name="service_agreement_content">Service Agreement Content</string>
+    <string name="set_favorite">Yêu thích</string>
+    <string name="set_my_favorite_area">Thiết lập địa điểm yêu thích</string>
+    <string name="setting">Cài đặt</string>
+    <string msgid="3719682527828378500" name="settings_button_content_description">"cài đặt"</string>
+    <string msgid="20964482303479393" name="setup_button">"Thiết lập"</string>
+    <string name="share">Chia sẻ</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="skype">Skype</string>
+    <string name="sms">SMS</string>
+    <string name="sold_out">Hết phòng</string>
+    <string name="sort">Sắp xếp</string>
+    <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="sun">CN</string>
+    <string name="sure_delete">Bạn có muốn xóa không? Nội dung này sẽ không được khôi phục lại sau khi xoá</string>
+    <string msgid="7856245902137004584" name="switch_viewer_action">"Chuyển đổi"</string>
+    <string msgid="816514297101696447" name="switch_viewer_prompt">"Dùng thiết bị xem khác?"</string>
+    <string name="telephone">Số điện thoại</string>
+    <string name="teltitle">Điện thoại</string>
+    <string name="temporagy_sent">Mật khẩu tạm thời của bạn đã được gửi qua email</string>
+    <string name="terms_privacy_policy">Điều khoản/ Chính sách bảo mật</string>
+    <string name="the_email_is_available">Email đã sẵn sàng cho việc đăng ký.</string>
+    <string name="the_nickname_is_available">Nickname hợp lệ</string>
+    <string name="this_hotel_is_not_contract_with_appro">Khách sạn này chưa đăng ký là thành viên của Go2Joy.</string>
+    <string name="thu">T5</string>
+    <string name="time">Giờ</string>
+    <string name="time_from">Từ</string>
+    <string name="time_invalid">Thời gian không hợp lệ</string>
+    <string name="time_to">Đến</string>
+    <string name="title">Tiêu đề</string>
+    <string name="token_invalid">Đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại</string>
+    <string name="total_review">Tổng lượt bình luận</string>
+    <string name="tue">T3</string>
+    <string name="txt_10_1_contact">Contacts</string>
+    <string name="txt_10_1_fb_messenger">FB Messenger</string>
+    <string name="txt_10_1_invite_friend_description">Nhận coupon giảm giá không giới hạn từ Go2Joy! Gửi mã dưới đây cho bạn bè, mỗi bạn sẽ có ngay 1 coupon %1$sđ sau khi người nhận tải app và đăng nhập thành công.</string>
+    <string name="txt_10_1_line">Line</string>
+    <string name="txt_10_1_message_title_popup">Gửi tin nhắn trải nghiệm miễn phí đến bạn bè</string>
+    <string name="txt_10_1_recommender_code">Invite Code</string>
+    <string name="txt_10_1_viber">Viber</string>
+    <string name="txt_10_1_wechat">WeChat</string>
+    <string name="txt_10_1_whatsapp">WhatsApp</string>
+    <string name="txt_10_2_do_not_show_1_week">Không hiển thị giới thiệu này trong vòng 1 tuần</string>
+    <string name="txt_11_1_feedback">Phản hồi</string>
+    <string name="txt_11_1_i_checked_in_the_hotel">Tôi đã nhận phòng khách sạn</string>
+    <string name="txt_11_1_i_did_not_visit">Tôi không đến khách sạn</string>
+    <string name="txt_11_1_i_visited_but_no_room">Tôi đã đến nhưng không còn phòng</string>
+    <string name="txt_11_1_not_checkin_message">Chúng tôi thấy bạn có đặt phòng nhưng chưa đến nhận phòng</string>
+    <string name="txt_11_1_optional_comment">Nhập phản hồi (tùy chọn)</string>
+    <string name="txt_11_1_rate_the_hotel">Đánh giá khách sạn</string>
+    <string name="txt_11_1_submit">GỬI</string>
+    <string name="txt_11_1_thanks_helping_us">Cảm ơn bạn đã giúp chúng tôi cải thiện dịch vụ.</string>
+    <string name="txt_11_1_your_last_booking">Lần đặt phòng cuối cùng</string>
+    <string name="txt_11_1_your_last_check_in">Lần nhận phòng cuối cùng</string>
+    <string name="txt_16_billing_information">Thông tin thanh toán</string>
+    <string name="txt_16_booking_information">THÔNG TIN ĐẶT PHÒNG</string>
+    <string name="txt_16_confirm">XÁC NHẬN</string>
+    <string name="txt_16_confirm_your_payment_now">Chọn một loại hình để thanh toán</string>
+    <string name="txt_16_discount">Giảm giá</string>
+    <string name="txt_16_hotel_fee">Tiền phòng</string>
+    <string name="txt_16_local_card">Thẻ Nội Địa</string>
+    <string name="txt_16_pay_at_hotel">Thanh toán tại khách sạn</string>
+    <string name="txt_16_pay_later">THANH TOÁN SAU</string>
+    <string name="txt_16_pay_now">THANH TOÁN ONLINE</string>
+    <string name="txt_16_total_offer_discount">Tổng tiền </string>
+    <string name="txt_16_total_title">TỔNG TIỀN ĐẶT PHÒNG</string>
+    <string name="txt_1_4_booking_id">Mã đặt phòng</string>
+    <string name="txt_1_4_booking_status">Trạng thái đặt phòng</string>
+    <string name="txt_1_4_coupon_discount">Giảm giá</string>
+    <string name="txt_1_4_date">Ngày</string>
+    <string name="txt_1_4_hotel_name">Tên khách sạn</string>
+    <string name="txt_1_4_member_unique_id">Mã thành viên</string>
+    <string name="txt_1_4_payment_status">Trạng thái thanh toán</string>
+    <string name="txt_1_4_price">Giá</string>
+    <string name="txt_1_4_room_type">Loại phòng</string>
+    <string name="txt_1_4_time">Giờ</string>
+    <string name="txt_1_4_total_payment">Tổng thanh toán</string>
+    <string name="txt_1_qrscan">Quét mã</string>
+    <string name="txt_1_recent">Vừa đặt</string>
+    <string name="txt_2_coupon_applied">Giá áp dụng coupon</string>
+    <string name="txt_2_flashfale_title">GIẢM SỐC</string>
+    <string name="txt_2_flashsale_daily_price">Theo ngày</string>
+    <string name="txt_2_flashsale_hourly_price">Theo giờ</string>
+    <string name="txt_2_flashsale_overnight_price">Qua đêm</string>
+    <string name="txt_2_flashsale_room_left">Còn lại %s phòng giảm sốc</string>
+    <string name="txt_2_flashsale_sold_out">Hết phòng giảm sốc</string>
+    <string name="txt_2_from_lowest_price">Từ</string>
+    <string name="txt_2_join">Tham gia</string>
+    <string name="txt_2_joined">Đã tham gia</string>
+    <string name="txt_3_1_call">Gọi</string>
+    <string name="txt_3_1_make_a_reservation">Đặt phòng</string>
+    <string name="txt_3_1_map">Bản đồ</string>
+    <string name="txt_3_1_soldout_room">Hết phòng</string>
+    <string name="txt_3_2_bed">Giường: </string>
+    <string name="txt_3_2_book_now">Đặt ngay! </string>
+    <string name="txt_3_2_cancel_policy">Huỷ đặt phòng thoải mái %s giờ trước khi nhận phòng.</string>
+    <string name="txt_3_2_checkin_time">Giờ nhận phòng theo ngày: từ </string>
+    <string name="txt_3_2_checkout_time">Giờ trả phòng theo ngày: từ </string>
+    <string name="txt_3_2_description">Mô tả: </string>
+    <string name="txt_3_2_overnight_time">Qua đêm từ </string>
+    <string name="txt_3_2_square">Diện tích: </string>
+    <string name="txt_3_2_views">Hướng: </string>
+    <string name="txt_3_5_edit">Sửa</string>
+    <string name="txt_3_6_delete">Xóa</string>
+    <string name="txt_3_9_coupon_can_not_use">Coupon không áp dụng tại khách sạn này.</string>
+    <string name="txt_3_9_coupon_not_enough_condition">Thời gian áp dụng: key_time</string>
+    <string name="txt_3_9_coupon_not_enough_condition_2">Thời gian áp dụng: 8h-20h, từ T2 đến T6</string>
+    <string name="txt_3_9_orther">Ngày khác</string>
+    <string name="txt_3_9_right_now">Bây giờ</string>
+    <string name="txt_3_9_today">Hôm nay</string>
+    <string name="txt_3_9_tomorrow">Ngày mai</string>
+    <string name="txt_3_9_tonight">Tối nay</string>
+    <string name="txt_4_1_1_flashsale_label">Giảm sốc</string>
+    <string name="txt_4_recent_booking">Phòng vừa đặt</string>
+    <string name="txt_5_2_birthday_issued">ngày từ lúc phát hành</string>
+    <string name="txt_6_12_stamp">Tem của tôi</string>
+    <string name="txt_6_12_stamp_collection">Bộ sưu tập Tem</string>
+    <string name="txt_6_12_stamp_continue">Tiếp tục</string>
+    <string name="txt_6_12_stamp_hotel">Tem tích điểm</string>
+    <string name="txt_6_12_stamp_no">Bạn chưa tích lũy được Tem nào. Hãy chọn khách sạn có ưu đãi Tem tích điểm để nhận khuyến mãi nhé. </string>
+    <string name="txt_6_12_stamp_not_applied">Không đổi Tem</string>
+    <string name="txt_6_12_stamp_policy">Chính sách đổi Tem</string>
+    <string name="txt_6_12_stamp_policy_condision">Điều kiện sử dụng</string>
+    <string name="txt_6_12_stamp_policy_number">Số Tem cần để đổi thưởng</string>
+    <string name="txt_6_12_stamp_policy_value">Giá trị đổi thưởng</string>
+    <string name="txt_6_12_stamp_redeem">Đổi thưởng</string>
+    <string name="txt_6_12_stamp_value">Số tiền đổi Tem</string>
+    <string name="txt_6_1_logout">Đăng xuất</string>
+    <string name="txt_6_3_1_booking_checked_in">Đã nhận phòng</string>
+    <string name="txt_6_3_1_booking_now_show">Không nhận phòng</string>
+    <string name="txt_6_3_1_booking_status_booked">Đã đặt</string>
+    <string name="txt_6_3_1_booking_status_cancel">Đã hủy</string>
+    <string name="txt_6_3_1_cancel_policy">Xem chính sách hủy phòng ở mục giới thiệu khách sạn</string>
+    <string name="txt_6_3_1_checkin_code">Mã nhận phòng:</string>
+    <string name="txt_6_3_1_checkin_code_message">Áp dụng khi sử dụng coupon</string>
+    <string name="txt_6_3_1_paid">Đã thanh toán</string>
+    <string name="txt_6_3_1_paid_amount">Số tiền đã thanh toán</string>
+    <string name="txt_6_3_1_paid_at_hotel">Đã trả tại KS</string>
+    <string name="txt_6_3_1_paynow">Thanh toán</string>
+    <string name="txt_6_3_1_unpaid">Chưa thanh toán</string>
+    <string name="txt_6_3_my_booking_title">Đặt phòng của tôi</string>
+    <string name="txt_6_about_us">Về chúng tôi</string>
+    <string name="txt_7_2_check">Kiểm tra</string>
+    <string name="unfavorited">Không thích</string>
+    <string name="unregister">Hủy đăng ký</string>
+    <string name="update">Cập nhật</string>
+    <string name="update_failure">Cập nhật có lỗi</string>
+    <string name="updating_location">Đang cập nhật vị trí…</string>
+    <string name="upload_image">Đăng ảnh: Danh thiếp, Bảng hiệu... với địa chỉ và số điện thoại liên lạc</string>
+    <string name="used">Đã dùng</string>
+    <string name="valid">Hợp lệ</string>
+    <string name="verify_code">Mã xác nhận</string>
+    <string name="verify_code_button">Vui lòng chờ %1$d giây để yêu cầu gửi lại mã xác nhận</string>
+    <string name="verify_code_expired">Mã xác nhận của bạn đã hết hạn sử dụng. Vui lòng nhập lại mã mới</string>
+    <string name="verify_code_not_match">Mã xác nhận không chính xác. Vui lòng nhập lại mã mới</string>
+    <string name="verify_code_request">Yêu cầu đã được gửi vui lòng chờ trong giây lát để nhận mã</string>
+    <string name="version">Phiên bản</string>
+    <string name="viber">Viber</string>
+    <string name="view_all">Xem tất cả</string>
+    <string name="vnd">VND</string>
+    <string name="want_to_unregister">"Sau khi hủy đăng ký, tất cả dữ liệu của bạn (lịch sử, mục yêu thích, coupon,...) sẽ bị hủy bỏ toàn bộ trên hệ thống và không khôi phục lại được.\nBạn có muốn hủy đăng ký không?"</string>
+    <string name="wed">T4</string>
+    <string name="winner">Người chiến thắng</string>
+    <string name="write_a_question">Tạo câu hỏi</string>
+    <string name="write_a_review">Bình luận</string>
+    <string name="yes">Có</string>
+    <string name="you_already_used_last_version">Bạn đang sử dụng phiên bản mới nhất.</string>
+    <string name="you_dont_have_any_favorite_hotel">Bạn chưa có danh sách khách sạn yêu thích</string>
+    <string name="you_have_a_reservation_confirm">Bạn đã được xác nhận đặt phòng</string>
+    <string name="you_have_a_reservation_reject">Đặt phòng của bạn vừa bị huỷ do khách sạn không xếp được phòng.</string>
+    <string name="you_have_new_answer">Bạn đã nhận trả lời cho câu hỏi của bạn.</string>
+    <string name="you_have_new_notice">Bạn đã nhận thông báo mới</string>
+    <string name="you_have_update_answer">Bạn đã nhận cập nhật cho câu hỏi của bạn</string>
+    <string name="you_have_update_notice">Bạn được cập nhật thông báo</string>
+    <string name="your_content">Nội dung</string>
+    <string name="your_password_has_changed">Mật khẩu của bạn đã được đổi thành công.</string>
+    <string name="your_title">Tiêu đề</string>
+    <string name="zalo">Zalo</string>
+</resources>

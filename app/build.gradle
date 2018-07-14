@@ -1,0 +1,96 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.24.5'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    google()
+}
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
+    defaultConfig {
+        applicationId "com.appromobile.hotel"
+        minSdkVersion 19
+        targetSdkVersion 27
+        multiDexEnabled true
+        versionCode 72
+        versionName "14.0.1"
+    }
+
+    dexOptions {
+
+        javaMaxHeapSize "12g"
+    }
+    buildTypes {
+        debug {
+            //disable firebase crash report
+            buildConfigField "boolean", "USE_CRASHLYTICS", "false"
+            buildConfigField "Boolean", "REPORT_CRASH", "false"
+            ext.enableCrashlytics = false
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //disable firebase crash report
+            buildConfigField "Boolean", "REPORT_CRASH", "false"
+        }
+    }
+}
+
+dependencies {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:multidex:1.0.2'
+    compile 'com.google.android.gms:play-services-location:11.6.2'
+    compile 'com.google.android.gms:play-services-auth:11.6.2'
+    compile 'com.google.android.gms:play-services-maps:11.6.2'
+    compile 'com.android.support:cardview-v7:27.0.2'
+    compile 'com.google.firebase:firebase-auth:11.6.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'com.facebook.android:facebook-android-sdk:4+'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+    compile 'com.github.bumptech.glide:glide:4.4.0'
+    compile 'com.google.firebase:firebase-messaging:11.6.2'
+    compile 'com.google.firebase:firebase-core:11.6.2'
+    compile 'com.google.android.gms:play-services-places:11.6.2'
+    releaseCompile 'com.google.firebase:firebase-crash:11.6.2'
+    compile fileTree(includes: ['*.jar'], dir: 'libs')
+    compile project(path: ':zBarScannerLibrary')
+    testCompile 'junit:junit:4.12'
+
+    //Appsflyer
+    //compile 'com.appsflyer:af-android-sdk:4.7.1@aar'
+    //Appsflyer
+
+    //Badger
+    compile 'com.nex3z:notification-badge:0.2.0'
+    //Shortcut Badger
+    compile "me.leolin:ShortcutBadger:1.1.16@aar"
+    //Panorama //HotelImageDetailAdapter//hotel_image_item
+    compile 'com.google.vr:sdk-panowidget:1.80.0'
+
+    // Device Name
+    compile 'com.jaredrummler:android-device-names:1.1.5'
+
+    // Tooltip
+    compile 'com.github.vihtarb:tooltip:0.1.9'
+
+}
+
+// ADD THIS AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'

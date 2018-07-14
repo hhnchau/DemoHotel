@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bk"
+    android:orientation="vertical">
+
+    <!--Hotel Name-->
+    <com.appromobile.hotel.widgets.TextViewSFHeavy
+        android:id="@+id/tvHotelTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/margin_12"
+        android:layout_marginTop="@dimen/margin_8"
+        android:textColor="@color/wh"
+        android:textSize="@dimen/hotel_list_text_size_big" />
+
+    <!--Button Close-->
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="@dimen/hpd_btn_close_height"
+        android:layout_height="@dimen/hpd_btn_close_height"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/margin_12"
+        android:layout_marginTop="@dimen/margin_8"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/img_decscription"
+        android:scaleType="fitCenter"
+        android:src="@drawable/close" />
+
+    <!--View Pager Section-->
+    <RelativeLayout
+        android:id="@+id/view_pager_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hpd_view_pager_height"
+        android:layout_below="@id/btnClose"
+        android:layout_marginTop="@dimen/margin_8">
+        <!--Default image-->
+        <ImageView
+            android:id="@+id/imgNoImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hpd_view_pager_height"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+
+        <!--View Pager-->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hpd_view_pager_height"
+            android:background="#c2c2c2" />
+
+        <!--stautus bar for viewpager-->
+        <RelativeLayout
+            android:id="@+id/container_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hpd_vp_container_indicator_height"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin_4"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginStart="@dimen/margin_12"
+            android:background="@color/bk_15p">
+
+            <View
+                android:id="@+id/indicator"
+                android:layout_width="@dimen/hpd_vp_indicator_height"
+                android:layout_height="wrap_content"
+                android:background="@color/wh" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!--Facilities-->
+    <HorizontalScrollView
+        android:id="@+id/list_facility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_pager_container"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:scrollbars="horizontal">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/list_facility"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <!--Hotel information-->
+            <include
+                layout="@layout/room_type_photo_page_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </ScrollView>
+
+        <!--Button book -->
+        <com.appromobile.hotel.widgets.TextViewSFMedium
+            android:id="@+id/btnBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@drawable/bg_booking"
+            android:paddingBottom="@dimen/margin_4"
+            android:paddingEnd="@dimen/margin_8"
+            android:paddingStart="@dimen/margin_8"
+            android:paddingTop="@dimen/margin_4"
+            android:text="@string/txt_3_2_book_now"
+            android:textColor="@color/wh" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/org"
+        android:orientation="horizontal"
+        android:paddingLeft="24dp"
+        android:paddingRight="12dp">
+
+        <com.appromobile.hotel.widgets.TextViewSFHeavy
+            android:id="@+id/tvHotelTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/login"
+            android:textColor="@color/wh"
+            android:textSize="19sp" />
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="0dp"
+            android:paddingTop="8dp"
+            android:src="@drawable/close_white" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <com.appromobile.hotel.widgets.EditTextSFRegular
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@color/wh"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:text=""
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textSize="18sp"
+                android:textColor="#000000" />
+
+            <com.appromobile.hotel.widgets.EditTextSFRegular
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@color/wh"
+                android:layout_marginTop="3dp"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:password="true"
+                android:singleLine="true"
+                android:text=""
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textSize="18sp"
+                android:textColor="#000000" />
+
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:id="@+id/tvMessage"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/error_box_red_bg"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:text=""
+                android:textSize="13sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:visibility="gone"
+                android:textColor="#ff0000" />
+
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_login_selector"
+                android:gravity="center"
+                android:text="@string/login_button"
+                android:textColor="@color/login_text_selector"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:textColor="@color/bk"
+            android:text="@string/login_with"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginRight="52dp"
+            android:layout_height="wrap_content" />
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/tvFacebook"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginRight="52dp"
+            android:layout_marginTop="12dp"
+            android:background="#22589c"
+            android:gravity="center"
+            android:text="@string/facebook"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/tvGooglePlus"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginRight="52dp"
+            android:layout_marginTop="3dp"
+            android:background="#ff482d"
+            android:gravity="center"
+            android:text="@string/google_plus"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="22dp"
+        android:orientation="horizontal">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/tvSignup"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/wh"
+            android:text="@string/sign_up"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/tvForgotPW"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/forgot_password"
+            android:background="@color/wh"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginLeft="2dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">170640652110-tc01mpf2ucq65o8dejksatq699ofnfc0.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://go2joy-2d23b.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">170640652110</string>
+    <string name="google_api_key" translatable="false">AIzaSyD9iEoX7KBms3y2-I1CPwMfhJS1DCU48eg</string>
+    <string name="google_app_id" translatable="false">1:170640652110:android:95c46bc5a857f708</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD9iEoX7KBms3y2-I1CPwMfhJS1DCU48eg</string>
+    <string name="google_storage_bucket" translatable="false">go2joy-2d23b.appspot.com</string>
+</resources>

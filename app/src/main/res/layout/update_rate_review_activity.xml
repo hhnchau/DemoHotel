@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/org"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        >
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="6dp"
+            android:paddingRight="18dp"
+            android:src="@drawable/back" />
+
+        <com.appromobile.hotel.widgets.TextViewSFHeavy
+            android:id="@+id/tvHotelTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/rate_review"
+            android:textColor="@color/wh"
+            android:textSize="19sp" />
+        <com.appromobile.hotel.widgets.TextViewSFBold
+            android:id="@+id/btnDelete"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:text="@string/txt_3_6_delete"
+            android:layout_marginRight="12dp"
+            android:gravity="center"
+            android:textColor="@color/org"
+            android:textSize="14sp"
+            android:background="@drawable/button_full_wh_bg" />
+        <!--<ImageView-->
+            <!--android:id="@+id/btnDelete"-->
+            <!--android:layout_width="108dp"-->
+            <!--android:layout_height="46dp"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="0dp"-->
+            <!--android:paddingTop="10dp"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:src="@drawable/delete" />-->
+    </LinearLayout>
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/tvHotelName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:text="Khach san abc"
+        android:textColor="@color/bk"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/lg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/rate"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/btnStar1"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:src="@drawable/review_star" />
+
+        <ImageView
+            android:id="@+id/btnStar2"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:src="@drawable/review_star" />
+
+        <ImageView
+            android:id="@+id/btnStar3"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:src="@drawable/review_star" />
+
+        <ImageView
+            android:id="@+id/btnStar4"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:src="@drawable/review_star" />
+
+        <ImageView
+            android:id="@+id/btnStar5"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:src="@drawable/review_star" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/lg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/room_type"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:src="@drawable/combobox_down" />
+
+            <Spinner
+                android:id="@+id/spinRoomType"
+                android:layout_width="180dp"
+                android:layout_height="46dp"
+                android:background="@color/transparent" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="18dp"
+        android:visibility="gone"
+        android:paddingRight="18dp">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/room_no"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:id="@+id/textViewSFRegular4" />
+
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:src="@drawable/combobox_down" />
+
+            <Spinner
+                android:id="@+id/spinRoomNo"
+                android:layout_width="180dp"
+                android:layout_height="46dp"
+                android:background="@color/transparent" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/lg" />
+
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="18dp"
+        android:text="@string/review"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <com.appromobile.hotel.widgets.EditTextSFRegular
+        android:id="@+id/txtComment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:background="@color/wh_50p"
+        android:hint="@string/enter_your_comment"
+        android:padding="18dp"
+        android:textColor="@color/bk"
+        android:textSize="13sp" />
+    <com.appromobile.hotel.widgets.TextViewSFBold
+        android:id="@+id/btnDone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="@string/done"
+        android:gravity="center"
+        android:textColor="@color/wh"
+        android:textSize="16sp"
+        android:background="@color/org"
+        />
+    <!--<ImageView-->
+        <!--android:id="@+id/btnDone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:background="@color/org"-->
+        <!--android:src="@drawable/done_long" />-->
+</LinearLayout>

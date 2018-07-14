@@ -1,0 +1,119 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!--OLD CODE-->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="map_icon_size">48dp</dimen>
+    <dimen name="hotel_item_contract_width">320dp</dimen>
+    <dimen name="roomtype_height">94dp</dimen>
+    <dimen name="dp_32">32dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_75">75dp</dimen>
+    <dimen name="bottom_slide_height">150dp</dimen>
+    <dimen name="promotion_item_height">141dp</dimen>
+    <dimen name="hotel_list_general">94dp</dimen>
+    <dimen name="image_width_general">142dp</dimen>
+    <dimen name="hotel_detail_image_height">288dp</dimen>
+    <dimen name="roomtype_width">139dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="marker_height">32dp</dimen>
+    <dimen name="marker_width1">20dp</dimen>
+    <dimen name="marker_width2">20dp</dimen>
+    <dimen name="marker_width3">50dp</dimen>
+    <dimen name="marker_width4">70dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
+    <dimen name="rout_marker_size">20dp</dimen>
+    <dimen name="hotel_popup_width">142dp</dimen>
+    <dimen name="hotel_popup_height">94dp</dimen>
+    <dimen name="promotion_detail_height">210dp</dimen>
+    <dimen name="choose_location_map_width">42dp</dimen>
+    <dimen name="choose_location_map_height">42dp</dimen>
+    <dimen name="general_hotel_map_size">12dp</dimen>
+    <dimen name="facility_height">55dp</dimen>
+    <dimen name="facility_width">80dp</dimen>
+    <!--OLD CODE-->
+
+    <!--Hotel List on HOME PAGE-->
+    <dimen name="hotel_list_height">267dp</dimen>
+    <dimen name="hotel_list_promotion_height">40dp</dimen>
+    <dimen name="hotel_list_promotion_item_height">35dp</dimen>
+    <dimen name="hotel_list_new_item_height">16dp</dimen>
+    <dimen name="hotel_list_info_height">133dp</dimen>
+    <dimen name="hotel_list_info_price_height">91dp</dimen>
+    <dimen name="hotel_list_info_review_height">25dp</dimen>
+    <dimen name="hotel_list_info_name_height">42dp</dimen>
+    <dimen name="hotel_list_info_distance_height">20dp</dimen>
+    <!--text size-->
+    <dimen name="hotel_list_text_size_normal">13sp</dimen>
+    <dimen name="hotel_list_text_size_small">11sp</dimen>
+    <dimen name="hotel_list_text_size_semi_big">15sp</dimen>
+    <dimen name="hotel_list_text_size_big">17sp</dimen>
+    <dimen name="hotel_list_text_size_biger">32sp</dimen>
+    <!--text size-->
+    <!--Hotel List on HOME PAGE-->
+
+    <!--Room Type List on HOTEL DETAIL PAGE-->
+    <dimen name="room_cell_height">150dp</dimen>
+    <dimen name="room_cell_width">120dp</dimen>
+    <dimen name="room_button_height">35dp</dimen>
+    <!--Room Type List on HOTEL DETAIL PAGE-->
+
+    <!--Hotel Photo detail Portrait-->
+    <dimen name="hpd_btn_close_height">25dp</dimen>
+    <dimen name="hpd_view_pager_height">230dp</dimen>
+    <dimen name="hpd_vp_container_indicator_height">6dp</dimen>
+    <dimen name="hpd_vp_indicator_height">3dp</dimen>
+    <dimen name="hpd_facility_height">30dp</dimen>
+    <!--Hotel Photo detail Portrait-->
+
+    <!--for dialog popup-->
+    <dimen name="popup_width">300dp</dimen>
+    <dimen name="text_popup">14sp</dimen>
+    <dimen name="padding_popup_main">24dp</dimen>
+    <dimen name="padding_text">24dp</dimen>
+    <dimen name="padding_button">8dp</dimen>
+    <dimen name="size_logo">80dp</dimen>
+    <dimen name="padding_logo">8dp</dimen>
+    <!--for dialog popup-->
+
+    <!--Common Margin-->
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_6">6dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <!--Common Margin-->
+
+    <!--Common SP-->
+    <dimen name="sp_8">8sp</dimen>
+    <dimen name="sp_10">10sp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_18">18sp</dimen>
+    <!--Common SP-->
+
+    <!--New Promotion Popup-->
+    <dimen name="popup_btnClose">30dp</dimen>
+    <dimen name="popup_card_width">300dp</dimen>
+    <dimen name="popup_webview_textSize">15sp</dimen>
+    <dimen name="popup_title_textSize">16sp</dimen>
+    <dimen name="popup_btn_textSize">15sp</dimen>
+    <!--New Promotion Popup-->
+
+    <!--Banner Flash Sale-->
+    <dimen name="img_flash_sale_height">90dp</dimen>
+    <dimen name="img_flash_sale_width">110dp</dimen>
+    <dimen name="flash_sale_margin_left">58dp</dimen>
+    <dimen name="flash_sale_margin_bottom">22dp</dimen>
+    <dimen name="flash_sale_text_size">16sp</dimen>
+    <dimen name="flash_sale_text_maker">12sp</dimen>
+    <dimen name="font_from">18sp</dimen>
+    <dimen name="font_from_flash_sale">19sp</dimen>
+    <!--Banner Flash Sale-->
+
+</resources>

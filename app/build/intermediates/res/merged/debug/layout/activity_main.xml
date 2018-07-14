@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/boxHeader"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_header_view" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/boxHeader"
+        android:layout_marginBottom="43dp">
+
+        <FrameLayout
+            android:id="@+id/frmBody"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lg"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_footer_view" />
+
+    </LinearLayout>
+
+    <!--Status-->
+    <LinearLayout
+        android:id="@+id/boxMapGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/boxHeader"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="@dimen/margin_4"
+        android:visibility="gone">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="52dp"
+            android:layout_height="20dp"
+            android:background="@drawable/label_red"
+            android:gravity="center"
+            android:text="@string/txt_4_1_1_flashsale_label"
+            android:textColor="@color/wh"
+            android:textSize="10sp"/>
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="52dp"
+            android:layout_height="20dp"
+            android:background="@drawable/label_green"
+            android:gravity="center"
+            android:text="@string/promotion"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/wh"
+            android:textSize="10sp"/>
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="52dp"
+            android:layout_height="20dp"
+            android:background="@drawable/label_org"
+            android:gravity="center"
+            android:layout_marginTop="2dp"
+            android:text="@string/normal"
+            android:textColor="@color/wh"
+            android:textSize="10sp"/>
+
+    </LinearLayout>
+
+    <!--Box Price-->
+    <include
+        layout="@layout/box_hotel_popup"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

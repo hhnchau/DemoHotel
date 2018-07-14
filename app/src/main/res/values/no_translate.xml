@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="latitude_default" translatable="false">10.7629690</string>
+    <string name="longitude_default" translatable="false">106.6935420</string>
+    <string name="date_format_view" translatable="false">dd/MM/yyyy</string>
+    <string name="month_year_format_view" translatable="false">MM. yyyy</string>
+    <string name="fb_date_format_view" translatable="false">MM/dd/yyyy</string>
+    <string name="google_date_format_view" translatable="false">yyyy-MM-dd</string>
+    <string name="date_format_request" translatable="false">yyyy-MM-dd</string>
+    <string name="facebook_id" translatable="false">1801724940084193</string>
+    <!--<string name="facebook_id" translatable="false">1801724940084193</string>-->
+    <string name="default_province" translatable="false">Hồ Chí Minh</string>
+    <string name="service_not_available" translatable="false">service_not_available</string>
+    <string name="invalid_lat_long_used" translatable="false">invalid_lat_long_used</string>
+    <string name="no_address_found" translatable="false">no_address_found</string>
+    <string name="address_found" translatable="false">address_found</string>
+</resources>

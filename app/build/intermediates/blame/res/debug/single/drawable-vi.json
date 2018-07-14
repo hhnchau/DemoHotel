@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\debug\\drawable-vi\\toogle_on.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable-vi\\toogle_on.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\debug\\drawable-vi\\toggle_off_white.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable-vi\\toggle_off_white.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\debug\\drawable-vi\\toggle_off.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable-vi\\toggle_off.png"
+    }
+]
