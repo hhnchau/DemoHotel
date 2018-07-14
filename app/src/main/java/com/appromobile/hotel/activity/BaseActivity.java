@@ -185,12 +185,16 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     private void goToMainActivtiyToClose() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setAction(ParamConstants.INTENT_ACTION_CLOSE_APP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        overridePendingTransition(0, 0);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
+        if (this.getClass() != MainActivity.class) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setAction(ParamConstants.INTENT_ACTION_CLOSE_APP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            overridePendingTransition(0, 0);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        } else {
+            this.finish();
+        }
     }
 
     private void registerReceiver() {

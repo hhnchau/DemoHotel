@@ -14,18 +14,6 @@ public class FacebookInfo {
 
     public FacebookInfo(){}
 
-    public FacebookInfo(JSONObject object){
-        try {
-            id = object.getString("id");
-            email = object.getString("email");
-            name = object.getString("name");
-            gender = object.getString("gender");
-            birthday = object.getString("birthday");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public String getId() {
         return id;
     }

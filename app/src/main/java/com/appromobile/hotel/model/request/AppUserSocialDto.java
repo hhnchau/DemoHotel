@@ -3,6 +3,8 @@ package com.appromobile.hotel.model.request;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.appromobile.hotel.model.view.RoomTypeForm;
+
 /**
  * Created by xuan on 8/12/2016.
  */
@@ -18,6 +20,9 @@ public class AppUserSocialDto implements Parcelable {
     private int viaApp;
     private String verifyCode;
     private String inviteCode;
+    private String password;
+    private String userId;
+    private ViewCrmNotificationDto viewCrmDto;
 
     public String getInviteCode() {
         return inviteCode;
@@ -110,6 +115,30 @@ public class AppUserSocialDto implements Parcelable {
         this.verifyCode = verifyCode;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public ViewCrmNotificationDto getViewCrmDto() {
+        return viewCrmDto;
+    }
+
+    public void setViewCrmDto(ViewCrmNotificationDto viewCrmDto) {
+        this.viewCrmDto = viewCrmDto;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -128,6 +157,9 @@ public class AppUserSocialDto implements Parcelable {
         dest.writeInt(this.viaApp);
         dest.writeString(this.verifyCode);
         dest.writeString(this.inviteCode);
+        dest.writeString(this.userId);
+        dest.writeString(this.password);
+        dest.writeParcelable(this.viewCrmDto, flags);
     }
 
     protected AppUserSocialDto(Parcel in) {
@@ -142,6 +174,9 @@ public class AppUserSocialDto implements Parcelable {
         this.viaApp = in.readInt();
         this.verifyCode = in.readString();
         this.inviteCode = in.readString();
+        this.userId = in.readString();
+        this.password = in.readString();
+        this.viewCrmDto = in.readParcelable(ViewCrmNotificationDto.class.getClassLoader());
     }
 
     public static final Creator<AppUserSocialDto> CREATOR = new Creator<AppUserSocialDto>() {

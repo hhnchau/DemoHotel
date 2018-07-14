@@ -32,6 +32,11 @@ public class ParamConstants {
     public static final int REQUEST_LOGIN_TO_SEE_POLICY = 1132;
     public static final int REQUEST_LOGIN_TO_APPLY_PROMOTION = 1133;
 
+    public static final int PAYMENT_METHOD_PAID_AT_HOTEL = 0;
+    public static final int PAYMENT_METHOD_PAY123 = 1;
+    public static final int PAYMENT_METHOD_PAYOO = 2;
+    public static final int PAYMENT_METHOD_MOMO = 3;
+
     public final static int NOTHING = -1;
 
     public final static int DISCOUNT_MONEY = 1;
@@ -88,4 +93,12 @@ public class ParamConstants {
     public final static int BUTTON_SHOW = 1;
     public final static int BUTTON_INVISIBLE = 2;
     public final static int BUTTON_HIDE = 3;
+
+    //ROOM TYPE
+    public final static int ROOM_TYPE_FLASH_SALE = 1;
+    public final static int ROOM_TYPE_CINEJOY = 2;
+    public final static int ROOM_TYPE_NORMAL = 3;
+
+    public final static int LOCK_TODAY = 2;
+
 }

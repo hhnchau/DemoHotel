@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
@@ -7,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
+    <!--Header-->
     <LinearLayout
         android:id="@+id/boxHeader"
         android:layout_width="match_parent"
@@ -16,6 +18,7 @@
         <include layout="@layout/main_header_view" />
     </LinearLayout>
 
+    <!--Frame-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,9 +29,10 @@
             android:id="@+id/frmBody"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/lg"/>
+            android:background="@color/lg" />
     </RelativeLayout>
 
+    <!--Footer-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="74dp"
@@ -44,11 +48,11 @@
         android:id="@+id/boxMapGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/boxHeader"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="@dimen/margin_4"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
         android:visibility="gone">
 
         <com.appromobile.hotel.widgets.TextViewSFRegular
@@ -58,35 +62,64 @@
             android:gravity="center"
             android:text="@string/txt_4_1_1_flashsale_label"
             android:textColor="@color/wh"
-            android:textSize="10sp"/>
+            android:textSize="@dimen/sp_10" />
 
         <com.appromobile.hotel.widgets.TextViewSFRegular
             android:layout_width="52dp"
             android:layout_height="20dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/label_green"
             android:gravity="center"
             android:text="@string/promotion"
-            android:layout_marginTop="2dp"
             android:textColor="@color/wh"
-            android:textSize="10sp"/>
+            android:textSize="@dimen/sp_10" />
 
         <com.appromobile.hotel.widgets.TextViewSFRegular
             android:layout_width="52dp"
             android:layout_height="20dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/label_org"
             android:gravity="center"
-            android:layout_marginTop="2dp"
             android:text="@string/normal"
             android:textColor="@color/wh"
-            android:textSize="10sp"/>
+            android:textSize="@dimen/sp_10" />
 
     </LinearLayout>
+
+    <!--Ripple-->
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/ripple"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-60dp"
+        app:rb_color="@color/org"
+        app:rb_duration="3000"
+        app:rb_radius="16dp"
+        app:rb_rippleAmount="3"
+        app:rb_scale="6" />
+
+    <!--FloatRipple-->
+    <ImageButton
+        android:id="@+id/btnRippleSignUp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="5dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/img_decscription"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btn_floating_ripple" />
 
     <!--Box Price-->
     <include
         layout="@layout/box_hotel_popup"
         android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height="@dimen/hotel_box_popup_height"
+        android:layout_alignParentBottom="true" />
+
 
 </RelativeLayout>

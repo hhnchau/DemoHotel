@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.model.view.HotelForm;
@@ -19,6 +20,16 @@ import java.util.List;
  */
 public class SearchHotelAdapter extends BaseAdapter {
     private Context context;
+
+    public List<HotelForm> getHotelForms() {
+        return hotelForms;
+    }
+
+    public SearchHotelAdapter setHotelForms(List<HotelForm> hotelForms) {
+        this.hotelForms = hotelForms;
+        return this;
+    }
+
     private List<HotelForm> hotelForms;
 
     public SearchHotelAdapter(Context context, List<HotelForm> hotelForms) {
@@ -48,34 +59,37 @@ public class SearchHotelAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-
-            // inflate the layout
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            convertView = inflater.inflate(R.layout.search_hotel_item, parent, false);
+            convertView = inflater.inflate(R.layout.item_recycler_view_holder, parent, false);
 
-            // well set up the ViewHolder
             viewHolder = new ViewHolder();
-            viewHolder.tvName =  convertView.findViewById(R.id.tvName);
-            viewHolder.btnDelete = convertView.findViewById(R.id.btnDelete);
-            // store the holder with the view.
+
+            viewHolder.img = convertView.findViewById(R.id.img);
+            viewHolder.name =  convertView.findViewById(R.id.name);
+            viewHolder.address = convertView.findViewById(R.id.address);
             convertView.setTag(viewHolder);
 
         } else {
-            // we've just avoided calling findViewById() on resource everytime
-            // just use the viewHolder
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.tvName.setText(this.hotelForms.get(position).getName());
+        if (hotelForms != null && position < hotelForms.size()) {
+            viewHolder.name.setText(this.hotelForms.get(position).getName());
+            viewHolder.address.setText(this.hotelForms.get(position).getAddress());
+
+            if (this.hotelForms.get(position).checkFlashSale()) {
+                viewHolder.img.setImageResource(R.drawable.ic_promotion_red);
+//        }else if (this.hotelForms.get(position).isPromotion()){
+//            viewHolder.img.setImageResource(R.drawable.ic_promotion_green);
+            } else {
+                viewHolder.img.setImageResource(R.drawable.ic_promotion_grey);
+            }
+        }
+
         return convertView;
     }
 
-    public void updateData(List<HotelForm> hotelForms) {
-        this.hotelForms = hotelForms;
-        notifyDataSetChanged();
-    }
-
     private class ViewHolder {
-        TextViewSFRegular tvName;
-        ImageView btnDelete;
+        private ImageView img;
+        private TextView name, address;
     }
 }

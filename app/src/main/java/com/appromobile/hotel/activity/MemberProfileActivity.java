@@ -22,6 +22,7 @@ import com.appromobile.hotel.model.request.AppUserDto;
 import com.appromobile.hotel.model.request.LoginDto;
 import com.appromobile.hotel.model.request.MobileDeviceInput;
 import com.appromobile.hotel.model.request.SendSmsDto;
+import com.appromobile.hotel.model.request.ViewCrmNotificationDto;
 import com.appromobile.hotel.model.view.ApiSettingForm;
 import com.appromobile.hotel.model.view.AppUserForm;
 import com.appromobile.hotel.model.view.RestResult;
@@ -32,7 +33,6 @@ import com.appromobile.hotel.utils.Utils;
 import com.appromobile.hotel.widgets.EditTextSFRegular;
 import com.appromobile.hotel.widgets.TextViewSFBold;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.crashlytics.android.Crashlytics;
 import com.jaredrummler.android.device.DeviceName;
 
 import java.text.ParseException;
@@ -44,7 +44,6 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import io.fabric.sdk.android.Fabric;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,7 +59,7 @@ public class MemberProfileActivity extends BaseActivity implements View.OnClickL
     private EditTextSFRegular txtNickname, txtAddress, txtMobile, txtEmail, txtVerifyCode;
     private ImageView btnClose;
     boolean isNicknameValid = false;
-    private Gender gender = Gender.Female;
+    private Gender gender = Gender.MF;
     ImageView chkFemale, chkMale;
     TextViewSFBold btnGetCode;
     Timer timer = new Timer();
@@ -71,30 +70,27 @@ public class MemberProfileActivity extends BaseActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setScreenName();
-        try {
-            Fabric.with(this, new Crashlytics());
-        } catch (Exception e) {
-        }
+
+        appUserDto = getIntent().getParcelableExtra("appUserDto");
 
         setContentView(R.layout.member_profile_activity);
-        txtInviteCode =  findViewById(R.id.txtInviteCode);
-        inviteCodeArea =  findViewById(R.id.viewInviteCode);
-        appUserDto = getIntent().getParcelableExtra("appUserDto");
-        chkFemale =  findViewById(R.id.chkFemale);
-        chkMale =  findViewById(R.id.chkMale);
-        txtEmail =  findViewById(R.id.txtEmail);
-        btnOK =  findViewById(R.id.btnOK);
-        btnCheckDuplicate =  findViewById(R.id.btnCheckDuplicate);
-        tvFemale =  findViewById(R.id.tvFemale);
-        tvMale =  findViewById(R.id.tvMale);
-        tvBirthday =  findViewById(R.id.tvBirthday);
-        btnClose =  findViewById(R.id.btnClose);
-        tvMessage =  findViewById(R.id.tvMessage);
-        txtNickname =  findViewById(R.id.txtNickname);
-        txtAddress =  findViewById(R.id.txtAddress);
-        txtMobile =  findViewById(R.id.txtMobile);
-        btnGetCode =  findViewById(R.id.btnGetCode);
-        txtVerifyCode =  findViewById(R.id.txtVerifyCode);
+        txtInviteCode = findViewById(R.id.txtInviteCode);
+        inviteCodeArea = findViewById(R.id.viewInviteCode);
+        chkFemale = findViewById(R.id.chkFemale);
+        chkMale = findViewById(R.id.chkMale);
+        txtEmail = findViewById(R.id.txtEmail);
+        btnOK = findViewById(R.id.btnOK);
+        btnCheckDuplicate = findViewById(R.id.btnCheckDuplicate);
+        tvFemale = findViewById(R.id.tvFemale);
+        tvMale = findViewById(R.id.tvMale);
+        tvBirthday = findViewById(R.id.tvBirthday);
+        btnClose = findViewById(R.id.btnClose);
+        tvMessage = findViewById(R.id.tvMessage);
+        txtNickname = findViewById(R.id.txtNickname);
+        txtAddress = findViewById(R.id.txtAddress);
+        txtMobile = findViewById(R.id.txtMobile);
+        btnGetCode = findViewById(R.id.btnGetCode);
+        txtVerifyCode = findViewById(R.id.txtVerifyCode);
         btnCheckDuplicate.setOnClickListener(this);
         btnOK.setOnClickListener(this);
         btnClose.setOnClickListener(this);
@@ -154,8 +150,7 @@ public class MemberProfileActivity extends BaseActivity implements View.OnClickL
         if (gender == Gender.Male) {
             chkMale.setImageResource(R.drawable.checkbox_selected);
             chkFemale.setImageResource(R.drawable.checkbox);
-        } else {
-
+        } else if (gender == Gender.Female) {
             chkFemale.setImageResource(R.drawable.checkbox_selected);
             chkMale.setImageResource(R.drawable.checkbox);
         }
@@ -354,6 +349,10 @@ public class MemberProfileActivity extends BaseActivity implements View.OnClickL
 
         appUserDto.setAddress(txtAddress.getText().toString());
         appUserDto.setMobile(txtMobile.getText().toString());
+        appUserDto.setViewCrmDto(new ViewCrmNotificationDto(
+                (long) PreferenceUtils.getSnNotifyCrm(this),
+                PreferenceUtils.getTypeCrm(this),
+                2));
 
         DialogUtils.showLoadingProgress(this, false);
         System.out.println("TimeMeasurableBeginApi: " + Calendar.getInstance().getTimeInMillis());
@@ -475,6 +474,7 @@ public class MemberProfileActivity extends BaseActivity implements View.OnClickL
         mobileDeviceInput.setPhoneModel(DeviceName.getDeviceName());
         mobileDeviceInput.setOsVersion(Build.VERSION.RELEASE);
         mobileDeviceInput.setTokenId(FirebaseUtils.getRegistrationId(this));
+        mobileDeviceInput.setDeviceCode(HotelApplication.ID);
         HotelApplication.serviceApi.updateAppUserToken(mobileDeviceInput, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
             @Override
             public void onResponse(Call<RestResult> call, Response<RestResult> response) {

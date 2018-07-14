@@ -44,6 +44,7 @@ import com.appromobile.hotel.model.request.HomeHotelRequest;
 import com.appromobile.hotel.model.view.HotelForm;
 import com.appromobile.hotel.model.view.MarkerWrapper;
 import com.appromobile.hotel.model.view.PromotionInfoForm;
+import com.appromobile.hotel.model.view.RoomTypeForm;
 import com.appromobile.hotel.model.view.UserAreaFavoriteForm;
 import com.appromobile.hotel.panorama.LoadTaskComplete;
 import com.appromobile.hotel.utils.AddressResultReceiver;
@@ -499,7 +500,14 @@ public class MapTabFragment extends BaseFragment implements ParseCallBack, View.
     private void setUpMapIfNeeded() {
         if (getActivity() != null && mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+            SupportMapFragment mapFragment = null;
+
+            try {
+                mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             if (mapFragment != null) {
                 mapFragment.getMapAsync(new OnMapReadyCallback() {
                     @Override
@@ -1045,25 +1053,25 @@ public class MapTabFragment extends BaseFragment implements ParseCallBack, View.
     private Marker firstRoutMarker = null, endRoutMarker = null;
 
     private String getPricePromotion(HotelForm hotelForm) {
-        String price = "-1";
+        String price;
         //Get Price
-        if (HotelApplication.mapPromotionInfoForm != null) {
-            PromotionInfoForm promotionInfoForm = HotelApplication.mapPromotionInfoForm.get(String.valueOf(hotelForm.getSn()));
-            if (promotionInfoForm != null) {
-                int priceHourlyDiscount = promotionInfoForm.getMaxDiscountMoney();
-                if (priceHourlyDiscount > 0) {
-                    int p = hotelForm.getLowestPrice() - priceHourlyDiscount;
-                    if (p < 0) {
-                        p = 0;
-                    }
-                    price = String.valueOf(Utils.formatCurrencyK(p));
-                } else {
-                    price = String.valueOf(Utils.formatCurrencyK(hotelForm.getLowestPrice()));
-                }
-            } else {
-                price = String.valueOf(Utils.formatCurrencyK(hotelForm.getLowestPrice()));
+        int[] discount = Utils.getPromotionInfoForm(
+                hotelForm.getSn(),
+                hotelForm.getLowestPrice(),
+                hotelForm.getLowestPriceOvernight(),
+                0,
+                0);
+
+        if (discount[0] > 0) {
+            int p = hotelForm.getLowestPrice() - discount[0];
+            if (p < 0) {
+                p = 0;
             }
+            price = String.valueOf(Utils.formatCurrencyK(p));
+        } else {
+            price = String.valueOf(Utils.formatCurrencyK(hotelForm.getLowestPrice()));
         }
+
         return price;
     }
 
@@ -1075,12 +1083,12 @@ public class MapTabFragment extends BaseFragment implements ParseCallBack, View.
         //Check Flash Sale
         if (!hotelForm.isFlashSale()) {
             //Check not Available
-            if (hotelForm.getRoomAvailable() == 0) {
+            if (hotelForm.getRoomAvailable() != 1) {
                 fileName += "_gray";
             } else {
 
                 //Check normal
-                int[] p = Utils.getPromotionInfoForm(hotelForm.getSn());
+                int[] p = Utils.getPromotionInfoForm(hotelForm.getSn(), 0, 0, 0,0);
                 if (p[0] > 0 || p[1] > 0 || p[2] > 0) {
                     fileName += "_green";
                 } else {
@@ -1094,7 +1102,7 @@ public class MapTabFragment extends BaseFragment implements ParseCallBack, View.
                 fileName += "_new";
             }
             //Check unContract
-            if (hotelForm.getHotelStatus() == ContractType.GENERAL.getType() || hotelForm.getHotelStatus() == ContractType.TERMINAL.getType()) {
+            if (hotelForm.getHotelStatus() == ContractType.GENERAL.getType() || hotelForm.getHotelStatus() == ContractType.TERMINAL.getType() || hotelForm.getHotelStatus() == ContractType.SUSPEND.getType()) {
                 fileName = "uncontract";
                 price = "-1";
             }
@@ -1102,7 +1110,18 @@ public class MapTabFragment extends BaseFragment implements ParseCallBack, View.
         } else {
             //IsFlashSale
             fileName += "_red";
-            price = Utils.formatCurrencyK(hotelForm.getLowestPrice());
+
+            RoomTypeForm roomTypeForm = hotelForm.getFlashSaleRoomTypeForm();
+            int priceDiscount = 0;
+            if (roomTypeForm != null) {
+                priceDiscount = roomTypeForm.getPriceOvernight();
+                int superSale = roomTypeForm.getGo2joyFlashSaleDiscount();
+                if (superSale > 0) {
+                    priceDiscount = priceDiscount - superSale;
+                }
+            }
+
+            price = Utils.formatCurrencyK(priceDiscount);
         }
 
         if (getContext() != null) {

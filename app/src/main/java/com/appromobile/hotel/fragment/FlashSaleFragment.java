@@ -15,28 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.activity.HotelDetailActivity;
-import com.appromobile.hotel.activity.LoginActivity;
 import com.appromobile.hotel.api.UrlParams;
-import com.appromobile.hotel.api.controllerApi.ControllerApi;
-import com.appromobile.hotel.api.controllerApi.ResultApi;
-import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.enums.RoomAvailableType;
-import com.appromobile.hotel.model.request.UserFavoriteDto;
 import com.appromobile.hotel.model.view.HotelForm;
 import com.appromobile.hotel.model.view.RoomTypeForm;
-import com.appromobile.hotel.utils.DialogUtils;
-import com.appromobile.hotel.utils.GlideApp;
-import com.appromobile.hotel.utils.ParamConstants;
-import com.appromobile.hotel.utils.PictureUtils;
-import com.appromobile.hotel.utils.PreferenceUtils;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.Utils;
-import com.appromobile.hotel.widgets.TextViewSFBold;
-import com.appromobile.hotel.widgets.TextViewSFMedium;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
 /**
@@ -78,7 +64,7 @@ public class FlashSaleFragment extends Fragment implements View.OnClickListener 
             hotelForm = getArguments().getParcelable("HotelForm");
         }
         //Clear Cache Glide
-        PictureUtils.getInstance().clearCache(getActivity());
+        PictureGlide.getInstance().clearCache(getActivity());
     }
 
     @Override
@@ -91,7 +77,8 @@ public class FlashSaleFragment extends Fragment implements View.OnClickListener 
 
     private void setView() {
         setInfoHotel(hotelForm);
-        setImageHotel(hotelForm.getHomeImageSn(), hotelForm.getHomeImageName());
+        //setImageHotel(hotelForm.getHomeImageSn(), hotelForm.getHomeImageName());
+        setImageHotel(hotelForm.getImageKey(), hotelForm.getHomeImageName());
 
         /*
         /Set Icon 360
@@ -168,10 +155,10 @@ public class FlashSaleFragment extends Fragment implements View.OnClickListener 
 
 
         //Set Stamp
-        if (hotelForm.getNumToRedeem() > 0){
+        if (hotelForm.getNumToRedeem() > 0) {
             iconStamp.setVisibility(View.VISIBLE);
             tvNumStamp.setText(hotelForm.getActiveStamp() + "/" + hotelForm.getNumToRedeem());
-        }else {
+        } else {
             iconStamp.setVisibility(View.GONE);
         }
 
@@ -183,21 +170,39 @@ public class FlashSaleFragment extends Fragment implements View.OnClickListener 
         tvDistanceVip.setText(Utils.meterToKm(distance));
 
         //Set Review
-        int rate = (int) hotelForm.getAverageMark() * 2;
-        if (rate <= 0){
+        double rate = hotelForm.getAverageMark();
+        if (rate <= 0) {
             tvReview.setVisibility(View.GONE);
-        }else {
+        } else {
             tvReview.setText(String.valueOf(rate));
         }
 
         RoomTypeForm roomTypeForm = hotelForm.getFlashSaleRoomTypeForm();
         if (roomTypeForm != null) {
+            String s = "";
             int rooms = roomTypeForm.getAvailableRoom();
-            String s;
-            if (rooms > 0) {
-                s = String.format(getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
-            } else {
-                s = getString(R.string.txt_2_flashsale_sold_out);
+            int superSale = roomTypeForm.getGo2joyFlashSaleDiscount();
+            int priceOvernightDiscount = roomTypeForm.getPriceOvernight();
+            if (superSale > 0) {
+                priceOvernightDiscount = priceOvernightDiscount - superSale;
+
+                if (priceOvernightDiscount < 0)
+                    priceOvernightDiscount = 0;
+
+                if (rooms > 0) {
+                    //if (rooms <= 5)
+                    s = getString(R.string.txt_2_super_flashsale_room_left, String.valueOf(rooms));
+                } else {
+                    s = getString(R.string.txt_2_super_flashsale_sold_out);
+                }
+            } else { // normal
+                if (rooms > 0) {
+                    if (rooms <= 5) {
+                        s = String.format(getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
+                    }
+                } else {
+                    s = getString(R.string.txt_2_flashsale_sold_out);
+                }
             }
             //Set Price Status
             tvPriceStatus.setText(s);
@@ -215,15 +220,32 @@ public class FlashSaleFragment extends Fragment implements View.OnClickListener 
             tvPriceOvernightNormal.setPaintFlags(tvPriceOvernightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
             //Set Price Overnight Discount
-            tvPriceOvernightDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+            tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+            //Feature92
+            if (superSale > 0){
+                TextView tvSupperSaleNormal = view.findViewById(R.id.tvSupperSaleNormal);
+                tvSupperSaleNormal.setVisibility(View.VISIBLE);
+                tvSupperSaleNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                tvSupperSaleNormal.setPaintFlags(tvSupperSaleNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                TextView tvSupperSaleDiscount = view.findViewById(R.id.tvSupperSaleDiscount);
+                tvSupperSaleDiscount.setVisibility(View.VISIBLE);
+                tvSupperSaleDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+                tvPriceOvernightDiscount.setVisibility(View.GONE);
+
+            }
 
         }
     }
 
-    private void setImageHotel(int homeImageSn, String homeImageName) {
+    private void setImageHotel(String homeImageSn, String homeImageName) {
         if (getActivity() != null && homeImageName != null) {
-            String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + homeImageSn + "&fileName=" + homeImageName;
-            PictureUtils.getInstance().load(
+            //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + homeImageSn + "&fileName=" + homeImageName;
+            String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + homeImageSn;
+
+            PictureGlide.getInstance().show(
                     url,
                     getActivity().getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width),
                     getActivity().getResources().getDimensionPixelSize(R.dimen.hotel_list_height),

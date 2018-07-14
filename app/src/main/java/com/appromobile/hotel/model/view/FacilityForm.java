@@ -15,6 +15,7 @@ public class FacilityForm implements Parcelable{
     private String name;
     private String originalName;
     private int sn;
+    private String imageKey;
 
     public String getContentType() {
         return contentType;
@@ -80,6 +81,14 @@ public class FacilityForm implements Parcelable{
         this.sn = sn;
     }
 
+    public String getImageKey() {
+        return imageKey;
+    }
+
+    public FacilityForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
+    }
 
     @Override
     public int describeContents() {
@@ -96,6 +105,7 @@ public class FacilityForm implements Parcelable{
         dest.writeString(this.name);
         dest.writeString(this.originalName);
         dest.writeInt(this.sn);
+        dest.writeString(this.imageKey);
     }
 
     public FacilityForm() {
@@ -110,6 +120,7 @@ public class FacilityForm implements Parcelable{
         this.name = in.readString();
         this.originalName = in.readString();
         this.sn = in.readInt();
+        this.imageKey = in.readString();
     }
 
     public static final Creator<FacilityForm> CREATOR = new Creator<FacilityForm>() {

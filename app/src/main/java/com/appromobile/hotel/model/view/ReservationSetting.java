@@ -10,6 +10,9 @@ public class ReservationSetting {
 //    startOvernight (integer): Start time of overnight. Unit is hour
 
     private int checkOutOneday, endOvernight, startOvernight;
+    private String lockRoomTodayTime;
+
+    private MileageRewardForm mileageReward;
 
     public int getCheckOutOneday() {
         return checkOutOneday;
@@ -33,5 +36,23 @@ public class ReservationSetting {
 
     public void setStartOvernight(int startOvernight) {
         this.startOvernight = startOvernight;
+    }
+
+    public MileageRewardForm getMileageReward() {
+        return mileageReward;
+    }
+
+    public ReservationSetting setMileageReward(MileageRewardForm mileageReward) {
+        this.mileageReward = mileageReward;
+        return this;
+    }
+
+    public String getLockRoomTodayTime() {
+        return lockRoomTodayTime;
+    }
+
+    public ReservationSetting setLockRoomTodayTime(String lockRoomTodayTime) {
+        this.lockRoomTodayTime = lockRoomTodayTime;
+        return this;
     }
 }

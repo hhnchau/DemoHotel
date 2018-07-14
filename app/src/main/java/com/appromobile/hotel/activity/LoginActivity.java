@@ -2,13 +2,16 @@ package com.appromobile.hotel.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +38,7 @@ import com.appromobile.hotel.utils.DialogUtils;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.PreferenceUtils;
+import com.appromobile.hotel.utils.UtilityValidate;
 import com.appromobile.hotel.utils.Utils;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
@@ -58,6 +62,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.gson.Gson;
 import com.igaworks.adbrix.IgawAdbrix;
 import com.jaredrummler.android.device.DeviceName;
 
@@ -67,6 +72,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import io.fabric.sdk.android.Fabric;
 import retrofit2.Call;
@@ -84,12 +90,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private GooglePlusInfo googlePlusInfo;
     private EditText txtEmail;
     private EditText txtPassword;
+    private EditText edtfocus;
     private TextView tvMessage;
+    private TextInputLayout inputLayoutMail, inputLayoutPassword;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String screenName = "SLogIn";
     private GoogleSignInAccount acct;
     private GoogleApiClient googleApiClient;
     private GoogleSignInOptions googleSignInOptions;
+
+    private boolean isEmailValidate = true;
+    private boolean isPasswordValid = true;
 
     private void initGoogleApi() {
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -109,6 +120,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onStart() {
         super.onStart();
         deleteLoginDataOnPref();
+
+        //Don't show keyboard
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         if (googleApiClient != null) {
             googleApiClient.connect();
@@ -166,7 +180,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         initGoogleApi();
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPassword);
-//        txtPassword.setText("hZAXi60Ie6?0");
+
         tvMessage = findViewById(R.id.tvMessage);
         findViewById(R.id.tvFacebook).setOnClickListener(this);
         findViewById(R.id.tvGooglePlus).setOnClickListener(this);
@@ -174,7 +188,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         findViewById(R.id.tvForgotPW).setOnClickListener(this);
         findViewById(R.id.btnClose).setOnClickListener(this);
         findViewById(R.id.btnLogin).setOnClickListener(this);
-
+        inputLayoutMail = findViewById(R.id.input_layout_mail);
+        inputLayoutPassword = findViewById(R.id.input_layout_password);
+        edtfocus = findViewById(R.id.focus);
 
         callbackManager = CallbackManager.Factory.create();
         mAccessToken = AccessToken.getCurrentAccessToken();
@@ -184,12 +200,61 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginEmail();
+                    loginEmailManual();
                     handled = true;
                 }
                 return handled;
             }
         });
+
+
+        //Password Check
+        txtPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    isPasswordValid = false;
+                    String password = txtPassword.getText().toString();
+                    //Fail
+                    if (password.length() < 6 || password.length() > 16) {
+                        inputLayoutPassword.setError(getString(R.string.password_format_message));
+                    } else {
+                        //OK
+                        if (UtilityValidate.isPasswordValid(password)) {
+                            isPasswordValid = true;
+                        } else {
+                            inputLayoutPassword.setError(getString(R.string.password_format_message));
+                        }
+                    }
+                } else {
+                    inputLayoutPassword.setErrorEnabled(false);
+                }
+            }
+        });
+
+
+        //Check Email
+        txtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    if (txtEmail.getText().toString().equals("")) {
+                        inputLayoutMail.setError(getString(R.string.please_input_email));
+                        isEmailValidate = false;
+                        return;
+                    }
+                    if (!UtilityValidate.isEmailValid(txtEmail.getText().toString())) {
+                        inputLayoutMail.setError(getString(R.string.email_format_not_valid));
+                        isEmailValidate = false;
+                        return;
+                    }
+                } else {
+                    inputLayoutMail.setErrorEnabled(false);
+                }
+            }
+        });
+
+
     }
 
 
@@ -204,7 +269,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 revokeAccessFromGooglePlus();
                 break;
             case R.id.btnLogin:
-                loginEmail();
+                if (txtEmail.getText().toString().equals("")) {
+                    inputLayoutMail.setError(getString(R.string.please_input_email));
+                    isEmailValidate = false;
+                    return;
+                }
+
+                if (txtPassword.getText().toString().equals("")) {
+                    inputLayoutPassword.setError(getString(R.string.please_input_current_password));
+                    isPasswordValid = false;
+                    return;
+                }
+
+                requestFocus(edtfocus);
+
+                if (isEmailValidate && isPasswordValid)
+                    loginEmailManual();
+
                 break;
             case R.id.tvSignup:
                 signupAccount();
@@ -261,7 +342,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         Intent intent = new Intent(this, SignupActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     private void loginGooglePlus() {
@@ -325,7 +406,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         // Application code
                         if (object != null) {
-                            FacebookInfo facebookInfo = new FacebookInfo(object);
+                            Gson gson = new Gson();
+                            FacebookInfo facebookInfo = gson.fromJson(object.toString(), FacebookInfo.class);
+
                             if (mAccessToken != null && mAccessToken.getToken() != null) {
                                 tryLoginByFacebook(facebookInfo);
                             } else {
@@ -337,7 +420,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     }
                 });
         Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,birthday,gender,email");
+        parameters.putString("fields", "id, name, birthday, gender, email");
         request.setParameters(parameters);
         request.executeAsync();
     }
@@ -376,8 +459,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 googlePlusInfo.setId(personId);
                 googlePlusInfo.setName(personName);
                 googlePlusInfo.setToken(idToken);
-                googlePlusInfo.setGender("male");
-                googlePlusInfo.setBirthday("1990");
+                googlePlusInfo.setGender("");
+                googlePlusInfo.setBirthday("");
                 MyLog.writeLog("idToken: " + idToken);
                 tryLoginByGooglePlus(googlePlusInfo);
             }
@@ -447,7 +530,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
         appUserDto.setGender(gender.getType());
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.fb_date_format_view));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.fb_date_format_view), Locale.ENGLISH);
         try {
             Date date = simpleDateFormat.parse(facebookInfo.getBirthday());
             calendar.setTimeInMillis(date.getTime());
@@ -458,7 +541,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             calendar.set(Calendar.DAY_OF_MONTH, 1);
         }
 
-        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request));
+        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
         appUserDto.setBirthday(simpleDateFormat.format(calendar.getTime()));
 
         appUserDto.setAddress("");
@@ -466,6 +549,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         appUserDto.setViaApp(SignupType.Facebook.getType());
 
         Intent intent = new Intent(this, MemberProfileSocialActivity.class);
+        intent.setAction("social");
         intent.putExtra("AppUserSocialDto", appUserDto);
         startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOME);
 
@@ -505,13 +589,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             calendar.set(Calendar.MONTH, 1);
             calendar.set(Calendar.DAY_OF_MONTH, 1);
         }
-        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request));
+        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
         appUserDto.setBirthday(simpleDateFormat.format(calendar.getTime()));
         appUserDto.setAddress("");
         appUserDto.setMobile("");
         appUserDto.setViaApp(SignupType.GooglePlus.getType());
 
         Intent intent = new Intent(this, MemberProfileSocialActivity.class);
+        intent.setAction("social");
         intent.putExtra("AppUserSocialDto", appUserDto);
         startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOME);
 
@@ -588,8 +673,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         MyLog.writeLog("--> onConnected <--");
         DialogUtils.hideLoadingProgress();
         //revokeAccessFromGooglePlus();
-
-
     }
 
     @Override
@@ -597,21 +680,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         googleApiClient.connect();
     }
 
-    private void loginEmail() {
+    private void loginEmailManual() {
         loginType = SignupType.Manual;
-
-        if (txtEmail.getText().toString().equals("")) {
-//            DialogUtils.showMessageDialog(this, getString(R.string.please_enter_your_email));
-            tvMessage.setText(getString(R.string.please_enter_your_email));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (txtPassword.getText().toString().equals("")) {
-//            DialogUtils.showMessageDialog(this, getString(R.string.please_enter_your_password));
-            tvMessage.setText(getString(R.string.please_enter_your_password));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
 
         LoginDto loginDto = new LoginDto();
         loginDto.setMobileUserId(HotelApplication.DEVICE_ID);
@@ -635,13 +705,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             PreferenceUtils.setPassword(LoginActivity.this, Utils.md5(txtPassword.getText().toString()));
                             PreferenceUtils.setToken(LoginActivity.this, restResult.getOtherInfo());
                             MyLog.writeLog("SESSION:------>" + restResult.getOtherInfo());
+
                             updateTokenToServer();
                             getAppUserForm();
                         } else if (restResult.getResult() == 11) {//11
                             Toast.makeText(LoginActivity.this, getString(R.string.account_cannot_used), Toast.LENGTH_LONG).show();
                         } else {
-                            tvMessage.setText(getString(R.string.incorrect_email_or_password_please_try_again));
-                            tvMessage.setVisibility(View.VISIBLE);
+                            Toast.makeText(LoginActivity.this, getString(R.string.incorrect_email_or_password_please_try_again), Toast.LENGTH_LONG).show();
+                            //tvMessage.setVisibility(View.VISIBLE);
                         }
                     }
                 } else {
@@ -684,8 +755,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 if (response.isSuccessful()) {
                     AppUserForm appUserForm = response.body();
                     if (appUserForm != null) {
+
+                        //Change Language
+                        String language = "en";
+                        if (appUserForm.getLanguage() == 3)
+                            language = "vi";
+                        Locale locale = new Locale(language);
+                        Locale.setDefault(locale);
+                        Configuration config = new Configuration();
+                        config.locale = locale;
+                        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+
                         PreferenceUtils.setAppUser(LoginActivity.this, appUserForm);
-//                        Intent intentResult = new Intent();
+                        //Intent intentResult = new Intent();
                         setResult(Activity.RESULT_OK);
                         finish();
                     }
@@ -709,6 +792,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         mobileDeviceInput.setPhoneModel(DeviceName.getDeviceName());
         mobileDeviceInput.setOsVersion(Build.VERSION.RELEASE);
         mobileDeviceInput.setTokenId(FirebaseUtils.getRegistrationId(this));
+        mobileDeviceInput.setDeviceCode(HotelApplication.ID);
         HotelApplication.serviceApi.updateAppUserToken(mobileDeviceInput, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
             @Override
             public void onResponse(Call<RestResult> call, Response<RestResult> response) {
@@ -726,5 +810,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 //                checkAutoLogin();
             }
         });
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 }

@@ -23,6 +23,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appromobile.hotel.BuildConfig;
 import com.appromobile.hotel.HotelApplication;
@@ -30,6 +31,8 @@ import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.controllerApi.CallbackRetry;
 import com.appromobile.hotel.api.controllerApi.ControllerApi;
 import com.appromobile.hotel.callback.CallbackApiFail;
+import com.appromobile.hotel.db.search.PopupCenterDao;
+import com.appromobile.hotel.db.search.PopupSql;
 import com.appromobile.hotel.dialog.RequestNetwork;
 import com.appromobile.hotel.enums.SignupType;
 import com.appromobile.hotel.gcm.FirebaseUtils;
@@ -45,6 +48,7 @@ import com.appromobile.hotel.model.view.AppUserForm;
 import com.appromobile.hotel.model.view.HotelForm;
 import com.appromobile.hotel.model.view.NotificationData;
 import com.appromobile.hotel.model.view.RestResult;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.CheckInternetAsync;
 import com.appromobile.hotel.utils.DialogCallback;
 import com.appromobile.hotel.utils.DialogUtils;
@@ -53,7 +57,6 @@ import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.widgets.TextViewSFBold;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.AccessToken;
 import com.google.android.gms.auth.api.Auth;
@@ -147,13 +150,6 @@ public class SplashActivity extends BaseActivity {
             MyLog.writeLog("Splash Fabric--------------------------------->" + e);
         }
 
-        try {
-            float density = getResources().getDisplayMetrics().density;
-            MyLog.writeLog("density: " + Float.toString(density));
-        } catch (Exception e) {
-            MyLog.writeLog("Splash Density--------------------------------->" + e);
-        }
-
         /*
         * Get intent Deeplink
         */
@@ -187,15 +183,13 @@ public class SplashActivity extends BaseActivity {
         if (isNotification) {
             setContentView(R.layout.splash_notify_activity);
             ImageView imgLoading = findViewById(R.id.imgLoading);
-            Glide
-                    .with(SplashActivity.this)
-                    .load(R.raw.anim_loading)
-                    .into(imgLoading);
+
+            PictureGlide.getInstance().show(R.raw.anim_loading, imgLoading);
 
             /*
             * Update Notification to Server
             */
-            if (notificationData != null && notificationData.getAppNotificationSn() >0 ){
+            if (notificationData != null && notificationData.getAppNotificationSn() > 0) {
                 ControllerApi.getmInstance().updateViewNotification(notificationData.getAppNotificationSn());
             }
 
@@ -209,10 +203,9 @@ public class SplashActivity extends BaseActivity {
             } else {
                 setContentView(R.layout.splash_notify_activity);
                 ImageView imgLoading = findViewById(R.id.imgLoading);
-                Glide
-                        .with(SplashActivity.this)
-                        .load(R.raw.anim_loading)
-                        .into(imgLoading);
+
+                PictureGlide.getInstance().show(R.raw.anim_loading, imgLoading);
+
             }
         }
 
@@ -340,6 +333,7 @@ public class SplashActivity extends BaseActivity {
         //Disable GCM Receiver Message // Check Login or Logout
         //if (!PreferenceUtils.getToken(this).equals("")) {
         mobileDeviceInput.setTokenId(token);
+        mobileDeviceInput.setDeviceCode(HotelApplication.ID);
         //}
 
         HotelApplication.serviceApi.updateAppUserToken(mobileDeviceInput, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
@@ -401,38 +395,32 @@ public class SplashActivity extends BaseActivity {
                     if (appBuild[0] > svBuild[0]) {
                         //Continue
                         continueVersion();
-                    } else {
+                    } else if (appBuild[0] < svBuild[0]) {
                         //App < Server
-                        if (appBuild[0] < svBuild[0]) {
+                        //Force
+                        forceVersion();
+                    } else {
+                        //App0 = Server0
+                        //App1 > Server1
+                        if (appBuild[1] > svBuild[1]) {
+                            //Continue
+                            continueVersion();
+                        } else if (appBuild[1] < svBuild[1]) {
                             //Force
                             forceVersion();
-                        }
-                        //App0 = Server0
-                        else {
-                            //App1 > Server1
-                            if (appBuild[1] >= svBuild[1]) {
-                                //Check number 3
-                                if (appBuild[2] >= svBuild[2]) {
-                                    //Continue
-                                    continueVersion();
-                                } else {
-                                    //Update
-                                    updateVersion();
-                                }
+                        } else {
+                            //Check number 3
+                            if (appBuild[2] >= svBuild[2]) {
+                                //Continue
+                                continueVersion();
                             } else {
-                                if (appBuild[1] < svBuild[1]) {
-                                    //Force
-                                    forceVersion();
-                                }
+                                //Update
+                                updateVersion();
                             }
                         }
-
                     }
-
                 } else {
-
                     //Show Dialog
-
                     showDialogCannotConnectToServer(new CallbackRetry() {
                         @Override
                         public void retry() {
@@ -440,7 +428,6 @@ public class SplashActivity extends BaseActivity {
                         }
                     });
                 }
-
             }
 
             @Override
@@ -972,9 +959,10 @@ public class SplashActivity extends BaseActivity {
 
     private void gotoMainScreen() {
         Intent intent = new Intent(this, MainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         if (isNotification) {
             intent.putExtra("NOTIFICATON_SEND", true);
@@ -988,6 +976,7 @@ public class SplashActivity extends BaseActivity {
             intent.putExtra("hotelDeeplinkSn", hotelDeeplinkSn);
             intent.setAction(actionDeeplink);
         }
+
         overridePendingTransition(0, 0);
         startActivity(intent);
         overridePendingTransition(0, 0);

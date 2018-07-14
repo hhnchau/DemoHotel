@@ -1,5 +1,7 @@
 package com.appromobile.hotel.model.view;
 
+import java.util.Map;
+
 /**
  * Created by xuan on 7/15/2016.
  */
@@ -10,6 +12,7 @@ public class RestResult {
     private int result;
     private int sn;
     private int[] snList;
+    private Map mapInfo;
 
     public int getCount() {
         return count;
@@ -59,4 +62,11 @@ public class RestResult {
         this.snList = snList;
     }
 
+    public Map getMapInfo() {
+        return mapInfo;
+    }
+
+    public void setMapInfo(Map mapInfo) {
+        this.mapInfo = mapInfo;
+    }
 }

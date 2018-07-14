@@ -11,6 +11,7 @@ import android.os.Handler;
 
 public class TimerUtils {
     public static int TYPE_HOME_FRAGMENT = 1;
+    public static int TYPE_POPUP_CENTER = 2;
 
     public interface OnTimeListener {
         void setOnTimeListener(int type);

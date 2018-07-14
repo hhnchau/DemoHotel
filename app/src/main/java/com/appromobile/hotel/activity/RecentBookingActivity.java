@@ -81,18 +81,18 @@ public class RecentBookingActivity extends BaseActivity implements AdapterMultiR
         super.onCreate(savedInstanceState);
         setScreenName();
         setContentView(R.layout.recent_booking_activity);
-        imgClose =  findViewById(R.id.btnClose);
+        imgClose = findViewById(R.id.btnClose);
         imgClose.setOnClickListener(this);
-        cancelBooking =  findViewById(R.id.btnCancelBooking);
+        cancelBooking = findViewById(R.id.btnCancelBooking);
         cancelBooking.setOnClickListener(this);
         cancelBooking.setVisibility(View.GONE);
-        qrScan =  findViewById(R.id.btnQRScan);
+        qrScan = findViewById(R.id.btnQRScan);
         qrScan.setOnClickListener(this);
-        tvMessage =  findViewById(R.id.tvMessage);
-        boxData =  findViewById(R.id.boxData);
+        tvMessage = findViewById(R.id.tvMessage);
+        boxData = findViewById(R.id.boxData);
         tvMessage.setVisibility(View.GONE);
         boxData.setVisibility(View.GONE);
-        containerIndicator =  findViewById(R.id.container_indicator);
+        containerIndicator = findViewById(R.id.container_indicator);
         indicator = findViewById(R.id.indicator);
 
 
@@ -123,11 +123,11 @@ public class RecentBookingActivity extends BaseActivity implements AdapterMultiR
 
                 DialogUtils.hideLoadingProgress();
 
-                if (list.size() != 0) {
+                if (list.size() > 0) {
 
                     boxData.setVisibility(View.VISIBLE);
 
-                    viewPager =  findViewById(R.id.my_viewPager);
+                    viewPager = findViewById(R.id.my_viewPager);
 
                     listRecentBookingForm = (List<RecentBookingForm>) (Object) list;
 
@@ -350,7 +350,7 @@ public class RecentBookingActivity extends BaseActivity implements AdapterMultiR
                         //Toast.makeText(RecentBookingActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
 
                         //Change Display popup
-                        Dialag.getInstance().show(RecentBookingActivity.this, false, false,true, null, restResult.getMessage(), getString(R.string.ok), null, null,Dialag.BTN_LEFT, new CallbackDialag() {
+                        Dialag.getInstance().show(RecentBookingActivity.this, false, false, true, null, restResult.getMessage(), getString(R.string.ok), null, null, Dialag.BTN_LEFT, new CallbackDialag() {
                             @Override
                             public void button1() {
 
@@ -402,8 +402,13 @@ public class RecentBookingActivity extends BaseActivity implements AdapterMultiR
                 //result
                 UserBookingForm userBookingForm = (UserBookingForm) object;
                 if (userBookingForm.getBookingStatus() == 1) { //Booked
+
                     //Goto Pay123
-                    gotoPay123(snBooking);
+                    //gotoPay123(snBooking);
+
+                    //Goto Billing Info
+                    gotoBillingInfo(userBookingForm);
+
                 } else {
                     //hide loading
                     DialogUtils.hideLoadingProgress();
@@ -414,11 +419,53 @@ public class RecentBookingActivity extends BaseActivity implements AdapterMultiR
         });
     }
 
+    private void gotoBillingInfo(UserBookingForm userBookingForm) {
+
+
+        Bundle bundle = new Bundle();
+
+        bundle.putInt("pointValue", userBookingForm.getMileageAmount());
+        bundle.putInt("discountFee", userBookingForm.getDiscount());
+        bundle.putInt("totalFee", userBookingForm.getTotalAmount());
+        bundle.putInt("total", userBookingForm.getAmountFromUser());
+        bundle.putInt("ROOM_TYPE", userBookingForm.getRoomTypeSn());
+        bundle.putString("START_TIME", userBookingForm.getStartTime());
+        bundle.putString("END_TIME", userBookingForm.getEndTime());
+        bundle.putString("END_DATE", userBookingForm.getEndDate());
+        bundle.putString("DATE_PLAN", userBookingForm.getCheckInDatePlan());
+        bundle.putInt("TYPE", userBookingForm.getType());
+        if (userBookingForm.getCouponIssuedSn() == null) {
+            bundle.putLong("COUPON", -1);
+        } else {
+            bundle.putLong("COUPON", userBookingForm.getCouponIssuedSn());
+        }
+        bundle.putBoolean("FLASH_SALE", false);
+        bundle.putString("HOTEL_PAYMENT", "2"); //For PayAtHotel
+        bundle.putInt("HOTEL_STATUS", listRecentBookingForm.get(viewPager.getCurrentItem()).getHotelStatus());
+        if (listRecentBookingForm.get(viewPager.getCurrentItem()).getPaymentOption() == ParamConstants.PAYMENT_ONLINE) {
+            bundle.putString("METHOD_PAYMENT", ParamConstants.METHOD_ALWAYS_PAY_ONLINE);
+        } else {
+            bundle.putString("METHOD_PAYMENT", ParamConstants.METHOD_PAY_AT_HOTEL);
+        }
+
+        bundle.putString("IP", Utils.getClientIp());
+
+        //Add UserBookingSn For Old Payment
+        bundle.putInt("userBookingSn", userBookingForm.getSn());
+
+        Intent billing_information = new Intent(this, Billing_Information.class);
+        billing_information.setAction("Old_Payment");
+        billing_information.putExtra("InformationBilling", bundle);
+        startActivity(billing_information);
+        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+    }
+
+
     private void gotoPay123(final int snBooking) {
         WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         if (wm != null) {
             String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-            Map<String, Object> params = new HashMap<String, Object>();
+            Map<String, Object> params = new HashMap<>();
             params.put("userBookingSn", snBooking);
             params.put("clientip", ip);
 

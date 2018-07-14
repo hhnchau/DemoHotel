@@ -170,4 +170,11 @@ public class RateReviewDetailActivity extends BaseActivity {
     public void setScreenName() {
         this.screenName="SHotelReviewDetail";
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if (rateReviewDetailActivity != null)
+//            rateReviewDetailActivity = null;
+//    }
 }

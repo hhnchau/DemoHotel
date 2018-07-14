@@ -3,13 +3,22 @@ package com.appromobile.hotel.api.controllerApi;
 import android.content.Context;
 
 import com.appromobile.hotel.model.request.BookingDto;
+import com.appromobile.hotel.model.request.HomeHotelRequest;
 import com.appromobile.hotel.model.request.LoginDto;
 import com.appromobile.hotel.model.request.MobileDeviceInput;
+import com.appromobile.hotel.model.request.SearchHistoryDto;
 import com.appromobile.hotel.model.request.SocialLoginDto;
+import com.appromobile.hotel.model.request.UpdatePaymentDto;
 import com.appromobile.hotel.model.request.UserBookingDto;
 import com.appromobile.hotel.model.request.UserCommonInfoDto;
 import com.appromobile.hotel.model.request.UserFavoriteDto;
 import com.appromobile.hotel.model.request.UserLocationForm;
+import com.appromobile.hotel.model.request.UserSettingDto;
+import com.appromobile.hotel.model.request.ViewCrmNotificationDto;
+import com.appromobile.hotel.model.view.PopupForm;
+import com.appromobile.hotel.payoo.CreateOrderRequest;
+
+import java.util.Map;
 
 
 /**
@@ -29,6 +38,8 @@ public interface RequestApi {
     void findApiSetting(Context context, ResultApi resultApi);
 
     void findPopupInfo(Context context, String token, ResultApi resultApi);
+
+    void findPopupInfoList(Context context, String token, ResultApi resultApi);
 
     void updateAppUserToken(Context context, MobileDeviceInput mobileDeviceInput, ResultApi resultApi);
 
@@ -67,4 +78,36 @@ public interface RequestApi {
     void findLimitUserStampFormListForMobile(Context context, int limit, int offset, ResultApiList resultApiList);
 
     void findUserStampFormDetail(Context context, long hotelSn, boolean withStampList, ResultApi resultApi);
+
+    void updatePayooPaymentResult(Context context, String clientIp, String transactionId2, String paymentCode, ResultApi resultApi);
+
+    void findPaymentInfoFormMap(Context context, long userBookingSn, String clientIp, ResultMapApi resultMapApi);
+
+    void checkMobileInSystem(Context context, String phone, ResultApi resultApi);
+
+    void checkVerifyCode(Context context, String phone, String verify, ResultApi resultApi);
+
+    void createNewUserBooking(Context context, UserBookingDto userBookingDto, ResultApi resultApi);
+
+    void updateViewNotificationCrm(long sn, int typeCrm);
+
+    void findLimitMileageHistoryList(Context context, String startDate, String endDate, int limit, int offset, ResultApiList resultApiList);
+
+    void findLimitMileageRewardForAppList(Context context, int type, int limit, int offset, ResultApiList resultApiList);
+
+    void findGeneralMileagePointInfo(Context context, String startDate, String endDate, ResultApi resultApi);
+
+    void findUserSettingViaAppUserSn(Context context, ResultApi resultApi);
+
+    void updateUserSetting(Context context, UserSettingDto userSettingDto, ResultApi resultApi);
+
+    void searchHotelList(Context context, Map<String, Object> params, ResultApi resultApi);
+
+    void updateSearchHistory(SearchHistoryDto searchHistoryDto);
+
+    void findLimitSearchHistoryList(Context context, int offset, int limit, ResultApiList resultApiList);
+
+    void sendCrmNotification();
+
+    void updateUninstallAndroid();
 }

@@ -9,6 +9,7 @@ import com.appromobile.hotel.model.view.RestResult;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -32,7 +33,7 @@ public class MyLog {
 
     private static void writeLogFile(String content) {
         String idDevice = HotelApplication.DEVICE_ID;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH);
         String currentDateandTime = sdf.format(new Date());
         content = currentDateandTime + "---" + idDevice +":----->" + content;
         WriteLogDto writeLogDto = new WriteLogDto();

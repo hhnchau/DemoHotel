@@ -15,16 +15,21 @@ import com.appromobile.hotel.api.controllerApi.ResultApi;
 import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.model.request.UserBookingDto;
 import com.appromobile.hotel.model.view.ApiSettingForm;
+import com.appromobile.hotel.model.view.AppUserForm;
+import com.appromobile.hotel.model.view.CouponConditionForm;
 import com.appromobile.hotel.model.view.PaymentInfoForm;
 import com.appromobile.hotel.model.view.RestResult;
 import com.appromobile.hotel.model.view.UserBookingForm;
 import com.appromobile.hotel.utils.DialogCallback;
 import com.appromobile.hotel.utils.DialogUtils;
+import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.CustomEvent;
 import com.google.gson.Gson;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,14 +53,14 @@ public class Paid_At_Hotel extends BaseActivity implements View.OnClickListener 
     private void Init() {
         bundle = getIntent().getBundleExtra("InformationBilling");
 
-        imgBack =  findViewById(R.id.imageView_pay_at_hotel_back);
+        imgBack = findViewById(R.id.imageView_pay_at_hotel_back);
         imgBack.setOnClickListener(this);
-        txtConfirm =  findViewById(R.id.textView_pay_at_hotel_confirm);
+        txtConfirm = findViewById(R.id.textView_pay_at_hotel_confirm);
         txtConfirm.setOnClickListener(this);
-        txtName =  findViewById(R.id.textView_pay_at_hotel_name);
-        txtPhone =  findViewById(R.id.textView_pay_at_hotel_phone);
-        txtFee =  findViewById(R.id.textView_pay_at_hotel_fee);
-        txtTotal =  findViewById(R.id.textView_pay_at_hotel_total);
+        txtName = findViewById(R.id.textView_pay_at_hotel_name);
+        txtPhone = findViewById(R.id.textView_pay_at_hotel_phone);
+        txtFee = findViewById(R.id.textView_pay_at_hotel_fee);
+        txtTotal = findViewById(R.id.textView_pay_at_hotel_total);
 
         //get minPrice
         if (HotelApplication.apiSettingForm != null) {
@@ -84,12 +89,90 @@ public class Paid_At_Hotel extends BaseActivity implements View.OnClickListener 
 
     private void setView() {
         if (bundle != null) {
-            txtName.setText(PreferenceUtils.getAppUser(this).getNickName());
-            txtPhone.setText(PreferenceUtils.getAppUser(this).getMobile());
-            txtFee.setText(Utils.formatCurrency(bundle.getInt("totalFee")) + " VNĐ");
-            txtTotal.setText(Utils.formatCurrency(bundle.getInt("total")) + " VNĐ");
+            AppUserForm appUserForm = PreferenceUtils.getAppUser(this);
+            if (appUserForm != null) {
+                txtName.setText(appUserForm.getNickName());
+                txtPhone.setText(appUserForm.getMobile());
+            } else {
+                txtPhone.setText(bundle.getString("MOBILE", ""));
+            }
+
+            int fee = bundle.getInt("totalFee");
+            int total = bundle.getInt("total");
+            txtFee.setText(Utils.formatCurrency(fee) + " VNĐ");
+            txtTotal.setText(Utils.formatCurrency(total) + " VNĐ");
+
+            String mapString = bundle.getString("MAP-INFO");
+            if (mapString != null && !mapString.equals("")) {
+                Gson gson = new Gson();
+                CouponConditionForm couponConditionForm = gson.fromJson(mapString, CouponConditionForm.class);
+
+
+                //Promotion Label
+                if (couponConditionForm != null && couponConditionForm.getDiscount() > 0 && handlePromotionPayment(couponConditionForm.getPaymentMethod())) {
+
+                    txtTotal.setText(handlePromotionValue(couponConditionForm, fee, total));
+
+                }
+            }
         }
     }
+
+    //Check promotion payment at hotel
+    private boolean handlePromotionPayment(String s) {
+        try {
+            String[] dataParse = s.split(",");
+            for (String aDataParse : dataParse) {
+                int value = Integer.parseInt(aDataParse);
+                if (value == 0) { //PayAtHotel
+                    return true;
+                } else if (value == 1) {//Pay123
+                    return false;
+                } else if (value == 2) {//Payoo
+                    return false;
+                } else if (value == 3) {//Momo
+                    return false;
+                } else if (value == 4) {//Payoo PayAtStore
+                    return false;
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        return false;
+    }
+
+
+    private String handlePromotionValue(CouponConditionForm couponConditionForm, int totalFee, int total) {
+        String value;
+        if (couponConditionForm.isAfterDiscount()) {
+            value = Utils.formatCurrency(total - handleTypeDiscount(couponConditionForm, total)) + " VNĐ";
+        } else {
+            value = Utils.formatCurrency(total - handleTypeDiscount(couponConditionForm, totalFee)) + " VNĐ";
+        }
+        return value;
+    }
+
+    private int handleTypeDiscount(CouponConditionForm couponConditionForm, int price) {
+        int discount = 0;
+        if (couponConditionForm.getDiscountType() == ParamConstants.DISCOUNT_PERCENT) {
+            //Discount Percent
+            int percent = (couponConditionForm.getDiscount() * price) / 100;
+            int maxDiscount = couponConditionForm.getMaxDiscount();
+            //Check Coupon MaxDiscount
+            if (maxDiscount == 0 || percent <= maxDiscount) {
+                discount = percent;
+            } else if (percent > maxDiscount) {
+                discount = maxDiscount;
+            }
+        } else {
+            discount = couponConditionForm.getDiscount();
+        }
+        return discount;
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -128,11 +211,19 @@ public class Paid_At_Hotel extends BaseActivity implements View.OnClickListener 
             userBookingDto.setType(bundle.getInt("TYPE"));
             userBookingDto.setRedeemValue(bundle.getInt("redeemValue"));
 
-            if (bundle.getLong("COUPON") != ReservationActivity.NO_COUPON) {
-                userBookingDto.setCouponIssuedSn(bundle.getLong("COUPON"));
+            String mobile = bundle.getString("MOBILE");
+            if (mobile != null) {
+                userBookingDto.setMobile(mobile);
             }
 
-            ControllerApi.getmInstance().createNewReservation(this, userBookingDto, new ResultApi() {
+            long coupon = bundle.getLong("COUPON");
+            if (coupon != ReservationActivity.NO_COUPON) {
+                userBookingDto.setCouponIssuedSn(coupon);
+            }
+
+            userBookingDto.setPaymentMethod(ParamConstants.PAYMENT_METHOD_PAID_AT_HOTEL); //Pay at Hotel
+
+            ControllerApi.getmInstance().createNewUserBooking(this, userBookingDto, new ResultApi() {
                 @Override
                 public void resultApi(Object object) {
                     RestResult restResult = (RestResult) object;
@@ -144,11 +235,24 @@ public class Paid_At_Hotel extends BaseActivity implements View.OnClickListener 
                     */
 
 
-                    if (bundle.getInt("total") < minPrice || bundle.getString("HOTEL_PAYMENT").equals("2") || bundle.getInt("HOTEL_STATUS") == ContractType.TRIAL.getType()) {
+                    if (bundle.getInt("total") < minPrice || bundle.getString("HOTEL_PAYMENT", "").equals("2") || bundle.getInt("HOTEL_STATUS") == ContractType.TRIAL.getType()) {
                         bookingSuccessfull(restResult.getSn());
                     } else {
+
+                        //STORE BUNDLE
+                        String mapInfo = "";
+                        Map map = restResult.getMapInfo();
+                        if (map != null)
+                            try {
+                                mapInfo = restResult.getMapInfo().get("paymentPromotion").toString();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
                         //go to Booking Successfully
                         Intent confirm = new Intent(Paid_At_Hotel.this, Booking_Successful.class);
+                        confirm.putExtra("MAP-INFO", mapInfo);
                         confirm.putExtra("otherInfo", restResult.getOtherInfo());
                         confirm.putExtra("userBookingSn", restResult.getSn());
                         confirm.putExtra("total", bundle.getInt("total"));

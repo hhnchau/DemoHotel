@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_4"
+    android:gravity="center">
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/checkboxTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/bk"
+        android:textSize="@dimen/sp_18"/>
+
+    <ImageView
+        android:id="@+id/checkboxImg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/img_decscription" />
+
+</LinearLayout>

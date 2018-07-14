@@ -64,8 +64,7 @@
     </LinearLayout>
 
     <!--Book-->
-    <com.appromobile.hotel.widgets.TextViewSFMedium
-        android:id="@+id/btnBook"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -76,8 +75,24 @@
         android:paddingEnd="@dimen/margin_8"
         android:paddingStart="@dimen/margin_8"
         android:paddingTop="@dimen/margin_4"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:contentDescription="@string/img_decscription"
+            android:src="@drawable/icon_book" />
+
+    <com.appromobile.hotel.widgets.TextViewSFMedium
+        android:id="@+id/btnBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/txt_3_2_book_now"
         android:textColor="@color/wh" />
+
+    </LinearLayout>
 
     <!--stautus bar for viewpager-->
     <RelativeLayout

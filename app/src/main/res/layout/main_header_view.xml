@@ -18,7 +18,7 @@
         android:layout_width="30dp"
         android:id="@+id/imgLogo"
         android:src="@drawable/go2joy_symbol"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:layout_height="30dp" />
 
     <com.appromobile.hotel.widgets.TextViewSFHeavy

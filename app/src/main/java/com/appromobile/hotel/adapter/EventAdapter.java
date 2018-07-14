@@ -2,8 +2,6 @@ package com.appromobile.hotel.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +11,9 @@ import android.widget.ImageView;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.model.view.PromotionForm;
-import com.appromobile.hotel.utils.PictureUtils;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.Utils;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -31,7 +26,7 @@ public class EventAdapter extends BaseAdapter {
     public EventAdapter(final Context context, List<PromotionForm> data) {
         this.context = context;
         this.data = data;
-        PictureUtils.getInstance().clearCache(context);
+        PictureGlide.getInstance().clearCache(context);
     }
 
     @Override
@@ -79,20 +74,23 @@ public class EventAdapter extends BaseAdapter {
         try {
             String imageName = Utils.md5(noticeForm.getLastUpdate());
             int promotionImageSn = 0;
+            String imageKey = "";
             try {
                 if (noticeForm.getPromotionImageFormList() != null) {
                     for (int i = 0; i < noticeForm.getPromotionImageFormList().size(); i++) {
                         if (noticeForm.getPromotionImageFormList().get(i).getTypeDisplay() == 1) {
                             promotionImageSn = noticeForm.getPromotionImageFormList().get(i).getSn();
+                            imageKey = noticeForm.getPromotionImageFormList().get(i).getImageKey();
                         }
                     }
                 }
             } catch (Exception e) {
             }
 
-            String url = UrlParams.MAIN_URL + "/hotelapi/promotion/download/downloadPromotionImage?promotionImageSn=" + promotionImageSn + "&fileName=" + imageName;
+            //String url = UrlParams.MAIN_URL + "/hotelapi/promotion/download/downloadPromotionImage?promotionImageSn=" + promotionImageSn + "&fileName=" + imageName;
+            String url = UrlParams.MAIN_URL + "/hotelapi/promotion/download/promotionImage/" + imageKey;
 
-            PictureUtils.getInstance().load(
+            PictureGlide.getInstance().show(
                     url,
                     context.getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width),
                     context.getResources().getDimensionPixelSize(R.dimen.promotion_item_height),

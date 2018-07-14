@@ -86,8 +86,11 @@ public class AdapterMultiRecentBooking extends PagerAdapter {
         TextView tvPrice = (TextViewSFRegular) view.findViewById(R.id.tvPrice);
         TextView tvCouponDiscount = (TextViewSFRegular) view.findViewById(R.id.tvCouponDiscount);
         TextView tvStampDiscount = (TextViewSFRegular) view.findViewById(R.id.tvStampDiscount);
+        TextView tvPointDiscount = (TextViewSFRegular) view.findViewById(R.id.tvPointDiscount);
         TextView tvTotalPayment = (TextViewSFRegular) view.findViewById(R.id.tvTotalPayment);
+        TextView tvByPayment = (TextViewSFRegular) view.findViewById(R.id.tvByPayment);
         TextView tvPaymentStatus = (TextViewSFRegular) view.findViewById(R.id.tvPaymentStatus);
+        TextView tvPayooCode = (TextViewSFRegular) view.findViewById(R.id.textView_item_recent_booking_payoo_code);
         TextView btnPaynow = (TextViewSFBold) view.findViewById(R.id.btnPaynow);
         btnPaynow.setVisibility(View.GONE);
         TextView tvReservationStatus = (TextViewSFRegular) view.findViewById(R.id.textView_item_recent_booking_reservation_status);
@@ -97,11 +100,11 @@ public class AdapterMultiRecentBooking extends PagerAdapter {
         //Checkin Code
         String checkinCode = recent.getCheckinCode();
         if (checkinCode != null && !checkinCode.equals("")) {
-            tvCheckinCode.setTextColor(ContextCompat.getColor(context,R.color.org));
-            tvCheckinCode.setText(context.getString(R.string.txt_6_3_1_checkin_code) + " " +checkinCode); //Server 78
+            tvCheckinCode.setTextColor(ContextCompat.getColor(context, R.color.org));
+            tvCheckinCode.setText(context.getString(R.string.txt_6_3_1_checkin_code) + " " + checkinCode); //Server 78
         } else {
-            tvCheckinCode.setTextColor(ContextCompat.getColor(context,R.color.wh));
-            tvCheckinCode.setText(context.getString(R.string.txt_6_3_1_checkin_code) + " " +context.getString(R.string.txt_6_3_1_checkin_code_message)); //Server 78
+            tvCheckinCode.setTextColor(ContextCompat.getColor(context, R.color.wh));
+            tvCheckinCode.setText(context.getString(R.string.txt_6_3_1_checkin_code) + " " + context.getString(R.string.txt_6_3_1_checkin_code_message)); //Server 78
         }
 
         tvBookingId.setText(context.getString(R.string.txt_1_4_booking_id) + ": " + recent.getBookingNo());
@@ -125,9 +128,18 @@ public class AdapterMultiRecentBooking extends PagerAdapter {
         }
 
         tvTime.setText(context.getString(R.string.txt_1_4_time) + ": " + recent.getStartTime() + "~" + recent.getEndTime());
+
         tvHotelName.setText(context.getString(R.string.txt_1_4_hotel_name) + ": " + recent.getHotelName());
+
         tvRoomType.setText(context.getString(R.string.txt_1_4_room_type) + ": " + recent.getRoomTypeName());
-        tvPrice.setText(context.getString(R.string.txt_1_4_price) + ": " + Utils.formatCurrency(recent.getTotalAmount()) + context.getString(R.string.currency));
+
+        //Check Super Flash Sale
+        int totalFee = recent.getTotalAmount();
+        int superSale = recent.getFsGo2joyDiscount();
+        if (superSale > 0)
+            totalFee = totalFee - superSale;
+
+        tvPrice.setText(context.getString(R.string.txt_1_4_price) + ": " + Utils.formatCurrency(totalFee) + context.getString(R.string.currency));
         //Check Coupon
         if (recent.getDiscountType() == ParamConstants.DISCOUNT_PERCENT) {
             tvCouponDiscount.setText(context.getString(R.string.txt_1_4_coupon_discount) + ": " + recent.getDiscount() + context.getString(R.string.percent));
@@ -138,12 +150,15 @@ public class AdapterMultiRecentBooking extends PagerAdapter {
         //Set Stamp
         tvStampDiscount.setText(context.getString(R.string.txt_6_12_stamp_value) + ": " + Utils.formatCurrency(recent.getRedeemValue()) + context.getString(R.string.currency));
 
+        //Set Point
+        tvPointDiscount.setText(context.getString(R.string.txt_6_13_mileage_amount_value) + ": " + Utils.formatCurrency(recent.getMileageAmount()) + context.getString(R.string.currency));
+
         tvTotalPayment.setText(context.getString(R.string.txt_1_4_total_payment) + ": " + Utils.formatCurrency(recent.getAmountFromUser()) + context.getString(R.string.currency));
         tvReservationStatus.setText(context.getString(R.string.txt_1_4_booking_status) + ": " + StatusBooking.getStatusBooking(context, recent.getBookingStatus()));
 
+        //By Payment
 
-//        Check paynow button
-
+        //Check paynow button
         if (recent.getPrepayAmount() > 0) { //Server 78
             //Payment Online
             tvPaymentStatus.setText(context.getString(R.string.txt_6_3_1_paid_amount) + ": " + Utils.formatCurrency(recent.getPrepayAmount()) + context.getString(R.string.currency));  //Server 78
@@ -222,6 +237,23 @@ public class AdapterMultiRecentBooking extends PagerAdapter {
             }
         });
 
+        String code = recent.getPaymentCode();
+        if (code != null && !code.equals("")) {
+            tvPayooCode.setVisibility(View.VISIBLE);
+            tvPayooCode.setText(context.getString(R.string.txt_1_4_payoo_code) + " " + code);
+        } else {
+            tvPayooCode.setVisibility(View.GONE);
+        }
+
+        //Set BY PAY MENT
+        handlePromotionPayment(recent, tvTotalPayment, tvByPayment);
+
+        //Hide PayNow
+        if (recent.isHasPaymentPromotion()){
+            btnPaynow.setVisibility(View.GONE);
+        }else {
+            btnPaynow.setVisibility(View.VISIBLE);
+        }
 
         container.addView(view);
         return view;
@@ -240,6 +272,36 @@ public class AdapterMultiRecentBooking extends PagerAdapter {
     public void addData(List<RecentBookingForm> data) {
         recentBookingForms = data;
         notifyDataSetChanged();
+    }
+
+    private void handlePromotionPayment(RecentBookingForm recentBookingForm, TextView tvTotalPayment, TextView tvByPayment) {
+        if (recentBookingForm != null && recentBookingForm.getPromotionDiscount() > 0) {
+            if (recentBookingForm.getPaymentProvider() == 0) {
+
+            } else if (recentBookingForm.getPaymentProvider() == 1) {
+
+            } else if (recentBookingForm.getPaymentProvider() == 2) {
+
+                if (!recentBookingForm.getPaymentCode().equals("")) {
+                    //Show Amount From User + Promotion Discount
+                    //show Amount From USer
+                    if (recentBookingForm.getPrepayAmount() <= 0) {
+                        //Update payment Again
+                        tvTotalPayment.setText(context.getString(R.string.txt_1_4_total_payment) + ": " + Utils.formatCurrency(recentBookingForm.getAmountFromUser()+recentBookingForm.getPromotionDiscount()) + context.getString(R.string.currency));
+                        //Show By Payment
+                        tvByPayment.setVisibility(View.VISIBLE);
+                        tvByPayment.setText(context.getString(R.string.txt_16_by) + " " + context.getString(R.string.txt_16_payoo_paystore) + ": " + Utils.formatCurrency(recentBookingForm.getAmountFromUser()) + context.getString(R.string.currency));
+                    }
+                } else {
+                    //Show Amount From User
+                }
+
+            } else if (recentBookingForm.getPaymentProvider() == 3) {
+
+            } else if (recentBookingForm.getPaymentProvider() == 4) {
+
+            }
+        }
     }
 
 }

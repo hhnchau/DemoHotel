@@ -6,11 +6,12 @@ import android.os.Parcelable;
 /**
  * Created by xuan on 7/18/2016.
  */
-public class HotelImageForm implements Parcelable{
+public class HotelImageForm implements Parcelable {
     private String contentType;
     private int hotelSn;
     private String originalName;
     private String customizeName;
+    private String imageKey;
     private int roomTypeSn;
     private int sn;
 
@@ -62,6 +63,15 @@ public class HotelImageForm implements Parcelable{
         this.customizeName = customizeName;
     }
 
+    public String getImageKey() {
+        return imageKey;
+    }
+
+    public HotelImageForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -73,6 +83,7 @@ public class HotelImageForm implements Parcelable{
         dest.writeInt(this.hotelSn);
         dest.writeString(this.originalName);
         dest.writeString(this.customizeName);
+        dest.writeString(this.imageKey);
         dest.writeInt(this.roomTypeSn);
         dest.writeInt(this.sn);
     }
@@ -85,6 +96,7 @@ public class HotelImageForm implements Parcelable{
         this.hotelSn = in.readInt();
         this.originalName = in.readString();
         this.customizeName = in.readString();
+        this.imageKey = in.readString();
         this.roomTypeSn = in.readInt();
         this.sn = in.readInt();
     }

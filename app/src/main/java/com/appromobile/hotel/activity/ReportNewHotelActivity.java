@@ -32,16 +32,14 @@ import com.appromobile.hotel.model.view.AppUserForm;
 import com.appromobile.hotel.model.view.District;
 import com.appromobile.hotel.model.view.Province;
 import com.appromobile.hotel.model.view.RestResult;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.DialogUtils;
-import com.appromobile.hotel.utils.GlideApp;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
 import com.appromobile.hotel.widgets.EditTextSFRegular;
 import com.appromobile.hotel.widgets.TextViewSFBold;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.crashlytics.android.Crashlytics;
 
 import java.io.File;
@@ -572,11 +570,7 @@ public class ReportNewHotelActivity extends BaseActivity implements View.OnClick
 
                 selectedImage = data.getData();
 
-                GlideApp
-                        .with(imgPhoto.getContext())
-                        .load(selectedImage)
-                        .override(getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width), getResources().getDimensionPixelSize(R.dimen.hotel_list_height))
-                        .into(imgPhoto);
+                PictureGlide.getInstance().show(selectedImage,getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width), getResources().getDimensionPixelSize(R.dimen.hotel_list_height),R.drawable.loading_big, imgPhoto);
 
                 tvUploadImage.setVisibility(View.GONE);
             }
@@ -598,11 +592,7 @@ public class ReportNewHotelActivity extends BaseActivity implements View.OnClick
             selectedImage = Uri.parse(savedInstanceState.getString("cameraImageUri"));
 
             if (selectedImage != null) {
-                GlideApp
-                        .with(imgPhoto.getContext())
-                        .load(selectedImage)
-                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                        .into(imgPhoto);
+                PictureGlide.getInstance().show(selectedImage,imgPhoto);
                 tvUploadImage.setVisibility(View.GONE);
             }
         }

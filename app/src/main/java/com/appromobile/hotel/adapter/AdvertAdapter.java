@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.activity.HotelDetailActivity;
@@ -24,11 +22,11 @@ import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.enums.InviteFriendType;
 import com.appromobile.hotel.model.view.BannerForm;
 import com.appromobile.hotel.model.view.NotificationData;
-import com.appromobile.hotel.utils.GlideApp;
+import com.appromobile.hotel.picture.PictureGlide;
+import com.appromobile.hotel.picture.PicturePicasso;
 import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.PreferenceUtils;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 
 import java.util.List;
 
@@ -45,13 +43,13 @@ public class AdvertAdapter extends PagerAdapter {
         this.context = context;
         this.data = data;
         sn = new int[data.size()];
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Glide.get(context).clearDiskCache();
-            }
-        });
-        thread.start();
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Glide.get(context).clearDiskCache();
+//            }
+//        });
+//        thread.start();
     }
 
     @Override
@@ -75,64 +73,63 @@ public class AdvertAdapter extends PagerAdapter {
         ViewPager viewPager = (ViewPager) container;
         View view = LayoutInflater.from(context).inflate(R.layout.banner_image_item, container, false);
         final ImageView imgItem = view.findViewById(R.id.imgItem);
-        BannerForm promotionForm = data.get(position);
-        sn[position] = promotionForm.getSn();
-        String url = UrlParams.MAIN_URL + "hotelapi/banner/download/downloadBannerImage?bannerSn=" + String.valueOf(sn[position]);
-        GlideApp.with(imgItem.getContext())
-                .load(url)
-                .timeout(4000)
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .placeholder(R.drawable.loading_big)
-                .error(R.drawable.loading_big)
-                .into(imgItem);
+        BannerForm bannerForm = data.get(position);
+        if (bannerForm != null) {
+            sn[position] = bannerForm.getSn();
+            //String url = UrlParams.MAIN_URL + "hotelapi/banner/download/downloadBannerImage?bannerSn=" + String.valueOf(sn[position]);
+            String url = UrlParams.MAIN_URL + "/hotelapi/banner/download/bannerImage/" + bannerForm.getImageKey();
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int action = data.get(position).getAction();
-                if (action == BannerForm.ACTION_PROMOTION) {
-                    if (data.get(position).getTargetType() == 1) { //Promotion type 1
+            PictureGlide.getInstance().show(url, imgItem);
+            //PicturePicasso.getInstance().show(imgItem, url);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int action = data.get(position).getAction();
+                    if (action == BannerForm.ACTION_PROMOTION) {
+                        if (data.get(position).getTargetType() == 1) { //Promotion type 1
+                            Intent intent = new Intent(context, PromotionDetailActivity.class);
+                            intent.putExtra("promotionSn", data.get(position).getTargetSn());
+                            intent.putExtra("actionPopup", data.get(position).getAction());
+                            ((Activity) context).startActivityForResult(intent, ParamConstants.EVENT_PROMOTION_REQUEST);
+                            ((Activity) context).overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                        }
+
+                    } else if (action == BannerForm.ACTION_EVENT) {
+
                         Intent intent = new Intent(context, PromotionDetailActivity.class);
                         intent.putExtra("promotionSn", data.get(position).getTargetSn());
                         intent.putExtra("actionPopup", data.get(position).getAction());
                         ((Activity) context).startActivityForResult(intent, ParamConstants.EVENT_PROMOTION_REQUEST);
                         ((Activity) context).overridePendingTransition(R.anim.right_to_left, R.anim.stable);
-                    }
 
-                } else if (action == BannerForm.ACTION_EVENT) {
+                    } else if (action == BannerForm.ACTION_INVITE) {
+                        if (!PreferenceUtils.getToken(context).equals("")) {
+                            Intent intent = new Intent(context, InviteFriendActivity.class);
+                            intent.putExtra("InviteFriendType", InviteFriendType.BANNER.ordinal());
+                            intent.putExtra("promotionDiscount", data.get(position).getDiscount());
+                            context.startActivity(intent);
+                        } else {
+                            ((MainActivity) context).gotoLoginScreen(ParamConstants.INVITE_FRIEND_BANNER_REQUEST);
+                        }
+                    } else if (action == BannerForm.ACTION_HOTEL) {
+                        gotoHotelDetailDeepLink(data.get(position).getTargetSn());
+                    } else if (action == BannerForm.ACTION_NOTICE) {
+                        gotoNoticeDetailFromPoup(data.get(position).getTargetSn());
+                    } else if (action == BannerForm.ACTION_LINK) {
 
-                    Intent intent = new Intent(context, PromotionDetailActivity.class);
-                    intent.putExtra("promotionSn", data.get(position).getTargetSn());
-                    intent.putExtra("actionPopup", data.get(position).getAction());
-                    ((Activity) context).startActivityForResult(intent, ParamConstants.EVENT_PROMOTION_REQUEST);
-                    ((Activity) context).overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                    } else if (action == BannerForm.ACTION_DISTRICT) {
 
-                } else if (action == BannerForm.ACTION_INVITE) {
-                    if (!PreferenceUtils.getToken(context).equals("")) {
-                        Intent intent = new Intent(context, InviteFriendActivity.class);
-                        intent.putExtra("InviteFriendType", InviteFriendType.BANNER.ordinal());
-                        intent.putExtra("promotionDiscount", data.get(position).getDiscount());
-                        context.startActivity(intent);
-                    } else {
-                        ((MainActivity) context).gotoLoginScreen(ParamConstants.INVITE_FRIEND_BANNER_REQUEST);
-                    }
-                } else if (action == BannerForm.ACTION_HOTEL) {
-                    gotoHotelDetailDeepLink(data.get(position).getTargetSn());
-                } else if (action == BannerForm.ACTION_NOTICE) {
-                    gotoNoticeDetailFromPoup(data.get(position).getTargetSn());
-                } else if (action == BannerForm.ACTION_LINK) {
-
-                } else if (action == BannerForm.ACTION_DISTRICT) {
-
-                    if (data.get(position).getTargetInfo() != null) {
-                        Intent intent = new Intent(context, IntentTemp.class);
-                        intent.setAction(ParamConstants.ACTION_CHANGE_AREA);
-                        intent.putExtra(ParamConstants.ACTION_CHANGE_AREA, data.get(position).getTargetInfo());
-                        ((Activity) context).startActivityForResult(intent, ParamConstants.REQUEST_CHANGE_AREA);
+                        if (data.get(position).getTargetInfo() != null) {
+                            Intent intent = new Intent(context, IntentTemp.class);
+                            intent.setAction(ParamConstants.ACTION_CHANGE_AREA);
+                            intent.putExtra(ParamConstants.ACTION_CHANGE_AREA, data.get(position).getTargetInfo());
+                            ((Activity) context).startActivityForResult(intent, ParamConstants.REQUEST_CHANGE_AREA);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
         viewPager.addView(view);
         return view;
 

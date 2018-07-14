@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.format.Formatter;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appromobile.hotel.HotelApplication;
@@ -33,6 +34,7 @@ import com.appromobile.hotel.widgets.TextViewSFRegular;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -45,13 +47,13 @@ import retrofit2.Response;
 
 public class ReservationDetailActivity extends BaseActivity {
     private static final int PAYMENT_REQUEST = 1000;
-    private TextViewSFRegular btnCancelBooking;
-    private TextViewSFRegular tvCheckinCode, tvAddress, tvRoomType, tvBookingType, tvBookingDate, tvBookingTime,
-            tvCheckinTime, tvCheckoutTime, tvPrice, tvCouponDiscount, tvStampDiscount, tvTotalPayment, tvPaymentStatus, tvBookingStatus;
-    private TextViewSFRegular tvHotelTitle;
+    private TextView btnCancelBooking;
+    private TextView tvCheckinCode, tvAddress, tvRoomType, tvBookingType, tvBookingDate, tvBookingTime,
+            tvCheckinTime, tvCheckoutTime, tvPrice, tvCouponDiscount, tvStampDiscount, tvPointDiscount, tvTotalPayment, tvByPayment, tvPaymentStatus, tvPayooCode, tvBookingStatus, tvBookingId;
+    private TextView tvHotelTitle;
     private UserBookingForm userBookingForm;
     private SimpleDateFormat apiFormat, viewFormat;
-    TextViewSFBold btnPaynow;
+    private TextView btnPaynow;
     private int minPrice;
     private String COUPON_NUMBER = "couponNumber";
     private String COUPON_MONEY = "couponMoney";
@@ -64,26 +66,30 @@ public class ReservationDetailActivity extends BaseActivity {
         setScreenName();
         setContentView(R.layout.reservation_detail_activity);
 
-        apiFormat = new SimpleDateFormat(getString(R.string.date_format_request));
-        viewFormat = new SimpleDateFormat(getString(R.string.date_format_view));
+        apiFormat = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
+        viewFormat = new SimpleDateFormat(getString(R.string.date_format_view), Locale.ENGLISH);
 
-        btnCancelBooking =  findViewById(R.id.btnCancelBooking);
+        btnCancelBooking = findViewById(R.id.btnCancelBooking);
         tvHotelTitle = findViewById(R.id.tvHotelTitle);
-        tvCheckinCode =  findViewById(R.id.tvcheckinCode);
-        tvAddress =  findViewById(R.id.tvAddress);
-        tvRoomType =  findViewById(R.id.tvRoomType);
-        tvBookingType =  findViewById(R.id.tvBookingType);
+        tvCheckinCode = findViewById(R.id.tvcheckinCode);
+        tvBookingId = findViewById(R.id.tvBookingId);
+        tvAddress = findViewById(R.id.tvAddress);
+        tvRoomType = findViewById(R.id.tvRoomType);
+        tvBookingType = findViewById(R.id.tvBookingType);
         tvBookingDate = findViewById(R.id.tvBookingDate);
-        tvBookingTime =  findViewById(R.id.tvBookingTime);
-        tvCheckinTime =  findViewById(R.id.tvCheckinTime);
-        tvCheckoutTime =  findViewById(R.id.tvCheckoutTime);
-        tvPrice =  findViewById(R.id.tvPrice);
-        tvCouponDiscount =  findViewById(R.id.tvCouponDiscount);
-        tvStampDiscount =  findViewById(R.id.tvStampDiscount);
-        tvTotalPayment =  findViewById(R.id.tvTotalPayment);
-        tvPaymentStatus =  findViewById(R.id.tvPaymentStatus);
+        tvBookingTime = findViewById(R.id.tvBookingTime);
+        tvCheckinTime = findViewById(R.id.tvCheckinTime);
+        tvCheckoutTime = findViewById(R.id.tvCheckoutTime);
+        tvPrice = findViewById(R.id.tvPrice);
+        tvCouponDiscount = findViewById(R.id.tvCouponDiscount);
+        tvStampDiscount = findViewById(R.id.tvStampDiscount);
+        tvPointDiscount = findViewById(R.id.tvPointDiscount);
+        tvTotalPayment = findViewById(R.id.tvTotalPayment);
+        tvByPayment = findViewById(R.id.tvByPayment);
+        tvPaymentStatus = findViewById(R.id.tvPaymentStatus);
+        tvPayooCode = findViewById(R.id.tvPayooCode);
         tvBookingStatus = findViewById(R.id.tvBookingStatus);
-        btnPaynow =  findViewById(R.id.btnPaynow);
+        btnPaynow = findViewById(R.id.btnPaynow);
         /*
         * get Intent
         */
@@ -170,7 +176,9 @@ public class ReservationDetailActivity extends BaseActivity {
                         UserBookingForm userBookingForm = (UserBookingForm) object;
                         if (userBookingForm.getBookingStatus() == 1) { //Booked
                             //Goto Pay123
-                            gotoPay123();
+                            //gotoPay123();
+                            //Goto Billing Info
+                            gotoBillingInfo(userBookingForm);
                         } else {
                             //hide loading
                             DialogUtils.hideLoadingProgress();
@@ -182,6 +190,49 @@ public class ReservationDetailActivity extends BaseActivity {
             }
         });
     }
+
+    private void gotoBillingInfo(UserBookingForm userBookingForm) {
+
+
+        Bundle bundle = new Bundle();
+
+        bundle.putInt("pointValue", userBookingForm.getMileageAmount());
+        bundle.putInt("discountFee", userBookingForm.getDiscountPrice());
+        bundle.putInt("redeemValue", userBookingForm.getRedeemValue());
+        bundle.putInt("totalFee", userBookingForm.getTotalAmount());
+        bundle.putInt("total", userBookingForm.getAmountFromUser());
+        bundle.putInt("ROOM_TYPE", userBookingForm.getRoomTypeSn());
+        bundle.putString("START_TIME", userBookingForm.getStartTime());
+        bundle.putString("END_TIME", userBookingForm.getEndTime());
+        bundle.putString("END_DATE", userBookingForm.getEndDate());
+        bundle.putString("DATE_PLAN", userBookingForm.getCheckInDatePlan());
+        bundle.putInt("TYPE", userBookingForm.getType());
+        if (userBookingForm.getCouponIssuedSn() == null) {
+            bundle.putLong("COUPON", -1);
+        } else {
+            bundle.putLong("COUPON", userBookingForm.getCouponIssuedSn());
+        }
+        bundle.putBoolean("FLASH_SALE", false);
+        bundle.putString("HOTEL_PAYMENT", "2"); //For PayAtHotel
+        bundle.putInt("HOTEL_STATUS", userBookingForm.getHotelStatus());
+        if (userBookingForm.getPaymentOption() == ParamConstants.PAYMENT_ONLINE) {
+            bundle.putString("METHOD_PAYMENT", ParamConstants.METHOD_ALWAYS_PAY_ONLINE);
+        } else {
+            bundle.putString("METHOD_PAYMENT", ParamConstants.METHOD_PAY_AT_HOTEL);
+        }
+
+        bundle.putString("IP", Utils.getClientIp());
+
+        //Add UserBookingSn For Old Payment
+        bundle.putInt("userBookingSn", userBookingForm.getSn());
+
+        Intent billing_information = new Intent(this, Billing_Information.class);
+        billing_information.setAction("Old_Payment");
+        billing_information.putExtra("InformationBilling", bundle);
+        startActivity(billing_information);
+        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+    }
+
 
     private void gotoPay123() {
         WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
@@ -290,7 +341,7 @@ public class ReservationDetailActivity extends BaseActivity {
 
     private void filData() {
 
-         tvHotelTitle.setText(userBookingForm.getHotelName());
+        tvHotelTitle.setText(userBookingForm.getHotelName());
         tvAddress.setText(getString(R.string.address) + ": " + userBookingForm.getHotelAddress());
         tvRoomType.setText(getString(R.string.room_type) + ": " + userBookingForm.getRoomTypeName());
         String bookingType = "";
@@ -303,6 +354,8 @@ public class ReservationDetailActivity extends BaseActivity {
             bookingType = getString(R.string.over_night);
         }
         tvBookingType.setText(getString(R.string.booking_type) + ": " + bookingType);
+
+        tvBookingId.setText(getString(R.string.txt_1_4_booking_id) + ": " + userBookingForm.getBookingNo());
 
         //Check in Code
         String checkinCode = userBookingForm.getCheckinCode();
@@ -337,8 +390,14 @@ public class ReservationDetailActivity extends BaseActivity {
         }
         tvCheckoutTime.setText(getString(R.string.check_out_time) + ": N/A");
 
+        //Check Super Flash Sale
+        int totalFee = userBookingForm.getTotalAmount();
+        int superSale = userBookingForm.getFsGo2joyDiscount();
+        if (superSale > 0)
+            totalFee = totalFee - superSale;
+
         //price
-        tvPrice.setText(getString(R.string.price) + ": " + Utils.formatCurrency(userBookingForm.getTotalAmount()) + getString(R.string.currency));
+        tvPrice.setText(getString(R.string.price) + ": " + Utils.formatCurrency(totalFee) + getString(R.string.currency));
 
         //Discount
         if (userBookingForm.getDiscountType() == ParamConstants.DISCOUNT_PERCENT) {
@@ -351,9 +410,15 @@ public class ReservationDetailActivity extends BaseActivity {
         tvStampDiscount.setText(getString(R.string.txt_6_12_stamp_value) + ": " + Utils.formatCurrency(userBookingForm.getRedeemValue()) + getString(R.string.currency));
 
 
+        //Point
+        tvPointDiscount.setText(getString(R.string.txt_6_13_mileage_amount_value) + ": " + Utils.formatCurrency(userBookingForm.getMileageAmount()) + getString(R.string.currency));
+
 
         //payment
         tvTotalPayment.setText(getString(R.string.txt_1_4_total_payment) + ": " + Utils.formatCurrency(userBookingForm.getAmountFromUser()) + getString(R.string.currency));
+
+        //ByPayment
+        handlePromotionPayment();
 
 
         /*
@@ -374,7 +439,7 @@ public class ReservationDetailActivity extends BaseActivity {
                     //Check trial
                     if (userBookingForm.getHotelStatus() == ContractType.TRIAL.getType()) {
                         // Hide btn payment, status: unpaid
-                        tvPaymentStatus.setText(getString(R.string.txt_6_3_1_paid_amount) + ": " +Utils.formatCurrency(userBookingForm.getPrepayAmount()) + getString(R.string.currency));
+                        tvPaymentStatus.setText(getString(R.string.txt_6_3_1_paid_amount) + ": " + Utils.formatCurrency(userBookingForm.getPrepayAmount()) + getString(R.string.currency));
                         btnPaynow.setVisibility(View.GONE);
                     } else {
                         //Show btn payment, enable payment
@@ -401,10 +466,18 @@ public class ReservationDetailActivity extends BaseActivity {
             }
         }
 
+        String code = userBookingForm.getPaymentCode();
+        if (code != null && !code.equals("")) {
+            tvPayooCode.setVisibility(View.VISIBLE);
+            tvPayooCode.setText(getString(R.string.txt_1_4_payoo_code) + " " + code);
+        } else {
+            tvPayooCode.setVisibility(View.GONE);
+        }
+
         /*
-        * Set Booking Status 1: Booked, 2:Check-in. 3:Canceled ,
+        * Set Booking Status 1: Booked, 2:Check-in. 3:Canceled, 0: temp, 4: No show
          */
-        if (userBookingForm.getBookingStatus() == 1) {
+        if (userBookingForm.getBookingStatus() == 1 || userBookingForm.getBookingStatus() == 0) {
             tvBookingStatus.setText(getString(R.string.txt_1_4_booking_status) + ": " + getString(R.string.txt_6_3_1_booking_status_booked));
             btnCancelBooking.setVisibility(View.VISIBLE);
         } else if (userBookingForm.getBookingStatus() == 2) {
@@ -422,7 +495,7 @@ public class ReservationDetailActivity extends BaseActivity {
 
             btnCancelBooking.setVisibility(View.GONE);
             /*
-            * update payment staus again (Check-in successfull)
+            * update payment status again (Check-in successful)
             */
 
             if (userBookingForm.isInPast()) {
@@ -442,7 +515,7 @@ public class ReservationDetailActivity extends BaseActivity {
                 btnPaynow.setVisibility(View.GONE);
             }
         } else {
-            tvBookingStatus.setText(getString(R.string.txt_6_3_1_paid) + ": " + getString(R.string.txt_6_3_1_booking_now_show));
+            tvBookingStatus.setText(getString(R.string.txt_1_4_booking_status) + ": " + getString(R.string.txt_6_3_1_booking_now_show));
             btnPaynow.setVisibility(View.GONE);
             btnCancelBooking.setVisibility(View.GONE);
             if (!userBookingForm.isPrepay()) {
@@ -459,7 +532,13 @@ public class ReservationDetailActivity extends BaseActivity {
             } else {
                 tvPaymentStatus.setText(getString(R.string.txt_6_3_1_paid_amount) + ": " + Utils.formatCurrency(userBookingForm.getPrepayAmount()) + getString(R.string.currency));
             }
+        }
 
+
+        if (userBookingForm.getAppUserSn() == 0) { //Guest
+            btnCancelBooking.setVisibility(View.GONE);
+        } else if (userBookingForm.getBookingStatus() == 0) {//Payoo
+            btnCancelBooking.setVisibility(View.GONE);
         }
 
         /*
@@ -468,6 +547,46 @@ public class ReservationDetailActivity extends BaseActivity {
         if (userBookingForm.getAmountFromUser() <= 0) {
             btnPaynow.setVisibility(View.GONE);
             tvPaymentStatus.setText(getString(R.string.txt_6_3_1_paid_amount) + ": " + Utils.formatCurrency(userBookingForm.getPrepayAmount()) + getString(R.string.currency));
+        }
+
+        //Hide btn PayNow
+        if (userBookingForm.isHasPaymentPromotion()){
+            btnPaynow.setVisibility(View.GONE);
+            tvPaymentStatus.setText(getString(R.string.txt_6_3_1_paid_amount) + ": " + Utils.formatCurrency(userBookingForm.getPrepayAmount()) + getString(R.string.currency));
+        }
+    }
+
+    private void handlePromotionPayment() {
+        if (userBookingForm != null && userBookingForm.getPromotionDiscount() > 0) {
+            if (userBookingForm.getPaymentProvider() == 0) {
+                //Update payment Again
+                tvTotalPayment.setText(getString(R.string.txt_1_4_total_payment) + ": " + Utils.formatCurrency(userBookingForm.getAmountFromUser() + userBookingForm.getPromotionDiscount()) + getString(R.string.currency));
+                //Show By Payment
+                tvByPayment.setVisibility(View.VISIBLE);
+                tvByPayment.setText(getString(R.string.txt_16_by) + " " + getString(R.string.txt_16_hotel) + ": " + Utils.formatCurrency(userBookingForm.getAmountFromUser()) + getString(R.string.currency));
+            } else if (userBookingForm.getPaymentProvider() == 1) {
+
+            } else if (userBookingForm.getPaymentProvider() == 2) {
+
+                if (!userBookingForm.getPaymentCode().equals("")) {
+                    //Show Amount From User + Promotion Discount
+                    //show Amount From USer
+                    if (userBookingForm.getPrepayAmount() <= 0) {
+                        //Update payment Again
+                        tvTotalPayment.setText(getString(R.string.txt_1_4_total_payment) + ": " + Utils.formatCurrency(userBookingForm.getAmountFromUser() + userBookingForm.getPromotionDiscount()) + getString(R.string.currency));
+                        //Show By Payment
+                        tvByPayment.setVisibility(View.VISIBLE);
+                        tvByPayment.setText(getString(R.string.txt_16_by) + " " + getString(R.string.txt_16_payoo_paystore) + ": " + Utils.formatCurrency(userBookingForm.getAmountFromUser()) + getString(R.string.currency));
+                    }
+                } else {
+                    //Show Amount From User
+                }
+
+            } else if (userBookingForm.getPaymentProvider() == 3) {
+
+            } else if (userBookingForm.getPaymentProvider() == 4) {
+
+            }
         }
     }
 

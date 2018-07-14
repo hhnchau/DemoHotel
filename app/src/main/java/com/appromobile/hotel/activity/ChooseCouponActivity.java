@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.adapter.ChooseCouponAdapter;
+import com.appromobile.hotel.enums.CouponStatus;
 import com.appromobile.hotel.model.view.CouponIssuedForm;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
@@ -57,12 +58,18 @@ public class ChooseCouponActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Check for click coupon
-                if (couponIssuedForms.get(position).getCanUse() != ParamConstants.HOTEL_NOT_ACCEPT) {
+                if (couponIssuedForms.get(position).getUsed() == CouponStatus.Valid.ordinal() && couponIssuedForms.get(position).getCanUse() != ParamConstants.HOTEL_NOT_ACCEPT) {
                     Intent intent = new Intent();
                     intent.putExtra("CouponIndex", position);
                     setResult(RESULT_OK, intent);
                     finish();
                     overridePendingTransition(R.anim.stay, R.anim.slide_down_reservation);
+                } else if (couponIssuedForms.get(position).getUsed() == CouponStatus.Unregister.ordinal()) {
+                    Intent intent = new Intent(ChooseCouponActivity.this, PromotionDetailActivity.class);
+                    intent.putExtra("promotionSn", couponIssuedForms.get(position).getPromotionSn());
+                    //Type Promotion
+                    startActivityForResult(intent, ParamConstants.EVENT_PROMOTION_REQUEST);
+                    overridePendingTransition(R.anim.right_to_left, R.anim.stable);
                 }
             }
         });
@@ -85,5 +92,20 @@ public class ChooseCouponActivity extends BaseActivity {
     @Override
     public void setScreenName() {
         this.screenName = "SHotelCoupon";
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ParamConstants.EVENT_PROMOTION_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Intent intent = new Intent();
+                //int CouponIndex = data.getIntExtra("CouponIndex", -1);
+                intent.putExtra("CouponIndex", -1);
+                setResult(RESULT_OK, intent);
+                finish();
+                overridePendingTransition(R.anim.stay, R.anim.slide_down_reservation);
+            }
+        }
     }
 }

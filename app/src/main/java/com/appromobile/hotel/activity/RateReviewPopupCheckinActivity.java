@@ -12,13 +12,12 @@ import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.model.request.UserReviewDto;
 import com.appromobile.hotel.model.view.LastBookingForm;
 import com.appromobile.hotel.model.view.RestResult;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.DialogUtils;
-import com.appromobile.hotel.utils.GlideApp;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.widgets.EditTextSFRegular;
 import com.appromobile.hotel.widgets.TextViewSFBold;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.bumptech.glide.Glide;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -119,15 +118,11 @@ public class RateReviewPopupCheckinActivity extends BaseActivity implements View
         }catch (Exception e){}
         tvHotelName.setText(lastBookingForm.getHotelName());
 
-        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelHomeImage?hotelSn=" + lastBookingForm.getHotelSn();
+        //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelHomeImage?hotelSn=" + lastBookingForm.getHotelSn();
+        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + lastBookingForm.getImageKey();
 
-//        final File file = new File(Utils.getRootHomeFolder(this), Utils.md5(url));
         try {
-            GlideApp
-                    .with(imgHotel.getContext())
-                    .load(url).placeholder(R.drawable.loading_small)
-                    .override(getResources().getDimensionPixelSize(R.dimen.hotel_popup_width), getResources().getDimensionPixelSize(R.dimen.hotel_popup_height))
-                    .into(imgHotel);
+            PictureGlide.getInstance().show(url, getResources().getDimensionPixelSize(R.dimen.hotel_popup_width), getResources().getDimensionPixelSize(R.dimen.hotel_popup_height),R.drawable.loading_small, imgHotel);
         }catch (Exception e){}
 
 

@@ -8,7 +8,8 @@ public enum  ContractType {
     GENERAL(2),
     CONTRACT(3),
     TRIAL(4),
-    TERMINAL(5);;
+    TERMINAL(5),
+    SUSPEND(6);
 
     private int type;
 
@@ -31,6 +32,8 @@ public enum  ContractType {
                 return TRIAL;
             case 5:
                 return TERMINAL;
+            case 6:
+                return SUSPEND;
         }
         return GENERAL;
     }

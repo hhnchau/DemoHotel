@@ -38,5 +38,6 @@
     <color name="midg">#b5b5b5</color>
     <color name="transparent_40">#40000000</color>
     <color name="shadow">#66000000</color>
+    <color name="blue">#004283</color>
 
 </resources>

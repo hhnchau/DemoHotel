@@ -8,6 +8,7 @@ public class UpdatePaymentDto {
     private String clientip;
     private int transactionId ;
     private String transactionId2;
+    private String paymentCode;
 
     public String getTransactionId2() {
         return transactionId2;
@@ -31,5 +32,13 @@ public class UpdatePaymentDto {
 
     public void setClientip(String clientip) {
         this.clientip = clientip;
+    }
+
+    public String getPaymentCode() {
+        return paymentCode;
+    }
+
+    public void setPaymentCode(String paymentCode) {
+        this.paymentCode = paymentCode;
     }
 }

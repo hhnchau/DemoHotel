@@ -13,18 +13,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.enums.RoomAvailableType;
 import com.appromobile.hotel.enums.SortType;
 import com.appromobile.hotel.model.view.HotelForm;
-import com.appromobile.hotel.model.view.PromotionInfoForm;
 import com.appromobile.hotel.utils.MyLog;
-import com.appromobile.hotel.utils.PictureUtils;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.Utils;
-import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -42,7 +39,7 @@ public class HotelListAdapter extends BaseAdapter {
         this.data = data;
         this.context = context;
         this.typeSearch = typeSearch;
-        PictureUtils.getInstance().clearCache(context);
+        PictureGlide.getInstance().clearCache(context);
     }
 
     @Override
@@ -93,33 +90,73 @@ public class HotelListAdapter extends BaseAdapter {
 
                 float distance = calculateDistance(hotelForm);
 
-                String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + hotelForm.getHomeImageSn() + "&fileName=" + hotelForm.getHomeImageName();
-
+                //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + hotelForm.getHomeImageSn() + "&fileName=" + hotelForm.getHomeImageName();
+                String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + hotelForm.getImageKey();
                         /*
                         *   Set Hotel Contact or Trial
                         */
 
-                if (hotelForm.getHotelStatus() == ContractType.CONTRACT.getType() || hotelForm.getHotelStatus() == ContractType.TRIAL.getType()) {
+
+                if (hotelForm.getHotelStatus() == ContractType.CONTRACT.getType() || hotelForm.getHotelStatus() == ContractType.TRIAL.getType() || hotelForm.getHotelStatus() == ContractType.SUSPEND.getType()) {
+
                     viewHolder.tvCategory.setText(context.getString(R.string.go2joy_hotel));
                     viewHolder.imgNew.setVisibility(View.GONE);
                     viewHolder.imgHot.setVisibility(View.GONE);
                     viewHolder.imgPromotion.setVisibility(View.GONE);
+                    viewHolder.icon360.setVisibility(View.GONE);
+                    viewHolder.imgRoomAvailable.setVisibility(View.GONE);
+                    viewHolder.iconStamp.setVisibility(View.GONE);
 
-                    //Set Icon Promotion
-                    if (hotelForm.getNewHotel() == 1) {
-                        viewHolder.imgNew.setVisibility(View.VISIBLE);
-                    }
-                    if (hotelForm.getHasPromotion() == 1) {
-                        viewHolder.imgPromotion.setVisibility(View.VISIBLE);
-                    }
-                    if (hotelForm.getHotHotel() == 1) {
-                        viewHolder.imgHot.setVisibility(View.VISIBLE);
-                    }
-                    if (hotelForm.getRoomAvailable() == RoomAvailableType.Available.getType()) {
-                        viewHolder.imgRoomAvailable.setImageResource(R.drawable.room);
+                    //Suspend
+                    if (hotelForm.getHotelStatus() == ContractType.SUSPEND.getType()) {
+                        //Cover
+                        viewHolder.suspend.setVisibility(View.VISIBLE);
+                        viewHolder.boxHourly.setVisibility(View.GONE);
+                        viewHolder.boxOvernight.setVisibility(View.GONE);
                     } else {
-                        viewHolder.imgRoomAvailable.setImageResource(R.drawable.no_room);
+                        //Cover
+                        viewHolder.suspend.setVisibility(View.GONE);
+                        viewHolder.boxHourly.setVisibility(View.VISIBLE);
+                        viewHolder.boxOvernight.setVisibility(View.VISIBLE);
+                        viewHolder.imgRoomAvailable.setVisibility(View.VISIBLE);
+
+                        /*
+                        /Set Icon 360
+                        */
+                        if (hotelForm.getCountExifImage() > 0) {
+                            viewHolder.icon360.setVisibility(View.VISIBLE);
+                        } else {
+                            viewHolder.icon360.setVisibility(View.GONE);
+                        }
+
+
+                        /*
+                        / Set Icon Stamp
+                        */
+                        if (hotelForm.getNumToRedeem() > 0) {
+                            viewHolder.iconStamp.setVisibility(View.VISIBLE);
+                            viewHolder.tvNumStamp.setText(hotelForm.getActiveStamp() + "/" + hotelForm.getNumToRedeem());
+                        } else {
+                            viewHolder.iconStamp.setVisibility(View.GONE);
+                        }
+
+                        //Set Icon Promotion
+                        if (hotelForm.getNewHotel() == 1) {
+                            viewHolder.imgNew.setVisibility(View.VISIBLE);
+                        }
+                        if (hotelForm.getHasPromotion() == 1) {
+                            viewHolder.imgPromotion.setVisibility(View.VISIBLE);
+                        }
+                        if (hotelForm.getHotHotel() == 1) {
+                            viewHolder.imgHot.setVisibility(View.VISIBLE);
+                        }
+                        if (hotelForm.getRoomAvailable() == RoomAvailableType.Available.getType()) {
+                            viewHolder.imgRoomAvailable.setImageResource(R.drawable.room);
+                        } else {
+                            viewHolder.imgRoomAvailable.setImageResource(R.drawable.no_room);
+                        }
                     }
+
 
                     viewHolder.boxVipHotel.setVisibility(View.VISIBLE);
                     viewHolder.boxNonVipHotel.setVisibility(View.GONE);
@@ -131,7 +168,7 @@ public class HotelListAdapter extends BaseAdapter {
                     viewHolder.tvDistanceVip.setText(Utils.meterToKm(distance));
 
                     //Set Rating
-                    int rate = ((int) hotelForm.getAverageMark()) * 2;
+                    double rate = hotelForm.getAverageMark();
                     if (rate <= 0) {
                         viewHolder.tvReview.setVisibility(View.GONE);
                     } else {
@@ -139,8 +176,18 @@ public class HotelListAdapter extends BaseAdapter {
                         viewHolder.tvReview.setText(String.valueOf(rate));
                     }
 
+
                     //--------------Set Price------------
-                    int[] discount = Utils.getPromotionInfoForm(hotelForm.getSn());
+                    int[] discount = Utils.getPromotionInfoForm(
+                            hotelForm.getSn(),
+                            hotelForm.getLowestPrice(),
+                            hotelForm.getLowestPriceOvernight(),
+                            0,
+                            0);
+
+                    //-------------Set Label Hourly---------------
+                    String s = context.getString(R.string.txt_2_flashsale_hourly_price, String.valueOf(hotelForm.getFirstHours()));
+                    viewHolder.txtLabelPriceHourly.setText(s);
 
                     if (discount[0] > 0 || discount[1] > 0) {
 
@@ -216,7 +263,7 @@ public class HotelListAdapter extends BaseAdapter {
 
 
                     //Set Image Hotel
-                    PictureUtils.getInstance().load(
+                    PictureGlide.getInstance().show(
                             url,
                             context.getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width),
                             context.getResources().getDimensionPixelSize(R.dimen.hotel_list_height),
@@ -226,7 +273,8 @@ public class HotelListAdapter extends BaseAdapter {
 
 
                 } else if (hotelForm.getHotelStatus() == ContractType.GENERAL.getType() || hotelForm.getHotelStatus() == ContractType.TERMINAL.getType()) {
-
+                    //Cover
+                    viewHolder.suspend.setVisibility(View.GONE);
                             /*
                             * Set none contact
                             */
@@ -237,33 +285,13 @@ public class HotelListAdapter extends BaseAdapter {
                     viewHolder.tvNameNonVip.setText(hotelForm.getName());
                     viewHolder.tvDistanceNonVip.setText(Utils.meterToKm(distance));
 
-                    PictureUtils.getInstance().load(
+                    PictureGlide.getInstance().show(
                             url,
                             context.getResources().getDimensionPixelSize(R.dimen.hotel_list_height),
                             context.getResources().getDimensionPixelSize(R.dimen.hotel_list_height),
                             R.drawable.loading_small,
                             viewHolder.imgHotelNonVip
                     );
-                }
-
-                        /*
-                        /Set Icon 360
-                        */
-                if (hotelForm.getCountExifImage() > 0) {
-                    viewHolder.icon360.setVisibility(View.VISIBLE);
-                } else {
-                    viewHolder.icon360.setVisibility(View.GONE);
-                }
-
-
-                /*
-                / Set Icon Stamp
-                */
-                if (hotelForm.getNumToRedeem() > 0){
-                    viewHolder.iconStamp.setVisibility(View.VISIBLE);
-                    viewHolder.tvNumStamp.setText(hotelForm.getActiveStamp() + "/" + hotelForm.getNumToRedeem());
-                }else {
-                    viewHolder.iconStamp.setVisibility(View.GONE);
                 }
 
                 /*
@@ -315,6 +343,8 @@ public class HotelListAdapter extends BaseAdapter {
         private RelativeLayout boxVipHotel;
         private RelativeLayout iconStamp;
         private TextView tvNumStamp;
+        private View suspend;
+        private TextView txtLabelPriceHourly;
     }
 
 
@@ -361,6 +391,9 @@ public class HotelListAdapter extends BaseAdapter {
         viewHolder.iconStamp = convertView.findViewById(R.id.iconStamp);
         viewHolder.tvNumStamp = convertView.findViewById(R.id.tvNumStamp);
 
+        viewHolder.suspend = convertView.findViewById(R.id.cover_suspend);
+
+        viewHolder.txtLabelPriceHourly = convertView.findViewById(R.id.label_price_hourly);
 
         convertView.setTag(viewHolder);
 

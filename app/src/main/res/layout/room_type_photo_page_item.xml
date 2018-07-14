@@ -71,7 +71,6 @@
         android:ellipsize="end"
         android:paddingEnd="@dimen/margin_12"
         android:paddingStart="@dimen/margin_12"
-
         android:textColor="@color/wh"
         android:textSize="@dimen/hotel_list_text_size_normal" />
 
@@ -83,7 +82,6 @@
         android:layout_marginTop="@dimen/margin_4"
         android:paddingEnd="@dimen/margin_12"
         android:paddingStart="@dimen/margin_12"
-
         android:textColor="@color/wh"
         android:textSize="@dimen/hotel_list_text_size_normal" />
 

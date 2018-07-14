@@ -37,6 +37,14 @@ public class RecentBookingForm {
     private String checkinCode;
     private int prepayAmount;
     private int redeemValue;
+    private String paymentCode;
+    private int mileageAmount;
+    private int mileagePoint;
+    private int fsGo2joyDiscount;
+    private String transactionId;
+    private int promotionDiscount;
+    private int paymentProvider;// (integer): 0:PAH, 1:123Pay, 3:Payoo,3:Momo ,
+    private boolean hasPaymentPromotion;
 
     public RecentBookingForm() {
     }
@@ -295,5 +303,76 @@ public class RecentBookingForm {
 
     public void setRedeemValue(int redeemValue) {
         this.redeemValue = redeemValue;
+    }
+
+    public String getPaymentCode() {
+        return paymentCode;
+    }
+
+    public void setPaymentCode(String paymentCode) {
+        this.paymentCode = paymentCode;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public RecentBookingForm setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+        return this;
+    }
+
+    public int getPromotionDiscount() {
+        return promotionDiscount;
+    }
+
+    public RecentBookingForm setPromotionDiscount(int promotionDiscount) {
+        this.promotionDiscount = promotionDiscount;
+        return this;
+    }
+
+    public int getPaymentProvider() {
+        return paymentProvider;
+    }
+
+    public RecentBookingForm setPaymentProvider(int paymentProvider) {
+        this.paymentProvider = paymentProvider;
+        return this;
+    }
+
+    public int getMileageAmount() {
+        return mileageAmount;
+    }
+
+    public RecentBookingForm setMileageAmount(int mileageAmount) {
+        this.mileageAmount = mileageAmount;
+        return this;
+    }
+
+    public int getMileagePoint() {
+        return mileagePoint;
+    }
+
+    public RecentBookingForm setMileagePoint(int mileagePoint) {
+        this.mileagePoint = mileagePoint;
+        return this;
+    }
+
+    public int getFsGo2joyDiscount() {
+        return fsGo2joyDiscount;
+    }
+
+    public RecentBookingForm setFsGo2joyDiscount(int fsGo2joyDiscount) {
+        this.fsGo2joyDiscount = fsGo2joyDiscount;
+        return this;
+    }
+
+    public boolean isHasPaymentPromotion() {
+        return hasPaymentPromotion;
+    }
+
+    public RecentBookingForm setHasPaymentPromotion(boolean hasPaymentPromotion) {
+        this.hasPaymentPromotion = hasPaymentPromotion;
+        return this;
     }
 }

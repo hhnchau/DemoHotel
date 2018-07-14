@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.appromobile.hotel.R;
+import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.model.view.HotelForm;
 import com.appromobile.hotel.widgets.TextViewSFMedium;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
@@ -63,7 +64,9 @@ public class RecentHotelAdapter extends BaseAdapter {
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.tvHotelName.setText(hotelForms.get(position).getName());
+        if (hotelForms.get(position).getHotelStatus() != ContractType.SUSPEND.getType()) {
+            viewHolder.tvHotelName.setText(hotelForms.get(position).getName());
+        }
         if(hotelForms.get(position).isCategory()){
             viewHolder.tvSection.setVisibility(View.VISIBLE);
             viewHolder.tvSection.setText(hotelForms.get(position).getCategoryName());

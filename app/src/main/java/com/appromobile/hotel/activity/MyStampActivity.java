@@ -41,11 +41,6 @@ public class MyStampActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_stamp_activity);
         initView();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         findLimitUserStamp();
     }
 

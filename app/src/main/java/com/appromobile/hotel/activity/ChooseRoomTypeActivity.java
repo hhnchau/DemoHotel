@@ -2,6 +2,7 @@ package com.appromobile.hotel.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
@@ -65,10 +66,10 @@ public class ChooseRoomTypeActivity extends BaseActivity {
                     if (roomTypeForm.isFlashSaleRoomAvailable() && roomTypeForm.getAvailableRoom() <= 0) {
                         Toast.makeText(ChooseRoomTypeActivity.this, getString(R.string.msg_3_9_flashsale_soldout), Toast.LENGTH_LONG).show();
                         return;
-                    } else if (roomTypeForm.isLocked()) {
-                        Toast.makeText(ChooseRoomTypeActivity.this, getString(R.string.msg_3_1_soldout_room), Toast.LENGTH_LONG).show();
-                        return;
-                    }
+                    } //else if (roomTypeForm.isLocked()) {
+                    //Toast.makeText(ChooseRoomTypeActivity.this, getString(R.string.msg_3_1_soldout_room), Toast.LENGTH_LONG).show();
+                    //return;
+                    //}
 
                     Intent intent = new Intent();
                     intent.putExtra("RoomTypeIndex", position);
@@ -84,7 +85,6 @@ public class ChooseRoomTypeActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                emptyView.setVisibility(View.GONE);
                 overridePendingTransition(R.anim.stay, R.anim.slide_down_reservation);
             }
         });
@@ -93,19 +93,19 @@ public class ChooseRoomTypeActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        emptyView.setVisibility(View.GONE);
         overridePendingTransition(R.anim.stay, R.anim.slide_down_reservation);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                emptyView.setBackgroundColor(getResources().getColor(R.color.bk_50p));
-            }
-        },700);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                emptyView.setBackgroundColor(getResources().getColor(R.color.bk_50p));
+//            }
+//        },700);
+
     }
 
     @Override

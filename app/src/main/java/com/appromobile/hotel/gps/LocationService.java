@@ -300,6 +300,7 @@ public class LocationService extends Service implements
         //Disable GCM Receiver Message // Check Login or Logout
         //if (!PreferenceUtils.getToken(this).equals("")) {
         mobileDeviceInput.setTokenId(FirebaseUtils.getRegistrationId(this));
+        mobileDeviceInput.setDeviceCode(HotelApplication.ID);
         //}
 
         HotelApplication.serviceApi.updateAppUserToken(mobileDeviceInput, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {

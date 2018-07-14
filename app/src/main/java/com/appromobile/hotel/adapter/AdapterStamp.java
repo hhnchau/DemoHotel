@@ -78,6 +78,11 @@ public class AdapterStamp extends BaseAdapter {
             viewHolder.imgStamp.setImageResource(R.drawable.icon_stamp_inactive);
         }
 
+        //Lock Stamp
+        if (userStampForm.getNumStampLocked() > 0){
+            viewHolder.imgStamp.setImageResource(R.drawable.icon_stamp_inactive);
+        }
+
         return rowView;
     }
 }

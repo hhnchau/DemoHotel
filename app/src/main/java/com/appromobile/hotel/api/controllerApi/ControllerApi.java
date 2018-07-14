@@ -3,6 +3,7 @@ package com.appromobile.hotel.api.controllerApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.appromobile.hotel.HotelApplication;
@@ -11,13 +12,18 @@ import com.appromobile.hotel.activity.LoginActivity;
 import com.appromobile.hotel.activity.MainActivity;
 import com.appromobile.hotel.callback.CallbackApiFail;
 import com.appromobile.hotel.model.request.BookingDto;
+import com.appromobile.hotel.model.request.HomeHotelRequest;
 import com.appromobile.hotel.model.request.LoginDto;
 import com.appromobile.hotel.model.request.MobileDeviceInput;
+import com.appromobile.hotel.model.request.SearchHistoryDto;
 import com.appromobile.hotel.model.request.SocialLoginDto;
+import com.appromobile.hotel.model.request.UpdatePaymentDto;
 import com.appromobile.hotel.model.request.UserBookingDto;
 import com.appromobile.hotel.model.request.UserCommonInfoDto;
 import com.appromobile.hotel.model.request.UserFavoriteDto;
 import com.appromobile.hotel.model.request.UserLocationForm;
+import com.appromobile.hotel.model.request.UserSettingDto;
+import com.appromobile.hotel.model.request.ViewCrmNotificationDto;
 import com.appromobile.hotel.model.view.ApiSettingForm;
 import com.appromobile.hotel.model.view.AppUserForm;
 import com.appromobile.hotel.model.view.CommonInfoForm;
@@ -25,30 +31,38 @@ import com.appromobile.hotel.model.view.District;
 import com.appromobile.hotel.model.view.HotelDetailForm;
 import com.appromobile.hotel.model.view.HotelForm;
 import com.appromobile.hotel.model.view.HotelImageForm;
+import com.appromobile.hotel.model.view.MileageHistoryForm;
+import com.appromobile.hotel.model.view.MileagePointForm;
 import com.appromobile.hotel.model.view.PopupApiForm;
 import com.appromobile.hotel.model.view.PromotionInfoForm;
 import com.appromobile.hotel.model.view.RecentBookingForm;
 import com.appromobile.hotel.model.view.ReservationSetting;
 import com.appromobile.hotel.model.view.RestResult;
+import com.appromobile.hotel.model.view.SearchHistoryForm;
 import com.appromobile.hotel.model.view.UserBookingForm;
+import com.appromobile.hotel.model.view.UserSettingForm;
 import com.appromobile.hotel.model.view.UserStampForm;
 import com.appromobile.hotel.model.view.ViewNotificationDto;
 import com.appromobile.hotel.utils.DialogCallback;
 import com.appromobile.hotel.utils.DialogUtils;
-import com.appromobile.hotel.utils.MyLog;
+
 import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.CustomEvent;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 /**
  * Created by appro on 07/03/2017.
@@ -263,6 +277,23 @@ public class ControllerApi implements RequestApi {
 //                        findPopupInfo(context, token, resultApi);
 //                    }
 //                });
+            }
+        });
+    }
+
+    @Override
+    public void findPopupInfoList(Context context, String token, final ResultApi resultApi) {
+        HotelApplication.serviceApi.findPopupInfoList(token, HotelApplication.DEVICE_ID).enqueue(new Callback<PopupApiForm>() {
+            @Override
+            public void onResponse(Call<PopupApiForm> call, Response<PopupApiForm> response) {
+                if (response.isSuccessful()) {
+                    resultApi.resultApi(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PopupApiForm> call, Throwable t) {
+
             }
         });
     }
@@ -745,7 +776,7 @@ public class ControllerApi implements RequestApi {
                         resultApiList.resultApilist(list);
                     } else {
 
-                        newRetryApi(context, new CallbackRetry() {
+                        retryApi(context, new CallbackRetry() {
                             @Override
                             public void retry() {
                                 findAllHotelContractTrialList(context, resultApiList);
@@ -758,7 +789,7 @@ public class ControllerApi implements RequestApi {
             @Override
             public void onFailure(Call<List<HotelForm>> call, Throwable t) {
                 DialogUtils.hideLoadingProgress();
-                newRetryApi(context, new CallbackRetry() {
+                retryApi(context, new CallbackRetry() {
                     @Override
                     public void retry() {
                         findAllHotelContractTrialList(context, resultApiList);
@@ -846,6 +877,469 @@ public class ControllerApi implements RequestApi {
         });
     }
 
+    @Override
+    public void updatePayooPaymentResult(final Context context, final String clientip, final String transactionId2, final String paymentCode, final ResultApi resultApi) {
+        DialogUtils.showLoadingProgress(context, false);
+        UpdatePaymentDto updatePaymentDto = new UpdatePaymentDto();
+        updatePaymentDto.setTransactionId2(transactionId2);
+        updatePaymentDto.setClientip(clientip);
+        if (paymentCode != null) {
+            updatePaymentDto.setPaymentCode(paymentCode);
+        }
+        HotelApplication.serviceApi.updatePayooPaymentResult(updatePaymentDto, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+
+                RestResult result = response.body();
+                if (result != null) {
+                    if (response.isSuccessful()) {
+                        if (result.getResult() == 1)
+                            resultApi.resultApi(result);
+                        else {
+                            Toast.makeText(context, result.getMessage(), Toast.LENGTH_LONG).show();
+                            //resultApi.resultApi(null);
+                        }
+                    } else {
+                        //resultApi.resultApi(null);
+                        Toast.makeText(context, R.string.cannot_connect_to_server, Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        updatePayooPaymentResult(context, clientip, transactionId2, paymentCode, resultApi);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void findPaymentInfoFormMap(Context context, long userBookingSn, String clientIp, final ResultMapApi resultMapApi) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("userBookingSn", userBookingSn);
+        params.put("clientip", clientIp);
+
+        HotelApplication.serviceApi.findPaymentInfoFormMap(params, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<Map<String, Object>>() {
+            @Override
+            public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
+                if (response.body() != null && response.body().size() > 0) {
+                    resultMapApi.map(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String, Object>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void checkMobileInSystem(final Context context, final String phone, final ResultApi resultApi) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("mobile", phone);
+        DialogUtils.showLoadingProgress(context, false);
+        HotelApplication.serviceApi.checkMobileInSystem(param, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+                RestResult result = response.body();
+                if (result != null) {
+                    if (response.isSuccessful()) {
+                        if (result.getResult() == 1)
+                            resultApi.resultApi(result);
+                        else {
+                            Toast.makeText(context, result.getMessage(), Toast.LENGTH_LONG).show();
+                            resultApi.resultApi(null);
+                        }
+                    } else {
+                        resultApi.resultApi(null);
+                        Toast.makeText(context, R.string.cannot_connect_to_server, Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        checkMobileInSystem(context, phone, resultApi);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void checkVerifyCode(final Context context, final String phone, final String verify, final ResultApi resultApi) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("mobile", phone);
+        params.put("verifyCode", verify);
+        DialogUtils.showLoadingProgress(context, false);
+        HotelApplication.serviceApi.checkVerifyCode(params, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+
+                if (response.isSuccessful()) {
+                    RestResult result = response.body();
+                    if (result != null) {
+
+                        resultApi.resultApi(result);
+
+                    } else {
+                        resultApi.resultApi(null);
+                        Toast.makeText(context, R.string.cannot_connect_to_server, Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        checkVerifyCode(context, phone, verify, resultApi);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void createNewUserBooking(final Context context, final UserBookingDto userBookingDto, final ResultApi resultApi) {
+        DialogUtils.showLoadingProgress(context, false);
+        HotelApplication.serviceApi.createNewUserBooking(userBookingDto, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+
+                RestResult result = response.body();
+
+                if (result != null) {
+                    if (result.getResult() == 1) {
+
+                        resultApi.resultApi(result);
+
+
+                        //Event Fabric
+                        if (HotelApplication.isRelease) {
+                            Answers.getInstance().logCustom(new CustomEvent("Make a reservation").putCustomAttribute("userBookingSn", String.valueOf(result.getSn())));
+                        }
+
+                    } else {
+                        Toast.makeText(context, result.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        createNewUserBooking(context, userBookingDto, resultApi);
+                    }
+                });
+
+            }
+        });
+    }
+
+    @Override
+    public void updateViewNotificationCrm(long sn, int typeCrm) {
+        ViewCrmNotificationDto viewCrmNotificationDto = new ViewCrmNotificationDto(sn, typeCrm, 2);
+        HotelApplication.serviceApi.updateViewNotificationCrm(viewCrmNotificationDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void findLimitMileageHistoryList(final Context context, final String startDate, final String endDate, final int limit, final int offset, final ResultApiList resultApiList) {
+        DialogUtils.showLoadingProgress(context, false);
+        Map<String, Object> params = new HashMap<>();
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+        params.put("limit", limit);
+        params.put("offset", offset);
+        HotelApplication.serviceApi.findLimitMileageHistoryList(params, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<List<MileageHistoryForm>>() {
+            @Override
+            public void onResponse(Call<List<MileageHistoryForm>> call, Response<List<MileageHistoryForm>> response) {
+                DialogUtils.hideLoadingProgress();
+                List<MileageHistoryForm> l = response.body();
+                if (l != null) {
+                    if (response.isSuccessful()) {
+                        List<Object> list = new ArrayList<>();
+                        list.addAll(l);
+                        resultApiList.resultApilist(list);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<MileageHistoryForm>> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        findLimitMileageHistoryList(context, startDate, endDate, limit, offset, resultApiList);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void findLimitMileageRewardForAppList(final Context context, final int type, final int limit, final int offset, final ResultApiList resultApiList) {
+        DialogUtils.showLoadingProgress(context, false);
+        Map<String, Object> params = new HashMap<>();
+        params.put("type", type);
+        params.put("limit", limit);
+        params.put("offset", offset);
+        HotelApplication.serviceApi.findLimitMileageRewardForAppList(params, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<List<MileageHistoryForm>>() {
+            @Override
+            public void onResponse(Call<List<MileageHistoryForm>> call, Response<List<MileageHistoryForm>> response) {
+                DialogUtils.hideLoadingProgress();
+                List<MileageHistoryForm> l = response.body();
+                if (l != null) {
+                    if (response.isSuccessful()) {
+                        List<Object> list = new ArrayList<>();
+                        list.addAll(l);
+                        resultApiList.resultApilist(list);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<MileageHistoryForm>> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        findLimitMileageRewardForAppList(context, type, limit, offset, resultApiList);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void findGeneralMileagePointInfo(final Context context, final String startDate, final String endDate, final ResultApi resultApi) {
+        DialogUtils.showLoadingProgress(context, false);
+        Map<String, Object> params = new HashMap<>();
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+        HotelApplication.serviceApi.findGeneralMileagePointInfo(params, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<MileagePointForm>() {
+            @Override
+            public void onResponse(Call<MileagePointForm> call, Response<MileagePointForm> response) {
+                DialogUtils.hideLoadingProgress();
+                MileagePointForm mileagePointForm = response.body();
+                if (mileagePointForm != null) {
+                    if (response.isSuccessful()) {
+                        resultApi.resultApi(mileagePointForm);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MileagePointForm> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        findGeneralMileagePointInfo(context, startDate, endDate, resultApi);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void findUserSettingViaAppUserSn(final Context context, final ResultApi resultApi) {
+        DialogUtils.showLoadingProgress(context, false);
+        HotelApplication.serviceApi.findUserSettingViaAppUserSn(PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<UserSettingForm>() {
+            @Override
+            public void onResponse(Call<UserSettingForm> call, Response<UserSettingForm> response) {
+                DialogUtils.hideLoadingProgress();
+                if (response.body() != null) {
+                    if (response.isSuccessful()) {
+                        resultApi.resultApi(response.body());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserSettingForm> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        findUserSettingViaAppUserSn(context, resultApi);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void updateUserSetting(final Context context, final UserSettingDto userSettingDto, final ResultApi resultApi) {
+        DialogUtils.showLoadingProgress(context, false);
+        HotelApplication.serviceApi.updateUserSetting(userSettingDto, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+                if (response.body() != null) {
+                    if (response.isSuccessful()) {
+                        resultApi.resultApi(response.body());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        updateUserSetting(context, userSettingDto, resultApi);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void searchHotelList(final Context context, final Map<String, Object> params, final ResultApi resultApi) {
+        //DialogUtils.showLoadingProgress(context, false);
+        HotelApplication.serviceApi.searchHotelList(params, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                //DialogUtils.hideLoadingProgress();
+                if (response.body() != null) {
+                    if (response.isSuccessful()) {
+                        resultApi.resultApi(response.body());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                //DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        searchHotelList(context, params, resultApi);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void updateSearchHistory(SearchHistoryDto searchHistoryDto) {
+        HotelApplication.serviceApi.updateSearchHotel(searchHistoryDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void findLimitSearchHistoryList(final Context context, final int offset, final int limit, final ResultApiList resultApiList) {
+        DialogUtils.showLoadingProgress(context, false);
+        Map<String, Object> params = new HashMap<>();
+        params.put("limit", limit);
+        params.put("offset", offset);
+        HotelApplication.serviceApi.findLimitSearchHistoryList(params, PreferenceUtils.getToken(context), HotelApplication.DEVICE_ID).enqueue(new Callback<List<SearchHistoryForm>>() {
+            @Override
+            public void onResponse(Call<List<SearchHistoryForm>> call, Response<List<SearchHistoryForm>> response) {
+                DialogUtils.hideLoadingProgress();
+                List<SearchHistoryForm> l = response.body();
+                if (l != null) {
+                    if (response.isSuccessful()) {
+                        List<Object> list = new ArrayList<>();
+                        list.addAll(l);
+                        resultApiList.resultApilist(list);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchHistoryForm>> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                retryApi(context, new CallbackRetry() {
+                    @Override
+                    public void retry() {
+                        findLimitSearchHistoryList(context, limit, offset, resultApiList);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void sendCrmNotification() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("targetType", 1);
+
+        HotelApplication.serviceApi.sendCrmNotification(params, HotelApplication.DEVICE_ID).enqueue(new Callback<List<RestResult>>() {
+            @Override
+            public void onResponse(Call<List<RestResult>> call, Response<List<RestResult>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<RestResult>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void updateUninstallAndroid() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("deviceId", HotelApplication.DEVICE_ID);
+
+        HotelApplication.serviceApi.updateUninstallAndroid(params, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+
+            }
+        });
+    }
+
     //Dialog
     private void retryApi(final Context context, final CallbackRetry callbackRetry) {
         DialogUtils.apiFail(context, context.getString(R.string.cannot_connect_to_server), context.getString(R.string.close), context.getString(R.string.retry), new CallbackApiFail() {
@@ -856,22 +1350,6 @@ public class ControllerApi implements RequestApi {
                 } else {
                     //Intent intent = new Intent(context, ExitActivity.class);
                     //context.startActivity(intent);
-                }
-            }
-        });
-    }
-
-    //Dialog
-    private void newRetryApi(final Context context, final CallbackRetry callbackRetry) {
-        DialogUtils.apiFail(context, context.getString(R.string.cannot_connect_to_server), context.getString(R.string.close), context.getString(R.string.retry), new CallbackApiFail() {
-            @Override
-            public void onPress(boolean retry) {
-                if (retry) {
-                    callbackRetry.retry();
-                } else {
-                    Intent intent = new Intent(context, MainActivity.class);
-                    intent.setAction(ParamConstants.INTENT_ACTION_CLOSE_APP);
-                    context.startActivity(intent);
                 }
             }
         });

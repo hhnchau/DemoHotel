@@ -31,7 +31,7 @@
             android:singleLine="true"
             android:text="@string/account_setting"
             android:textColor="@color/wh"
-            android:textSize="19sp" />
+            android:textSize="@dimen/sp_18" />
     </LinearLayout>
 
     <LinearLayout
@@ -60,6 +60,7 @@
             android:gravity="center"
             android:textColor="@color/org"
             android:text="@string/txt_6_1_logout"
+            android:visibility="gone"
             />
     </LinearLayout>
 
@@ -332,6 +333,7 @@
             android:gravity="center"
             android:text="@string/unregister"
             android:textColor="@color/wh"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone"/>
     </LinearLayout>
 </LinearLayout>

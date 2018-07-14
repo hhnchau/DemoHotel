@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_room_type"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/wh"
-    android:orientation="horizontal"
-    android:id="@+id/item_room_type">
+    android:orientation="horizontal">
 
     <FrameLayout
         android:layout_width="@dimen/room_cell_width"
@@ -97,6 +97,7 @@
             android:padding="@dimen/margin_2"
             android:text="@string/txt_3_1_soldout_room"
             android:textColor="@color/white"
+            android:textSize="@dimen/sp_12"
             android:visibility="gone" />
 
     </FrameLayout>
@@ -106,7 +107,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="@dimen/margin_8">
+        android:padding="@dimen/margin_2">
 
         <!--Title and Button-->
         <LinearLayout
@@ -120,23 +121,34 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center_vertical"
-                android:layout_weight="8"
+                android:layout_weight="6"
                 android:maxLines="1"
                 android:textColor="@color/bk"
                 android:textSize="@dimen/hotel_list_text_size_semi_big" />
 
-            <FrameLayout
+            <RelativeLayout
+                android:id="@+id/btnBook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2">
+                android:layout_weight="4">
 
                 <Button
-                    android:id="@+id/btnBook"
+                    android:id="@+id/btn_Book"
                     android:layout_width="@dimen/room_button_height"
                     android:layout_height="@dimen/room_button_height"
-                    android:layout_gravity="end"
                     android:background="@drawable/icon_book" />
-            </FrameLayout>
+
+                <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@id/btn_Book"
+                    android:layout_marginStart="1dp"
+                    android:text="@string/txt_3_2_book_now"
+                    android:textColor="@color/org"
+                    android:textSize="11sp" />
+            </RelativeLayout>
+
         </LinearLayout>
 
         <!--Room description Hide-->
@@ -149,7 +161,7 @@
             android:maxLines="2"
             android:textColor="@color/bk"
             android:textSize="@dimen/hotel_list_text_size_normal"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <!--Price area-->
         <LinearLayout
@@ -164,7 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/org"
-                android:textSize="@dimen/hotel_list_text_size_semi_big" />
+                android:textSize="11sp" />
 
             <!--Hourly-->
             <LinearLayout
@@ -174,6 +186,7 @@
                 android:orientation="horizontal">
 
                 <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:id="@+id/label_price_hourly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_2_flashsale_hourly_price"
@@ -206,6 +219,7 @@
 
             </LinearLayout>
 
+            <!--Overnight-->
             <LinearLayout
                 android:id="@+id/boxOvernight"
                 android:layout_width="wrap_content"
@@ -245,6 +259,25 @@
                     android:textColor="@color/org"
                     android:textSize="@dimen/hotel_list_text_size_semi_big" />
             </LinearLayout>
+
+            <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:id="@+id/tvSupperSaleNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:textColor="@color/bk_85p"
+                android:textSize="@dimen/hotel_list_text_size_normal"
+                android:visibility="gone"
+                android:textStyle="" />
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/tvSupperSaleDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:textColor="@color/org"
+                android:textSize="@dimen/hotel_list_text_size_semi_big"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

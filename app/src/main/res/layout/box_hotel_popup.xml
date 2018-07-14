@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/boxHotelPopup"
     android:layout_width="match_parent"
-    android:layout_height="155dp"
+    android:layout_height="@dimen/hotel_box_popup_height"
     android:background="@color/bk_50p"
     android:orientation="vertical"
     android:paddingLeft="8dp"
@@ -13,8 +13,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
         android:background="@color/wh"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -100,7 +101,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/hotel_popup_height"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <!--Box Hotel Name-->
@@ -130,8 +131,9 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/margin_8"
                     android:layout_toEndOf="@id/txtReview"
-                    android:gravity="center"
-                    android:maxLines="1"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:layout_marginEnd="22dp"
                     android:text="Bonita Tô Hiến Thành"
                     android:textColor="@color/bk_85p"
                     android:textSize="@dimen/hotel_list_text_size_normal" />
@@ -160,7 +162,7 @@
                     android:gravity="center|end"
                     android:text="Giảm sốc còn 7 phòng"
                     android:textColor="@color/org"
-                    android:textSize="@dimen/hotel_list_text_size_normal" />
+                    android:textSize="10sp" />
 
                 <!--Line 1-->
                 <LinearLayout
@@ -172,9 +174,10 @@
 
                     <!--Hourly-->
                     <com.appromobile.hotel.widgets.TextViewSFMedium
+                        android:id="@+id/label_price_hourly"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Theo giờ"
+                        android:text="@string/txt_2_flashsale_hourly_price"
                         android:textColor="@color/bk_50p"
                         android:textSize="@dimen/hotel_list_text_size_normal" />
 
@@ -183,7 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_4"
-                        android:text="VND"
+                        android:text="@string/vnd"
                         android:textColor="@color/bk_50p"
                         android:textSize="@dimen/hotel_list_text_size_normal" />
 
@@ -193,7 +196,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_4"
-                        android:text="180.000"
                         android:textColor="@color/bk_50p"
                         android:textSize="@dimen/hotel_list_text_size_normal" />
 
@@ -203,7 +205,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_4"
-                        android:text="120.000"
                         android:textColor="@color/org"
                         android:textSize="@dimen/hotel_list_text_size_big" />
 
@@ -221,7 +222,7 @@
                     <com.appromobile.hotel.widgets.TextViewSFMedium
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Qua đêm"
+                        android:text="@string/txt_2_flashsale_overnight_price"
                         android:textColor="@color/bk_50p"
                         android:textSize="@dimen/hotel_list_text_size_normal" />
 
@@ -230,7 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_4"
-                        android:text="VND"
+                        android:text="@string/vnd"
                         android:textColor="@color/bk_50p"
                         android:textSize="@dimen/hotel_list_text_size_normal" />
 
@@ -240,7 +241,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_4"
-                        android:text="180.000"
                         android:textColor="@color/bk_50p"
                         android:textSize="@dimen/hotel_list_text_size_normal"
                         android:textStyle="" />
@@ -251,11 +251,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_4"
-                        android:text="120.000"
                         android:textColor="@color/org"
                         android:textSize="@dimen/hotel_list_text_size_big" />
 
                 </LinearLayout>
+
+                <!--Price Overnight Normal-->
+                <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:id="@+id/tvSupperSaleNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:textColor="@color/bk_50p"
+                    android:textSize="@dimen/hotel_list_text_size_normal"
+                    android:gravity="end"
+                    android:textStyle=""/>
+
+                <!--Price Overnight Discount-->
+                <com.appromobile.hotel.widgets.TextViewSFBold
+                    android:id="@+id/tvSupperSaleDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:textColor="@color/org"
+                    android:textSize="@dimen/hotel_list_text_size_big"
+                    android:gravity="end" />
 
             </LinearLayout>
 
@@ -266,7 +286,7 @@
     <com.appromobile.hotel.widgets.TextViewSFRegular
         android:id="@+id/tvAddressPopup"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/wh"
         android:ellipsize="end"
         android:gravity="bottom"
@@ -274,7 +294,6 @@
         android:paddingBottom="6dp"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:text="Khach San New World Khach San New World Khach San New World Khach San New World"
         android:textColor="@color/bk_50p"
         android:textSize="14sp" />
 

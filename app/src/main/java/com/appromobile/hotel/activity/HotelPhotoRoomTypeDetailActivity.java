@@ -1,6 +1,7 @@
 package com.appromobile.hotel.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Build;
@@ -23,23 +24,20 @@ import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.adapter.FullImageDetailAdapter;
 import com.appromobile.hotel.api.UrlParams;
+import com.appromobile.hotel.dialog.CallbackDialag;
+import com.appromobile.hotel.dialog.Dialag;
 import com.appromobile.hotel.model.view.FacilityForm;
 import com.appromobile.hotel.model.view.HotelDetailForm;
-import com.appromobile.hotel.model.view.PromotionInfoForm;
 import com.appromobile.hotel.model.view.RoomTypeForm;
 import com.appromobile.hotel.model.view.RoomView;
-import com.appromobile.hotel.utils.GlideApp;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
-import com.appromobile.hotel.utils.PictureUtils;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
-import com.crashlytics.android.Crashlytics;
 
 
 import java.util.List;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by xuan on 7/8/2016.
@@ -59,7 +57,7 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
     private LinearLayout boxDescription;
     private TextView tvRoomName, tvRoomSquare, tvRoomBed, tvRoomView, tvRoomDescription, tvRoomPromotion;
     private TextView tvPriceStatus, tvPriceHourlyNormal, tvPriceHourlyDiscount, tvPriceOvernightNormal, tvPriceOvernightDiscount, tvPriceDailyNormal, tvPriceDailyDiscount;
-    private LinearLayout boxHourly, boxDaily;
+    private LinearLayout boxHourly, boxOvernight, boxDaily;
     private RelativeLayout containerIndicator;
     private View indicator;
     private int widthBar = 0;
@@ -69,7 +67,7 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        PictureUtils.getInstance().clearCache(this);
+        PictureGlide.getInstance().clearCache(this);
     }
 
     @Override
@@ -130,8 +128,10 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
                 vpImage.setVisibility(View.INVISIBLE);
                 imgNoImage.setVisibility(View.VISIBLE);
 
-                String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + 0 + "&fileName=" + "default_image";
-                PictureUtils.getInstance().load(
+                //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + 0 + "&fileName=" + "default_image";
+                String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + roomTypeForm.getImageKey();
+
+                PictureGlide.getInstance().show(
                         url,
                         getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width),
                         getResources().getDimensionPixelSize(R.dimen.hotel_detail_image_height),
@@ -153,27 +153,51 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     if (!PreferenceUtils.getToken(HotelPhotoRoomTypeDetailActivity.this).equals("")) {
-                        RoomTypeForm roomTypeForm = hotelDetailForm.getRoomTypeList().get(roomTypeIndex);
-                        if (roomTypeForm.isFlashSaleSoldout()) {
-                            Toast.makeText(HotelPhotoRoomTypeDetailActivity.this, getString(R.string.msg_3_9_flashsale_soldout), Toast.LENGTH_LONG).show();
-                            return;
-                        } else if (hotelDetailForm.getRoomTypeList().get(roomTypeIndex).isLocked()) {
-                            Toast.makeText(HotelPhotoRoomTypeDetailActivity.this, getString(R.string.msg_3_1_soldout_room), Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        Intent intent = new Intent(HotelPhotoRoomTypeDetailActivity.this, ReservationActivity.class);
-                        intent.putExtra("HotelDetailForm", hotelDetailForm);
-                        intent.putExtra("RoomTypeIndex", roomTypeIndex);
-                        startActivityForResult(intent, CALL_BOOKING);
-                        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+
+                        gotoReservation();
 
                     } else {
-                        Intent intent = new Intent(HotelPhotoRoomTypeDetailActivity.this, LoginActivity.class);
-                        startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOME);
+                        showDialogGuestBooking();
                     }
                 }
             });
         }
+    }
+
+    private void showDialogGuestBooking() {
+        Dialag.getInstance().show(this, false, true, false, null, getString(R.string.msg_3_9_book_as_guest), getString(R.string.login_button), getString(R.string.txt_3_9_book_as_guest), null, Dialag.BTN_MIDDLE, new CallbackDialag() {
+            @Override
+            public void button1() { //goto LogIn
+                Intent intent = new Intent(HotelPhotoRoomTypeDetailActivity.this, LoginActivity.class);
+                startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOME);
+            }
+
+            @Override
+            public void button2() { //Continues
+                gotoReservation();
+            }
+
+            @Override
+            public void button3(Dialog dialog) {
+
+            }
+        });
+    }
+
+    private void gotoReservation() {
+        RoomTypeForm roomTypeForm = hotelDetailForm.getRoomTypeList().get(roomTypeIndex);
+        if (roomTypeForm.isFlashSaleSoldout()) {
+            Toast.makeText(HotelPhotoRoomTypeDetailActivity.this, getString(R.string.msg_3_9_flashsale_soldout), Toast.LENGTH_LONG).show();
+            return;
+        } else if (hotelDetailForm.getRoomTypeList().get(roomTypeIndex).isLocked()) {
+            //    Toast.makeText(HotelPhotoRoomTypeDetailActivity.this, getString(R.string.msg_3_1_soldout_room), Toast.LENGTH_LONG).show();
+            //    return;
+        }
+        Intent intent = new Intent(HotelPhotoRoomTypeDetailActivity.this, ReservationActivity.class);
+        intent.putExtra("HotelDetailForm", hotelDetailForm);
+        intent.putExtra("RoomTypeIndex", roomTypeIndex);
+        startActivityForResult(intent, CALL_BOOKING);
+        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
     }
 
     @Override
@@ -224,7 +248,7 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
         //Set Description
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             tvRoomDescription.setText(new StringBuilder().append(getString(R.string.txt_3_2_description)).append(" ").append(Html.fromHtml(roomTypeForm.getMemo(), Html.FROM_HTML_MODE_COMPACT)));
-        }else {
+        } else {
             tvRoomDescription.setText(new StringBuilder().append(getString(R.string.txt_3_2_description)).append(" ").append(Html.fromHtml(roomTypeForm.getMemo())));
         }
 
@@ -235,11 +259,25 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
         if (roomTypeForm.isFlashSale()) {
 
             int rooms = roomTypeForm.getAvailableRoom();
-            String s;
-            if (rooms > 0) {
-                s = String.format(getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
-            } else {
-                s = getString(R.string.txt_2_flashsale_sold_out);
+            String s = "";
+            int superSale = roomTypeForm.getGo2joyFlashSaleDiscount();
+            int priceOvernightDiscount = roomTypeForm.getPriceOvernight();
+            if (superSale > 0) {
+                priceOvernightDiscount = priceOvernightDiscount - superSale;
+                if (rooms > 0) {
+                    //if (rooms <= 5)
+                    s = getString(R.string.txt_2_super_flashsale_room_left, String.valueOf(rooms));
+                } else {
+                    s = getString(R.string.txt_2_super_flashsale_sold_out);
+                }
+            } else { // normal
+                if (rooms > 0) {
+                    if (rooms <= 5) {
+                        s = String.format(getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
+                    }
+                } else {
+                    s = getString(R.string.txt_2_flashsale_sold_out);
+                }
             }
             //Set Price Status
             tvPriceStatus.setVisibility(View.VISIBLE);
@@ -248,38 +286,123 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
             boxHourly.setVisibility(View.GONE);
             boxDaily.setVisibility(View.GONE);
 
-            //Set Price Overnight Normal
-            tvPriceOvernightNormal.setText(Utils.formatCurrency(hotelDetailForm.getLowestPriceOvernight()));
-            //StrikeThrough
-            tvPriceOvernightNormal.setPaintFlags(tvPriceOvernightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            if (!Utils.checkRoomTypeDiscount(hotelDetailForm.getRoomApplyPromotion(), roomTypeForm.getSn(), ParamConstants.ROOM_TYPE_FLASH_SALE)) {
+                /*
+                 * NO DISCOUNT
+                 */
 
-            //Set Price Overnight Discount
-            tvPriceOvernightDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                //Set Price Overnight Normal
+                tvPriceOvernightNormal.setText(Utils.formatCurrency(hotelDetailForm.getLowestPriceOvernight()));
+                //StrikeThrough
+                tvPriceOvernightNormal.setPaintFlags(tvPriceOvernightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                //Set Price Overnight Discount
+                tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+            } else {
+
+                /*
+                 *  DISCOUNT
+                 */
+
+                //Set Price Overnight Normal
+                tvPriceOvernightNormal.setText(Utils.formatCurrency(hotelDetailForm.getLowestPriceOvernight()));
+                //StrikeThrough
+                tvPriceOvernightNormal.setPaintFlags(tvPriceOvernightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                //Set Price Overnight Discount
+                tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+            }
+
+            //Feature92
+            if (superSale > 0) {
+                TextView tvSupperSaleNormal = findViewById(R.id.tvSupperSaleNormal);
+                tvSupperSaleNormal.setVisibility(View.VISIBLE);
+                tvSupperSaleNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                tvSupperSaleNormal.setPaintFlags(tvSupperSaleNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                TextView tvSupperSaleDiscount = findViewById(R.id.tvSupperSaleDiscount);
+                tvSupperSaleDiscount.setVisibility(View.VISIBLE);
+                tvSupperSaleDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+                tvPriceOvernightDiscount.setVisibility(View.GONE);
+
+            }
 
         } else {
 
-            boxHourly.setVisibility(View.VISIBLE);
-            boxDaily.setVisibility(View.VISIBLE);
+            if (roomTypeForm.isCinema()) {
+                boxHourly.setVisibility(View.VISIBLE);
+                boxOvernight.setVisibility(View.GONE);
+                boxDaily.setVisibility(View.GONE);
+            } else {
+                boxHourly.setVisibility(View.VISIBLE);
+                boxDaily.setVisibility(View.VISIBLE);
+            }
+
 
             //--------------Set Price------------
-            int[] discount = Utils.getPromotionInfoForm(roomTypeForm.getHotelSn());
+            int[] discount = Utils.getPromotionInfoForm(
+                    roomTypeForm.getHotelSn(),
+                    roomTypeForm.getPriceFirstHours(),
+                    roomTypeForm.getPriceOvernight(),
+                    roomTypeForm.getPriceOneDay(),
+                    roomTypeForm.getBonusFirstHours());
+
+
+            //-------------Set Label Hourly---------------
+            TextView txtLabelPriceHourly = findViewById(R.id.label_price_hourly);
+            String s = getString(R.string.txt_2_flashsale_hourly_price, String.valueOf(roomTypeForm.getFirstHours()));
+            txtLabelPriceHourly.setText(s);
+
+            //--------------Set Addition Hour------------
+            LinearLayout boxAdditionHour = findViewById(R.id.boxAdditionHour);
+            boxAdditionHour.setVisibility(View.VISIBLE);
+
+            //Label
+            TextView labelAdditionHourly = findViewById(R.id.labelAdditionHourly);
+            s = getString(R.string.txt_2_additional_hour, String.valueOf(roomTypeForm.getAdditionalHours()));
+            labelAdditionHourly.setText(s);
+
+            //Price
+            TextView txtAdditionPrice = findViewById(R.id.tvPriceAdditionHourlyDiscounts);
+            int p = roomTypeForm.getPriceAdditionalHours();
+            if (roomTypeForm.isCinema()) {
+                p = p + roomTypeForm.getBonusAdditionalHours();
+            }
+            txtAdditionPrice.setText(Utils.formatCurrency(p));
 
             if (discount[0] > 0 || discount[1] > 0 || discount[2] > 0) {
 
                 //Set Price Status
                 tvPriceStatus.setText(getString(R.string.txt_2_coupon_applied));
+                boolean isPromotion = Utils.checkRoomTypeDiscount(hotelDetailForm.getRoomApplyPromotion(), roomTypeForm.getSn(), ParamConstants.ROOM_TYPE_NORMAL);
+                if (isPromotion) {
+                    tvPriceStatus.setVisibility(View.VISIBLE);
+                } else {
+                    tvPriceStatus.setVisibility(View.GONE);
+                }
 
                 //Hourly
-                if (discount[0] > 0) {
+                if (discount[0] > 0 && isPromotion) {
                     int priceHourlyDiscount = roomTypeForm.getPriceFirstHours() - discount[0];
-
+                    if (roomTypeForm.isCinema()) {
+                        priceHourlyDiscount = roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours() - discount[3];
+                    }
                     if (priceHourlyDiscount < 0) {
                         priceHourlyDiscount = 0;
                     }
 
                     //Set Price Hourly Normal
                     tvPriceHourlyNormal.setVisibility(View.VISIBLE);
-                    tvPriceHourlyNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                    if (roomTypeForm.isCinema()) {
+                        tvPriceHourlyNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours()));
+                        if (discount[3] <= 0)
+                            tvPriceHourlyNormal.setVisibility(View.GONE);
+                    } else {
+                        tvPriceHourlyNormal.setVisibility(View.VISIBLE);
+                        tvPriceHourlyNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                    }
                     //StrikeThrough
                     tvPriceHourlyNormal.setPaintFlags(tvPriceHourlyNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
@@ -290,13 +413,18 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
 
                     //Set Price Hourly Normal
                     tvPriceHourlyNormal.setVisibility(View.GONE);
-                    //Set Price Hourly Discount
-                    tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                    if (roomTypeForm.isCinema()) {
+                        //Set Price Hourly Discount
+                        tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours()));
+                    } else {
+                        //Set Price Hourly Discount
+                        tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                    }
 
                 }
 
                 //Overnight
-                if (discount[1] > 0) {
+                if (discount[1] > 0 && isPromotion) {
                     int priceOvernightDiscount = roomTypeForm.getPriceOvernight() - discount[1];
 
                     if (priceOvernightDiscount < 0) {
@@ -320,7 +448,7 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
                 }
 
                 //Daily
-                if (discount[2] > 0) {
+                if (discount[2] > 0 && isPromotion) {
                     int priceDailyDiscount = roomTypeForm.getPriceOneDay() - discount[2];
 
                     if (priceDailyDiscount < 0) {
@@ -351,7 +479,11 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
                 //Set Price Hourly Normal
                 tvPriceHourlyNormal.setVisibility(View.GONE);
                 //Set Price Hourly Discount
-                tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                if (roomTypeForm.isCinema()) {
+                    tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours()));
+                } else {
+                    tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                }
 
                 //Set Price Overnight Normal
                 tvPriceOvernightNormal.setVisibility(View.GONE);
@@ -391,17 +523,16 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
                     TextView txtView = imageLayout.findViewById(R.id.tvName);
 
                     FacilityForm facilityForm = hotelDetailForm.getFacilityFormList().get(i);
+                    if (facilityForm != null) {
 
+                        //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadFacilityImage?facilitySn=" + facilityForm.getSn() + "&fileName=" + facilityForm.getCustomizePath();
+                        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/facilityImage/" + facilityForm.getImageKey();
 
-                    String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadFacilityImage?facilitySn=" + facilityForm.getSn() + "&fileName=" + facilityForm.getCustomizePath();
+                        PictureGlide.getInstance().show(url, getResources().getDimensionPixelSize(R.dimen.facility_width), getResources().getDimensionPixelSize(R.dimen.facility_height), R.drawable.loading_big, imgVIew);
 
-                    GlideApp
-                            .with(imgVIew.getContext())
-                            .load(url)
-                            .override(getResources().getDimensionPixelSize(R.dimen.facility_width), getResources().getDimensionPixelSize(R.dimen.facility_height))
-                            .into(imgVIew);
-                    txtView.setText(facilityForm.getName());
-                    txtView.setTextColor(getResources().getColor(R.color.wh));
+                        txtView.setText(facilityForm.getName());
+                        txtView.setTextColor(getResources().getColor(R.color.wh));
+                    }
 
                     container.addView(imageLayout, itemParams);
                 }
@@ -440,6 +571,7 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
         tvPriceDailyDiscount = findViewById(R.id.tvPriceDailyDiscount);
 
         boxHourly = findViewById(R.id.boxHourly);
+        boxOvernight = findViewById(R.id.boxOvernight);
         boxDaily = findViewById(R.id.boxDaily);
 
         containerIndicator = findViewById(R.id.container_indicator);
@@ -516,4 +648,11 @@ public class HotelPhotoRoomTypeDetailActivity extends BaseActivity {
             containerIndicator.setVisibility(View.INVISIBLE);
         }
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if (hotelPhotoRoomTypeDetailActivity != null)
+//            hotelPhotoRoomTypeDetailActivity = null;
+//    }
 }

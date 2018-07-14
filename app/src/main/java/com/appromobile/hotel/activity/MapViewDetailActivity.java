@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -23,22 +24,15 @@ import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.enums.ContractType;
-import com.appromobile.hotel.enums.RoomAvailableType;
 import com.appromobile.hotel.gps.FetchUrl;
 import com.appromobile.hotel.gps.ParseCallBack;
 import com.appromobile.hotel.model.view.HotelDetailForm;
-import com.appromobile.hotel.model.view.HotelForm;
-import com.appromobile.hotel.model.view.MarkerWrapper;
-import com.appromobile.hotel.model.view.PromotionInfoForm;
 import com.appromobile.hotel.model.view.RoomTypeForm;
-import com.appromobile.hotel.panorama.LoadTaskComplete;
 import com.appromobile.hotel.utils.DialogUtils;
 import com.appromobile.hotel.utils.MyLog;
-import com.appromobile.hotel.utils.PictureUtils;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.PreferenceUtils;
-import com.appromobile.hotel.utils.TextOnDrawable;
 import com.appromobile.hotel.utils.Utils;
-import com.appromobile.hotel.widgets.TextViewSFRegular;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -56,7 +50,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.igaworks.adbrix.IgawAdbrix;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
@@ -83,7 +76,7 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
     @Override
     protected void onStart() {
         super.onStart();
-        PictureUtils.getInstance().clearCache(this);
+        PictureGlide.getInstance().clearCache(this);
         if (HotelApplication.isRelease) {
             String screenName = "SHotelMap";
             try {
@@ -172,8 +165,9 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
                     for (int i = 0; i < markers.size(); i++) {
                         builder.include(markers.get(i).getPosition());
                     }
-                    if (mMap.getMyLocation() != null) {
-                        builder.include(new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude()));
+                    Location location = mMap.getMyLocation();
+                    if (location != null) {
+                        builder.include(new LatLng(location.getLatitude(), location.getLongitude()));
                     }
                     if (markers.size() > 0) {
                         int width = getResources().getDisplayMetrics().widthPixels - getResources().getDimensionPixelSize(R.dimen.map_icon_size);
@@ -249,11 +243,12 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
 //                                        e.printStackTrace();
 //                                    }
 
-                                    if (line == null) {
+                                    Location location = mMap.getMyLocation();
+                                    if (line == null && location != null) {
                                         DialogUtils.showLoadingProgress(MapViewDetailActivity.this, false);
                                         FetchUrl fetchUrl = new FetchUrl(MapViewDetailActivity.this);
                                         LatLng dest = marker.getPosition();
-                                        LatLng origin = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
+                                        LatLng origin = new LatLng(location.getLatitude(), location.getLongitude());
                                         String url = Utils.getMapRootUrl(origin, dest);
                                         fetchUrl.execute(url);
                                     }
@@ -427,7 +422,7 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
             tvAddressPopup.setText(hotelDetailForm.getAddress());
 
             //Set Rating
-            int rate = (int) hotelDetailForm.getAverageMark() * 2;
+            double rate = hotelDetailForm.getAverageMark() * 2;
             if (rate <= 0) {
                 tvReview.setVisibility(View.GONE);
             } else {
@@ -442,11 +437,26 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
                 RoomTypeForm roomTypeForm = hotelDetailForm.getRoomTypeList().get(p);
                 if (roomTypeForm != null) {
                     int rooms = roomTypeForm.getAvailableRoom();
-                    String s;
-                    if (rooms > 0) {
-                        s = String.format(getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
-                    } else {
-                        s = getString(R.string.txt_2_flashsale_sold_out);
+                    String s = "";
+
+                    int superSale = roomTypeForm.getGo2joyFlashSaleDiscount();
+                    int priceOvernightDiscount = roomTypeForm.getPriceOvernight();
+                    if (superSale > 0) {
+                        priceOvernightDiscount = priceOvernightDiscount - superSale;
+                        if (rooms > 0) {
+                            //if (rooms <= 5)
+                                s = getString(R.string.txt_2_super_flashsale_room_left, String.valueOf(rooms));
+                        } else {
+                            s = getString(R.string.txt_2_super_flashsale_sold_out);
+                        }
+                    } else { // normal
+                        if (rooms > 0) {
+                            if (rooms <= 5) {
+                                s = String.format(getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
+                            }
+                        } else {
+                            s = getString(R.string.txt_2_flashsale_sold_out);
+                        }
                     }
                     //Set Price Status
                     tvPriceStatus.setText(s);
@@ -463,7 +473,22 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
                     tvPriceOvenightNormal.setPaintFlags(tvPriceOvenightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
                     //Set Price Overnight Discount
-                    tvPriceOvernightDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                    tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+                    //Feature92
+                    if (superSale > 0){
+                        TextView tvSupperSaleNormal = findViewById(R.id.tvSupperSaleNormal);
+                        tvSupperSaleNormal.setVisibility(View.VISIBLE);
+                        tvSupperSaleNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                        tvSupperSaleNormal.setPaintFlags(tvSupperSaleNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                        TextView tvSupperSaleDiscount = findViewById(R.id.tvSupperSaleDiscount);
+                        tvSupperSaleDiscount.setVisibility(View.VISIBLE);
+                        tvSupperSaleDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+                        tvPriceOvernightDiscount.setVisibility(View.GONE);
+
+                    }
 
                 }
             } else {
@@ -475,84 +500,90 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
                 tvPriceStatus.setText("");
 
                 //--------------Set Price------------
-                if (HotelApplication.mapPromotionInfoForm != null) {
-                    PromotionInfoForm promotionInfoForm = HotelApplication.mapPromotionInfoForm.get(String.valueOf(hotelDetailForm.getSn()));
+                int[] discount = Utils.getPromotionInfoForm(
+                        hotelDetailForm.getSn(),
+                        hotelDetailForm.getLowestPrice(),
+                        hotelDetailForm.getLowestPriceOvernight(),
+                        0,
+                        0);
 
-                    if (promotionInfoForm != null) {
+                //-------------Set Label Hourly---------------
+                TextView txtLabelPriceHourly = findViewById(R.id.label_price_hourly);
+                String s = getString(R.string.txt_2_flashsale_hourly_price, String.valueOf(hotelDetailForm.getFirstHours()));
+                txtLabelPriceHourly.setText(s);
 
-                        //Set Price Status
-                        tvPriceStatus.setVisibility(View.VISIBLE);
-                        tvPriceStatus.setText(getString(R.string.txt_2_coupon_applied));
+                if (discount[0] > 0 || discount[1] > 0) {
 
-                        //Hourly
-                        int priceHourlyDiscount = promotionInfoForm.getMaxDiscountMoney();
-                        if (priceHourlyDiscount > 0) {
-                            priceHourlyDiscount = hotelDetailForm.getLowestPrice() - priceHourlyDiscount;
+                    //Set Price Status
+                    tvPriceStatus.setVisibility(View.VISIBLE);
+                    tvPriceStatus.setText(getString(R.string.txt_2_coupon_applied));
 
-                            if (priceHourlyDiscount < 0) {
-                                priceHourlyDiscount = 0;
-                            }
+                    //Hourly
+                    if (discount[0] > 0) {
+                        int priceHourlyDiscount = hotelDetailForm.getLowestPrice() - discount[0];
 
-                            //Set Price Hourly Normal
-                            tvPriceHourlyNormal.setVisibility(View.VISIBLE);
-                            tvPriceHourlyNormal.setText(Utils.formatCurrency(hotelDetailForm.getLowestPrice()));
-                            //StrikeThrough
-                            tvPriceHourlyNormal.setPaintFlags(tvPriceHourlyNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-                            //Set Price Hourly Discount
-                            tvPriceHourlyDiscount.setText(Utils.formatCurrency(priceHourlyDiscount));
-
-                        } else {
-
-                            //Set Price Hourly Normal
-                            tvPriceHourlyNormal.setVisibility(View.GONE);
-                            //Set Price Hourly Discount
-                            tvPriceHourlyDiscount.setText(Utils.formatCurrency(hotelDetailForm.getLowestPrice()));
-
+                        if (priceHourlyDiscount < 0) {
+                            priceHourlyDiscount = 0;
                         }
 
-                        //Overnight
-                        int priceOvernightDiscount = promotionInfoForm.getMaxDiscountMoney();
-                        if (priceOvernightDiscount > 0) {
-                            priceOvernightDiscount = hotelDetailForm.getLowestPriceOvernight() - priceOvernightDiscount;
+                        //Set Price Hourly Normal
+                        tvPriceHourlyNormal.setVisibility(View.VISIBLE);
+                        tvPriceHourlyNormal.setText(Utils.formatCurrency(hotelDetailForm.getLowestPrice()));
+                        //StrikeThrough
+                        tvPriceHourlyNormal.setPaintFlags(tvPriceHourlyNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-                            if (priceOvernightDiscount < 0) {
-                                priceOvernightDiscount = 0;
-                            }
-
-                            //Set Price Overnight Normal
-                            tvPriceOvenightNormal.setVisibility(View.VISIBLE);
-                            tvPriceOvenightNormal.setText(Utils.formatCurrency(hotelDetailForm.getLowestPriceOvernight()));
-                            //StrikeThrough
-                            tvPriceOvenightNormal.setPaintFlags(tvPriceOvenightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-                            //Set Price Overnight Discount
-                            tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
-                        } else {
-                            //Set Price Overnight Normal
-                            tvPriceOvenightNormal.setVisibility(View.GONE);
-
-                            //Set Price Overnight Discount
-                            tvPriceOvernightDiscount.setText(Utils.formatCurrency(hotelDetailForm.getLowestPriceOvernight()));
-                        }
+                        //Set Price Hourly Discount
+                        tvPriceHourlyDiscount.setText(Utils.formatCurrency(priceHourlyDiscount));
 
                     } else {
-
-                        //Set Price Status
-                        tvPriceStatus.setVisibility(View.GONE);
 
                         //Set Price Hourly Normal
                         tvPriceHourlyNormal.setVisibility(View.GONE);
                         //Set Price Hourly Discount
                         tvPriceHourlyDiscount.setText(Utils.formatCurrency(hotelDetailForm.getLowestPrice()));
 
+                    }
+
+                    //Overnight
+                    if (discount[1] > 0) {
+                        int priceOvernightDiscount = hotelDetailForm.getLowestPriceOvernight() - discount[1];
+
+                        if (priceOvernightDiscount < 0) {
+                            priceOvernightDiscount = 0;
+                        }
+
+                        //Set Price Overnight Normal
+                        tvPriceOvenightNormal.setVisibility(View.VISIBLE);
+                        tvPriceOvenightNormal.setText(Utils.formatCurrency(hotelDetailForm.getLowestPriceOvernight()));
+                        //StrikeThrough
+                        tvPriceOvenightNormal.setPaintFlags(tvPriceOvenightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                        //Set Price Overnight Discount
+                        tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+                    } else {
                         //Set Price Overnight Normal
                         tvPriceOvenightNormal.setVisibility(View.GONE);
 
                         //Set Price Overnight Discount
                         tvPriceOvernightDiscount.setText(Utils.formatCurrency(hotelDetailForm.getLowestPriceOvernight()));
-
                     }
+
+                } else {
+
+                    //Set Price Status
+                    tvPriceStatus.setVisibility(View.GONE);
+
+                    //Set Price Hourly Normal
+                    tvPriceHourlyNormal.setVisibility(View.GONE);
+                    //Set Price Hourly Discount
+                    tvPriceHourlyDiscount.setText(Utils.formatCurrency(hotelDetailForm.getLowestPrice()));
+
+                    //Set Price Overnight Normal
+                    tvPriceOvenightNormal.setVisibility(View.GONE);
+
+                    //Set Price Overnight Discount
+                    tvPriceOvernightDiscount.setText(Utils.formatCurrency(hotelDetailForm.getLowestPriceOvernight()));
+
                 }
 
             }
@@ -575,9 +606,10 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
 
             String url = "";
             if (hotelDetailForm != null && hotelDetailForm.getHotelImageList().size() > 0) {
-                url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelHomeImage?hotelSn=" + hotelDetailForm.getSn() + "&fileName=" + hotelDetailForm.getHotelImageList().get(0).getCustomizeName();
+                //url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelHomeImage?hotelSn=" + hotelDetailForm.getSn() + "&fileName=" + hotelDetailForm.getHotelImageList().get(0).getCustomizeName();
+                url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + hotelDetailForm.getImageKey();
             }
-            PictureUtils.getInstance().load(
+            PictureGlide.getInstance().show(
                     url,
                     getResources().getDimensionPixelSize(R.dimen.hotel_popup_width),
                     getResources().getDimensionPixelSize(R.dimen.hotel_popup_height),
@@ -613,25 +645,25 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
     }
 
     private String getPricePromotion(HotelDetailForm hotelDetailForm) {
-        String price = "-1";
+        String price;
         //Get Price
-        if (HotelApplication.mapPromotionInfoForm != null) {
-            PromotionInfoForm promotionInfoForm = HotelApplication.mapPromotionInfoForm.get(String.valueOf(hotelDetailForm.getSn()));
-            if (promotionInfoForm != null) {
-                int priceHourlyDiscount = promotionInfoForm.getMaxDiscountMoney();
-                if (priceHourlyDiscount > 0) {
-                    int p = hotelDetailForm.getLowestPrice() - priceHourlyDiscount;
-                    if (p < 0) {
-                        p = 0;
-                    }
-                    price = String.valueOf(Utils.formatCurrencyK(p));
-                } else {
-                    price = String.valueOf(Utils.formatCurrencyK(hotelDetailForm.getLowestPrice()));
+        int[] discount = Utils.getPromotionInfoForm(
+                hotelDetailForm.getSn(),
+                hotelDetailForm.getLowestPrice(),
+                hotelDetailForm.getLowestPriceOvernight(),
+                0,
+                0);
+
+            if (discount[0] > 0) {
+                int p = hotelDetailForm.getLowestPrice() - discount[0];
+                if (p < 0) {
+                    p = 0;
                 }
+                price = String.valueOf(Utils.formatCurrencyK(p));
             } else {
                 price = String.valueOf(Utils.formatCurrencyK(hotelDetailForm.getLowestPrice()));
             }
-        }
+
         return price;
     }
 
@@ -641,41 +673,58 @@ public class MapViewDetailActivity extends BaseActivity implements ParseCallBack
         protected Bitmap doInBackground(Void... voids) {
 
             String fileName = "marker";
-            String price = getPricePromotion(hotelDetailForm);
 
-            int f = hotelDetailForm.checkFlashSale();
+            String price = "-1";
 
-            //Check Flash Sale
-            if (f == -1) {
-                //Check not Available
-                if (roomAvailable == 0) {
-                    fileName += "_gray";
-                } else {
+            if (hotelDetailForm != null) {
+                price = getPricePromotion(hotelDetailForm);
 
-                    //Check normal
-                    int[] p = Utils.getPromotionInfoForm(hotelDetailForm.getSn());
-                    if (p[0] > 0 || p[1] > 0 || p[2] > 0) {
-                        fileName += "_green";
+                int f = hotelDetailForm.checkFlashSale();
+
+
+                //Check Flash Sale
+                if (f == -1) {
+                    //Check not Available
+                    if (roomAvailable == 0) {
+                        fileName += "_gray";
                     } else {
-                        //Check Promotion
-                        fileName += "_org";
+
+                        //Check normal
+                        int[] p = Utils.getPromotionInfoForm(hotelDetailForm.getSn(), 0, 0, 0,0);
+                        if (p[0] > 0 || p[1] > 0 || p[2] > 0) {
+                            fileName += "_green";
+                        } else {
+                            //Check Promotion
+                            fileName += "_org";
+                        }
                     }
-                }
 
-                //Check New
-                if (hotelDetailForm.getNewHotel() == 1) {
-                    fileName += "_new";
-                }
-                //Check unContract
-                if (hotelDetailForm.getHotelStatus() == ContractType.GENERAL.getType() || hotelDetailForm.getHotelStatus() == ContractType.TERMINAL.getType()) {
-                    fileName = "uncontract";
-                    price = "-1";
-                }
+                    //Check New
+                    if (hotelDetailForm.getNewHotel() == 1) {
+                        fileName += "_new";
+                    }
+                    //Check unContract
+                    if (hotelDetailForm.getHotelStatus() == ContractType.GENERAL.getType() || hotelDetailForm.getHotelStatus() == ContractType.TERMINAL.getType()) {
+                        fileName = "uncontract";
+                        price = "-1";
+                    }
 
-            } else {
-                //IsFlashSale
-                fileName += "_red";
-                price = String.valueOf(Utils.formatCurrencyK(hotelDetailForm.getLowestPrice()));
+                } else {
+                    //IsFlashSale
+                    fileName += "_red";
+
+                    RoomTypeForm roomTypeForm = hotelDetailForm.getFlashSaleRoomTypeForm();
+                    int priceDiscount = 0;
+                    if (roomTypeForm != null) {
+                        priceDiscount = roomTypeForm.getPriceOvernight();
+                        int superSale = roomTypeForm.getGo2joyFlashSaleDiscount();
+                        if (superSale > 0) {
+                            priceDiscount = priceDiscount - superSale;
+                        }
+                    }
+
+                    price = String.valueOf(Utils.formatCurrencyK(priceDiscount));
+                }
             }
 
             int resID = getResources().getIdentifier(fileName, "drawable", getPackageName());

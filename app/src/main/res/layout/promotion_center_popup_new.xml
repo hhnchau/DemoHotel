@@ -6,140 +6,163 @@
     android:layout_height="match_parent"
     android:background="@color/bk_50p">
 
+    <!--Close-->
     <ImageView
         android:id="@+id/btnClose"
         android:layout_width="@dimen/popup_btnClose"
         android:layout_height="@dimen/popup_btnClose"
+        android:layout_above="@+id/cw"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
         android:layout_marginEnd="@dimen/margin_16"
-        android:layout_marginTop="35dp"
         android:background="@color/transparent"
-        android:scaleType="fitXY"
         android:src="@drawable/close"
         tools:ignore="ContentDescription" />
 
-    <LinearLayout
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cw"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/transparent"
-        android:orientation="vertical"
-        android:weightSum="10">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_marginLeft="@dimen/margin_16"
+        android:layout_marginRight="@dimen/margin_16"
+        android:layout_marginStart="@dimen/margin_16"
+        app:cardCornerRadius="3dp"
+        app:cardUseCompatPadding="true"
+        app:elevation="3dp">
 
-        <View
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.3"
-            android:background="@color/transparent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/margin_16"
-            android:layout_marginLeft="@dimen/margin_16"
-            android:layout_marginRight="@dimen/margin_16"
-            android:layout_marginStart="@dimen/margin_16"
-            android:layout_weight="7.4"
-            app:cardCornerRadius="3dp"
-            app:cardUseCompatPadding="true"
-            app:elevation="3dp">
-
-            <LinearLayout
+            <!--ViewPager-->
+            <RelativeLayout
+                android:id="@+id/boxViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/margin_16"
-                android:orientation="vertical"
-                android:padding="1dp"
-                android:weightSum="10">
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_4">
 
-                <ImageView
-                    android:id="@+id/imgBanner"
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/item_viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/margin_8"
-                    android:layout_weight="4"
-                    android:scaleType="fitXY"
-                    tools:ignore="ContentDescription" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
 
-                <com.appromobile.hotel.widgets.TextViewSFBold
-                    android:id="@+id/tvTitle"
+                <LinearLayout
+                    android:id="@+id/indicator_item_viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="@dimen/margin_16"
-                    android:layout_marginRight="@dimen/margin_16"
-                    android:layout_weight="1.2"
-                    android:gravity="center_vertical"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/popup_title_textSize"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal" />
 
-                <WebView
-                    android:id="@+id/wvContent"
+            </RelativeLayout>
+
+            <!--Title-->
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/boxViewPager"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:layout_marginLeft="@dimen/margin_16"
+                android:layout_marginRight="@dimen/margin_16"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textSize="@dimen/popup_title_textSize"
+                android:textStyle="bold" />
+
+            <!--Content-->
+            <WebView
+                android:id="@+id/wvContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTitle"
+                android:layout_gravity="start"
+                android:layout_marginLeft="@dimen/margin_8"
+                android:layout_marginRight="@dimen/margin_8"
+                android:textSize="@dimen/popup_webview_textSize"
+                android:paddingTop="@dimen/margin_8"
+                android:paddingBottom="@dimen/margin_8"/>
+
+            <!--Button-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_48"
+                android:layout_below="@+id/wvContent">
+
+                <View
+                    android:id="@+id/line1"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="@dimen/margin_16"
-                    android:layout_marginLeft="@dimen/margin_8"
-                    android:layout_marginRight="@dimen/margin_8"
-                    android:layout_weight="3.8"
-                    android:textSize="@dimen/popup_webview_textSize" />
+                    android:layout_height="1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/bk_50p" />
+
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:background="@color/bk_50p" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginLeft="@dimen/margin_8"
-                    android:layout_marginRight="@dimen/margin_8"
-                    android:layout_weight="1">
-
-                    <Button
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+                    <!--Get Coupon-->
+                    <com.appromobile.hotel.widgets.TextViewSFBold
                         android:id="@+id/btnGetCoupon"
                         style="@style/Base.Widget.AppCompat.ButtonBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentEnd="true"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/center"
                         android:background="@color/transparent"
+                        android:ellipsize="end"
                         android:gravity="center"
-                        android:paddingLeft="@dimen/margin_8"
-                        android:paddingRight="@dimen/margin_8"
+                        android:maxLines="1"
                         android:text="@string/btn_12_2_get_coupon"
                         android:textAllCaps="true"
                         android:textColor="@color/org"
                         android:textSize="@dimen/popup_btn_textSize"
-                        android:textStyle="bold"
                         android:visibility="visible"
                         tools:ignore="RtlSymmetry" />
 
-                    <Button
+                    <View
+                        android:id="@+id/center"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerInParent="true" />
+
+                    <!--See  Detail-->
+                    <com.appromobile.hotel.widgets.TextViewSFBold
                         android:id="@+id/btnViewDetail"
                         style="@style/Base.Widget.AppCompat.ButtonBar"
-                        android:layout_centerInParent="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="@dimen/margin_8"
-                        android:layout_toStartOf="@id/btnGetCoupon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/center"
                         android:background="@color/transparent"
+                        android:ellipsize="end"
                         android:gravity="center"
-                        android:paddingLeft="@dimen/margin_8"
-                        android:paddingRight="@dimen/margin_8"
+                        android:maxLines="1"
                         android:text="@string/msg_6_9_3_see_detail"
                         android:textAllCaps="true"
                         android:textColor="@color/bk_50p"
                         android:textSize="@dimen/popup_btn_textSize"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
+
                 </RelativeLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
 
 
 </RelativeLayout>

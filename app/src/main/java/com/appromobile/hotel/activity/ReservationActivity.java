@@ -2,13 +2,13 @@ package com.appromobile.hotel.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.format.Formatter;
 import android.view.Gravity;
@@ -26,15 +26,23 @@ import com.appromobile.hotel.adapter.CalendarAdapter;
 import com.appromobile.hotel.adapter.CellDayClickListener;
 import com.appromobile.hotel.api.controllerApi.ControllerApi;
 import com.appromobile.hotel.api.controllerApi.ResultApi;
+import com.appromobile.hotel.clock.CallbackClock;
+import com.appromobile.hotel.clock.Clock;
 import com.appromobile.hotel.dialog.CallbackDialag;
+import com.appromobile.hotel.dialog.CallbackInput;
 import com.appromobile.hotel.dialog.Dialag;
+import com.appromobile.hotel.dialog.DialogInput;
 import com.appromobile.hotel.enums.BookingMode;
 import com.appromobile.hotel.enums.BookingType;
 import com.appromobile.hotel.enums.ContractType;
+import com.appromobile.hotel.enums.CouponStatus;
 import com.appromobile.hotel.model.request.UserBookingDto;
 import com.appromobile.hotel.model.view.ApiSettingForm;
+import com.appromobile.hotel.model.view.AppUserForm;
+import com.appromobile.hotel.model.view.CouponConditionForm;
 import com.appromobile.hotel.model.view.CouponIssuedForm;
 import com.appromobile.hotel.model.view.HotelDetailForm;
+import com.appromobile.hotel.model.view.MileageRewardForm;
 import com.appromobile.hotel.model.view.PaymentInfoForm;
 import com.appromobile.hotel.model.view.ReservationSetting;
 import com.appromobile.hotel.model.view.RestResult;
@@ -46,7 +54,6 @@ import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
-import com.appromobile.hotel.widgets.TextViewSFRegular;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.appevents.AppEventsConstants;
 import com.google.gson.Gson;
@@ -94,6 +101,8 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     private ImageView imgDateOvernight;
     private HotelDetailForm hotelDetailForm;
 
+    private TextView floatButtonLogin, floatButtonPoint;
+
     private int roomtypeIndex = 0;
     private RoomTypeForm roomTypeForm;
 
@@ -105,7 +114,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     private TextView btnClearCoupon;
     private int couponIndex = 0;
     private LinearLayout boxCoupon;
-    private int startHour, endHour, firstHour;
+    private int firstHour; //startHour, endHour,
     private boolean guiState = true;
 
     private int minPrice;
@@ -121,31 +130,25 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     //For 1 Toast
     private boolean isToast = true;
 
+    private boolean isLogIn = false;
+
+    private static final int VALUE_POINT = 10000;
+    private int numPoint = 0;
+    private int myPoint = 0;
+    private int pointValue = 0;
+
+
     private LinearLayout boxStamp;
     private TextView tvValueStamp, tvApplyStamp, btnNumberStamp, btnRedeem, btnNotApply;
     private UserStampForm userStampForm;
     private int redeemValue = 0;
     private boolean autoRedeem = false;
 
-    // -----------------------VARIABLE FOR CLOCK-----------------------
-    // current hour base on phone
     private int systemHour;
-    // current time mode base on phone
-    private String systemTimeMode;
-    //choosing AM or PM
-    private String chooseTimeMode = "";
-    // current date boolean
+    private String systemDate;
     private boolean isCurrentDay;
-    // check-in	 check-out time
-    private int checkIncheckOut;
-    // postion on clock
-    private int fromPosition, toPosition;
-    // mode: check-in or check-out
-    private int mode;
-    //Check-in
-    private static final int CHECK_IN = 1;
-    //Check-out
-    private static final int CHECK_OUT = 2;
+
+    private int lockTime;
 
 
     @Override
@@ -174,6 +177,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             autoRedeem = true;
             redeemValue = 1;
         }
+
         /*
         * Get intent
         */
@@ -186,6 +190,11 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 roomTypeForm = hotelDetailForm.getRoomTypeList().get(roomtypeIndex);
 
                 btnReservation = findViewById(R.id.btnMakeReservation);
+                floatButtonLogin = findViewById(R.id.float_button_login);
+                floatButtonLogin.setOnClickListener(this);
+                floatButtonPoint = findViewById(R.id.float_button_point);
+                floatButtonPoint.setOnClickListener(this);
+                floatButtonPoint.setVisibility(View.GONE);
                 boxCoupon = findViewById(R.id.boxCoupon);
                 chkHourly = findViewById(R.id.chkHourly);
                 txtHourly = findViewById(R.id.txt_hourly);
@@ -272,7 +281,23 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 btnRedeem = findViewById(R.id.btnRedeem);
                 btnNotApply = findViewById(R.id.btnNotApply);
 
+                //Clear Coupon
+                btnClearCoupon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        tvCoupon.setText(getString(R.string.choose_coupon));
+                        btnClearCoupon.setVisibility(View.GONE);
+                        btnChooseCoupon.setVisibility(View.VISIBLE);
+                        btnChangeCoupon.setVisibility(View.GONE);
+                        couponIndex = -1;
+                        MyLog.writeLog("Calculate 299");
+                        calculateFee();
+                    }
+                });
+
+                //
                 //Click Hourly
+                //
                 chkHourly.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -289,44 +314,10 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                     }
                 });
 
-                //Clear Coupon
-                btnClearCoupon.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tvCoupon.setText(getString(R.string.choose_coupon));
-                        btnClearCoupon.setVisibility(View.GONE);
-                        btnChooseCoupon.setVisibility(View.VISIBLE);
-                        btnChangeCoupon.setVisibility(View.GONE);
-                        couponIndex = -1;
-                        MyLog.writeLog("Calculate 299");
-                        calculateFee();
-                    }
-                });
 
-                //Click Daily
-                chkDaily.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-
-                        if (bookingMode != BookingMode.DAILY) {
-
-                            bookingModeDaily();
-
-                            statusDaily = false;
-
-                            tvDateFrom.setText(getSystemDay());
-
-                            getCoupon();
-
-                        }
-                        MyLog.writeLog("Calculate 321");
-                        calculateFee();
-                    }
-                });
-
-
+                //
                 //Click Overnight
+                //
                 chkOvernight.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -344,12 +335,40 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                     }
                 });
 
+
+                //
+                //Click Daily
+                //
+                chkDaily.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        if (bookingMode != BookingMode.DAILY) {
+
+                            bookingModeDaily();
+
+                            statusDaily = false;
+
+                            systemDate = getSystemDay();
+
+                            tvDateFrom.setText(systemDate);
+
+                            getCoupon();
+
+                        }
+                        MyLog.writeLog("Calculate 321");
+                        calculateFee();
+                    }
+                });
+
                 //Stamp Click
                 //Redeem
                 btnRedeem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (couponIndex == NO_COUPON) {
+
                             if (userStampForm.getNumStampActive() >= userStampForm.getNumToRedeem()) {
                                 if (bookingMode == BookingMode.HOURLY && !userStampForm.isRedeemHourly()) {
                                     Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_not_condition), Toast.LENGTH_SHORT).show();
@@ -366,11 +385,13 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
                                 redeemValue = userStampForm.getRedeemValue();
                                 btnNotApply.setVisibility(View.VISIBLE);
+                                btnNumberStamp.setVisibility(View.GONE);
                                 btnRedeem.setVisibility(View.GONE);
                                 MyLog.writeLog("Calculate 368");
                                 calculateFee();
 
                             }
+
                         } else {
                             Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_coupon_is_using), Toast.LENGTH_SHORT).show();
                         }
@@ -384,6 +405,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                             //Flag Delete Stamp
                             redeemValue = 0;
                             btnNotApply.setVisibility(View.GONE);
+                            btnNumberStamp.setVisibility(View.GONE);
                             btnRedeem.setVisibility(View.VISIBLE);
                             //Check again
                             MyLog.writeLog("Calculate 387");
@@ -420,53 +442,6 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                     }
                 });
 
-                tvDateTo.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        //MyLog.writeLog("Calculate 429");
-                        //calculateFee();
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-
-                tvDateHourly.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        Calendar calendar = Calendar.getInstance();
-                        int hour, min;
-                        hour = calendar.get(Calendar.HOUR_OF_DAY);
-                        min = Utils.roundUp(calendar.get(Calendar.MINUTE), 60);
-                        if (min >= 60) {
-                            min = 0;
-                            hour += 1;
-                        }
-                        if (hour >= 24) {
-                            hour = 0;
-                        }
-                        //String timeLimit = String.format("%02d", hour) + ":" + String.format("%02d", min);
-                        //tvTimeFrom.setText(timeLimit);
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-
                 tvTimeTo.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -475,7 +450,9 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (endHour - startHour < firstHour) {
+                        int start1 = parseTime(tvTimeFrom.getText().toString());
+                        int end1 = parseTime(tvTimeTo.getText().toString());
+                        if (end1 - start1 < firstHour) {
                             if (guiState) {
                                 guiState = hideBtnReservation();
                             }
@@ -523,7 +500,41 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
     }
 
+    private void checkLogIn() {
+        if (!PreferenceUtils.getToken(this).equals("")) {
+            floatButtonLogin.setVisibility(View.GONE);
+            isLogIn = true;
+        } else {
+            floatButtonLogin.setVisibility(View.VISIBLE);
+            isLogIn = false;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        checkLogIn();
+
+        if (btnRedeem.getVisibility() == View.VISIBLE)
+            redeemValue = 0;
+
+    }
+
+    /*
+        / GetStamp
+        */
     private void findUserStampDetail(long sn) {
+        if (!isLogIn) {
+            boxStamp.setVisibility(View.VISIBLE);
+            tvValueStamp.setText(getString(R.string.txt_3_9_sign_up_stamp));
+            btnRedeem.setVisibility(View.GONE);
+            btnNotApply.setVisibility(View.GONE);
+            btnNumberStamp.setVisibility(View.GONE);
+            return;
+        }
+
+        //IsLogIn
         ControllerApi.getmInstance().findUserStampFormDetail(this, sn, false, new ResultApi() {
             @Override
             public void resultApi(Object object) {
@@ -533,7 +544,14 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 } else {
 
                     boxStamp.setVisibility(View.VISIBLE);
-                    tvValueStamp.setText(Utils.formatCurrency(userStampForm.getRedeemValue()) + " " + getString(R.string.vnd));
+
+                    //Stamp V3
+                    if (userStampForm.getRedeemType() == ParamConstants.DISCOUNT_PERCENT) {
+                        tvValueStamp.setText(Utils.formatCurrency(userStampForm.getRedeemValue()) + " " + getString(R.string.percent) + " - " + getString(R.string.max_discount) + " " + Utils.formatCurrency(userStampForm.getMaxRedeem()) + getString(R.string.vnd));
+                    } else {
+                        tvValueStamp.setText(Utils.formatCurrency(userStampForm.getRedeemValue()) + " " + getString(R.string.vnd));
+                    }
+
                     StringBuilder stringBuilder = new StringBuilder().append(getString(R.string.apply)).append(": ");
                     stringBuilder.append(userStampForm.isRedeemHourly() ? getString(R.string.txt_2_flashsale_hourly_price) + ", " : "")
                             .append(userStampForm.isRedeemOvernight() ? getString(R.string.txt_2_flashsale_overnight_price) + ", " : "")
@@ -559,6 +577,8 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                         //Set Auto Redeem
                         redeemValue = userStampForm.getRedeemValue();
                         btnNotApply.setVisibility(View.VISIBLE);
+                        btnRedeem.setVisibility(View.GONE);
+                        btnNumberStamp.setVisibility(View.GONE);
                         //Calculate
                         MyLog.writeLog("Calculate 557");
                         calculateFee();
@@ -569,15 +589,25 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                     int numRedeem = userStampForm.getNumToRedeem();
                     if (numActive >= numRedeem) {
                         btnRedeem.setVisibility(View.VISIBLE);
+                        btnNotApply.setVisibility(View.GONE);
                         btnNumberStamp.setVisibility(View.GONE);
                     } else {
                         btnRedeem.setVisibility(View.GONE);
+                        btnNotApply.setVisibility(View.GONE);
                         btnNumberStamp.setVisibility(View.VISIBLE);
                         btnNumberStamp.setText(String.valueOf(numActive) + "/" + String.valueOf(numRedeem));
+                    }
+
+                    if (userStampForm.getNumStampLocked() > 0) {
+                        btnRedeem.setVisibility(View.VISIBLE);
+                        btnRedeem.setEnabled(false);
+                        btnRedeem.setTextColor(getResources().getColor(R.color.lg));
+                        btnRedeem.setBackgroundResource(R.drawable.button_full_wh_bg_org_20_border);
                     }
                 }
             }
         });
+
     }
 
     //Return current hour
@@ -598,7 +628,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         return dateFormatter.format(cal.getTime());
     }
 
-    //Return Tomorrow
+    //Return Yesterday
     private String getYesterday() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_YEAR, -1);
@@ -614,6 +644,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
     private void calculateFee() {
         totalFee = 0;
+        int totalHour = 0;
 
         /*
         / Type HOURS
@@ -640,7 +671,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             int iTimeFrom = Integer.parseInt(timeFrom[0]);
 
             //Total hour
-            int totalHour = iTimeTo - iTimeFrom;
+            totalHour = iTimeTo - iTimeFrom;
 
             //Check hour
             if (totalHour < 0) {
@@ -653,14 +684,16 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             /*
             / Get Info Room Type
             */
-            if (totalHour > roomTypeForm.getFirstHours()) {
-                totalFee = roomTypeForm.getPriceFirstHours() + getAdditionalHours(totalHour - roomTypeForm.getFirstHours());//(totalHour - roomTypeForm.getFirstHours()) * roomTypeForm.getPriceAdditionalHours();
+            if (totalHour > roomTypeForm.getFirstHours()) /*AdditionHours*/ {
+                totalFee = roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours() + getAdditionalHours(totalHour - roomTypeForm.getFirstHours());
             } else {
-                totalFee = roomTypeForm.getPriceFirstHours();
+                totalFee = roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours();
             }
 
             // Update UI
-            if (endHour - startHour < firstHour) {
+            int start1 = parseTime(tvTimeFrom.getText().toString());
+            int end1 = parseTime(tvTimeTo.getText().toString());
+            if (end1 - start1 < firstHour) {
                 if (guiState) {
                     guiState = hideBtnReservation();
                 }
@@ -709,27 +742,29 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         if (couponIssuedForms != null && couponIssuedForms.size() > 0) {
             if (couponIndex >= 0) {
 
-                if (couponIssuedForms.get(couponIndex).getDiscountType() == ParamConstants.DISCOUNT_PERCENT) {
-                    //Discount Percent
-                    int percent = (couponIssuedForms.get(couponIndex).getDiscount() * totalFee) / 100;
-                    int maxDiscount = couponIssuedForms.get(couponIndex).getMaxDiscount();
-                    //Check Coupon MaxDiscount
-                    if (maxDiscount == 0 || percent <= maxDiscount) {
-                        feeDiscount = percent;
-                    } else if (percent > maxDiscount) {
-                        feeDiscount = maxDiscount;
-                        /*
-                        / Show Toast MaxDiscount ---> Remove
-                        */
-//                        if (couponIndex != NO_COUPON) {
-//                            int overDiscount = (maxDiscount * 100) / couponIssuedForms.get(couponIndex).getDiscount();
-//
-//                            Toast.makeText(ReservationActivity.this, String.format(getString(R.string.msg_3_9_maximun_coupon_value_1), Utils.formatCurrency(overDiscount)) + " " + String.format(getString(R.string.msg_3_9_maximun_coupon_value_2), Utils.formatCurrency(maxDiscount)), Toast.LENGTH_LONG).show();
-//                        }
+                feeDiscount = calculateDiscount(totalFee);
+
+                //Check Hours, Day Coupon
+                CouponConditionForm couponConditionForm = couponIssuedForms.get(couponIndex).getCouponConditionForm();
+                if (couponConditionForm != null){
+
+                    //Coupon Hourly
+                    int hoursCoupon = couponConditionForm.getNumHours();
+                    if (hoursCoupon > 0 && bookingMode == BookingMode.HOURLY){
+                        if (totalHour > hoursCoupon){
+                            int priceForHourlyDiscount = roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours() + getAdditionalHours(hoursCoupon - roomTypeForm.getFirstHours());
+                            feeDiscount = calculateDiscount(priceForHourlyDiscount);
+                        }
                     }
-                } else {
-                    // discount money
-                    feeDiscount = couponIssuedForms.get(couponIndex).getDiscount();
+
+                    //Coupon Daily
+                    int daysCoupon = couponConditionForm.getNumDays();
+                    if (daysCoupon > 0 && bookingMode == BookingMode.DAILY){
+                        int priceForDailyDiscount = getAdditionalDays(daysCoupon);
+                        feeDiscount = calculateDiscount(priceForDailyDiscount);
+
+                    }
+
                 }
 
                 bundle.putInt("discountFee", feeDiscount);
@@ -739,6 +774,12 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         } else {
             bundle.putInt("discountFee", NO_COUPON);
         }
+
+
+        //Super Flash Sale
+        int superSale = roomTypeForm.getGo2joyFlashSaleDiscount();
+        if (superSale > 0)
+            totalFee = totalFee - superSale;
 
         // TotalFee
         bundle.putInt("totalFee", totalFee);
@@ -750,15 +791,28 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             if (bookingMode == BookingMode.HOURLY && userStampForm.isRedeemHourly() ||
                     bookingMode == BookingMode.OVERNIGHT && userStampForm.isRedeemOvernight() ||
                     bookingMode == BookingMode.DAILY && userStampForm.isRedeemDaily()) {
+
+                if (userStampForm.getRedeemType() == ParamConstants.DISCOUNT_PERCENT) {
+                    redeemValue = (totalFee * userStampForm.getRedeemValue()) / 100;
+                    if (redeemValue > userStampForm.getMaxRedeem()) {
+                        redeemValue = userStampForm.getMaxRedeem();
+                    }
+                }
                 totalFee = totalFee - redeemValue;
             }
         }
         //Add Redeem
         bundle.putInt("redeemValue", redeemValue);
 
+
+        //Add Point
+        totalFee = totalFee - pointValue;
+        bundle.putInt("pointValue", pointValue);
+
         //Check total Fee
         if (bookingMode == BookingMode.HOURLY && !guiState) {
-            if (endHour == 0) {
+            int end1 = parseTime(tvTimeTo.getText().toString());
+            if (end1 == 0) {
                 //Set totalFee = 0;
                 totalFee = 0;
                 tvFee.setText(Utils.formatCurrency(totalFee) + " " + getString(R.string.currency));
@@ -784,13 +838,47 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-    //Calculator Additional Hours
-    private int getAdditionalHours(int addtition) {
-        int addHour;
-        if (addtition % roomTypeForm.getAdditionalHours() > 0) {
-            addHour = ((addtition / roomTypeForm.getAdditionalHours()) * roomTypeForm.getPriceAdditionalHours()) + roomTypeForm.getPriceAdditionalHours();
+    private int calculateDiscount(int _totalFee){
+        int feeDiscount = 0;
+        if (couponIssuedForms.get(couponIndex).getDiscountType() == ParamConstants.DISCOUNT_PERCENT) {
+            //Discount Percent
+            int percent = (couponIssuedForms.get(couponIndex).getDiscount() * _totalFee) / 100;
+            int maxDiscount = couponIssuedForms.get(couponIndex).getMaxDiscount();
+            //Check Coupon MaxDiscount
+            if (maxDiscount == 0 || percent <= maxDiscount) {
+                feeDiscount = percent;
+            } else if (percent > maxDiscount) {
+                feeDiscount = maxDiscount;
+            }
         } else {
-            addHour = (addtition / roomTypeForm.getAdditionalHours()) * roomTypeForm.getPriceAdditionalHours();
+            // discount money
+            if (roomTypeForm != null && roomTypeForm.isCinema()) {
+                feeDiscount = couponIssuedForms.get(couponIndex).getCineDiscount();
+            } else {
+                feeDiscount = couponIssuedForms.get(couponIndex).getDiscount();
+            }
+        }
+
+        return feeDiscount;
+    }
+
+    private int getAdditionalDays(int addition){
+        return roomTypeForm.getPriceOneDay() * addition;
+    }
+
+    //Calculator Additional Hours
+    private int getAdditionalHours(int addition) {
+        int addHour;
+        if (addition % roomTypeForm.getAdditionalHours() > 0) {
+            addHour = ((addition / roomTypeForm.getAdditionalHours()) * roomTypeForm.getPriceAdditionalHours()) + roomTypeForm.getPriceAdditionalHours();
+            if (roomTypeForm.isCinema()) {
+                addHour = ((addition / roomTypeForm.getAdditionalHours()) * roomTypeForm.getBonusAdditionalHours()) + roomTypeForm.getBonusAdditionalHours();
+            }
+        } else {
+            addHour = (addition / roomTypeForm.getAdditionalHours()) * roomTypeForm.getPriceAdditionalHours();
+            if (roomTypeForm.isCinema()) {
+                addHour = addHour + (addition / roomTypeForm.getAdditionalHours()) * roomTypeForm.getBonusAdditionalHours();
+            }
         }
         return addHour;
     }
@@ -914,6 +1002,18 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
 
     private void getCoupon() {
+        if (!isLogIn) {
+            //Set View Not LogIn
+            boxCoupon.setVisibility(View.VISIBLE);
+            btnChooseCoupon.setVisibility(View.GONE);
+            btnChangeCoupon.setVisibility(View.GONE);
+            btnClearCoupon.setVisibility(View.GONE);
+            tvCoupon.setText(getString(R.string.txt_3_9_sign_up_coupon));
+            calculateFee();
+            return;
+        }
+
+        //IsLogIn
         Map<String, Object> params = new HashMap<>();
         params.put("hotelSn", hotelDetailForm.getSn());
         params.put("offset", 0);
@@ -949,6 +1049,10 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             params.put("endTime", endTime);
         }
 
+        if (roomTypeForm != null) {
+            params.put("roomTypeSn", roomTypeForm.getSn());
+        }
+
         DialogUtils.showLoadingProgress(this, false);
 
         MyLog.writeLog("GetCoupon: ----->" + params.toString());
@@ -965,7 +1069,8 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                         //1: Can use, 2:Hotel Not Accept, 3:Not enough condition to use
                         if (redeemValue == 0) {
                             for (int i = 0; i < couponIssuedForms.size(); i++) {
-                                if (couponIssuedForms.get(i).getCanUse() == ParamConstants.CAN_USE) {
+                                if (couponIssuedForms.get(i).getCanUse() == ParamConstants.CAN_USE &&
+                                        couponIssuedForms.get(i).getUsed() != CouponStatus.Temp.ordinal()) {
                                     couponIndex = i;
                                     break;
                                 } else {
@@ -984,7 +1089,11 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                             if (couponIssuedForms.get(couponIndex).getDiscountType() == ParamConstants.DISCOUNT_PERCENT) {
                                 tvCoupon.setText(couponIssuedForms.get(couponIndex).getPromotionName() + "\n" + getString(R.string.discount) + " " + String.valueOf(Utils.formatCurrency(couponIssuedForms.get(couponIndex).getDiscount())) + " " + getString(R.string.percent));
                             } else {
-                                tvCoupon.setText(couponIssuedForms.get(couponIndex).getPromotionName() + "\n" + String.valueOf(Utils.formatCurrency(couponIssuedForms.get(couponIndex).getDiscount())) + getString(R.string.currency));
+                                if (roomTypeForm != null && roomTypeForm.isCinema()) {
+                                    tvCoupon.setText(couponIssuedForms.get(couponIndex).getPromotionName() + "\n" + String.valueOf(Utils.formatCurrency(couponIssuedForms.get(couponIndex).getCineDiscount())) + getString(R.string.currency));
+                                } else {
+                                    tvCoupon.setText(couponIssuedForms.get(couponIndex).getPromotionName() + "\n" + String.valueOf(Utils.formatCurrency(couponIssuedForms.get(couponIndex).getDiscount())) + getString(R.string.currency));
+                                }
                             }
 
                             //Show Coupon
@@ -1051,14 +1160,93 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                     @Override
                     public void resultApi(Object object) {
                         ReservationSetting rs = (ReservationSetting) object;
-                        startOverNight = rs.getStartOvernight();
-                        endOvernight = rs.getEndOvernight();
+                        if (rs != null) {
+                            startOverNight = rs.getStartOvernight();
+                            endOvernight = rs.getEndOvernight();
 
+
+                            lockTime = Utils.convertTime(rs.getLockRoomTodayTime());
+
+
+                            MileageRewardForm mileageRewardForm = rs.getMileageReward();
+                            if (mileageRewardForm != null)
+                                numPoint = mileageRewardForm.getNumPoint();
+                        }
+
+                        findAppUser();
+
+                        checkLogIn();
                         //Init Data
                         initData();
 
                     }
                 });
+    }
+
+    private void findAppUser() {
+        ControllerApi.getmInstance().findAppUser(this, new ResultApi() {
+            @Override
+            public void resultApi(Object object) {
+                AppUserForm appUserForm = (AppUserForm) object;
+                if (appUserForm != null) {
+                    myPoint = appUserForm.getMileageAmount();
+
+                    if (myPoint < numPoint || numPoint == 0)
+                        floatButtonPoint.setVisibility(View.GONE);
+                    else
+                        floatButtonPoint.setVisibility(View.VISIBLE);
+                    floatButtonPoint.setText(getString(R.string.txt_6_13_use_point));
+                }
+            }
+        });
+    }
+
+    private String[] setupTime() {
+        int hour = getSystemHour();
+        int min = getSystemMin();
+
+
+        String[] time = new String[2];
+        String _starHour;
+        String _endHour;
+        if (min < 30) {
+            _starHour = hour + ":30";
+            _endHour = (hour + 1) + ":30";
+        } else {
+            _starHour = (hour + 1) + ":00";
+            _endHour = (hour + 2) + ":00";
+        }
+
+        if (parseTime(_starHour) < 10) {
+            _starHour = "0" + _starHour;
+        }
+
+        if (parseTime(_endHour) < 10) {
+            _endHour = "0" + _endHour;
+        }
+
+        if (parseTime(_starHour) > 23) {
+            _starHour = "00:00";
+        }
+
+        if (parseTime(_endHour) > 23) {
+            _endHour = "00:00";
+        }
+
+        time[0] = _starHour;
+        time[1] = _endHour;
+
+        return time;
+    }
+
+    private int parseTime(String time) {
+        String[] s = time.split(":");
+
+        int t = -1;
+        if (s.length > 1) {
+            t = Integer.parseInt(s[0]);
+        }
+        return t;
     }
 
     private void initData() {
@@ -1076,102 +1264,8 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 tvRoomName.setText(roomName);
             }
             //Set Firsthour
-            //firstHour = hotelDetailForm.getRoomTypeList().get(roomtypeIndex).getFirstHours();
             firstHour = roomTypeForm.getFirstHours();
         }
-
-        final Calendar calendar = Calendar.getInstance();
-        int hour, min;
-        //Get hour
-        hour = calendar.get(Calendar.HOUR_OF_DAY);
-
-        /*
-        / Store AM/PM
-        */
-        systemHour = hour;
-        if (systemHour < 12) {
-            systemTimeMode = "AM";
-        } else {
-            systemTimeMode = "PM";
-        }
-
-        //Set current day
-        isCurrentDay = true;
-
-        //Get min
-        min = Utils.roundUp(calendar.get(Calendar.MINUTE), 60);
-
-        /*
-        / Round Min
-        */
-        if (min >= 60) {
-            hour += 1;
-        }
-        if (hour >= 24) {
-            hour = 0;
-        }
-
-        //Hour
-
-        String timeFromLimit;
-        /*
-        / Set Default Start Hour
-        */
-        startHour = hour;
-
-        //Check add "0"
-        if (startHour < 10) {
-            timeFromLimit = "0" + startHour + ":00";
-        } else {
-            timeFromLimit = startHour + ":00";
-        }
-
-        /*
-        / Set Default End Hour
-        */
-        endHour = startHour + 1;
-
-
-        String timeToLimit;
-
-        //Check 23hour
-        if (startHour == 0 && isCurrentDay && systemHour == 23) {
-            timeToLimit = "00:00";
-            //Set totalFee = 0
-            endHour = 0;
-            guiState = false;
-            //Hide Make Reservation
-            btnReservation.setVisibility(View.GONE);
-        } else {
-
-            //endHour = 10
-            if (endHour < 10) {
-                timeToLimit = "0" + endHour + ":00";
-                //endHour = 24
-            } else if (endHour == 24) {
-                timeToLimit = "00:00";
-            } else {
-                //Other
-                timeToLimit = endHour + ":00";
-                //Show Make Reservation
-                btnReservation.setVisibility(View.VISIBLE);
-            }
-        }
-        MyLog.writeLog("ResevationActivity ---> initDataMyPageFragment: startHour: " + timeFromLimit + " <-----> endHour: " + timeToLimit);
-
-        //Update View
-        tvTimeFrom.setText(timeFromLimit);
-        tvTimeTo.setText(timeToLimit);
-
-        //Check hotel limit 2 hour
-        if (endHour - startHour < firstHour && startHour != 0 && bookingMode == BookingMode.HOURLY) {
-            guiState = hideBtnReservation();
-        }
-
-        /*
-        / Set current day
-        */
-        tvDateHourly.setText(dateFormatter.format(calendar.getTime()));
 
         /*
         / Check Flash Sale
@@ -1179,9 +1273,12 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         if (checkRoomTypeFlashSale()) {
             bookingModeOvernight();
             boxCoupon.setVisibility(View.GONE);
-
             setViewFlashSale();
-        } else {
+        } else if (checkRoomTypeCinema()) {
+            bookingModeHourly();
+            setViewCinema();
+            getCoupon();
+        } else /*Normal*/ {
             bookingModeHourly();
             getCoupon();
         }
@@ -1189,12 +1286,20 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         MyLog.writeLog("Calculate 1180");
         calculateFee();
 
+        /*
+        / Set current day
+        */
+//        final Calendar calendar = Calendar.getInstance();
+//        systemDate = getSystemDay();
+//        if (checkRoomLock())
+//            systemDate = getTomorrowDay();
+//        tvDateHourly.setText(systemDate);
+//
+//        tvDateFrom.setText(systemDate);
+//        tvDateOvernight.setText(systemDate);
 
-        tvDateFrom.setText(dateFormatter.format(calendar.getTime()));
-        tvDateOvernight.setText(dateFormatter.format(calendar.getTime()));
-
-        calendar.add(Calendar.DATE, 1);
-        tvDateTo.setText(dateFormatter.format(calendar.getTime()));
+        //calendar.add(Calendar.DATE, 1);
+        //tvDateTo.setText(dateFormatter.format(calendar.getTime()));
           /*
           / GetStamp
          */
@@ -1210,6 +1315,20 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.float_button_point:
+                if (floatButtonPoint.getText().toString().equals(getString(R.string.txt_6_13_refund))) {
+                    floatButtonPoint.setText(getString(R.string.txt_6_13_use_point));
+                    pointValue = 0;
+                    calculateFee();
+                } else {
+                    showDialogPoint();
+                }
+                break;
+            case R.id.float_button_login:
+                Intent login = new Intent(ReservationActivity.this, LoginActivity.class);
+                startActivityForResult(login, LOGIN_COUPON_REQUEST);
+                overridePendingTransition(R.anim.stable, R.anim.left_to_right);
+                break;
             case R.id.btnClose:
                 finish();
                 overridePendingTransition(R.anim.stable, R.anim.left_to_right);
@@ -1255,86 +1374,51 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 startActivityForResult(intent, CHOOSE_ROOM_TYPE);
                 overridePendingTransition(R.anim.hotel_slide_up, R.anim.stable);
                 break;
-            //TODAY
-            case R.id.textView_rerservation_today:
-
-                /*
-                / Set Button
-                */
-                pressButtonToday();
-                normalButtonTomorrow();
-                normalButtonOther();
-
-                checkHourlyReservation(getSystemDay());
-
-                getCoupon();
-
-                break;
-            //TOMORROW
-            case R.id.textView_rerservation_tomorrow:
-
-                /*
-                / Set Button
-                */
-                normalButtonToday();
-                pressButtonTomorrow();
-                normalButtonOther();
-
-                checkHourlyReservation(getTomorrowDay());
-
-                getCoupon();
-
-                //Enable calculate
-                guiState = true;
-
-                break;
-            //OTHER
-            case R.id.textView_rerservation_other:
-
-                /*
-                / Set Button
-                */
-                normalButtonToday();
-                normalButtonTomorrow();
-                pressButtonOther();
-                //Show Calendar
-                changeDateHourly();
-
-                //Enable calculate
-                guiState = true;
-
-                break;
             case R.id.btnTimeFrom:
-                //Set mode Check-in
-                mode = CHECK_IN;
-                if (startHour == 0 && isCurrentDay && systemHour == 23) {
+                int start = parseTime(tvTimeFrom.getText().toString());
+
+                if (start == 0 && isCurrentDay && systemHour == 23) {
                     Toast.makeText(ReservationActivity.this, getString(R.string.msg_3_9_overnight_time), Toast.LENGTH_LONG).show();
                 } else {
                     showClock();
                 }
                 break;
             case R.id.btnTimeTo:
-                //Set Moce Check-out
-                mode = CHECK_OUT;
-                if (startHour == 0 && isCurrentDay && systemHour == 23) {
+
+                int start1 = parseTime(tvTimeFrom.getText().toString());
+                int end1 = parseTime(tvTimeTo.getText().toString());
+
+                if (start1 == 0 && isCurrentDay && systemHour == 23) {
                     Toast.makeText(ReservationActivity.this, getString(R.string.msg_3_9_overnight_time), Toast.LENGTH_LONG).show();
-                } else if (endHour == 24) {
-                    endHour = 0;
+                } else if (end1 == 24) {
                     showClock();
                 } else {
                     showClock();
                 }
                 break;
             case R.id.btnMakeReservation:
-                if (hotelDetailForm.getRoomTypeList().get(roomtypeIndex).isLocked()) {
-                    Toast.makeText(ReservationActivity.this, getString(R.string.msg_3_1_soldout_room), Toast.LENGTH_LONG).show();
-                } else {
+                //if (hotelDetailForm.getRoomTypeList().get(roomtypeIndex).isLocked()) {
+                //    Toast.makeText(ReservationActivity.this, getString(R.string.msg_3_1_soldout_room), Toast.LENGTH_LONG).show();
+                //} else {
+                if (!PreferenceUtils.getToken(this).equals("")) {
+                    //Is LogIn
                     if (checkStampEnough(userStampForm) && redeemValue == 0 && !checkRoomTypeFlashSale()) {
                         showDialogStamp();
                     } else {
                         checkOtherCondition();
                     }
+                } else {
+                    //Not LogIn
+                    if (bookingMode == BookingMode.HOURLY) {
+                        int start2 = parseTime(tvTimeFrom.getText().toString());
+                        if (checkOvernightHourly(start2)) {
+                            showDialogInputPhone();
+                        }
+                    } else {
+                        showDialogInputPhone();
+                    }
                 }
+                //}
 
                 break;
             case R.id.btnChangeCoupon:
@@ -1354,9 +1438,100 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                     changeCoupon();
                 }
                 break;
+            //TODAY
+            case R.id.textView_rerservation_today:
+
+                /*
+                / Set Button
+                */
+                //initData();
+                pressButtonToday();
+                normalButtonTomorrow();
+                normalButtonOther();
+
+                checkHourlyReservation(getSystemDay());
+
+                getCoupon();
+
+                break;
+            //TOMORROW
+            case R.id.textView_rerservation_tomorrow:
+
+                /*
+                / Set Button
+                */
+                //initData();
+                normalButtonToday();
+                pressButtonTomorrow();
+                normalButtonOther();
+
+                checkHourlyReservation(getTomorrowDay());
+
+                getCoupon();
+
+                //Enable calculate
+                guiState = true;
+
+                /*
+                / Lock Room
+                */
+                if (checkRoomLock()) {
+                    if (lockTime < systemHour && systemHour < 24) {
+                        inactiveButtonToday();
+                        pressButtonTomorrow();
+                        normalButtonOther();
+                    }
+                    if (systemHour > 0 && systemHour < lockTime) {
+                        isCurrentDay = false;
+                        inactiveButtonToday();
+                        pressButtonTomorrow();
+                        normalButtonOther();
+                    }
+                }
+
+                break;
+            //OTHER
+            case R.id.textView_rerservation_other:
+
+                /*
+                / Set Button
+                */
+                //initData();
+                normalButtonToday();
+                normalButtonTomorrow();
+                pressButtonOther();
+
+                //Show Calendar
+                changeDateHourly();
+
+                //Enable calculate
+                guiState = true;
+
+                /*
+                / Lock Room
+                */
+                if (checkRoomLock()) {
+                    if (lockTime < systemHour && systemHour < 24) {
+                        inactiveButtonToday();
+                        normalButtonTomorrow();
+                        pressButtonOther();
+                    }
+                    if (systemHour > 0 && systemHour < lockTime) {
+                        isCurrentDay = false;
+
+                        inactiveButtonToday();
+                        normalButtonTomorrow();
+                        pressButtonOther();
+                    }
+                }
+
+                break;
             //OVERNIGHT TODAY
             case R.id.textView_rerservation_overnight_today:
                 if (statusRightNow) {
+
+                    tvDateOvernight.setText(getYesterday());
+                    tvDateOvernight.setTag("RightNow");
 
                     /*
                     / Set Button
@@ -1371,13 +1546,13 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                         getCoupon();
                     }
 
-                    tvDateOvernight.setText(getSystemDay());
-                    tvDateOvernight.setTag("RightNow");
-
                 }
                 break;
             //OVERNIGHT TOMORROW
             case R.id.textView_rerservation_overnight_tomorrow:
+
+                tvDateOvernight.setText(getSystemDay());
+                tvDateOvernight.setTag("Tonight");
 
                 /*
                 / Set Button
@@ -1385,7 +1560,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 if (statusRightNow) {
                     normalButtonOvernightToday();
                 } else {
-                    inactiveButtonvernightToday();
+                    inactiveButtonOvernightToday();
                 }
                 pressButtonOvernightTomorrow();
 
@@ -1403,8 +1578,23 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                     getCoupon();
                 }
 
-                tvDateOvernight.setText(getSystemDay());
-                tvDateOvernight.setTag("Tonight");
+                /*
+                / Lock Room
+                */
+                if (checkRoomLock()) {
+                    tvDateOvernight.setText(getTomorrowDay());
+                    if (lockTime < systemHour && systemHour < 24) {
+                        pressButtonOvernightToday();
+                        inactiveButtonOvernightTomorrow();
+                        normalButtonOvernightOther();
+                    }
+                    if (systemHour > 0 && systemHour < lockTime) {
+                        inactiveButtonOvernightToday();
+                        pressButtonOvernightTomorrow();
+                        normalButtonOvernightOther();
+                    }
+                }
+
 
                 break;
             //OVERNIGHT OTHER
@@ -1416,13 +1606,30 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 if (statusRightNow) {
                     normalButtonOvernightToday();
                 } else {
-                    inactiveButtonvernightToday();
+                    inactiveButtonOvernightToday();
                 }
                 normalButtonOvernightTomorrow();
                 pressButtonOvernightOther();
 
                 changeDateOvernight();
                 tvDateOvernight.setTag("Other");
+
+                /*
+                / Lock Room
+                */
+                if (checkRoomLock()) {
+                    tvDateOvernight.setText(getTomorrowDay());
+                    if (lockTime < systemHour && systemHour < 24) {
+                        inactiveButtonOvernightToday();
+                        inactiveButtonOvernightTomorrow();
+                        pressButtonOvernightOther();
+                    }
+                    if (systemHour > 0 && systemHour < lockTime) {
+                        inactiveButtonOvernightToday();
+                        normalButtonOvernightTomorrow();
+                        pressButtonOvernightOther();
+                    }
+                }
 
                 break;
             //DAILY TODAY FROM
@@ -1466,6 +1673,34 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
                 getCoupon();
 
+                /*
+                / Lock Room
+                */
+                if (checkRoomLock()) {
+                    if (lockTime < systemHour && systemHour < 24) {
+                        inactiveButtonDailyFromToday();
+                        pressButtonDailyFromTomorrow();
+                        normalButtonDailyFromOther();
+
+                        inactiveButtonDailyToToday();
+                        inactiveButtonDailyToTomorrow();
+                        pressButtonDailyToOther();
+
+
+                    }
+                    if (systemHour > 0 && systemHour < lockTime) {
+                        //isCurrentDay = false;
+                        //No Change
+                        inactiveButtonDailyFromToday();
+                        pressButtonDailyFromTomorrow();
+                        normalButtonDailyFromOther();
+
+                        inactiveButtonDailyToToday();
+                        inactiveButtonDailyToTomorrow();
+                        pressButtonDailyToOther();
+                    }
+                }
+
                 break;
             //DAILY OTHER FROM
             case R.id.textView_rerservation_daily_from_other:
@@ -1485,10 +1720,39 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
                 changeDateFrom();
 
+                /*
+                / Lock Room
+                */
+                if (checkRoomLock()) {
+                    if (lockTime < systemHour && systemHour < 24) {
+                        inactiveButtonDailyFromToday();
+                        normalButtonDailyFromTomorrow();
+                        pressButtonDailyFromOther();
+
+                        inactiveButtonDailyToToday();
+                        inactiveButtonDailyToTomorrow();
+                        pressButtonDailyToOther();
+
+
+                    }
+                    if (systemHour > 0 && systemHour < lockTime) {
+                        //isCurrentDay = false;
+                        //No Change
+                        inactiveButtonDailyFromToday();
+                        normalButtonDailyFromTomorrow();
+                        pressButtonDailyFromOther();
+
+                        inactiveButtonDailyToToday();
+                        inactiveButtonDailyToTomorrow();
+                        pressButtonDailyToOther();
+
+                    }
+                }
+
                 break;
             //DAILY TODAY TO
-//            case R.id.textView_rerservation_daily_to_today:
-//                break;
+            //  case R.id.textView_rerservation_daily_to_today:
+            //     break;
             //DAILY TOMORROW TO
             case R.id.textView_rerservation_daily_to_tomorrow:
 
@@ -1518,20 +1782,42 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
                 changeDateTo();
 
+                /*
+                / Lock Room
+                */
+                if (checkRoomLock()) {
+                    if (lockTime < systemHour && systemHour < 24) {
+                        inactiveButtonDailyFromToday();
+                        pressButtonDailyFromTomorrow();
+                        normalButtonDailyFromOther();
+
+                        inactiveButtonDailyToToday();
+                        inactiveButtonDailyToTomorrow();
+                        pressButtonDailyToOther();
+
+
+                    }
+                    if (systemHour > 0 && systemHour < lockTime) {
+                        //isCurrentDay = false;
+                        //No Change
+                    }
+                }
+
                 break;
         }
     }
 
     private void checkOtherCondition() {
         if (bookingMode == BookingMode.HOURLY) {
-            if (checkOvernightHourly(startHour)) {
+            int start1 = parseTime(tvTimeFrom.getText().toString());
+            if (checkOvernightHourly(start1)) {
                 if (checkCouponCondition()) {
-                    postReservation();
+                    postReservation(null);
                 }
             }
         } else {
             if (checkCouponCondition()) {
-                postReservation();
+                postReservation(null);
             }
         }
     }
@@ -1643,9 +1929,15 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         overridePendingTransition(R.anim.hotel_slide_up, R.anim.stable);
     }
 
-    private void postReservation() {
+    private void postReservation(String phoneNumber) {
 
         final UserBookingDto userBookingDto = getUserBookingDto();
+        if (phoneNumber != null) {
+            userBookingDto.setMobile(phoneNumber);
+            bundle.putString("MOBILE", phoneNumber);
+        } else {
+            bundle.putString("MOBILE", null);
+        }
 
         /*
         / Check Before Create Reservation
@@ -1665,6 +1957,16 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                             setEventFacebook(AppEventsConstants.EVENT_NAME_ADDED_TO_CART, hotelDetailForm.getSn(), totalFee);
 
                             //STORE BUNDLE
+                            String mapInfo = "";
+                            Map map = restResult.getMapInfo();
+                            if (map != null)
+                                try {
+                                    mapInfo = restResult.getMapInfo().get("couponConditionForm").toString();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            bundle.putString("MAP-INFO", mapInfo);
                             bundle.putString("HOTEL_PAYMENT", restResult.getOtherInfo());
                             bundle.putInt("HOTEL_STATUS", hotelDetailForm.getHotelStatus());
                             bundle.putInt("ROOM_TYPE", userBookingDto.getRoomTypeSn());
@@ -1803,6 +2105,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
          * goto Billing_infomation --->Choose: Pay at Hotel or Pay in Advance
          */
         Intent billing_information = new Intent(ReservationActivity.this, Billing_Information.class);
+        billing_information.setAction("New_Payment");
         billing_information.putExtra("InformationBilling", bundle);
         startActivity(billing_information);
         overridePendingTransition(R.anim.right_to_left, R.anim.stable);
@@ -1825,7 +2128,8 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void button1() {
                 //Pay Now
-                payNow(userBookingDto);
+                //payNow(userBookingDto);
+                gotoBillingInfo();
             }
 
             @Override
@@ -1889,7 +2193,8 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void button1() {
                 //PayNow
-                payNow(userBookingDto);
+                //payNow(userBookingDto);
+                gotoBillingInfo();
             }
 
             @Override
@@ -1909,40 +2214,96 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
 
     private boolean checkStampEnough(UserStampForm userStampForm) {
         boolean result = false;
-        if (userStampForm != null && userStampForm.getNumStampActive() >= userStampForm.getNumToRedeem()) {
+        if (userStampForm != null && userStampForm.getNumStampActive() >= userStampForm.getNumToRedeem() && userStampForm.getNumToRedeem() > 0) {
             result = true;
         }
         return result;
     }
 
-    private void showDialogStamp() {
-        Dialag.getInstance().show(this, false, true, true, null, getString(R.string.msg_6_12_stamp_redeemed_asking), getString(R.string.txt_6_12_stamp_continue), getString(R.string.txt_6_12_stamp_redeem), null, Dialag.BTN_LEFT, new CallbackDialag() {
+    private void showDialogPoint() {
+        int myBlock = myPoint / numPoint;
+        int priceBlock = totalFee / VALUE_POINT;
+        int point;
+        if (myBlock < priceBlock) {
+            pointValue = myBlock * VALUE_POINT;
+            point = myBlock * numPoint;
+        } else {
+            pointValue = priceBlock * VALUE_POINT;
+            point = priceBlock * numPoint;
+        }
+        String message = getString(R.string.msg_6_13_exchange_point_to_money, String.valueOf(point), String.valueOf(pointValue), String.valueOf(totalFee - pointValue));
+        String btn1 = getString(R.string.cancel);
+        String btn2 = getString(R.string.txt_6_12_stamp_continue);
+        Dialag.getInstance().show(this, false, true, true, null, message, btn1, btn2, null, Dialag.BTN_MIDDLE, new CallbackDialag() {
             @Override
             public void button1() {
-                checkOtherCondition();
+                pointValue = 0;
+            }
+
+            @Override
+            public void button2() {
+                floatButtonPoint.setText(getString(R.string.txt_6_13_refund));
+                //Calculate
+                calculateFee();
+            }
+
+            @Override
+            public void button3(Dialog dialog) {
+
+            }
+        });
+    }
+
+
+    private void showDialogStamp() {
+        String message = getString(R.string.msg_6_12_stamp_redeemed_asking);
+        String btn1 = getString(R.string.txt_6_12_stamp_continue);
+        String btn2 = getString(R.string.txt_6_12_stamp_redeem);
+
+        //redeemValue = userStampForm.getRedeemValue();
+
+        if (userStampForm.getNumStampLocked() > 0) {
+            redeemValue = 0;
+            message = getString(R.string.msg_6_12_redeem_not_yet_checkin);
+            btn1 = getString(R.string.btn_6_9_3_cancel);
+            btn2 = getString(R.string.txt_6_12_stamp_continue);
+        }
+
+        Dialag.getInstance().show(this, false, true, true, null, message, btn1, btn2, null, Dialag.BTN_MIDDLE, new CallbackDialag() {
+            @Override
+            public void button1() {
+                if (userStampForm.getNumStampLocked() > 0) {
+                    finish();
+                } else {
+                    checkOtherCondition();
+                }
             }
 
             @Override
             public void button2() {
                 //Add Redeem
-            if (couponIndex == NO_COUPON){
-                if (bookingMode == BookingMode.HOURLY && !userStampForm.isRedeemHourly()) {
-                    Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_not_condition), Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (bookingMode == BookingMode.OVERNIGHT && !userStampForm.isRedeemOvernight()) {
-                    Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_not_condition), Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (bookingMode == BookingMode.DAILY && !userStampForm.isRedeemDaily()) {
-                    Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_not_condition), Toast.LENGTH_SHORT).show();
-                    return;
+                if (couponIndex == NO_COUPON) {
+                    if (bookingMode == BookingMode.HOURLY && !userStampForm.isRedeemHourly()) {
+                        Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_not_condition), Toast.LENGTH_SHORT).show();
+                        return;
+                    } else if (bookingMode == BookingMode.OVERNIGHT && !userStampForm.isRedeemOvernight()) {
+                        Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_not_condition), Toast.LENGTH_SHORT).show();
+                        return;
+                    } else if (bookingMode == BookingMode.DAILY && !userStampForm.isRedeemDaily()) {
+                        Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_not_condition), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } else {
+                    if (userStampForm.getNumStampLocked() == 0) {
+                        Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_coupon_is_using), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
-            } else {
-                Toast.makeText(ReservationActivity.this, getString(R.string.msg_6_12_stamp_coupon_is_using), Toast.LENGTH_SHORT).show();
-                return;
-            }
+
+                if (userStampForm != null)
+                    redeemValue = userStampForm.getRedeemValue();
 
                 //Redeem
-                redeemValue = userStampForm.getRedeemValue();
                 bundle.putInt("redeemValue", redeemValue);
                 // Total
                 bundle.putInt("total", totalFee - redeemValue);
@@ -1971,7 +2332,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     //Pay Now
     private void payNow(UserBookingDto userBookingDto) {
 
-        ControllerApi.getmInstance().createNewReservation(this, userBookingDto, new ResultApi() {
+        ControllerApi.getmInstance().createNewUserBooking(this, userBookingDto, new ResultApi() {
             @Override
             public void resultApi(Object object) {
                 RestResult restResult = (RestResult) object;
@@ -2096,591 +2457,58 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         vpCalendar.setAdapter(calendarAdapter);
     }
 
+    private int handleLimit(String time) {
+        String[] s = time.split(":");
+        int limit = parseTime(time) * 2;
+        if (s.length > 1) {
+            if (s[1].equals("30")) {
+                limit++;
+            }
+        }
+        return limit;
+    }
+
     private void showClock() {
-        // Initialize Clock Dialog
-        final Dialog dialog = new Dialog(this, R.style.dialog_full_transparent_background);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.time_picker_dialog);
-        dialog.setCanceledOnTouchOutside(true);
+        //Create System Hour
+        //Check Overnight Time
+        int[] overnight = new int[2];
+        overnight[0] = startOverNight;
+        overnight[1] = endOvernight;
 
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        //Check CineJoy Time
+        int[] cinejoy = new int[0];
+        if (checkRoomTypeCinema()) {
+
+            cinejoy = new int[4];
+
+            int start_in_cineJoy = 8;
+            int end_in_cineJoy = 18;
+            int start_out_cineJoy = 10;
+            int end_out_cineJoy = 20;
+
+            cinejoy[0] = start_in_cineJoy;
+            cinejoy[1] = end_in_cineJoy;
+            cinejoy[2] = start_out_cineJoy;
+            cinejoy[3] = end_out_cineJoy;
+        }
+
+        //Set Position Select
+        int[] position = new int[2];
+        position[0] = handleLimit(tvTimeFrom.getText().toString());
+        position[1] = handleLimit(tvTimeTo.getText().toString());
+
+        //Show Clock
+        Clock.getInstance().show(this, overnight, cinejoy, position, isCurrentDay, firstHour, new CallbackClock() {
             @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-
-                String from, to;
-                if (endHour <= startHour) {
-                    endHour = startHour + 1;
-                }
-                if (startHour < 10) {
-                    from = "0" + startHour + ":00";
-                } else {
-                    from = startHour + ":00";
-                }
-                if (endHour < 10) {
-                    to = "0" + endHour + ":00";
-                } else {
-                    if (endHour == 24) {
-                        to = "00:00";
-                    } else {
-                        to = endHour + ":00";
-                    }
-                }
-
-                tvTimeFrom.setText(from);
-                tvTimeTo.setText(to);
+            public void onValue(String from, String to) {
+                if (!TextUtils.isEmpty(from))
+                    tvTimeFrom.setText(from);
+                if (!TextUtils.isEmpty(to))
+                    tvTimeTo.setText(to);
 
                 getCoupon();
-
             }
         });
-        Window window = dialog.getWindow();
-        if (window != null) {
-            WindowManager.LayoutParams wlp = window.getAttributes();
-            wlp.gravity = Gravity.CENTER;
-            window.setAttributes(wlp);
-            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-            dialog.show();
-        }
-
-        final TextViewSFRegular tvCheckIn = dialog.findViewById(R.id.textView_check_in);
-        final TextViewSFRegular tvCheckOut = dialog.findViewById(R.id.textView_check_out);
-        final TextViewSFRegular btnOK = dialog.findViewById(R.id.btnOk);
-        final ImageView chkAPM = dialog.findViewById(R.id.chkAPM);
-
-        final TextViewSFRegular[] numbers = new TextViewSFRegular[12];
-
-        numbers[0] = dialog.findViewById(R.id.tvNumber0);
-        numbers[1] = dialog.findViewById(R.id.tvNumber1);
-        numbers[2] = dialog.findViewById(R.id.tvNumber2);
-        numbers[3] = dialog.findViewById(R.id.tvNumber3);
-        numbers[4] = dialog.findViewById(R.id.tvNumber4);
-        numbers[5] = dialog.findViewById(R.id.tvNumber5);
-        numbers[6] = dialog.findViewById(R.id.tvNumber6);
-        numbers[7] = dialog.findViewById(R.id.tvNumber7);
-        numbers[8] = dialog.findViewById(R.id.tvNumber8);
-        numbers[9] = dialog.findViewById(R.id.tvNumber9);
-        numbers[10] = dialog.findViewById(R.id.tvNumber10);
-        numbers[11] = dialog.findViewById(R.id.tvNumber11);
-
-        /*
-        / Button OK
-        */
-        btnOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.findViewById(R.id.relative_picker_clock).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //dialog.dismiss();
-            }
-        });
-
-        /*
-        /
-        */
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextViewSFRegular btnClicked = (TextViewSFRegular) view;
-                //Store click
-
-                    /*
-                    / Number Click
-                    */
-
-                int timeSelect = Integer.parseInt(btnClicked.getText().toString());
-                if (chooseTimeMode.equals("PM")) {
-                    timeSelect = timeSelect + 12;
-                }
-
-                //CHECK_IN
-                if (mode == CHECK_IN) {
-
-                    if (startOverNight > endOvernight) {
-                        if (timeSelect >= startOverNight || timeSelect < endOvernight) {
-                            Toast.makeText(ReservationActivity.this, R.string.msg_3_9_overnight_time, Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                    } else if (startOverNight < endOvernight) {
-                        //startOverNight < endOvernight
-                        if (timeSelect >= startOverNight && timeSelect <= endOvernight) {
-                            Toast.makeText(ReservationActivity.this, R.string.msg_3_9_overnight_time, Toast.LENGTH_LONG).show();
-                            return;
-                        }
-
-                    }
-                    //CHECK_OUT
-                } else {
-
-
-                    if (startOverNight > endOvernight) {
-                        if (timeSelect > startOverNight || timeSelect <= endOvernight) {
-
-                            Toast.makeText(ReservationActivity.this, R.string.msg_3_9_overnight_time, Toast.LENGTH_LONG).show();
-                            return;
-
-                        }
-                    } else if (startOverNight < endOvernight) {
-                        //startOverNight < endOvernight
-                        if (timeSelect > startOverNight && timeSelect < endOvernight) {
-                            Toast.makeText(ReservationActivity.this, R.string.msg_3_9_overnight_time, Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                    }
-                }
-
-
-                if (mode == CHECK_IN) {
-                    numbers[fromPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                    numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                    fromPosition = Integer.parseInt(btnClicked.getText().toString());
-                    if (fromPosition == 12) {
-                        fromPosition = 0;
-                    }
-                    if (chooseTimeMode.equals("AM")) {
-                        startHour = fromPosition;
-                    } else {
-                        startHour = fromPosition + 12;
-                    }
-//                    numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-//                    numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this R.color.wh));
-                    tvCheckOut.setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.org));
-                    tvCheckIn.setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.org_20p));
-
-                    mode = CHECK_OUT;
-                    if (startHour == 23) {
-                        //Check tomorrow
-                        chkAPM.setBackgroundResource(R.drawable.am);
-                        chooseTimeMode = "AM";
-                        chkAPM.setEnabled(false);
-
-                        for (int i = 0; i < 12; i++) {
-                            numbers[i].setEnabled(false);
-                            numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                        }
-
-                        return;
-                    } else if (fromPosition < 11) {
-                        toPosition = fromPosition + 1;
-                        for (int i = 0; i < toPosition; i++) {
-                            numbers[i].setEnabled(false);
-                            numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                        }
-                        numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg_80);
-                        numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                    } else {
-                        for (int i = 0; i < 12; i++) {
-                            numbers[i].setEnabled(true);
-                            numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                        }
-                        numbers[fromPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                        toPosition = 0;
-                    }
-
-                    if (startHour >= 11) {
-                        chkAPM.setBackgroundResource(R.drawable.pm);
-                        chooseTimeMode = "PM";
-                        chkAPM.setEnabled(false);
-                    }
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                    endHour = startHour + 1;
-                } else {
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                    toPosition = Integer.parseInt(btnClicked.getText().toString());
-                    if (toPosition == 12) {
-                        toPosition = 0;
-                    }
-                    if (chooseTimeMode.equals("AM")) {
-                        endHour = toPosition;
-                    } else {
-                        endHour = toPosition + 12;
-                    }
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                }
-            }
-
-        };
-        /*
-        / Check-In
-        */
-        tvCheckIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mode != CHECK_IN) {
-                    mode = CHECK_IN;
-                    if (systemTimeMode.equals("AM")) {
-                        chkAPM.setEnabled(true);
-                    }
-                    if (!isCurrentDay) {
-                        chkAPM.setEnabled(true);
-                    }
-                    for (int i = 0; i < 12; i++) {
-                        numbers[i].setEnabled(true);
-                        numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                    }
-
-                    if (startHour <= 11) {
-                        chkAPM.setBackgroundResource(R.drawable.am);
-                        chooseTimeMode = "AM";
-                    } else {
-                        chkAPM.setBackgroundResource(R.drawable.pm);
-                        chooseTimeMode = "PM";
-                    }
-
-                    tvCheckIn.setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.org));
-                    tvCheckOut.setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.org_20p));
-
-                    numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                    numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                    numbers[fromPosition].setEnabled(true);
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-
-                    if (systemTimeMode.equals(chooseTimeMode) && isCurrentDay) {
-                        int temp;
-                        if (systemHour < 12) {
-                            temp = systemHour;
-                        } else {
-                            temp = systemHour - 12;
-                        }
-                        for (int i = 0; i <= temp; i++) {
-                            numbers[i].setEnabled(false);
-                            numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                        }
-                    }
-                }
-            }
-        });
-
-        /*
-        / Check-Out
-        */
-        tvCheckOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mode != CHECK_OUT) {
-                    mode = CHECK_OUT;
-
-                    tvCheckIn.setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.org_20p));
-                    tvCheckOut.setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.org));
-
-                    //Set AM/PM
-                    if (endHour > 12) {
-                        chooseTimeMode = "PM";
-                    }
-
-                    if (endHour <= startHour) {
-                        endHour = startHour + 1;
-                        if (endHour > 11) {
-                            toPosition = endHour - 12;
-                        } else {
-                            toPosition = endHour;
-                        }
-                    }
-
-                    if ((startHour < 12 && endHour < 12) || (startHour > 11 && endHour > 11)) {
-                        for (int i = 0; i <= fromPosition; i++) {
-                            numbers[i].setEnabled(false);
-                            numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                        }
-                        numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg_80);
-                        numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                        if (endHour < 12) {
-                            chkAPM.setBackgroundResource(R.drawable.am);
-                        } else {
-                            chkAPM.setBackgroundResource(R.drawable.pm);
-                            chkAPM.setEnabled(false);
-                        }
-                    } else if (startHour < 12 && endHour > 11) {
-                        chkAPM.setBackgroundResource(R.drawable.pm);
-                        for (int i = 0; i <= fromPosition; i++) {
-                            numbers[i].setEnabled(true);
-                            numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                        }
-                        numbers[fromPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                        numbers[toPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                    }
-
-                    if (endHour > 11) {
-                        if (endHour == 24) {
-                            return;
-                        } else {
-                            toPosition = endHour - 12;
-                        }
-                    } else {
-                        toPosition = endHour;
-                    }
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                }
-            }
-        });
-
-        /*
-        / btnToggel
-        */
-
-        chkAPM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //AM -->PM
-                if (chooseTimeMode.equals("AM")) {
-                    chkAPM.setBackgroundResource(R.drawable.pm);
-                    chooseTimeMode = "PM";
-
-                    /*
-                    / CHECk-IN AM-->PM
-                    */
-                    if (mode == CHECK_IN) {
-
-                        //Enable Select
-                        if (systemHour > 12 && isCurrentDay) {
-                            for (int i = 0; i < systemHour - 12; i++) {
-                                numbers[i].setEnabled(false);
-                                numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                            }
-                        } else {
-                            //show full clocl
-                            for (int i = 0; i < 12; i++) {
-                                numbers[i].setEnabled(true);
-                                numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk));
-                            }
-                        }
-
-                        //Show number select
-                        if (startHour > 12) {
-                            numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                            numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                        } else {
-                            numbers[fromPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                            numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                        }
-
-                        //Check out AM-->PM----------------------------------------------------------------
-                    } else {
-
-                        numbers[fromPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                        //set hour from
-                        for (int i = 0; i <= fromPosition; i++) {
-                            numbers[i].setEnabled(true);
-                            numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                        }
-
-                        //set hour to
-                        if (endHour > 12) {
-                            numbers[toPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                            numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                        } else {
-                            numbers[toPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                            numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                        }
-                    }
-
-                    /*
-                     / CHECkIN PM-->AM
-                     */
-                } else {
-                    chkAPM.setBackgroundResource(R.drawable.am);
-                    chooseTimeMode = "AM";
-                    //    Show clock
-                    if (mode == CHECK_IN && isCurrentDay) {
-                        if (systemHour >= 12) {
-                            for (int i = 0; i <= systemHour - 12; i++) {
-                                numbers[i].setEnabled(false);
-                                numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                            }
-                        } else {
-                            for (int i = 0; i <= systemHour; i++) {
-                                numbers[i].setEnabled(false);
-                                numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                            }
-                        }
-
-                        if (startHour > 12) {
-                            //PM -->Hide clicked
-                            numbers[fromPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                            //Check same number
-                            if (startHour > systemHour + 12) {
-                                numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                            }
-
-                        } else {
-                            //AM -->Show
-                            numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                            numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                        }
-
-                    } else if (mode == CHECK_IN && !isCurrentDay) {
-                        //Check-in tomorrow AM
-                        if (startHour > 12) {
-                            //PM -->Hide clicked
-                            numbers[fromPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                            numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                        } else {
-                            //AM -->Show
-                            numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                            numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                        }
-
-
-                        //Check-out PM --> AM
-                    } else if (mode == CHECK_OUT) {
-                        if (startHour < 12) {
-
-                            for (int i = 0; i <= fromPosition; i++) {
-                                numbers[i].setEnabled(false);
-                                numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                            }
-
-                            if (startHour > 12) {
-                                numbers[toPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                                numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                            } else {
-                                numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg_80);
-                                numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                            }
-
-                            if (endHour > 12) {
-                                numbers[toPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                                numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                            } else {
-                                numbers[toPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                                numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                            }
-
-                        }
-                    }
-                }
-            }
-        });
-
-        /*
-        / Load Default
-        */
-
-        if (mode == CHECK_IN) {
-            //Check AM/PM
-            if (startHour > 11) {
-                fromPosition = startHour - 12;
-                chooseTimeMode = "PM";
-                chkAPM.setBackgroundResource(R.drawable.pm);
-                //Disable tog
-                if (isCurrentDay && systemHour >= 12) {
-                    chkAPM.setEnabled(false);
-                }
-            } else {
-                fromPosition = startHour;
-                chooseTimeMode = "AM";
-                chkAPM.setBackgroundResource(R.drawable.am);
-            }
-
-            //SystemTimeMode initDataMyPageFragment
-            //chooseTimeMode showClock
-            if (systemTimeMode.equals(chooseTimeMode) && isCurrentDay) {
-
-                //Show number
-                if (systemHour < 12) {
-                    for (int i = 0; i <= systemHour; i++) {
-                        numbers[i].setEnabled(false);
-                        numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                    }
-                } else {
-                    for (int i = 0; i <= systemHour - 12; i++) {
-                        numbers[i].setEnabled(false);
-                        numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                    }
-
-                }
-            }
-
-            //Show number Clock
-            numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-            numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-
-            //mode == CHECK_OUT
-        } else {
-            tvCheckIn.setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.org_20p));
-            tvCheckOut.setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.org));
-
-                /*
-                / ClockCheckOut press  < 12h
-                */
-            if (endHour < 12) {
-                if (startHour > 11) {
-                    fromPosition = startHour - 12;
-                } else {
-                    fromPosition = startHour;
-                }
-
-                toPosition = endHour;
-                for (int i = 0; i <= fromPosition; i++) {
-                    numbers[i].setEnabled(false);
-                    numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                }
-
-                //Disable tog
-                if (endHour == 0) {
-                    chkAPM.setEnabled(false);
-                }
-
-                chkAPM.setBackgroundResource(R.drawable.am);
-                chooseTimeMode = "AM";
-                if (endHour != 0) {
-                    numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg_80);
-                    numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                }
-
-                /*
-                / ClockCheckOut press  >12h
-                */
-            } else {
-                chkAPM.setBackgroundResource(R.drawable.pm);
-                chooseTimeMode = "PM";
-
-                //Disable tog
-                if (startHour > 12) {
-                    chkAPM.setEnabled(false);
-                }
-                if (startHour >= 12) {
-                    fromPosition = startHour - 12;
-                    toPosition = endHour - 12;
-                    for (int i = 0; i <= fromPosition; i++) {
-                        numbers[i].setEnabled(false);
-                        numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.bk_15p));
-                    }
-                    numbers[fromPosition].setBackgroundResource(R.drawable.circle_clicked_bg_80);
-                    numbers[fromPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                } else {
-
-                    for (int i = 0; i < 12; i++) {
-                        numbers[i].setEnabled(true);
-                        numbers[i].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                    }
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_clicked_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.wh));
-                }
-                if (endHour > startOverNight) {
-                    numbers[toPosition].setBackgroundResource(R.drawable.circle_click_no_bg);
-                    numbers[toPosition].setTextColor(ContextCompat.getColor(ReservationActivity.this, R.color.black));
-                }
-            }
-        }
-
-        for (TextViewSFRegular number : numbers) {
-            number.setOnClickListener(listener);
-        }
 
     }
 
@@ -2735,71 +2563,36 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     */
 
     private void checkHourlyReservation(String date) {
+
+        String[] time = setupTime();
+
+        int start = parseTime(time[0]);
+        int end = parseTime(time[1]);
+
+        //String[] t = HelperClock.handleStringOvernight(start, startOverNight, endOvernight);
+
+        //Update View
+        tvTimeFrom.setText(time[0]);
+        tvTimeTo.setText(time[1]);
+
+        systemHour = getSystemHour();
+
         //Check current day
         if (ReservationActivity.this.getSystemDay().equals(date)) {
             isCurrentDay = true;
-
-            if (startHour <= systemHour || endHour <= systemHour) {
-                startHour = systemHour + 1;
-                endHour = startHour + 1;
-
-                String from, to;
-
-                //Check Add "0"
-                if (startHour < 10) {
-                    from = "0" + startHour + ":00";
-                } else {
-                    if (startHour >= 24) {
-                        startHour = 0;
-                        from = "0" + startHour + ":00";
-                    } else {
-                        from = startHour + ":00";
-                    }
-                }
-
-                //Check Add "0"
-                if (endHour < 10) {
-                    to = "0" + endHour + ":00";
-                } else {
-                    if (endHour >= 24) {
-                        to = "00" + ":00";
-                    } else {
-                        to = endHour + ":00";
-                    }
-                }
-
-                //Check 23hour
-                if (startHour == 0 && systemHour == 23) {
-                    //Set totalFee = 0
-                    endHour = 0;
-                    guiState = false;
-                    //Hide Make Reservation
-                    btnReservation.setVisibility(View.GONE);
-                }
-
-                tvTimeFrom.setText(from);
-                tvTimeTo.setText(to);
-            }
         } else {
             isCurrentDay = false;
-
-            //Check sytem hour = 23 ---> endhour + 1 ---->enable booking
-            if (startHour == 0 && systemHour == 23) {
-                tvTimeTo.setText("01:00");
-                endHour = startHour + 1;
-            }
-
             btnReservation.setVisibility(View.VISIBLE);
         }
 
-
         //Check hotel limit 2 hour
-        if (endHour - startHour < firstHour && startHour != 0 && bookingMode == BookingMode.HOURLY) {
+        if (end - start < firstHour && start != 0 && bookingMode == BookingMode.HOURLY) {
             guiState = hideBtnReservation();
         }
 
         //Set Change day
         tvDateHourly.setText(date);
+
     }
 
     @Override
@@ -2834,28 +2627,58 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 if (checkRoomTypeFlashSale()) {
                     couponIndex = NO_COUPON;
                     redeemValue = 0;
+                    btnNotApply.setVisibility(View.GONE);
+                    btnNumberStamp.setVisibility(View.GONE);
+                    btnRedeem.setVisibility(View.VISIBLE);
                     deleteStamp();
                     initData();
                 } else {
                     if (userStampForm == null) {
                         findUserStampDetail(hotelDetailForm.getSn());
                     } else {
-                        boxStamp.setVisibility(View.VISIBLE);
-                        if (autoRedeem) {
-                            redeemValue = userStampForm.getRedeemValue();
-                            changeModeBookingForStamp(userStampForm);
+                        if (userStampForm.getNumToRedeem() <= 0) {
+                            findUserStampDetail(hotelDetailForm.getSn());
+                        } else {
+                            boxStamp.setVisibility(View.VISIBLE);
+                            if (autoRedeem) {
+                                redeemValue = userStampForm.getRedeemValue();
+                                changeModeBookingForStamp(userStampForm);
+                            }
                         }
                     }
+
+
                     deleteStamp();
                     changeBookingMode();
                     getCoupon();
+
+                    if (checkRoomTypeCinema()) {
+                        bookingModeHourly();
+                        setViewCinema();
+                    }
+
+                    /*
+                    / Lock Room
+                    */
+                    if (checkRoomLock()) {
+                        if (lockTime < systemHour && systemHour < 24) {
+                            inactiveButtonToday();
+                            pressButtonTomorrow();
+                            normalButtonOther();
+                        }
+                        if (systemHour > 0 && systemHour < lockTime) {
+                            isCurrentDay = false;
+                        }
+                    }
+
                     MyLog.writeLog("Calculate 2779");
                     calculateFee();
+
                 }
             }
         } else if (requestCode == CHOOSE_COUPON) {
             if (resultCode == RESULT_OK) {
-                couponIndex = data.getIntExtra("CouponIndex", -1);
+                couponIndex = data.getIntExtra("CouponIndex", -2);
                 try {
                     if (couponIndex >= 0) {
                         //press Change Coupon
@@ -2865,9 +2688,19 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                         if (couponIssuedForms.get(couponIndex).getDiscountType() == ParamConstants.DISCOUNT_PERCENT) {
                             tvCoupon.setText(couponIssuedForms.get(couponIndex).getPromotionName() + "\n" + getString(R.string.discount) + " " + String.valueOf(Utils.formatCurrency(couponIssuedForms.get(couponIndex).getDiscount())) + " " + getString(R.string.percent));
                         } else {
-                            tvCoupon.setText(couponIssuedForms.get(couponIndex).getPromotionName() + "\n" + String.valueOf(Utils.formatCurrency(couponIssuedForms.get(couponIndex).getDiscount())) + getString(R.string.currency));
+                            if (roomTypeForm != null && roomTypeForm.isCinema()) {
+                                tvCoupon.setText(couponIssuedForms.get(couponIndex).getPromotionName() + "\n" + String.valueOf(Utils.formatCurrency(couponIssuedForms.get(couponIndex).getCineDiscount())) + getString(R.string.currency));
+                            } else {
+                                tvCoupon.setText(couponIssuedForms.get(couponIndex).getPromotionName() + "\n" + String.valueOf(Utils.formatCurrency(couponIssuedForms.get(couponIndex).getDiscount())) + getString(R.string.currency));
+                            }
                         }
                         btnClearCoupon.setVisibility(View.VISIBLE);
+                    }else if (couponIndex == -1){
+                        /*
+                        / Callback Apply Promotion
+                        */
+                        couponIndex = 0;
+                        getCoupon();
                     }
                 } catch (Exception e) {
                     MyLog.writeLog("couponIndex------------>" + e);
@@ -2877,10 +2710,11 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             }
         } else if (requestCode == LOGIN_RESERVATION_REQUEST) {
             if (resultCode == RESULT_OK) {
-                postReservation();
+                postReservation(null);
             }
         } else if (requestCode == LOGIN_COUPON_REQUEST) {
             if (resultCode == RESULT_OK) {
+                isLogIn = true;
                 initData();  //get Coupon fail
             }
         } else if (requestCode == PAYMENT_REQUEST) {
@@ -2896,6 +2730,17 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         this.screenName = "SHotelBook";
     }
 
+    private void showDialogInputPhone() {
+        Utils.showKeyboard(this);
+        DialogInput.getInstance().show(this, new CallbackInput() {
+            @Override
+            public void onInput(String s) {
+                postReservation(s);
+                Utils.hideKeyboard(ReservationActivity.this);
+            }
+        });
+    }
+
     //Setup Hourly
     private void bookingModeHourly() {
         bookingMode = BookingMode.HOURLY;
@@ -2903,15 +2748,21 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         boxHourly.setVisibility(View.VISIBLE);
         boxDaily.setVisibility(View.GONE);
         boxOvernight.setVisibility(View.GONE);
+
         btnReservation.setVisibility(View.VISIBLE);
+
         chkHourly.setImageResource(R.drawable.checkbox_selected);
         txtHourly.setTextColor(ContextCompat.getColor(this, R.color.bk));
         chkHourly.setEnabled(true);
+
         txtDaily.setTextColor(ContextCompat.getColor(this, R.color.bk));
         chkDaily.setEnabled(true);
         chkDaily.setImageResource(R.drawable.checkbox);
+
         chkOvernight.setImageResource(R.drawable.checkbox);
         guiState = true;
+
+        systemDate = getSystemDay();
 
         /*
         / Set Button
@@ -2920,15 +2771,43 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         normalButtonTomorrow();
         normalButtonOther();
 
-        checkHourlyReservation(getSystemDay());
+        checkHourlyReservation(systemDate);
+
+
+        /*
+        / Lock Room
+        */
+        if (checkRoomLock()) {
+            if (lockTime < systemHour && systemHour < 24) {
+
+                systemDate = getTomorrowDay();
+                isCurrentDay = false;
+
+                inactiveButtonToday();
+                pressButtonTomorrow();
+                normalButtonOther();
+            } else if (systemHour > 0 && systemHour < lockTime) {
+
+                inactiveButtonToday();
+                pressButtonTomorrow();
+                normalButtonOther();
+            }
+        }
+
+
+        //Set Change day
+        tvDateHourly.setText(systemDate);
+
 
         /*
         / Set Stamp
         */
         if (redeemValue > 0) {
+            if (checkRoomTypeCinema() && !userStampForm.isRedeemHourly()) {
+                return;
+            }
             setViewStamp(userStampForm);
         }
-
     }
 
     //Setup Overnight
@@ -2949,26 +2828,39 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         int hour = getSystemHour() + 1;
         if (startOverNight > endOvernight) {
             if (!checkRoomTypeFlashSale() && 0 <= hour && hour < endOvernight) {
-                pressButtonOvernightToday();
+                pressButtonOvernightToday(); //ON RightNow
                 normalButtonOvernightTomorrow();
                 normalButtonOvernightOther();
 
-                tvDateOvernight.setText(getSystemDay());
+                tvDateOvernight.setText(getYesterday());
                 tvDateOvernight.setTag("RightNow");
                 //Set StatusOvernight
                 statusRightNow = true; //When:   0 <= HourSelect <= endOvernight
-            } else {
-                inactiveButtonvernightToday();
-                pressButtonOvernightTomorrow();
-                normalButtonOvernightOther();
+            } else /*FlashSale*/ {
+                if (checkRoomTypeFlashSale() && 0 <= hour && hour < 6) {
+                    pressButtonOvernightToday(); //ON RightNow
+                    inactiveButtonOvernightTomorrow();
+                    normalButtonOvernightOther();
 
-                tvDateOvernight.setText(getSystemDay());
-                tvDateOvernight.setTag("Tonight");
-                //Set StatusOvernight
-                statusRightNow = false;
+                    tvDateOvernight.setText(getSystemDay()); //Set System Time
+                    tvDateOvernight.setTag("RightNow");
+                    //Set StatusOvernight
+                    statusRightNow = true;
+                } else {
+                    inactiveButtonOvernightToday(); //OFF RightNow
+                    pressButtonOvernightTomorrow();
+                    normalButtonOvernightOther();
+
+                    tvDateOvernight.setText(getSystemDay()); //Set System Time
+                    tvDateOvernight.setTag("Tonight");
+                    //Set StatusOvernight
+                    statusRightNow = false;
+                }
             }
-        } else {
-            if (!checkRoomTypeFlashSale() && startOverNight <= hour && hour <= endHour) {
+        } else /*endOvernight > startOverNight*/ {
+            int end = parseTime(tvTimeTo.getText().toString());
+
+            if (!checkRoomTypeFlashSale() && startOverNight <= hour && hour <= end) {
                 pressButtonOvernightToday();
                 normalButtonOvernightTomorrow();
                 normalButtonOvernightOther();
@@ -2977,15 +2869,27 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
                 tvDateOvernight.setTag("RightNow");
                 //Set StatusOvernight
                 statusRightNow = true; //When:   0 <= HourSelect <= endOvernight
-            } else {
-                inactiveButtonvernightToday();
-                pressButtonOvernightTomorrow();
-                normalButtonOvernightOther();
+            } else /*FlashSale*/ {
 
-                tvDateOvernight.setText(getSystemDay());
-                tvDateOvernight.setTag("Tonight");
-                //Set StatusOvernight
-                statusRightNow = false;
+                if (checkRoomTypeFlashSale() && 0 <= hour && hour < 6) {
+                    pressButtonOvernightToday(); //ON RightNow
+                    inactiveButtonOvernightTomorrow();
+                    normalButtonOvernightOther();
+
+                    tvDateOvernight.setText(getSystemDay()); //Set System Time
+                    tvDateOvernight.setTag("RightNow");
+                    //Set StatusOvernight
+                    statusRightNow = true;
+                } else {
+                    inactiveButtonOvernightToday();
+                    pressButtonOvernightTomorrow();
+                    normalButtonOvernightOther();
+
+                    tvDateOvernight.setText(getSystemDay());
+                    tvDateOvernight.setTag("Tonight");
+                    //Set StatusOvernight
+                    statusRightNow = false;
+                }
             }
         }
 
@@ -2995,6 +2899,28 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         */
         if (redeemValue > 0) {
             setViewStamp(userStampForm);
+        }
+
+
+        /*
+        / Lock Room
+        */
+        if (checkRoomLock()) {
+            tvDateOvernight.setText(getTomorrowDay());
+            if (lockTime < systemHour && systemHour < 24) {
+                inactiveButtonOvernightToday();
+                inactiveButtonOvernightTomorrow();
+                pressButtonOvernightOther();
+            } else if (systemHour > 0 && systemHour < lockTime) {
+                inactiveButtonOvernightToday();
+                pressButtonOvernightTomorrow();
+                normalButtonOvernightOther();
+
+                tvDateOvernight.setText(getSystemDay());
+                tvDateOvernight.setTag("Tonight");
+                //Set StatusOvernight
+                statusRightNow = false;
+            }
         }
 
     }
@@ -3031,11 +2957,58 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         if (redeemValue > 0) {
             setViewStamp(userStampForm);
         }
+
+        /*
+        / Lock Room
+        */
+        if (checkRoomLock()) {
+            if (lockTime < systemHour && systemHour < 24) {
+                inactiveButtonDailyFromToday();
+                pressButtonDailyFromTomorrow();
+                normalButtonDailyFromOther();
+
+                inactiveButtonDailyToToday();
+                inactiveButtonDailyToTomorrow();
+                pressButtonDailyToOther();
+
+                tvDateFrom.setText(getSystemDay());
+
+
+            }
+            if (systemHour > 0 && systemHour < lockTime) {
+                //isCurrentDay = false;
+                //No Change
+                inactiveButtonDailyFromToday();
+                pressButtonDailyFromTomorrow();
+                normalButtonDailyFromOther();
+
+                inactiveButtonDailyToToday();
+                inactiveButtonDailyToTomorrow();
+                pressButtonDailyToOther();
+
+                tvDateFrom.setText(getTomorrowDay());
+            }
+        }
+    }
+
+    private boolean checkRoomLock() {
+        boolean result = false;
+        if (hotelDetailForm.getRoomTypeList().get(roomtypeIndex).getStatus() == ParamConstants.LOCK_TODAY)
+            result = true;
+        return result;
     }
 
     private boolean checkRoomTypeFlashSale() {
         boolean result = false;
         if (hotelDetailForm.getRoomTypeList().get(roomtypeIndex).isFlashSale()) {
+            result = true;
+        }
+        return result;
+    }
+
+    private boolean checkRoomTypeCinema() {
+        boolean result = false;
+        if (hotelDetailForm.getRoomTypeList().get(roomtypeIndex).isCinema()) {
             result = true;
         }
         return result;
@@ -3099,12 +3072,12 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         setViewStamp(userStampForm);
     }
 
-    private void changeBookingMode(){
+    private void changeBookingMode() {
         if (bookingMode == BookingMode.HOURLY) {
             bookingModeHourly();
-        }else if (bookingMode == BookingMode.OVERNIGHT) {
+        } else if (bookingMode == BookingMode.OVERNIGHT) {
             bookingModeOvernight();
-        }else if (bookingMode == BookingMode.DAILY) {
+        } else if (bookingMode == BookingMode.DAILY) {
             bookingModeDaily();
         }
     }
@@ -3119,6 +3092,21 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         chkDaily.setEnabled(false);
 
         inactiveButtonOvernightOther();
+    }
+
+    private void setViewCinema() {
+
+        chkOvernight.setImageResource(R.drawable.checkbox_transparent);
+        txtOvernight.setTextColor(ContextCompat.getColor(this, R.color.bk_15p));
+        chkOvernight.setEnabled(false);
+
+        chkDaily.setImageResource(R.drawable.checkbox_transparent);
+        txtDaily.setTextColor(ContextCompat.getColor(this, R.color.bk_15p));
+        chkDaily.setEnabled(false);
+
+        //Check tomorrow
+        if (!checkRoomLock())
+            pressButtonToday();
     }
 
     public boolean hideBtnReservation() {
@@ -3137,31 +3125,58 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     private void pressButtonToday() {
         txtToday.setBackgroundResource(R.drawable.button_full_org_bg);
         txtToday.setTextColor(getResources().getColor(R.color.wh));
+        txtToday.setEnabled(true);
     }
 
     private void normalButtonToday() {
         txtToday.setBackgroundResource(R.drawable.button_full_wh_bg_org_border);
         txtToday.setTextColor(getResources().getColor(R.color.org));
+        txtToday.setEnabled(true);
+    }
+
+    private void inactiveButtonToday() {
+        txtToday.setBackgroundResource(R.drawable.button_full_wh_bg_org_20_border);
+        txtToday.setTextColor(getResources().getColor(R.color.org_20p));
+        txtToday.setEnabled(false);
     }
 
     private void pressButtonTomorrow() {
         txtTomorrow.setBackgroundResource(R.drawable.button_full_org_bg);
         txtTomorrow.setTextColor(getResources().getColor(R.color.wh));
+        txtTomorrow.setEnabled(true);
     }
 
     private void normalButtonTomorrow() {
         txtTomorrow.setBackgroundResource(R.drawable.button_full_wh_bg_org_border);
         txtTomorrow.setTextColor(getResources().getColor(R.color.org));
+        txtTomorrow.setEnabled(true);
+    }
+
+    private void inactiveButtonTomorrow() {
+        txtTomorrow.setBackgroundResource(R.drawable.button_full_wh_bg_org_20_border);
+        txtTomorrow.setTextColor(getResources().getColor(R.color.org_20p));
+        txtTomorrow.setEnabled(false);
     }
 
     private void pressButtonOther() {
         boxOther.setBackgroundResource(R.drawable.button_full_org_bg);
         txtOther.setTextColor(getResources().getColor(R.color.wh));
+        txtOther.setEnabled(true);
+        //imgOther.setImageResource(R.drawable.date);
     }
 
     private void normalButtonOther() {
         boxOther.setBackgroundResource(R.drawable.button_full_wh_bg_org_border);
         txtOther.setTextColor(getResources().getColor(R.color.org));
+        txtOther.setEnabled(true);
+        //imgDateOvernight.setImageResource(R.drawable.date);
+    }
+
+    private void inactiveButtonOther() {
+        boxOther.setBackgroundResource(R.drawable.button_full_wh_bg_org_20_border);
+        txtOther.setTextColor(getResources().getColor(R.color.org_20p));
+        txtOther.setEnabled(false);
+        //imgDateOvernight.setImageResource(R.drawable.date_transparent);
     }
 
     private void pressButtonOvernightToday() {
@@ -3175,7 +3190,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         txtOvernightToday.setEnabled(true);
     }
 
-    private void inactiveButtonvernightToday() {
+    private void inactiveButtonOvernightToday() {
         txtOvernightToday.setBackgroundResource(R.drawable.button_full_wh_bg_org_20_border);
         txtOvernightToday.setTextColor(getResources().getColor(R.color.org_20p));
         txtOvernightToday.setEnabled(false);
@@ -3189,6 +3204,13 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     private void normalButtonOvernightTomorrow() {
         txtOvernightTomorrow.setBackgroundResource(R.drawable.button_full_wh_bg_org_border);
         txtOvernightTomorrow.setTextColor(getResources().getColor(R.color.org));
+        txtOvernightTomorrow.setEnabled(true);
+    }
+
+    private void inactiveButtonOvernightTomorrow() {
+        txtOvernightTomorrow.setBackgroundResource(R.drawable.button_full_wh_bg_org_20_border);
+        txtOvernightTomorrow.setTextColor(getResources().getColor(R.color.org_20p));
+        txtOvernightTomorrow.setEnabled(false);
     }
 
     private void pressButtonOvernightOther() {
@@ -3215,11 +3237,19 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
     private void pressButtonDailyFromToday() {
         txtDailyFromToday.setBackgroundResource(R.drawable.button_full_org_bg);
         txtDailyFromToday.setTextColor(getResources().getColor(R.color.wh));
+        txtDailyFromToday.setEnabled(true);
     }
 
     private void normalButtonDailyFromToday() {
         txtDailyFromToday.setBackgroundResource(R.drawable.button_full_wh_bg_org_border);
         txtDailyFromToday.setTextColor(getResources().getColor(R.color.org));
+        txtDailyFromToday.setEnabled(true);
+    }
+
+    private void inactiveButtonDailyFromToday() {
+        txtDailyFromToday.setBackgroundResource(R.drawable.button_full_wh_bg_org_20_border);
+        txtDailyFromToday.setTextColor(getResources().getColor(R.color.org_20p));
+        txtDailyFromToday.setEnabled(false);
     }
 
     private void pressButtonDailyFromTomorrow() {
@@ -3279,4 +3309,11 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         boxDailyToOther.setBackgroundResource(R.drawable.button_full_wh_bg_org_border);
         txtDailyToOther.setTextColor(getResources().getColor(R.color.org));
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if (reservation != null)
+//            reservation = null;
+//    }
 }

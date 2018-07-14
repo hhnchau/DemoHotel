@@ -9,10 +9,8 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="com.appromobile.hotel.permission.MAPS_RECEIVE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -22,7 +20,7 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <!-- <permission -->
 
     <uses-feature
@@ -39,6 +37,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
+
         <activity
             android:name=".activity.SplashActivity"
             android:screenOrientation="portrait">
@@ -49,16 +48,29 @@
             </intent-filter>
         </activity>
 
+        <!--Payoo-->
+        <activity android:name="vn.payoo.paymentsdk.ui.PayooPaymentSdkActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="postbacksdkurl"
+                    android:scheme="payoosdk672" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".activity.DeeplinkActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
             android:excludeFromRecents="true"
-            android:taskAffinity="">
+            android:screenOrientation="portrait"
+            android:taskAffinity=""
+            android:theme="@style/AppTheme">
 
-            <!--Android 6-->
+            <!-- Android 6 -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -66,94 +78,88 @@
                     android:host="go2joy.vn"
                     android:pathPrefix="/hotel/share/view/openApp"
                     android:scheme="http" />
-
                 <data
                     android:host="go2joy.vn"
                     android:pathPrefix="/hotel/share/view/openApp"
                     android:scheme="https" />
-
                 <data
                     android:host="go2joy.vn"
                     android:pathPrefix="/hotel/openLoginApp"
                     android:scheme="http" />
-
                 <data
                     android:host="go2joy.vn"
                     android:pathPrefix="/hotel/openLoginApp"
                     android:scheme="https" />
             </intent-filter>
 
-
-            <!--approhotel - Browser-->
+            <!-- approhotel - Browser -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!--DeepLink-->
+                <!-- DeepLink -->
 
                 <data
                     android:host="hotelSn"
                     android:pathPrefix="/"
                     android:scheme="approhotel" />
-
                 <data
                     android:host="promotionSn"
                     android:pathPrefix="/"
                     android:scheme="approhotel" />
-
                 <data
                     android:host="districtSn"
                     android:pathPrefix="/"
                     android:scheme="approhotel" />
-
             </intent-filter>
 
-            <!--Open App-->
-            <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="loginapp"
-                    android:scheme="approhotel"/>
-            </intent-filter>
-
-            <!--url - App-->
+            <!-- Open App -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!--DeepLink-->
+                <data
+                    android:host="loginapp"
+                    android:scheme="approhotel" />
+            </intent-filter>
+
+            <!-- url - App -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- DeepLink -->
 
                 <data
                     android:host="go2joy.vn"
                     android:pathPrefix="/hotel/share/view/openApp"
                     android:scheme="http" />
-
                 <data
                     android:host="go2joy.vn"
                     android:pathPrefix="/hotel/openLoginApp"
                     android:scheme="http" />
             </intent-filter>
 
-
-            <!--LOCAL URL-->
+            <!-- LOCAL URL -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!--DeepLink-->
+                <!-- DeepLink -->
 
                 <data
                     android:host="27.74.249.60"
                     android:pathPrefix="/hotel/share/view/openApp"
                     android:port="8082"
                     android:scheme="http" />
-
                 <data
                     android:host="27.74.249.60"
                     android:pathPrefix="/hotel/openLoginApp"
@@ -162,11 +168,12 @@
             </intent-filter>
         </activity>
 
-        <!--Activity-->
+        <!-- Activity -->
         <activity
             android:name=".activity.MainActivity"
+            android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".activity.BookHotelNowActivity"
             android:screenOrientation="portrait"
@@ -235,6 +242,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MapViewDetailActivity"
+            android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MemberProfileActivity"
@@ -319,16 +327,20 @@
             android:label="@string/app_name" />
         <activity
             android:name=".activity.IntentTemp"
-            android:screenOrientation="portrait"
             android:excludeFromRecents="true"
-            android:taskAffinity=""/>
-
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
         <activity
             android:name=".activity.MyStampActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.StampDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".point.MyPointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".point.MyGiftActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
@@ -338,9 +350,10 @@
         <!-- android:name="com.facebook.sdk.ApplicationName" -->
         <!-- android:value="@string/app_name" /> -->
 
-        <!--Disable Event Facebook-->
-        <!--<meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"-->
-        <!--android:value="false"/>-->
+
+        <!-- Disable Event Facebook -->
+        <!-- <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" -->
+        <!-- android:value="false"/> -->
 
         <meta-data
             android:name="io.fabric.ApiKey"
@@ -370,16 +383,16 @@
             </intent-filter>
         </service>
 
-        <!--Appflyer-->
+        <!-- Appflyer -->
 
-        <!--<receiver-->
-        <!--android:name="com.appsflyer.MultipleInstallBroadcastReceiver"-->
-        <!--android:exported="true">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.android.vending.INSTALL_REFERRER" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
 
+        <!-- <receiver -->
+        <!-- android:name="com.appsflyer.MultipleInstallBroadcastReceiver" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.android.vending.INSTALL_REFERRER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
         <meta-data
             android:name="igaworks_app_key"
@@ -388,10 +401,10 @@
             android:name="igaworks_hash_key"
             android:value="cf866c1cf3f64426" />
 
-        <!--<service-->
-        <!--android:name=".gps.LocationService"-->
-        <!--android:enabled="true"-->
-        <!--android:exported="true" />-->
+        <!-- <service -->
+        <!-- android:name=".gps.LocationService" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true" /> -->
         <service
             android:name=".gps.GeoCodeService"
             android:exported="false" />
@@ -407,6 +420,19 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Panorama" />
+        <activity
+            android:name=".activity.MySettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.NotificationSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LanguageSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.IntroduceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
     </application>
 
 </manifest>

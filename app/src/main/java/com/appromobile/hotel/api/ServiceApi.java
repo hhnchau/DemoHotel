@@ -13,6 +13,7 @@ import com.appromobile.hotel.model.request.MobileDeviceInput;
 import com.appromobile.hotel.model.request.PushNotificationDto;
 import com.appromobile.hotel.model.request.ReportHotelDto;
 import com.appromobile.hotel.model.request.ResetPasswordDto;
+import com.appromobile.hotel.model.request.SearchHistoryDto;
 import com.appromobile.hotel.model.request.SendSmsDto;
 import com.appromobile.hotel.model.request.SocialLoginDto;
 import com.appromobile.hotel.model.request.UpdateAppUserDto;
@@ -26,6 +27,8 @@ import com.appromobile.hotel.model.request.UserCommonInfoDto;
 import com.appromobile.hotel.model.request.UserFavoriteDto;
 import com.appromobile.hotel.model.request.UserLocationForm;
 import com.appromobile.hotel.model.request.UserReviewDto;
+import com.appromobile.hotel.model.request.UserSettingDto;
+import com.appromobile.hotel.model.request.ViewCrmNotificationDto;
 import com.appromobile.hotel.model.request.WriteLogDto;
 import com.appromobile.hotel.model.view.ApiSettingForm;
 import com.appromobile.hotel.model.view.AppNoticeForm;
@@ -40,6 +43,8 @@ import com.appromobile.hotel.model.view.HotelForm;
 import com.appromobile.hotel.model.view.HotelImageForm;
 import com.appromobile.hotel.model.view.InviteFriendForm;
 import com.appromobile.hotel.model.view.BannerForm;
+import com.appromobile.hotel.model.view.MileageHistoryForm;
+import com.appromobile.hotel.model.view.MileagePointForm;
 import com.appromobile.hotel.model.view.NoticeForm;
 import com.appromobile.hotel.model.view.PaymentInfoForm;
 import com.appromobile.hotel.model.view.PopupApiForm;
@@ -52,9 +57,11 @@ import com.appromobile.hotel.model.view.RestResult;
 import com.appromobile.hotel.model.view.RewardForm;
 import com.appromobile.hotel.model.view.RoomForm;
 import com.appromobile.hotel.model.view.RoomTypeDetailForm;
+import com.appromobile.hotel.model.view.SearchHistoryForm;
 import com.appromobile.hotel.model.view.UserAreaFavoriteForm;
 import com.appromobile.hotel.model.view.UserBookingForm;
 import com.appromobile.hotel.model.view.UserReviewForm;
+import com.appromobile.hotel.model.view.UserSettingForm;
 import com.appromobile.hotel.model.view.UserStampForm;
 import com.appromobile.hotel.model.view.ViewNotificationDto;
 
@@ -345,6 +352,9 @@ public interface ServiceApi {
     @GET("/hotelapi/user/view/findPopupInfo")
     Call<PopupApiForm> findPopupInfo(@Header("authorization") String token, @Header("deviceid") String deviceid);
 
+    @GET("/hotelapi/user/view/findPopupInfoList")
+    Call<PopupApiForm> findPopupInfoList(@Header("authorization") String token, @Header("deviceid") String deviceid);
+
     @Headers({"Content-Type: application/json;charset=UTF-8", "Accept: application/json"})
     @PUT("/hotelapi/reservation/update/updateReasonNotCheckin")
     Call<RestResult> updateReasonNotCheckin(@Body UpdateReasonDto updateReasonDto, @Header("authorization") String token, @Header("deviceid") String deviceid);
@@ -389,5 +399,57 @@ public interface ServiceApi {
     @GET("/hotelapi/promotion/view/findUserStampFormDetail")
     Call<UserStampForm>  findUserStampFormDetail(@QueryMap Map<String, Object> params, @Header("authorization") String authorization,@Header("deviceid") String deviceid);
 
+    @Headers({"Content-Type: application/json;charset=UTF-8", "Accept: application/json"})
+    @PUT("/hotelapi/reservation/update/updatePayooPaymentResult")
+    Call<RestResult> updatePayooPaymentResult(@Body UpdatePaymentDto updatePaymentDto, @Header("authorization") String authorization, @Header("deviceid") String deviceid);
 
+    @GET("/hotelapi/reservation/view/findPaymentInfoFormMap")
+    Call<Map<String, Object>> findPaymentInfoFormMap(@QueryMap Map<String, Object> params, @Header("authorization") String authorization, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/user/view/checkMobileInSystem")
+    Call<RestResult> checkMobileInSystem(@QueryMap Map<String, Object> param, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/user/view/checkVerifyCode")
+    Call<RestResult> checkVerifyCode(@QueryMap Map<String, Object> params, @Header("deviceid") String deviceid);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8", "Accept: application/json"})
+    @POST("/hotelapi/reservation/view/createNewUserBooking")
+    Call<RestResult> createNewUserBooking(@Body UserBookingDto params, @Header("authorization") String token, @Header("deviceid") String deviceid);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8", "Accept: application/json"})
+    @PUT("/hotelapi/crm/update/updateViewNotificationCrm")
+    Call<RestResult> updateViewNotificationCrm(@Body ViewCrmNotificationDto params, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/wallet/view/findLimitMileageHistoryList")
+    Call<List<MileageHistoryForm>> findLimitMileageHistoryList(@QueryMap Map<String, Object> params, @Header("authorization") String token, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/wallet/view/findLimitMileageRewardForAppList")
+    Call<List<MileageHistoryForm>> findLimitMileageRewardForAppList(@QueryMap Map<String, Object> params, @Header("authorization") String token, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/wallet/view/findGeneralMileagePointInfo")
+    Call<MileagePointForm> findGeneralMileagePointInfo(@QueryMap Map<String, Object> params, @Header("authorization") String token, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/user/view/findUserSettingViaAppUserSn")
+    Call<UserSettingForm> findUserSettingViaAppUserSn(@Header("authorization") String token, @Header("deviceid") String deviceid);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8", "Accept: application/json"})
+    @PUT("/hotelapi/user/update/updateUserSetting")
+    Call<RestResult> updateUserSetting(@Body UserSettingDto userSettingDto, @Header("authorization") String token, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/user/view/searchHotelList")
+    Call<RestResult> searchHotelList(@QueryMap Map<String, Object> params, @Header("authorization") String token, @Header("deviceid") String deviceid);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8", "Accept: application/json"})
+    @PUT("/hotelapi/user/view/updateSearchHistory")
+    Call<RestResult> updateSearchHotel(@Body SearchHistoryDto searchHistoryDto, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/user/view/findLimitSearchHistoryList")
+    Call<List<SearchHistoryForm>> findLimitSearchHistoryList(@QueryMap Map<String, Object> params, @Header("authorization") String token, @Header("deviceid") String deviceid);
+
+    @GET("/hotelapi/crm/view/sendCrmNotification")
+    Call<List<RestResult>> sendCrmNotification(@QueryMap Map<String, Object> params, @Header("deviceid") String deviceid);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8", "Accept: application/json"})
+    @PUT("/hotelapi/mobile/update/updateUninstallAndroid")
+    Call<RestResult> updateUninstallAndroid(@QueryMap Map<String, Object> params, @Header("deviceid") String deviceid);
 }

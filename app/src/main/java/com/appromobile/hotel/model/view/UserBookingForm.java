@@ -7,7 +7,6 @@ import android.os.Parcelable;
  * Created by xuan on 8/19/2016.
  */
 public class UserBookingForm implements Parcelable {
-
     private int additionalHours;
     private int amountAfterCommission;
     private int amountFromUser;
@@ -19,7 +18,7 @@ public class UserBookingForm implements Parcelable {
     private String checkInTime;
     private int commissionAmount;
     private int confirmed;
-    private int couponIssuedSn;
+    private Long couponIssuedSn;
     private String couponName;
     private String createTime;
     private int discount;
@@ -52,6 +51,15 @@ public class UserBookingForm implements Parcelable {
     private String checkinCode;
     private int prepayAmount;
     private int redeemValue;
+    private String paymentCode;
+    private int discountPrice;
+    private int mileageAmount;
+    private int mileagePoint;
+    private int fsGo2joyDiscount;
+    private String transactionId;
+    private int promotionDiscount;
+    private int paymentProvider; //1:123Pay, 2:Payoo, 3:Momo ,
+    private boolean hasPaymentPromotion;
 
     public UserBookingForm() {
     }
@@ -68,7 +76,11 @@ public class UserBookingForm implements Parcelable {
         checkInTime = in.readString();
         commissionAmount = in.readInt();
         confirmed = in.readInt();
-        couponIssuedSn = in.readInt();
+        if (in.readByte() == 0) {
+            couponIssuedSn = null;
+        } else {
+            couponIssuedSn = in.readLong();
+        }
         couponName = in.readString();
         createTime = in.readString();
         discount = in.readInt();
@@ -101,6 +113,15 @@ public class UserBookingForm implements Parcelable {
         checkinCode = in.readString();
         prepayAmount = in.readInt();
         redeemValue = in.readInt();
+        paymentCode = in.readString();
+        discountPrice = in.readInt();
+        mileageAmount = in.readInt();
+        mileagePoint = in.readInt();
+        fsGo2joyDiscount = in.readInt();
+        promotionDiscount = in.readInt();
+        transactionId = in.readString();
+        paymentProvider = in.readInt();
+        hasPaymentPromotion = in.readByte() != 0;
     }
 
     public static final Creator<UserBookingForm> CREATOR = new Creator<UserBookingForm>() {
@@ -203,11 +224,11 @@ public class UserBookingForm implements Parcelable {
         this.confirmed = confirmed;
     }
 
-    public int getCouponIssuedSn() {
+    public Long getCouponIssuedSn() {
         return couponIssuedSn;
     }
 
-    public void setCouponIssuedSn(int couponIssuedSn) {
+    public void setCouponIssuedSn(Long couponIssuedSn) {
         this.couponIssuedSn = couponIssuedSn;
     }
 
@@ -467,56 +488,149 @@ public class UserBookingForm implements Parcelable {
         this.redeemValue = redeemValue;
     }
 
+    public String getPaymentCode() {
+        return paymentCode;
+    }
+
+    public void setPaymentCode(String paymentCode) {
+        this.paymentCode = paymentCode;
+    }
+
+    public int getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(int discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    public int getMileageAmount() {
+        return mileageAmount;
+    }
+
+    public UserBookingForm setMileageAmount(int mileageAmount) {
+        this.mileageAmount = mileageAmount;
+        return this;
+    }
+
+    public int getMileagePoint() {
+        return mileagePoint;
+    }
+
+    public int getFsGo2joyDiscount() {
+        return fsGo2joyDiscount;
+    }
+
+    public UserBookingForm setFsGo2joyDiscount(int fsGo2joyDiscount) {
+        this.fsGo2joyDiscount = fsGo2joyDiscount;
+        return this;
+    }
+
+    public UserBookingForm setMileagePoint(int mileagePoint) {
+        this.mileagePoint = mileagePoint;
+        return this;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public UserBookingForm setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+        return this;
+    }
+
+    public int getPromotionDiscount() {
+        return promotionDiscount;
+    }
+
+    public UserBookingForm setPromotionDiscount(int promotionDiscount) {
+        this.promotionDiscount = promotionDiscount;
+        return this;
+    }
+
+    public int getPaymentProvider() {
+        return paymentProvider;
+    }
+
+    public UserBookingForm setPaymentProvider(int paymentProvider) {
+        this.paymentProvider = paymentProvider;
+        return this;
+    }
+
+    public boolean isHasPaymentPromotion() {
+        return hasPaymentPromotion;
+    }
+
+    public UserBookingForm setHasPaymentPromotion(boolean hasPaymentPromotion) {
+        this.hasPaymentPromotion = hasPaymentPromotion;
+        return this;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(additionalHours);
-        dest.writeInt(amountAfterCommission);
-        dest.writeInt(amountFromUser);
-        dest.writeString(appUserNickName);
-        dest.writeInt(appUserSn);
-        dest.writeInt(bookingNo);
-        dest.writeInt(bookingStatus);
-        dest.writeString(checkInDatePlan);
-        dest.writeString(checkInTime);
-        dest.writeInt(commissionAmount);
-        dest.writeInt(confirmed);
-        dest.writeInt(couponIssuedSn);
-        dest.writeString(couponName);
-        dest.writeString(createTime);
-        dest.writeInt(discount);
-        dest.writeString(endDate);
-        dest.writeString(endTime);
-        dest.writeInt(firstHours);
-        dest.writeString(hotelAddress);
-        dest.writeString(hotelName);
-        dest.writeInt(hotelSn);
-        dest.writeInt(hotelStatus);
-        dest.writeByte((byte) (inPast ? 1 : 0));
-        dest.writeString(lastUpdate);
-        dest.writeInt(memberId);
-        dest.writeString(mobile);
-        dest.writeByte((byte) (prepay ? 1 : 0));
-        dest.writeInt(priceAdditionalHours);
-        dest.writeInt(priceFirstHours);
-        dest.writeInt(priceOneDay);
-        dest.writeInt(priceOvernight);
-        dest.writeString(roomTypeName);
-        dest.writeInt(roomTypeSn);
-        dest.writeInt(sn);
-        dest.writeString(startTime);
-        dest.writeInt(totalAmount);
-        dest.writeInt(type);
-        dest.writeInt(paymentOption);
-        dest.writeInt(discountType);
-        dest.writeInt(maxDiscount);
-        dest.writeParcelable(donateCoupon, flags);
-        dest.writeString(checkinCode);
-        dest.writeInt(prepayAmount);
-        dest.writeInt(redeemValue);
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(additionalHours);
+        parcel.writeInt(amountAfterCommission);
+        parcel.writeInt(amountFromUser);
+        parcel.writeString(appUserNickName);
+        parcel.writeInt(appUserSn);
+        parcel.writeInt(bookingNo);
+        parcel.writeInt(bookingStatus);
+        parcel.writeString(checkInDatePlan);
+        parcel.writeString(checkInTime);
+        parcel.writeInt(commissionAmount);
+        parcel.writeInt(confirmed);
+        if (couponIssuedSn == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(couponIssuedSn);
+        }
+        parcel.writeString(couponName);
+        parcel.writeString(createTime);
+        parcel.writeInt(discount);
+        parcel.writeString(endDate);
+        parcel.writeString(endTime);
+        parcel.writeInt(firstHours);
+        parcel.writeString(hotelAddress);
+        parcel.writeString(hotelName);
+        parcel.writeInt(hotelSn);
+        parcel.writeInt(hotelStatus);
+        parcel.writeByte((byte) (inPast ? 1 : 0));
+        parcel.writeString(lastUpdate);
+        parcel.writeInt(memberId);
+        parcel.writeString(mobile);
+        parcel.writeByte((byte) (prepay ? 1 : 0));
+        parcel.writeInt(priceAdditionalHours);
+        parcel.writeInt(priceFirstHours);
+        parcel.writeInt(priceOneDay);
+        parcel.writeInt(priceOvernight);
+        parcel.writeString(roomTypeName);
+        parcel.writeInt(roomTypeSn);
+        parcel.writeInt(sn);
+        parcel.writeString(startTime);
+        parcel.writeInt(totalAmount);
+        parcel.writeInt(type);
+        parcel.writeInt(paymentOption);
+        parcel.writeInt(discountType);
+        parcel.writeInt(maxDiscount);
+        parcel.writeParcelable(donateCoupon, i);
+        parcel.writeString(checkinCode);
+        parcel.writeInt(prepayAmount);
+        parcel.writeInt(redeemValue);
+        parcel.writeString(paymentCode);
+        parcel.writeInt(discountPrice);
+        parcel.writeInt(mileageAmount);
+        parcel.writeInt(mileagePoint);
+        parcel.writeInt(fsGo2joyDiscount);
+        parcel.writeInt(promotionDiscount);
+        parcel.writeString(transactionId);
+        parcel.writeInt(paymentProvider);
+        parcel.writeByte((byte) (hasPaymentPromotion ? 1 : 0));
     }
 }

@@ -32,6 +32,7 @@ import com.appromobile.hotel.activity.InviteFriendActivity;
 import com.appromobile.hotel.activity.LoginActivity;
 import com.appromobile.hotel.activity.MyCouponActivity;
 import com.appromobile.hotel.activity.MyFavoriteActivity;
+import com.appromobile.hotel.activity.MySettingsActivity;
 import com.appromobile.hotel.activity.MyStampActivity;
 import com.appromobile.hotel.activity.NoticeQAActivity;
 import com.appromobile.hotel.activity.TermPrivacyPolicyActivity;
@@ -42,6 +43,7 @@ import com.appromobile.hotel.enums.SignupType;
 import com.appromobile.hotel.model.request.PushNotificationDto;
 import com.appromobile.hotel.model.view.AppUserForm;
 import com.appromobile.hotel.model.view.RestResult;
+import com.appromobile.hotel.point.MyPointActivity;
 import com.appromobile.hotel.utils.DialogCallback;
 import com.appromobile.hotel.utils.DialogUtils;
 import com.appromobile.hotel.utils.MyLog;
@@ -65,7 +67,7 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
     private AppUserForm appUserForm;
     ToggleButton chkNotification;
     private boolean isTrustPassCode = false;
-    private ImageButton btnMyFavoriteArrow, btnHistoryArrow, btnCouponArrow, btnNoticeQAArrow, btnTermPolicyArrow, btnInviteFriendArrow;
+    private ImageButton btnMySettingsArrow, btnMyFavoriteArrow, btnHistoryArrow, btnCouponArrow, btnPointArrow, btnNoticeQAArrow, btnTermPolicyArrow, btnInviteFriendArrow;
     private TextView txtBadgeNotice, txtBadgeBooking;
 
     public MyPageFragment() {
@@ -81,8 +83,11 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
         mainScroll = rootView.findViewById(R.id.mainScroll);
         chkNotification = rootView.findViewById(R.id.chkNotification);
         rootView.findViewById(R.id.btnAccountSetting).setOnClickListener(this);
+
+        rootView.findViewById(R.id.btnMySettings).setOnClickListener(this);
         rootView.findViewById(R.id.btnMyFavorite).setOnClickListener(this);
         rootView.findViewById(R.id.btnHistory).setOnClickListener(this);
+        rootView.findViewById(R.id.btnPoint).setOnClickListener(this);
         rootView.findViewById(R.id.btnCoupon).setOnClickListener(this);
         rootView.findViewById(R.id.btnNoticeQA).setOnClickListener(this);
         rootView.findViewById(R.id.btnTermPolicy).setOnClickListener(this);
@@ -95,14 +100,18 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
         rootView.findViewById(R.id.btnAboutArrow).setOnClickListener(this);
         rootView.findViewById(R.id.btnStamp).setOnClickListener(this);
         rootView.findViewById(R.id.btnStampArrow).setOnClickListener(this);
+
+        btnMySettingsArrow = rootView.findViewById(R.id.btnMySettingsArrow);
         btnInviteFriendArrow = rootView.findViewById(R.id.btnInviteFriendArrow);
         btnMyFavoriteArrow = rootView.findViewById(R.id.btnMyFavoriteArrow);
         btnHistoryArrow = rootView.findViewById(R.id.btnHistoryArrow);
+        btnPointArrow = rootView.findViewById(R.id.btnPointArrow);
         btnCouponArrow = rootView.findViewById(R.id.btnCouponArrow);
         btnNoticeQAArrow = rootView.findViewById(R.id.btnNoticeQAArrow);
         btnTermPolicyArrow = rootView.findViewById(R.id.btnTermPolicyArrow);
         btnMyFavoriteArrow.setOnClickListener(this);
         btnHistoryArrow.setOnClickListener(this);
+        btnPointArrow.setOnClickListener(this);
         btnCouponArrow.setOnClickListener(this);
         btnNoticeQAArrow.setOnClickListener(this);
         btnTermPolicyArrow.setOnClickListener(this);
@@ -342,6 +351,10 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
             case R.id.btnAccountSetting:
                 gotoAccountSetting();
                 break;
+            case R.id.btnMySettings:
+            case R.id.btnMySettingsArrow:
+                gotoMySettingsActivity();
+                break;
             case R.id.btnMyFavoriteArrow:
             case R.id.btnMyFavorite:
                 gotoMyFavorite();
@@ -352,6 +365,10 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
                 //PreferenceUtils.setCounterBooking(getActivity(), 0);
                 //txtBadgeBooking.setText(null);
                 gotoHistory();
+                break;
+            case R.id.btnPointArrow:
+            case R.id.btnPoint:
+                gotoMyPoint();
                 break;
             case R.id.btnCouponArrow:
             case R.id.btnCoupon:
@@ -391,7 +408,23 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-    private void gotoMyStamp(){
+    private void gotoMySettingsActivity() {
+        if (getActivity() != null) {
+            Intent intent = new Intent(getContext(), MySettingsActivity.class);
+            getActivity().startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+        }
+    }
+
+    private void gotoMyPoint() {
+        if (getActivity() != null) {
+            Intent intent = new Intent(getContext(), MyPointActivity.class);
+            getActivity().startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+        }
+    }
+
+    private void gotoMyStamp() {
         if (getActivity() != null) {
             Intent intent = new Intent(getContext(), MyStampActivity.class);
             getActivity().startActivity(intent);

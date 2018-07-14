@@ -3,6 +3,7 @@ package com.appromobile.hotel;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.provider.Settings;
 import android.support.multidex.MultiDex;
@@ -17,6 +18,7 @@ import com.appromobile.hotel.model.view.PromotionInfoForm;
 import com.appromobile.hotel.model.view.UserAreaFavoriteForm;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
+import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
 
 import com.google.android.gms.auth.api.Auth;
@@ -28,6 +30,7 @@ import com.google.firebase.FirebaseApp;
 import com.igaworks.IgawCommon;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -53,6 +56,7 @@ public class HotelApplication extends Application {
     public static boolean checkOpenedApp;
     public static List<UserAreaFavoriteForm> userAreaFavoriteForms = null;
     public static String DEVICE_ID;
+    public static String ID;
     public static int LIMIT_REQUEST = 30;
     public static final int TOTAL_USER_FAV = 3;
     public static boolean isEnglish;
@@ -80,12 +84,20 @@ public class HotelApplication extends Application {
         initializeGoogleSignIn();
 
         //Set Language
-        String language = Utils.getDisplayLanguage();
+
+        String language = PreferenceUtils.getLanguage(this);
 
         isEnglish = !language.equals(ParamConstants.VIETNAM);
 
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
         //Set device Id
-        DEVICE_ID = Utils.md5(Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID));
+        ID = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        DEVICE_ID = Utils.md5(ID);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.interceptors().add(new HotelRequestInterceptor(this));
@@ -126,8 +138,6 @@ public class HotelApplication extends Application {
             }
         });
         IgawCommon.autoSessionTracking(this);
-
-
     }
 
     public static Context getContext() {
@@ -157,4 +167,5 @@ public class HotelApplication extends Application {
     public static void activityDestroy() {
         activityVisible = false;
     }
+
 }

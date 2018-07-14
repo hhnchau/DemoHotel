@@ -18,6 +18,12 @@ public class AppUserForm implements Parcelable{
     private int sn;
     private String userId;
     private int viaApp;
+    private int mileageAmount;
+    private int mileageEarned;
+    private int mileageExpired;
+    private String mileageFirstTime;
+    private int mileageUsed;
+    private int language;
 
     public String getAddress() {
         return address;
@@ -107,6 +113,55 @@ public class AppUserForm implements Parcelable{
         this.viaApp = viaApp;
     }
 
+    public int getMileageAmount() {
+        return mileageAmount;
+    }
+
+    public void setMileageAmount(int mileageAmount) {
+        this.mileageAmount = mileageAmount;
+    }
+
+    public int getMileageEarned() {
+        return mileageEarned;
+    }
+
+    public void setMileageEarned(int mileageEarned) {
+        this.mileageEarned = mileageEarned;
+    }
+
+    public int getMileageExpired() {
+        return mileageExpired;
+    }
+
+    public void setMileageExpired(int mileageExpired) {
+        this.mileageExpired = mileageExpired;
+    }
+
+    public String getMileageFirstTime() {
+        return mileageFirstTime;
+    }
+
+    public void setMileageFirstTime(String mileageFirstTime) {
+        this.mileageFirstTime = mileageFirstTime;
+    }
+
+    public int getMileageUsed() {
+        return mileageUsed;
+    }
+
+    public void setMileageUsed(int mileageUsed) {
+        this.mileageUsed = mileageUsed;
+    }
+
+    public int getLanguage() {
+        return language;
+    }
+
+    public AppUserForm setLanguage(int language) {
+        this.language = language;
+        return this;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -125,6 +180,12 @@ public class AppUserForm implements Parcelable{
         dest.writeInt(this.sn);
         dest.writeString(this.userId);
         dest.writeInt(this.viaApp);
+        dest.writeInt(this.mileageAmount);
+        dest.writeInt(this.mileageEarned);
+        dest.writeInt(this.mileageExpired);
+        dest.writeString(this.mileageFirstTime);
+        dest.writeInt(this.mileageUsed);
+        dest.writeInt(this.language);
     }
 
     public AppUserForm() {
@@ -142,6 +203,12 @@ public class AppUserForm implements Parcelable{
         this.sn = in.readInt();
         this.userId = in.readString();
         this.viaApp = in.readInt();
+        this.mileageAmount = in.readInt();
+        this.mileageEarned = in.readInt();
+        this.mileageExpired = in.readInt();
+        this.mileageFirstTime = in.readString();
+        this.mileageUsed = in.readInt();
+        this.language = in.readInt();
     }
 
     public static final Creator<AppUserForm> CREATOR = new Creator<AppUserForm>() {

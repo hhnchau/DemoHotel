@@ -1,11 +1,14 @@
 package com.appromobile.hotel.gcm.action;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +27,9 @@ import java.util.List;
  * Created by appro on 26/09/2017.
  */
 public class ControllerNotify {
+    //Create Chanel for android 8
+    final String PRIMARY_CHANNEL = "default";
+
     private Context context;
     private ActionNotify actionNotify;
     private PendingIntent pendingIntent;
@@ -37,7 +43,7 @@ public class ControllerNotify {
     }
 
     public void show() {
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, PRIMARY_CHANNEL);
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             mBuilder.setSmallIcon(R.drawable.go2joy_notification_19);
         } else {
@@ -95,6 +101,16 @@ public class ControllerNotify {
 
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (mNotificationManager != null) {
+
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                @SuppressLint("WrongConstant") NotificationChannel chan1 = new NotificationChannel(PRIMARY_CHANNEL,
+                        "OKOKO", NotificationManager.IMPORTANCE_DEFAULT);
+                chan1.setLightColor(Color.GREEN);
+                chan1.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+                mNotificationManager.createNotificationChannel(chan1);
+            }
+
             Notification notification = mBuilder.build();
             notification.flags |= Notification.FLAG_AUTO_CANCEL;
 

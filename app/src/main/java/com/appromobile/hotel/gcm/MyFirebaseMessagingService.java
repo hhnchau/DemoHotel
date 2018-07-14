@@ -1,12 +1,15 @@
 package com.appromobile.hotel.gcm;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -15,18 +18,19 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 
+
 import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.activity.MainActivity;
 import com.appromobile.hotel.activity.MyCouponActivity;
 import com.appromobile.hotel.activity.SplashActivity;
-import com.appromobile.hotel.activity.StampDetailActivity;
+import com.appromobile.hotel.api.controllerApi.ControllerApi;
 import com.appromobile.hotel.enums.NotificationAction;
 import com.appromobile.hotel.enums.NotificationType;
 import com.appromobile.hotel.gcm.action.ActionNotify;
-import com.appromobile.hotel.gcm.action.ButtonNotify;
 import com.appromobile.hotel.gcm.action.ControllerNotify;
 import com.appromobile.hotel.gcm.action.PendingIntentNotify;
+import com.appromobile.hotel.model.view.AppUserForm;
 import com.appromobile.hotel.model.view.NotificationData;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
@@ -39,9 +43,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
@@ -62,7 +64,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             if (notificationData != null) {
 
-                notificationAppNotice(notificationData);
+                if (notificationData.getType() == NotificationType.UNINSTALL) {
+
+                    ControllerApi.getmInstance().updateUninstallAndroid();
+
+                }else {
+
+                    notificationAppNotice(notificationData);
+
+                }
 
             }
 
@@ -108,7 +118,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } else if (notificationData.getType() == NotificationType.COUNSELING) {
 
             if (notificationData.getActionType() == NotificationAction.ACTION_NEW) {
-                notificatonTitle = getString(R.string.you_have_new_answer);
+                notificatonTitle = notificationData.getTitle();
             } else if (notificationData.getActionType() == NotificationAction.ACTION_UPDATE) {
                 notificatonTitle = getString(R.string.you_have_update_answer);
             }
@@ -159,10 +169,28 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     SplashActivity.class
             );
 
+            AppUserForm appUserForm = PreferenceUtils.getAppUser(this);
+            String name = "Bạn";
+            if (appUserForm != null && !PreferenceUtils.getToken(this).equals("")) {
+                name = appUserForm.getNickName();
+            }
+
+            String title = notificationData.getTitle();
+            if (title != null && !title.equals("")){
+                title = title.replace("#userName", name);
+            }
+            String subTitle = notificationData.getSubTitle();
+            if (subTitle != null && !subTitle.equals("")){
+                subTitle = subTitle.replace("#userName", name);
+            }else {
+                subTitle = title;
+                title = getString(R.string.app_name);
+            }
+
             ActionNotify actionNotify = new ActionNotify(
                     getString(R.string.app_name),
-                    getString(R.string.app_name),
-                    getString(R.string.notification_flashsale),
+                    title,
+                    subTitle,
                     null
             );
 
@@ -249,15 +277,40 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             if (notificationData.isKey()) {
                 resID = getResources().getIdentifier(notificationData.getTitle(), "string", getApplicationContext().getPackageName());
                 msg = getString(resID);
+                if (notificationData.getOtherInfoList().length > 1) {
+                    msg = getString(resID, notificationData.getOtherInfoList()[0], notificationData.getOtherInfoList()[1]);
+                }else if(notificationData.getOtherInfoList().length > 0){
+                    msg = getString(resID, notificationData.getOtherInfoList()[0]);
+                }
             } else {
-                resID = getResources().getIdentifier(notificationData.getTitle(), "string", getApplicationContext().getPackageName());
-                msg = getString(resID);
+                msg = notificationData.getTitle();
             }
 
             ActionNotify actionNotify = new ActionNotify(
                     getString(R.string.app_name),
                     getString(R.string.app_name),
                     msg,
+                    notificationData.getIconUrl()
+            );
+            ControllerNotify notifyAction = new ControllerNotify(this, actionNotify, pendingIntent, null);
+            notifyAction.show();
+
+        } else if (notificationData.getType() == NotificationType.CRM) {
+            //Store Type Crm
+            PreferenceUtils.setTypeCrm(getApplication(), Integer.parseInt(notificationData.getOtherInfoList()[1]));
+            PreferenceUtils.setSnNotifyCrm(getApplication(), notificationData.getSn());
+
+            PendingIntent pendingIntent = PendingIntentNotify.getInstance().getPendingIntent(
+                    this,
+                    notificationData,
+                    MainActivity.class,
+                    MainActivity.class
+            );
+
+            ActionNotify actionNotify = new ActionNotify(
+                    getString(R.string.app_name),
+                    notificationData.getTitle(),
+                    notificationData.getSubTitle(),
                     notificationData.getIconUrl()
             );
             ControllerNotify notifyAction = new ControllerNotify(this, actionNotify, pendingIntent, null);
@@ -271,9 +324,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificatonTitle = getString(R.string.you_have_a_reservation_reject);
         }
 
+        //Create Chanel for android 8
+        final String PRIMARY_CHANNEL = "default";
+
         //Set Notification
         if (!notificatonTitle.equals("")) {
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL);
 
             //Check
             if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -358,7 +414,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             mBuilder.setDefaults(Notification.DEFAULT_SOUND);
 
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            //For android 8
             if (mNotificationManager != null) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    @SuppressLint("WrongConstant") NotificationChannel chan1 = new NotificationChannel(PRIMARY_CHANNEL,
+                            "OKOKO", NotificationManager.IMPORTANCE_DEFAULT);
+                    chan1.setLightColor(Color.GREEN);
+                    chan1.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+                    mNotificationManager.createNotificationChannel(chan1);
+                }
+
+
                 Notification notification = mBuilder.build();
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
@@ -368,6 +435,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 }
 
                 mNotificationManager.notify(notiId, notification);
+
             }
         }
 

@@ -4,6 +4,7 @@ package com.appromobile.hotel.enums;
  * Created by xuan on 8/5/2016.
  */
 public enum Gender {
+    MF(0),
     Male(1),
     Female(2);
 
@@ -22,6 +23,6 @@ public enum Gender {
             case 2:
                 return Female;
         }
-        return Female;
+        return MF;
     }
 }

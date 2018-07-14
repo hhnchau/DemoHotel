@@ -1,31 +1,77 @@
 package com.appromobile.hotel.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+
+import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appromobile.hotel.BuildConfig;
 import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
-import com.appromobile.hotel.model.request.AppUserDto;
+import com.appromobile.hotel.api.controllerApi.ControllerApi;
+import com.appromobile.hotel.api.controllerApi.ResultApi;
+import com.appromobile.hotel.enums.Gender;
+import com.appromobile.hotel.enums.SignupType;
+import com.appromobile.hotel.gcm.FirebaseUtils;
+import com.appromobile.hotel.model.request.AppUserSocialDto;
+import com.appromobile.hotel.model.request.MobileDeviceInput;
+import com.appromobile.hotel.model.request.SocialLoginDto;
+import com.appromobile.hotel.model.view.ApiSettingForm;
+import com.appromobile.hotel.model.view.AppUserForm;
+import com.appromobile.hotel.model.view.FacebookInfo;
+import com.appromobile.hotel.model.view.GooglePlusInfo;
 import com.appromobile.hotel.model.view.RestResult;
 import com.appromobile.hotel.utils.DialogUtils;
+import com.appromobile.hotel.utils.MyLog;
+import com.appromobile.hotel.utils.ParamConstants;
+import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.UtilityValidate;
 import com.appromobile.hotel.utils.Utils;
-import com.appromobile.hotel.widgets.EditTextSFRegular;
-import com.appromobile.hotel.widgets.TextViewSFBold;
-import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.SignUpEvent;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.Status;
+import com.google.gson.Gson;
+import com.jaredrummler.android.device.DeviceName;
 
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
-import io.fabric.sdk.android.Fabric;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,217 +79,428 @@ import retrofit2.Response;
 /**
  * Created by xuan on 7/25/2016.
  */
-public class SignupActivity extends BaseActivity implements View.OnClickListener {
-    EditTextSFRegular txtEmail, txtPassword, txtConfirmPassword;
-    TextViewSFBold btnCheckDuplicate;
-    ImageView imgValidateConfirmPassword, imgValidatePassword;
-    ImageView chkAgreement;
-    ImageView btnClose;
-    TextViewSFRegular tvMessage, tvDisplayMessage;
+public class SignupActivity extends BaseActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
+    private EditText txtEmail, txtPassword, txtConfirmPassword, edtfocus;
+    private ImageView imgValidateMail, imgValidateConfirmPassword, imgValidatePassword;
+    private ImageView chkAgreement;
+    private View lineAgree;
+    private TextView tvAgree;
+    private ImageView btnClose;
 
-    LinearLayout btnGotoAgreement;
-    TextView btnNext;
-    boolean isValidateEmail = false;
-    boolean isPasswordValid = false;
-    boolean isConfirmPasswordValid = false;
-    boolean isCheckAgreement = false;
-    private String password;
+    private LinearLayout btnGotoAgreement;
+    private TextView btnNext;
+    private boolean isValidateEmail = false;
+    private boolean isPasswordValid = false;
+    private boolean isConfirmPasswordValid = false;
+    private boolean isCheckAgreement = false;
+
+    private TextInputLayout inputLayoutMail, inputLayoutPassword, inputLayoutCofirm;
+
+    private TextView tvSignUpFacebook, tvSignUpGooglePlus;
+
+    private SignupType loginType;
+    private AccessToken mAccessToken;
+    private CallbackManager callbackManager;
+
+    private GoogleApiClient googleApiClient;
+    private static final int RC_SIGN_IN = 1001;
+    private GoogleSignInOptions googleSignInOptions;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (googleApiClient != null) {
+            googleApiClient.connect();
+        } else {
+            initGoogleApi();
+            googleApiClient.connect();
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (googleApiClient != null) {
+            googleApiClient.disconnect();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setScreenName();
-        try {
-            Fabric.with(this, new Crashlytics());
-        } catch (Exception e) {
-        }
+
+        //Don't show keyboard
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         setContentView(R.layout.signup_activity);
-        txtEmail =  findViewById(R.id.txtEmail);
-        txtPassword =  findViewById(R.id.txtPassword);
-        txtConfirmPassword =  findViewById(R.id.txtConfirmPassword);
-        btnCheckDuplicate =  findViewById(R.id.btnCheckDuplicate);
-        imgValidateConfirmPassword =  findViewById(R.id.imgValidateConfirmPassword);
-        imgValidatePassword = findViewById(R.id.imgValidatePassword);
-        chkAgreement = findViewById(R.id.chkAgreement);
-        btnClose = findViewById(R.id.btnClose);
-        tvMessage =  findViewById(R.id.tvMessage);
-        tvDisplayMessage = findViewById(R.id.tvDisplayMessage);
-        btnGotoAgreement =  findViewById(R.id.btnGotoAgreement);
-        btnNext =  findViewById(R.id.btnNext);
 
-        btnCheckDuplicate.setOnClickListener(this);
+        callbackManager = CallbackManager.Factory.create();
+        mAccessToken = AccessToken.getCurrentAccessToken();
+
+        txtEmail = findViewById(R.id.txtEmail);
+        txtPassword = findViewById(R.id.txtPassword);
+        imgValidateMail = findViewById(R.id.imgValidateEmail);
+        imgValidateMail.setOnClickListener(this);
+        txtConfirmPassword = findViewById(R.id.txtConfirmPassword);
+        imgValidateConfirmPassword = findViewById(R.id.imgValidateConfirmPassword);
+        imgValidateConfirmPassword.setOnClickListener(this);
+        imgValidatePassword = findViewById(R.id.imgValidatePassword);
+        imgValidatePassword.setOnClickListener(this);
+        chkAgreement = findViewById(R.id.chkAgreement);
+        chkAgreement.setOnClickListener(this);
+        btnClose = findViewById(R.id.btnClose);
+        btnGotoAgreement = findViewById(R.id.btnGotoAgreement);
+        btnNext = findViewById(R.id.btnNext);
         btnClose.setOnClickListener(this);
         btnNext.setOnClickListener(this);
         btnGotoAgreement.setOnClickListener(this);
+        inputLayoutMail = findViewById(R.id.input_layout_mail);
+        inputLayoutPassword = findViewById(R.id.input_layout_password);
+        inputLayoutCofirm = findViewById(R.id.input_layout_confirm);
+        lineAgree = findViewById(R.id.lineAgree);
+        tvAgree = findViewById(R.id.tvAgree);
+        edtfocus = findViewById(R.id.focus);
+        tvSignUpFacebook = findViewById(R.id.tvSignUpFacebook);
+        tvSignUpGooglePlus = findViewById(R.id.tvSignUpGooglePlus);
 
-        Utils.showKeyboard(this);
+        String action = getIntent().getAction();
+        if (action != null && action.equals("Introduce")) {
+            findViewById(R.id.boxSignUpWith).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.boxSignUpWith).setVisibility(View.GONE);
+        }
 
-        chkAgreement.setOnClickListener(new View.OnClickListener() {
+        Utils.hideKeyboard(this, edtfocus);
+
+        lineAgree.setBackgroundColor(getResources().getColor(R.color.org));
+        tvAgree.setVisibility(View.VISIBLE);
+
+        //Password Check
+        txtPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    imgValidatePassword.setVisibility(View.GONE);
+                    checkFormatPassword();
+                } else {
+                    imgValidatePassword.setVisibility(View.VISIBLE);
+                    inputLayoutPassword.setErrorEnabled(false);
+                }
+            }
+        });
+
+        //Password Check
+        txtConfirmPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    imgValidateConfirmPassword.setVisibility(View.GONE);
+                    checkFormatConfirmPassword();
+                } else {
+                    imgValidateConfirmPassword.setVisibility(View.VISIBLE);
+                    inputLayoutCofirm.setErrorEnabled(false);
+                }
+            }
+        });
+
+
+        //Check Email
+        txtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    imgValidateMail.setVisibility(View.GONE);
+                    checkDuplicateEmail();
+                } else {
+                    imgValidateMail.setVisibility(View.VISIBLE);
+                    inputLayoutMail.setErrorEnabled(false);
+                }
+            }
+        });
+
+        //SignUp Facebook
+        tvSignUpFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isCheckAgreement = !isCheckAgreement;
-                checkFormValidate(isCheckAgreement);
-                Utils.hideKeyboard(SignupActivity.this, txtEmail);
-                if (isCheckAgreement) {
-                    chkAgreement.setImageResource(R.drawable.checkbox_selected);
-                } else {
-                    chkAgreement.setImageResource(R.drawable.checkbox);
-                }
+                loginFacebook();
             }
         });
 
-
-        txtPassword.addTextChangedListener(new TextWatcher() {
+        //SignUp Google
+        tvSignUpGooglePlus.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+            public void onClick(View v) {
+                revokeAccessFromGooglePlus();
             }
+        });
+    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+    public void loginFacebook() {
+        loginType = SignupType.Facebook;
+        if (mAccessToken != null && !mAccessToken.isExpired()) {
+            MyLog.writeLog("facebook.getAccessToken().getSocialToken(): " + mAccessToken.getToken());
+            tryGetFacebookInfo(mAccessToken);
+        } else {
+            LoginManager.getInstance().registerCallback(callbackManager,
+                    new FacebookCallback<LoginResult>() {
+                        @Override
+                        public void onSuccess(com.facebook.login.LoginResult loginResult) {
+                            MyLog.writeLog("facebook.getAccessToken().getSocialToken(): " + loginResult.getAccessToken().getToken());
+                            AccessToken.setCurrentAccessToken(loginResult.getAccessToken());
+                            mAccessToken = AccessToken.getCurrentAccessToken();
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                isPasswordValid = false;
-                String password = txtPassword.getText().toString();
-                if (password.length() < 6 || password.length() > 16) {
-                    tvMessage.setText(getString(R.string.password_format_message));
-                    tvMessage.setVisibility(View.VISIBLE);
-                    imgValidatePassword.setImageResource(R.drawable.cancel);
-                    tvDisplayMessage.setVisibility(View.GONE);
-                    return;
-                } else {
-                    if (UtilityValidate.isPasswordValid(password)) {
-                        tvMessage.setText("");
-                        tvMessage.setVisibility(View.GONE);
-                        imgValidatePassword.setImageResource(R.drawable.check);
-                        isPasswordValid = true;
-                        if (!txtConfirmPassword.getText().toString().equals("")) {
-                            if (!txtConfirmPassword.getText().toString().equals(txtPassword.getText().toString())) {
-                                tvMessage.setText(getString(R.string.password_and_confirm_not_match));
-                                tvMessage.setVisibility(View.VISIBLE);
-                                tvDisplayMessage.setVisibility(View.GONE);
-//                                btnNext.setEnabled(false);
-//                                btnNext.setBackgroundColor(getResources().getColor(R.color.button_color_disable));
-                                return;
-                            }
+                            tryGetFacebookInfo(loginResult.getAccessToken());
                         }
-                    } else {
-                        imgValidatePassword.setImageResource(R.drawable.cancel);
-                        tvMessage.setText(getString(R.string.password_format_message));
-                        tvMessage.setVisibility(View.VISIBLE);
-                        tvDisplayMessage.setVisibility(View.GONE);
-//                        btnNext.setEnabled(false);
-//                        btnNext.setBackgroundColor(getResources().getColor(R.color.button_color_disable));
-                        return;
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+
+                        @Override
+                        public void onError(FacebookException error) {
+                        }
+                    });
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile", "user_friends"));
+
+        }
+    }
+
+    private void tryGetFacebookInfo(AccessToken accessToken) {
+        GraphRequest request = GraphRequest.newMeRequest(
+                accessToken,
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        // Application code
+                        if (object != null) {
+                            Gson gson = new Gson();
+                            FacebookInfo facebookInfo = gson.fromJson(object.toString(), FacebookInfo.class);
+
+                            if (mAccessToken != null && mAccessToken.getToken() != null) {
+                                tryLoginByFacebook(facebookInfo);
+                            } else {
+                                Toast.makeText(SignupActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Toast.makeText(SignupActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id, name, birthday, gender, email");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
+    private void tryLoginByFacebook(final FacebookInfo facebookInfo) {
+        SocialLoginDto loginDto = new SocialLoginDto();
+        loginDto.setMobileUserId(HotelApplication.DEVICE_ID);
+        loginDto.setSocialToken(mAccessToken.getToken());
+        loginDto.setCache(false);
+        loginDto.setViaApp(SignupType.Facebook.getType());
+
+        DialogUtils.showLoadingProgress(this, false);
+        HotelApplication.serviceApi.loginViaSocialApp(loginDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+                if (response.isSuccessful()) {
+                    RestResult restResult = response.body();
+                    if (restResult != null) {
+                        if (restResult.getResult() == 1) {
+                            PreferenceUtils.setLoginType(SignupActivity.this, loginType);
+                            PreferenceUtils.setToken(SignupActivity.this, restResult.getOtherInfo());
+                            PreferenceUtils.setLoginType(SignupActivity.this, loginType);
+                            updateTokenToServer();
+                            getAppUserForm();
+                        } else if (restResult.getResult() == 11) {
+                            Toast.makeText(SignupActivity.this, getString(R.string.account_cannot_used), Toast.LENGTH_LONG).show();
+                        } else if (restResult.getResult() == 2) {
+                            //Don't have account, signup with facebook
+                            signupFacebook(facebookInfo);
+                        } else {
+                            Toast.makeText(SignupActivity.this, restResult.getMessage(), Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
-                checkFormValidate(isCheckAgreement);
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                Toast.makeText(SignupActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
             }
         });
+    }
 
-        txtConfirmPassword.addTextChangedListener(new TextWatcher() {
+    private void signupFacebook(final FacebookInfo facebookInfo) {
+        AppUserSocialDto appUserDto = new AppUserSocialDto();
+        appUserDto.setMobileUserId(HotelApplication.DEVICE_ID);
+        appUserDto.setEmail(facebookInfo.getEmail());
+        appUserDto.setToken(mAccessToken.getToken());
+        appUserDto.setNickName(facebookInfo.getName());
+        appUserDto.setViaApp(SignupType.Facebook.getType());
+        Gender gender = Gender.Male;
+        if (facebookInfo.getGender() != null) {
+            if (!facebookInfo.getGender().equals("male")) {
+                gender = Gender.Female;
+            }
+        }
+        appUserDto.setGender(gender.getType());
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.fb_date_format_view), Locale.ENGLISH);
+        try {
+            Date date = simpleDateFormat.parse(facebookInfo.getBirthday());
+            calendar.setTimeInMillis(date.getTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+            calendar.set(Calendar.YEAR, 1990);
+            calendar.set(Calendar.MONTH, 1);
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
+        appUserDto.setBirthday(simpleDateFormat.format(calendar.getTime()));
+
+        appUserDto.setAddress("");
+        appUserDto.setMobile("");
+        appUserDto.setViaApp(SignupType.Facebook.getType());
+
+        Intent intent = new Intent(this, MemberProfileSocialActivity.class);
+        intent.setAction("social");
+        intent.putExtra("AppUserSocialDto", appUserDto);
+        startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOME);
+
+        //Event Fabric
+        if (HotelApplication.isRelease) {
+            Answers.getInstance().logSignUp(new SignUpEvent().putMethod("Facebook").putSuccess(true));
+        }
+    }
+
+    private void revokeAccessFromGooglePlus() {
+        if (googleApiClient != null) {
+            if (googleApiClient.isConnected()) {
+                googleApiClient.clearDefaultAccountAndReconnect().setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                        loginGooglePlus();
+                    }
+                });
+            }
+        }
+    }
+
+    private void initGoogleApi() {
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(new Scope(Scopes.PLUS_LOGIN))
+                .requestScopes(new Scope(Scopes.PLUS_ME))
+                .requestIdToken("170640652110-tc01mpf2ucq65o8dejksatq699ofnfc0.apps.googleusercontent.com")
+                .requestEmail().requestProfile()
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
+                .build();
+        googleApiClient.registerConnectionFailedListener(this);
+        googleApiClient.registerConnectionCallbacks(this);
+    }
+
+    private void loginGooglePlus() {
+
+        //Clear Account Google +
+        revokeAccessFromGooglePlus();
+
+
+        loginType = SignupType.GooglePlus;
+        try {
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        } catch (Exception e) {
+            initGoogleApi();
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }
+
+    }
+
+    private void updateTokenToServer() {
+        MobileDeviceInput mobileDeviceInput = new MobileDeviceInput();
+        mobileDeviceInput.setLanguage(2);
+        mobileDeviceInput.setMobileUserId(HotelApplication.DEVICE_ID);
+        mobileDeviceInput.setOs(2);
+        mobileDeviceInput.setAppVersion(BuildConfig.VERSION_NAME);
+        mobileDeviceInput.setPhoneModel(DeviceName.getDeviceName());
+        mobileDeviceInput.setOsVersion(Build.VERSION.RELEASE);
+        mobileDeviceInput.setTokenId(FirebaseUtils.getRegistrationId(this));
+        mobileDeviceInput.setDeviceCode(HotelApplication.ID);
+        HotelApplication.serviceApi.updateAppUserToken(mobileDeviceInput, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                password = txtPassword.getText().toString();
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+            public void onFailure(Call<RestResult> call, Throwable t) {
             }
+        });
+    }
 
+    public void getAppUserForm() {
+        DialogUtils.showLoadingProgress(this, false);
+        ControllerApi.getmInstance().findApiSetting(SignupActivity.this, new ResultApi() {
             @Override
-            public void afterTextChanged(Editable s) {
-
-                String confPassword = txtConfirmPassword.getText().toString();
-                if (!confPassword.equals(password)) {
-                    tvMessage.setText(getString(R.string.password_and_confirm_not_match));
-                    tvMessage.setVisibility(View.VISIBLE);
-                    imgValidateConfirmPassword.setImageResource(R.drawable.cancel);
-                    tvDisplayMessage.setVisibility(View.GONE);
-                    return;
-                } else {
-                    tvMessage.setText("");
-                    tvMessage.setVisibility(View.GONE);
-                    isConfirmPasswordValid = true;
-                    imgValidateConfirmPassword.setImageResource(R.drawable.check);
+            public void resultApi(Object object) {
+                if (object != null) {
+                    ApiSettingForm form = (ApiSettingForm) object;
+                    PreferenceUtils.setReadStatusPolicy(getApplicationContext(), form.isReadAgreementPolicy());
                 }
-
             }
         });
-        txtEmail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        /*
+        *Set Auto Login
+        */
+
+        PreferenceUtils.setAutoLogin(SignupActivity.this, true);
+
+        HotelApplication.serviceApi.findAppUser(PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<AppUserForm>() {
+            @Override
+            public void onResponse(Call<AppUserForm> call, Response<AppUserForm> response) {
+                DialogUtils.hideLoadingProgress();
+                if (response.isSuccessful()) {
+                    AppUserForm appUserForm = response.body();
+                    if (appUserForm != null) {
+
+                        if (IntroduceActivity.introduceActivity != null)
+                            IntroduceActivity.introduceActivity.finish();
+
+                        //Change Language
+                        String language = "en";
+                        if (appUserForm.getLanguage() == 3)
+                            language = "vi";
+                        Locale locale = new Locale(language);
+                        Locale.setDefault(locale);
+                        Configuration config = new Configuration();
+                        config.locale = locale;
+                        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+                        PreferenceUtils.setAppUser(SignupActivity.this, appUserForm);
+                        setResult(Activity.RESULT_OK);
+                        finish();
+
+                    }
+                }
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                isValidateEmail = false;
-                tvDisplayMessage.setText("");
-                tvDisplayMessage.setVisibility(View.GONE);
-//                btnNext.setEnabled(false);
-//                btnNext.setBackgroundColor(getResources().getColor(R.color.button_color_disable));
-//                checkFormValidate(chkAgreement.isChecked());
+            public void onFailure(Call<AppUserForm> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
             }
         });
     }
 
-    private void checkFormValidate(final boolean isChecked) {
-//        btnNext.setEnabled(false);
-//        btnNext.setBackgroundColor(getResources().getColor(R.color.button_color_disable));
-        if (txtEmail.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_email));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (!isValidateEmail) {
-            tvMessage.setText(getString(R.string.please_duplicate_check_email));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (txtPassword.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_enter_your_password));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-
-        if (!isConfirmPasswordValid && !isPasswordValid) {
-            tvMessage.setText(getString(R.string.password_format_not_valid));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        } else if (isPasswordValid && isConfirmPasswordValid) {
-            if (!txtPassword.getText().toString().equals(txtConfirmPassword.getText().toString())) {
-                tvMessage.setText(getString(R.string.password_and_confirm_not_match));
-                tvMessage.setVisibility(View.VISIBLE);
-                return;
-            }
-        }
-
-//        btnNext.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                if(isChecked){
-////                    btnNext.setEnabled(true);
-////                    btnNext.setBackgroundColor(getResources().getColor(R.color.button_color_enable));
-//                }else{
-////                    btnNext.setEnabled(false);
-////                    btnNext.setBackgroundColor(getResources().getColor(R.color.button_color_disable));
-//                }
-//            }
-//        });
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -252,15 +509,36 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
             case R.id.btnClose:
                 finish();
                 break;
-            case R.id.btnCheckDuplicate:
-                checkDuplicateEmail();
-                break;
             case R.id.btnNext:
-                tvDisplayMessage.setVisibility(View.GONE);
+                requestFocus(edtfocus);
                 gotoNextStep();
                 break;
             case R.id.btnGotoAgreement:
                 gotoServiceAgreement();
+                break;
+            case R.id.chkAgreement:
+                requestFocus(edtfocus);
+                Utils.hideKeyboard(SignupActivity.this, txtEmail);
+                if (!isCheckAgreement) {
+                    isCheckAgreement = true;
+                    chkAgreement.setImageResource(R.drawable.checkbox_selected);
+                    lineAgree.setBackgroundColor(getResources().getColor(R.color.lg));
+                    tvAgree.setVisibility(View.GONE);
+                } else {
+                    isCheckAgreement = false;
+                    chkAgreement.setImageResource(R.drawable.checkbox);
+                    lineAgree.setBackgroundColor(getResources().getColor(R.color.org));
+                    tvAgree.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.imgValidateEmail:
+                txtEmail.setText(null);
+                break;
+            case R.id.imgValidatePassword:
+                txtPassword.setText(null);
+                break;
+            case R.id.imgValidateConfirmPassword:
+                txtConfirmPassword.setText(null);
                 break;
         }
     }
@@ -271,65 +549,94 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void gotoNextStep() {
-        if (txtEmail.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_email));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
+        checkDuplicateEmail();
+        checkFormatPassword();
+        checkFormatConfirmPassword();
+        checkAgreement();
+
+        if (isValidateEmail && isConfirmPasswordValid && isPasswordValid && isCheckAgreement) {
+
+            gotoMemberProfileActivity();
+
         }
 
-        if (!UtilityValidate.isEmailValid(txtEmail.getText().toString())) {
-            tvMessage.setText(getString(R.string.email_format_not_valid));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
+    }
 
-        if (!isValidateEmail) {
-            tvMessage.setText(getString(R.string.please_duplicate_check_email));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (txtPassword.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_enter_your_password));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        if (!isPasswordValid) {
-            tvMessage.setText(getString(R.string.password_format_message));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        } else {
-            if (!txtPassword.getText().toString().equals(txtConfirmPassword.getText().toString())) {
-                tvMessage.setText(getString(R.string.password_and_confirm_not_match));
-                tvMessage.setVisibility(View.VISIBLE);
-                return;
-            }
-        }
-
-        if (!isCheckAgreement) {
-            tvMessage.setText(getString(R.string.please_agree_policy));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        AppUserDto appUserDto = new AppUserDto();
-        appUserDto.setUserId(txtEmail.getText().toString());
+    private void gotoMemberProfileActivity() {
+        AppUserSocialDto appUserDto = new AppUserSocialDto();
+        appUserDto.setEmail(txtEmail.getText().toString());
+        appUserDto.setNickName(getNickname(txtEmail.getText().toString()));
         appUserDto.setMobileUserId(HotelApplication.DEVICE_ID);
         appUserDto.setPassword(Utils.md5(txtPassword.getText().toString()));
-        Intent intent = new Intent(this, MemberProfileActivity.class);
-        intent.putExtra("appUserDto", appUserDto);
+        Intent intent = new Intent(this, MemberProfileSocialActivity.class);
+        intent.setAction("manual");
+        intent.putExtra("AppUserSocialDto", appUserDto);
         startActivity(intent);
     }
 
+    private String getNickname(String email) {
+
+        try {
+            String[] dataParse = email.split("@");
+            if (dataParse.length > 1) {
+
+                return dataParse[0];
+
+            }
+
+        } catch (Exception e) {
+
+        }
+        return "";
+    }
+
+    private void checkAgreement() {
+        if (!isCheckAgreement) {
+            lineAgree.setBackgroundColor(getResources().getColor(R.color.org));
+            tvAgree.setVisibility(View.VISIBLE);
+        }
+    }
+
+    //Check Format Confirm Password
+    private void checkFormatConfirmPassword() {
+        isConfirmPasswordValid = false;
+        String confPassword = txtConfirmPassword.getText().toString();
+        if (!confPassword.equals(txtPassword.getText().toString().trim()) || confPassword.equals("")) {
+            //Fail
+            inputLayoutCofirm.setError(getString(R.string.password_and_confirm_not_match));
+        } else {
+            //OK
+            isConfirmPasswordValid = true;
+        }
+    }
+
+    //Check Format Password
+    private void checkFormatPassword() {
+        isPasswordValid = false;
+        String password = txtPassword.getText().toString();
+        //Fail
+        if (password.length() < 6 || password.length() > 16) {
+            inputLayoutPassword.setError(getString(R.string.password_format_message));
+        } else {
+            //OK
+            if (UtilityValidate.isPasswordValid(password)) {
+                isPasswordValid = true;
+            } else {
+                inputLayoutPassword.setError(getString(R.string.password_format_message));
+            }
+        }
+    }
+
+    //Check Duplicate Email
     private void checkDuplicateEmail() {
         if (txtEmail.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_email));
-            tvMessage.setVisibility(View.VISIBLE);
+            inputLayoutMail.setError(getString(R.string.please_input_email));
+            isValidateEmail = false;
             return;
         }
         if (!UtilityValidate.isEmailValid(txtEmail.getText().toString())) {
-            tvMessage.setText(getString(R.string.email_format_not_valid));
-            tvMessage.setVisibility(View.VISIBLE);
+            inputLayoutMail.setError(getString(R.string.email_format_not_valid));
+            isValidateEmail = false;
             return;
         }
 
@@ -344,36 +651,188 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                 if (response.isSuccessful()) {
                     RestResult restResult = response.body();
                     if (restResult != null && restResult.getOtherInfo().trim().equals("0")) {
+
+                        //OK
                         isValidateEmail = true;
-                        tvMessage.setText("");
-                        tvMessage.setVisibility(View.GONE);
-                        tvDisplayMessage.setText(getString(R.string.the_email_is_available));
-                        tvDisplayMessage.setVisibility(View.VISIBLE);
-                        tvMessage.setVisibility(View.GONE);
-//                        Toast.makeText(SignupActivity.this, getString(R.string.the_email_is_available), Toast.LENGTH_LONG).show();
+
                     } else {
+
+                        //Exist
                         isValidateEmail = false;
-                        tvMessage.setText(getString(R.string.email_already_exists));
-                        tvMessage.setVisibility(View.VISIBLE);
-                        tvDisplayMessage.setText("");
-                        tvDisplayMessage.setVisibility(View.GONE);
+                        inputLayoutMail.setError(getString(R.string.email_already_exists));
                     }
                 }
-//                checkFormValidate(isCheckAgreement);
             }
 
             @Override
             public void onFailure(Call<RestResult> call, Throwable t) {
                 DialogUtils.hideLoadingProgress();
                 isValidateEmail = false;
-//                checkFormValidate(isCheckAgreement);
                 Toast.makeText(SignupActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
     @Override
     public void setScreenName() {
         this.screenName = "SLogSignUp";
     }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        DialogUtils.hideLoadingProgress();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        googleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        googleApiClient.connect();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (loginType == SignupType.Facebook) {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+        } else if (loginType == SignupType.GooglePlus) {
+            if (requestCode == RC_SIGN_IN) {
+                if (data != null) {
+                    GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+                    handleGoogleSignInResult(result);
+                }
+            }
+
+        } else if (loginType == SignupType.Manual) {
+            setResult(resultCode, data);
+            finish();
+        }
+    }
+
+
+    private void handleGoogleSignInResult(GoogleSignInResult result) {
+
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                String idToken = acct.getIdToken();
+
+                GooglePlusInfo googlePlusInfo = new GooglePlusInfo();
+                googlePlusInfo.setEmail(personEmail);
+                googlePlusInfo.setId(personId);
+                googlePlusInfo.setName(personName);
+                googlePlusInfo.setToken(idToken);
+                googlePlusInfo.setGender("");
+                googlePlusInfo.setBirthday("");
+                tryLoginByGooglePlus(googlePlusInfo);
+            }
+        }
+    }
+
+    private void tryLoginByGooglePlus(final GooglePlusInfo googlePlusInfo) {
+        SocialLoginDto loginDto = new SocialLoginDto();
+        loginDto.setMobileUserId(HotelApplication.DEVICE_ID);
+        loginDto.setSocialToken(googlePlusInfo.getToken());
+        loginDto.setViaApp(SignupType.GooglePlus.getType());
+
+        MyLog.writeLog("--> " + googlePlusInfo.getToken() + " <--");
+
+        DialogUtils.showLoadingProgress(this, false);
+        try {
+            HotelApplication.serviceApi.loginViaSocialApp(loginDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+                @Override
+                public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                    DialogUtils.hideLoadingProgress();
+                    if (response.isSuccessful()) {
+                        RestResult restResult = response.body();
+                        if (restResult != null) {
+                            if (restResult.getResult() == 1) {
+                                PreferenceUtils.setToken(SignupActivity.this, restResult.getOtherInfo());
+                                PreferenceUtils.setLoginType(SignupActivity.this, loginType);
+                                PreferenceUtils.setTokenGInfo(SignupActivity.this, googlePlusInfo.getToken());
+                                updateTokenToServer();
+                                getAppUserForm();
+                            } else if (restResult.getResult() == 11) {
+                                Toast.makeText(SignupActivity.this, getString(R.string.account_cannot_used), Toast.LENGTH_LONG).show();
+                            } else if (restResult.getResult() == 2) {
+                                //Don't have account, signup with facebook
+                                signupGooglePlus(googlePlusInfo);
+                            } else if (restResult.getResult() == 12) {
+                                Toast.makeText(SignupActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(SignupActivity.this, restResult.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<RestResult> call, Throwable t) {
+                    DialogUtils.hideLoadingProgress();
+                    Toast.makeText(SignupActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void signupGooglePlus(final GooglePlusInfo googlePlusInfo) {
+        PreferenceUtils.setTokenGInfo(this, googlePlusInfo.getToken());
+
+        AppUserSocialDto appUserDto = new AppUserSocialDto();
+        appUserDto.setMobileUserId(HotelApplication.DEVICE_ID);
+        appUserDto.setToken(googlePlusInfo.getToken());
+        appUserDto.setEmail(googlePlusInfo.getEmail());
+        appUserDto.setNickName(googlePlusInfo.getName());
+        Gender gender = Gender.Male;
+        try {
+            if (!googlePlusInfo.getGender().equals("male")) {
+                gender = Gender.Female;
+            }
+        } catch (Exception e) {
+            MyLog.writeLog("signupGooglePlus--------------------->" + e);
+        }
+        appUserDto.setGender(gender.getType());
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.google_date_format_view), Locale.ENGLISH);
+        try {
+            Date date = simpleDateFormat.parse(googlePlusInfo.getBirthday());
+            calendar.setTimeInMillis(date.getTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+            calendar.set(Calendar.YEAR, 1990);
+            calendar.set(Calendar.MONTH, 1);
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
+        appUserDto.setBirthday(simpleDateFormat.format(calendar.getTime()));
+        appUserDto.setAddress("");
+        appUserDto.setMobile("");
+        appUserDto.setViaApp(SignupType.GooglePlus.getType());
+
+        Intent intent = new Intent(this, MemberProfileSocialActivity.class);
+        intent.setAction("social");
+        intent.putExtra("AppUserSocialDto", appUserDto);
+        startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOME);
+
+        //Event Fabric
+        if (HotelApplication.isRelease) {
+            Answers.getInstance().logSignUp(new SignUpEvent().putMethod("Google").putSuccess(true));
+        }
+    }
+
 }

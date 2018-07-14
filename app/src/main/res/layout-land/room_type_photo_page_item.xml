@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="110dp"
     android:baselineAligned="false"
     android:gravity="center"
     android:orientation="horizontal"
@@ -92,8 +92,9 @@
             android:paddingEnd="@dimen/margin_12"
             android:paddingStart="@dimen/margin_12"
             android:textColor="@color/org"
-            android:textSize="@dimen/hotel_list_text_size_big" />
+            android:textSize="@dimen/hotel_list_text_size_normal" />
 
+        <!--Hourly-->
         <LinearLayout
             android:id="@+id/boxHourly"
             android:layout_width="wrap_content"
@@ -104,6 +105,7 @@
             android:paddingStart="@dimen/margin_12">
 
             <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:id="@+id/label_price_hourly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_2_flashsale_hourly_price"
@@ -136,6 +138,52 @@
 
         </LinearLayout>
 
+        <!--Addition-->
+        <LinearLayout
+            android:id="@+id/boxAdditionHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/margin_12"
+            android:paddingStart="@dimen/margin_12"
+            android:visibility="gone">
+
+            <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:id="@+id/labelAdditionHourly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_2_flashsale_hourly_price"
+                android:textColor="@color/wh"
+                android:textSize="@dimen/hotel_list_text_size_normal" />
+
+            <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_4"
+                android:text="@string/vnd"
+                android:textColor="@color/wh"
+                android:textSize="@dimen/hotel_list_text_size_normal" />
+
+            <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:id="@+id/tvPriceAdditionHourlyNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_4"
+                android:textColor="@color/wh"
+                android:textSize="@dimen/hotel_list_text_size_normal" />
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/tvPriceAdditionHourlyDiscounts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_4"
+                android:textColor="@color/org"
+                android:textSize="@dimen/hotel_list_text_size_semi_big" />
+
+        </LinearLayout>
+
+        <!--Overnight-->
         <LinearLayout
             android:id="@+id/boxOvernight"
             android:layout_width="wrap_content"
@@ -180,6 +228,30 @@
                 android:textSize="@dimen/hotel_list_text_size_semi_big" />
         </LinearLayout>
 
+        <!--Price Overnight Normal-->
+        <com.appromobile.hotel.widgets.TextViewSFMedium
+            android:id="@+id/tvSupperSaleNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:textColor="@color/wh"
+            android:textSize="@dimen/hotel_list_text_size_normal"
+            android:gravity="end"
+            android:visibility="gone"
+            android:textStyle="" />
+
+        <!--Price Overnight Discount-->
+        <com.appromobile.hotel.widgets.TextViewSFBold
+            android:id="@+id/tvSupperSaleDiscount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:textColor="@color/org"
+            android:gravity="end"
+            android:textSize="@dimen/hotel_list_text_size_big"
+            android:visibility="gone" />
+
+        <!--Daily-->
         <LinearLayout
             android:id="@+id/boxDaily"
             android:layout_width="wrap_content"

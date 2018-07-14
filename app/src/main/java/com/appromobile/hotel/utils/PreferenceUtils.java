@@ -9,6 +9,8 @@ import com.appromobile.hotel.enums.SignupType;
 import com.appromobile.hotel.model.view.AppUserForm;
 import com.google.gson.Gson;
 
+import java.util.Locale;
+
 /**
  * Created by xuanquach on 8/11/15.
  */
@@ -84,8 +86,15 @@ public class PreferenceUtils {
     }
 
     public static String getToken(Context context) {
-        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
-        return prefs.getString("token", "");
+        try {
+            final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+            if (prefs != null) {
+                return prefs.getString("token", "");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public static void setTokenGInfo(Context context, String token) {
@@ -229,7 +238,7 @@ public class PreferenceUtils {
         return prefs.getInt("NOTIFI_COUNTER", 0);
     }
 
-    public static void setReadStatusPolicy (Context context, boolean status) {
+    public static void setReadStatusPolicy(Context context, boolean status) {
         final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("READ_POLICY_STATUS", status);
@@ -241,7 +250,7 @@ public class PreferenceUtils {
         return prefs.getBoolean("READ_POLICY_STATUS", true);
     }
 
-    public static void setGuide (Context context, boolean status) {
+    public static void setGuide(Context context, boolean status) {
         final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("GUIDE", status);
@@ -251,5 +260,68 @@ public class PreferenceUtils {
     public static boolean getGuide(Context context) {
         final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
         return prefs.getBoolean("GUIDE", true);
+    }
+
+    public static void setTypeCrm(Context context, int count) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("TYPE_CRM", count);
+        editor.apply();
+    }
+
+    public static int getTypeCrm(Context context) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        return prefs.getInt("TYPE_CRM", 0);
+    }
+
+    public static void setSnNotifyCrm(Context context, int count) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("SN_CRM", count);
+        editor.apply();
+    }
+
+    public static int getSnNotifyCrm(Context context) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        return prefs.getInt("SN_CRM", 0);
+    }
+
+    public static void setIntroduce(Context context, boolean status) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("Introduce", status);
+        editor.apply();
+    }
+
+    public static boolean getIntroduce(Context context) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        return prefs.getBoolean("Introduce", true);
+    }
+
+    public static void setRipple(Context context, boolean status) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("Ripple", status);
+        editor.apply();
+    }
+
+    public static boolean getRipple(Context context) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        return prefs.getBoolean("Ripple", true);
+    }
+
+    public static void setLanguage(Context context, String lang) {
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lang", lang);
+        editor.apply();
+    }
+
+    public static String getLanguage(Context context) {
+        String lang = Utils.getDisplayLanguage();
+        if (!lang.equals("vi"))
+            lang = "en";
+        final SharedPreferences prefs = context.getSharedPreferences(HOTEL_PREFERENCE, Context.MODE_PRIVATE);
+        return prefs.getString("lang", lang);
     }
 }

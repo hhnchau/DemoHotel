@@ -128,34 +128,34 @@ public class MyLocationApi extends HotelApplication implements LocationListener,
                     //Save Last Address
                     PreferenceUtils.setLastAddress(context, address);
 
-                    String temp = "";
+                    StringBuilder temp = new StringBuilder();
                     for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
-                        temp += address.getAddressLine(i) + " ";
+                        temp.append(address.getAddressLine(i)).append(" ");
 
                     }
                     //Address
-                    myAddress[0] = temp;
+                    myAddress[0] = temp.toString();
 
                     // District
-                    temp = "Tan Binh";
+                    temp = new StringBuilder("Tan Binh");
                     if (address.getSubAdminArea() != null) {
-                        temp = address.getSubAdminArea();
+                        temp = new StringBuilder(address.getSubAdminArea());
                     }
-                    myAddress[1] = temp;
+                    myAddress[1] = temp.toString();
 
                     // City
-                    temp = "Ho Chi Minh";
+                    temp = new StringBuilder("Ho Chi Minh");
                     if (address.getAdminArea() != null) {
-                        temp = address.getAdminArea();
+                        temp = new StringBuilder(address.getAdminArea());
                     }
-                    myAddress[2] = temp;
+                    myAddress[2] = temp.toString();
 
                     // Country
-                    temp = "";
+                    temp = new StringBuilder();
                     if (address.getCountryName() != null) {
-                        temp = address.getCountryName();
+                        temp = new StringBuilder(address.getCountryName());
                     }
-                    myAddress[3] = temp;
+                    myAddress[3] = temp.toString();
                 }
 
             } catch (IOException e) {

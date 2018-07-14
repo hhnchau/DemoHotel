@@ -15,13 +15,23 @@ import android.widget.Toast;
 import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.adapter.SearchHotelAdapter;
+import com.appromobile.hotel.api.controllerApi.ControllerApi;
+import com.appromobile.hotel.api.controllerApi.ResultApi;
+import com.appromobile.hotel.dialog.DialogSuspend;
+import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.model.request.HomeHotelRequest;
+import com.appromobile.hotel.model.request.SearchHistoryDto;
+import com.appromobile.hotel.model.view.CouponConditionForm;
 import com.appromobile.hotel.model.view.HotelForm;
+import com.appromobile.hotel.model.view.RestResult;
 import com.appromobile.hotel.utils.DialogUtils;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
 import com.crashlytics.android.Crashlytics;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -51,6 +61,8 @@ public class HotelSearchResultActivity extends BaseActivity {
     LinearLayout boxNoResult;
     ImageView btnSort;
 
+    private int searchSn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,14 +73,14 @@ public class HotelSearchResultActivity extends BaseActivity {
         }
 
         setContentView(R.layout.hotel_search_result_activity);
-        tvNoResult =  findViewById(R.id.tvNoResult);
-        tvSearchText =  findViewById(R.id.tvSearchText);
+        tvNoResult = findViewById(R.id.tvNoResult);
+        tvSearchText = findViewById(R.id.tvSearchText);
         tvSearchContent = findViewById(R.id.tvSearchContent);
-        boxNoResult =  findViewById(R.id.boxNoResult);
-        btnSort =  findViewById(R.id.btnSort);
+        boxNoResult = findViewById(R.id.boxNoResult);
+        btnSort = findViewById(R.id.btnSort);
         searchText = getIntent().getStringExtra("SearchText");
-        lvSearchHotel =  findViewById(R.id.lvSearchHotel);
-        swipeContainer =  findViewById(R.id.swipeContainer);
+        lvSearchHotel = findViewById(R.id.lvSearchHotel);
+        swipeContainer = findViewById(R.id.swipeContainer);
         homeHotelRequest = new HomeHotelRequest();
         homeHotelRequest.setOffset(0);
         homeHotelRequest.setLimit(HotelApplication.LIMIT_REQUEST);
@@ -140,19 +152,31 @@ public class HotelSearchResultActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    Intent intent = new Intent(HotelSearchResultActivity.this, HotelDetailActivity.class);
-                    intent.putExtra("sn", hotelForms.get(position).getSn());
-                    intent.putExtra("RoomAvailable", hotelForms.get(position).getRoomAvailable());
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                    if (hotelForms.get(position).getHotelStatus() == ContractType.SUSPEND.getType()) {
+                        //Suspended
+                        showDialogSuspended();
+                    } else {
+                        Intent intent = new Intent(HotelSearchResultActivity.this, HotelDetailActivity.class);
+                        intent.putExtra("sn", hotelForms.get(position).getSn());
+                        intent.putExtra("RoomAvailable", hotelForms.get(position).getRoomAvailable());
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+                //Update Search to Server
+                ControllerApi.getmInstance().updateSearchHistory(new SearchHistoryDto(hotelForms.get(position).getSn(), searchSn));
             }
         });
 
         DialogUtils.showLoadingProgress(this, false);
         initData();
+    }
+
+    private void showDialogSuspended() {
+        DialogSuspend.getInstance().show(this);
     }
 
     private void sortDistance() {
@@ -164,58 +188,105 @@ public class HotelSearchResultActivity extends BaseActivity {
                     return Double.compare(hotelForm.getDistance(getApplicationContext()), t1.getDistance(getApplicationContext()));
                 }
             });
-            adapter.updateData(hotelForms);
-            adapter.notifyDataSetChanged();
+
+            if (adapter != null) {
+                adapter.setHotelForms(hotelForms);
+                adapter.notifyDataSetChanged();
+            }
         }
         DialogUtils.hideLoadingProgress();
     }
 
     private void initData() {
         homeHotelRequest.setOffset(offset);
-        HotelApplication.serviceApi.getHotelList(homeHotelRequest.getMap(), PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<List<HotelForm>>() {
-            @Override
-            public void onResponse(Call<List<HotelForm>> call, Response<List<HotelForm>> response) {
-                swipeContainer.setRefreshing(false);
-//                lvHotel.onLoadMoreComplete();
-                DialogUtils.hideLoadingProgress();
-                List<HotelForm> list = response.body();
-                try {
-                    if (list == null || list.size() == 0 || list.size() < HotelApplication.LIMIT_REQUEST) {
-                        isEndList = true;
-                    }
-                    hotelForms.addAll(list);
+//        ControllerApi.getmInstance().searchHotelList(this, homeHotelRequest, new ResultApi() {
+//            @Override
+//            public void resultApi(Object object) {
+//                RestResult restResult = (RestResult) object;
+//                searchSn = restResult.getSn();
+//                String otherInfo = restResult.getOtherInfo();
+//                if (otherInfo != null) {
+//
+//                    Type listType = new TypeToken<List<HotelForm>>() {
+//                    }.getType();
+//
+//                    List<HotelForm> list = new Gson().fromJson(otherInfo, listType);
+//
+//
+//                    swipeContainer.setRefreshing(false);
+//                    try {
+//                        if (list == null || list.size() == 0 || list.size() < HotelApplication.LIMIT_REQUEST) {
+//                            isEndList = true;
+//                        }
+//                        hotelForms.addAll(list);
+//
+//                        if (adapter == null) {
+//                            adapter = new SearchHotelAdapter(HotelSearchResultActivity.this, hotelForms);
+//                            lvSearchHotel.setAdapter(adapter);
+//                        } else {
+//                            adapter.updateData(hotelForms);
+//                        }
+//                        offset = adapter.getCount();
+//
+//                        if (hotelForms == null || (hotelForms != null && hotelForms.size() == 0)) {
+////                        lvSearchHotel.setEmptyView(tvNoResult);
+//                            boxNoResult.setVisibility(View.VISIBLE);
+//                            swipeContainer.setVisibility(View.GONE);
+//                        }
+//                    } catch (Exception e) {
+//                        boxNoResult.setVisibility(View.VISIBLE);
+//                        swipeContainer.setVisibility(View.GONE);
+//                    }
+//
+//                }
+//            }
+//        });
 
-                    if (adapter == null) {
-                        adapter = new SearchHotelAdapter(HotelSearchResultActivity.this, hotelForms);
-                        lvSearchHotel.setAdapter(adapter);
-                    } else {
-                        adapter.updateData(hotelForms);
-                    }
-                    offset = adapter.getCount();
 
-                    if (hotelForms == null || (hotelForms != null && hotelForms.size() == 0)) {
-//                        lvSearchHotel.setEmptyView(tvNoResult);
-                        boxNoResult.setVisibility(View.VISIBLE);
-                        swipeContainer.setVisibility(View.GONE);
-                    }
-                } catch (Exception e) {
-                    boxNoResult.setVisibility(View.VISIBLE);
-                    swipeContainer.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<HotelForm>> call, Throwable t) {
-                swipeContainer.setRefreshing(false);
-//                lvHotel.onLoadMoreComplete();
-                DialogUtils.hideLoadingProgress();
-//                t.printStackTrace();
-//                lvSearchHotel.setEmptyView(tvNoResult);
-//                boxNoResult.setVisibility(View.VISIBLE);
-//                swipeContainer.setVisibility(View.GONE);
-                Toast.makeText(HotelSearchResultActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
-            }
-        });
+//        HotelApplication.serviceApi.getHotelList(homeHotelRequest.getMap(), PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<List<HotelForm>>() {
+//            @Override
+//            public void onResponse(Call<List<HotelForm>> call, Response<List<HotelForm>> response) {
+//                swipeContainer.setRefreshing(false);
+////                lvHotel.onLoadMoreComplete();
+//                DialogUtils.hideLoadingProgress();
+//                List<HotelForm> list = response.body();
+//                try {
+//                    if (list == null || list.size() == 0 || list.size() < HotelApplication.LIMIT_REQUEST) {
+//                        isEndList = true;
+//                    }
+//                    hotelForms.addAll(list);
+//
+//                    if (adapter == null) {
+//                        adapter = new SearchHotelAdapter(HotelSearchResultActivity.this, hotelForms);
+//                        lvSearchHotel.setAdapter(adapter);
+//                    } else {
+//                        adapter.updateData(hotelForms);
+//                    }
+//                    offset = adapter.getCount();
+//
+//                    if (hotelForms == null || (hotelForms != null && hotelForms.size() == 0)) {
+////                        lvSearchHotel.setEmptyView(tvNoResult);
+//                        boxNoResult.setVisibility(View.VISIBLE);
+//                        swipeContainer.setVisibility(View.GONE);
+//                    }
+//                } catch (Exception e) {
+//                    boxNoResult.setVisibility(View.VISIBLE);
+//                    swipeContainer.setVisibility(View.GONE);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<HotelForm>> call, Throwable t) {
+//                swipeContainer.setRefreshing(false);
+////                lvHotel.onLoadMoreComplete();
+//                DialogUtils.hideLoadingProgress();
+////                t.printStackTrace();
+////                lvSearchHotel.setEmptyView(tvNoResult);
+////                boxNoResult.setVisibility(View.VISIBLE);
+////                swipeContainer.setVisibility(View.GONE);
+//                Toast.makeText(HotelSearchResultActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
     @Override

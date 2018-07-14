@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.appromobile.hotel.R;
+import com.appromobile.hotel.calendar.CellCalendarAdapter;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
 
 import java.text.SimpleDateFormat;

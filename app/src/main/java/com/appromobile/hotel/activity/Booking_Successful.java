@@ -15,6 +15,7 @@ import com.appromobile.hotel.model.view.ApiSettingForm;
 import com.appromobile.hotel.model.view.PaymentInfoForm;
 import com.appromobile.hotel.model.view.UserBookingForm;
 import com.appromobile.hotel.utils.DialogUtils;
+import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.Utils;
 import com.google.gson.Gson;
 
@@ -23,7 +24,8 @@ public class Booking_Successful extends BaseActivity implements View.OnClickList
     private int userBookingSn;
     private int minPrice;
     private String methodPayment = "";
-    private String FLAG_SHOW_REWARD_CHECKIN = "FLAG_SHOW_REWARD_CHECKIN";
+    public static String FLAG_SHOW_REWARD_CHECKIN = "FLAG_SHOW_REWARD_CHECKIN";
+    private boolean paymentPromotion = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,25 @@ public class Booking_Successful extends BaseActivity implements View.OnClickList
     }
 
     private void Init() {
-        userBookingSn = getIntent().getIntExtra("userBookingSn", 0);
-        methodPayment = getIntent().getStringExtra("METHOD_PAYMENT");
+        Bundle bundle = getIntent().getExtras();
+        if ((bundle) != null) {
+            userBookingSn = bundle.getInt("userBookingSn", 0);
+            methodPayment = bundle.getString("METHOD_PAYMENT");
+
+            String mapString = bundle.getString("MAP-INFO");
+            if (mapString != null && mapString.equals("")) {
+                paymentPromotion = true;
+            }
+        }
+
+
         txtPayNow = findViewById(R.id.textView_booking_successful_paynow);
         txtPayNow.setOnClickListener(this);
+
+        //Hide Paynow
+        if (!paymentPromotion)
+            txtPayNow.setVisibility(View.GONE);
+
         txtPayLater = findViewById(R.id.textView_booking_successful_paylater);
         txtPayLater.setOnClickListener(this);
 
@@ -67,28 +84,7 @@ public class Booking_Successful extends BaseActivity implements View.OnClickList
             if (totalFee < minPrice) {
                 Toast.makeText(Booking_Successful.this, getString(R.string.msg_3_1_min_price) + minPriceString, Toast.LENGTH_LONG).show();
             } else {
-                Gson gson = new Gson();
-                PaymentInfoForm paymentInfoForm = gson.fromJson(getIntent().getStringExtra("otherInfo"), PaymentInfoForm.class);
-                Intent intent = new Intent(getApplicationContext(), BrowserPaymentActivity.class);
-                intent.putExtra("PaymentInfoForm", paymentInfoForm);
-                intent.putExtra("userBookingSn", userBookingSn);
-                intent.putExtra("METHOD_PAYMENT", methodPayment);
-                startActivity(intent);
-
-                //Only Pay_online
-                //close Activity Reservation
-//                if (ReservationActivity.reservation != null) {
-//                    ReservationActivity.reservation.finish();
-//                }
-
-                //close Activity HotelDetailActivity
-                if (HotelDetailActivity.hotelDetailActivity != null) {
-                    HotelDetailActivity.hotelDetailActivity.finish();
-                }
-
-                finish();
-
-                overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                gotoBillingInfo();
             }
 
 
@@ -114,7 +110,78 @@ public class Booking_Successful extends BaseActivity implements View.OnClickList
                     overridePendingTransition(R.anim.right_to_left, R.anim.stable);
                 }
             });
-
         }
+    }
+
+    private void gotoPay123() {
+        Gson gson = new Gson();
+        PaymentInfoForm paymentInfoForm = gson.fromJson(getIntent().getStringExtra("otherInfo"), PaymentInfoForm.class);
+        Intent intent = new Intent(getApplicationContext(), BrowserPaymentActivity.class);
+        intent.putExtra("PaymentInfoForm", paymentInfoForm);
+        intent.putExtra("userBookingSn", userBookingSn);
+        intent.putExtra("METHOD_PAYMENT", methodPayment);
+        startActivity(intent);
+
+        //close Activity HotelDetailActivity
+        if (HotelDetailActivity.hotelDetailActivity != null) {
+            HotelDetailActivity.hotelDetailActivity.finish();
+        }
+
+        finish();
+
+        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+    }
+
+    private void gotoBillingInfo() {
+
+
+        ControllerApi.getmInstance().findUserBookingDetail(Booking_Successful.this, userBookingSn, true, new ResultApi() {
+            @Override
+            public void resultApi(Object object) {
+                //hide loading
+                DialogUtils.hideLoadingProgress();
+                //result
+                UserBookingForm userBookingForm = (UserBookingForm) object;
+
+                Bundle bundle = new Bundle();
+
+                bundle.putInt("discountFee", userBookingForm.getDiscount());
+                bundle.putInt("totalFee", userBookingForm.getTotalAmount());
+                bundle.putInt("total", userBookingForm.getAmountFromUser());
+                bundle.putInt("ROOM_TYPE", userBookingForm.getRoomTypeSn());
+                bundle.putString("START_TIME", userBookingForm.getStartTime());
+                bundle.putString("END_TIME", userBookingForm.getEndTime());
+                bundle.putString("END_DATE", userBookingForm.getEndDate());
+                bundle.putString("DATE_PLAN", userBookingForm.getCheckInDatePlan());
+                bundle.putInt("TYPE", userBookingForm.getType());
+                if (userBookingForm.getCouponIssuedSn() == null) {
+                    bundle.putLong("COUPON", -1);
+                } else {
+                    bundle.putLong("COUPON", userBookingForm.getCouponIssuedSn());
+                }
+                bundle.putBoolean("FLASH_SALE", false);
+                bundle.putString("HOTEL_PAYMENT", "2"); //For PayAtHotel
+                bundle.putInt("HOTEL_STATUS", userBookingForm.getHotelStatus());
+                if (userBookingForm.getPaymentOption() == ParamConstants.PAYMENT_ONLINE) {
+                    bundle.putString("METHOD_PAYMENT", ParamConstants.METHOD_ALWAYS_PAY_ONLINE);
+                } else {
+                    bundle.putString("METHOD_PAYMENT", ParamConstants.METHOD_PAY_AT_HOTEL);
+                }
+
+                bundle.putString("IP", Utils.getClientIp());
+
+                //Add UserBookingSn For Old Payment
+                bundle.putInt("userBookingSn", userBookingForm.getSn());
+
+                Intent billing_information = new Intent(Booking_Successful.this, Billing_Information.class);
+                billing_information.setAction("Old_Payment");
+                billing_information.putExtra("InformationBilling", bundle);
+                startActivity(billing_information);
+                overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+
+                //finish();
+
+            }
+        });
     }
 }

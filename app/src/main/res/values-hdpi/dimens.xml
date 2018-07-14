@@ -35,13 +35,16 @@
     <dimen name="facility_width">80dp</dimen>
     <!--OLD CODE-->
 
+    <!--Box Hotel Map-->
+    <dimen name="hotel_box_popup_height">155dp</dimen>
+
     <!--Hotel List on HOME PAGE-->
     <dimen name="hotel_list_height">250dp</dimen>
     <dimen name="hotel_list_promotion_height">33dp</dimen>
     <dimen name="hotel_list_promotion_item_height">28dp</dimen>
     <dimen name="hotel_list_new_item_height">16dp</dimen>
     <dimen name="hotel_list_info_height">125dp</dimen>
-    <dimen name="hotel_list_info_price_height">87.5dp</dimen>
+    <dimen name="hotel_list_info_price_height">89dp</dimen>
     <dimen name="hotel_list_info_review_height">25dp</dimen>
     <dimen name="hotel_list_info_name_height">37.5dp</dimen>
     <dimen name="hotel_list_info_distance_height">20dp</dimen>
@@ -49,7 +52,7 @@
     <dimen name="hotel_list_text_size_normal">11sp</dimen>
     <dimen name="hotel_list_text_size_small">9sp</dimen>
     <dimen name="hotel_list_text_size_semi_big">13sp</dimen>
-    <dimen name="hotel_list_text_size_big">15sp</dimen>
+    <dimen name="hotel_list_text_size_big">14sp</dimen>
     <dimen name="hotel_list_text_size_biger">32sp</dimen>
     <!--text size-->
     <!--Hotel List on HOME PAGE-->
@@ -57,7 +60,7 @@
     <!--Room Type List on HOTEL DETAIL PAGE-->
     <dimen name="room_cell_height">150dp</dimen>
     <dimen name="room_cell_width">120dp</dimen>
-    <dimen name="room_button_height">35dp</dimen>
+    <dimen name="room_button_height">20dp</dimen>
     <!--Room Type List on HOTEL DETAIL PAGE-->
 
     <!--Hotel Photo detail Portrait-->
@@ -85,7 +88,12 @@
     <dimen name="margin_8">8dp</dimen>
     <dimen name="margin_12">12dp</dimen>
     <dimen name="margin_16">16dp</dimen>
-    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_24">21dp</dimen>
+    <dimen name="margin_32">29dp</dimen>
+    <dimen name="margin_40">34dp</dimen>
+    <dimen name="margin_48">48dp</dimen>
+    <dimen name="margin_56">56dp</dimen>
+    <dimen name="margin_64">64dp</dimen>
     <!--Common Margin-->
 
     <!--Common SP-->
@@ -95,6 +103,8 @@
     <dimen name="sp_14">14sp</dimen>
     <dimen name="sp_16">16sp</dimen>
     <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_22">22sp</dimen>
+    <dimen name="sp_26">26sp</dimen>
     <!--Common SP-->
 
     <!--New Promotion Popup-->

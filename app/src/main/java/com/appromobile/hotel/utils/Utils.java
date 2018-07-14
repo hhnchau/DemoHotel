@@ -2,9 +2,9 @@ package com.appromobile.hotel.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,7 +15,9 @@ import android.graphics.Typeface;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.text.format.Formatter;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import android.widget.ListView;
 import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.model.view.PromotionInfoForm;
+import com.appromobile.hotel.model.view.RoomApplyPromotion;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
@@ -50,6 +53,9 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.content.Context.WIFI_SERVICE;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by xuan on 7/12/2016.
@@ -130,6 +136,36 @@ public class Utils {
         return String.valueOf(price) + "K";
     }
 
+    public static int convertTime(String time) {
+        int result = 0;
+
+        try {
+            if (time != null) {
+                SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss", Locale.ENGLISH); //if 24 hour format
+                Date d1 = format.parse(time);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(d1);
+                result = cal.get(Calendar.HOUR_OF_DAY);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static String formatDateddmmyyyy(Context context, String date) {
+        final SimpleDateFormat displayFormat = new SimpleDateFormat(context.getString(R.string.date_format_date), Locale.ENGLISH);
+        final SimpleDateFormat requestFormat = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
+
+        try {
+            Date d = displayFormat.parse(date);
+            return requestFormat.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public static String formatDate(Context context, String date) {
         final SimpleDateFormat displayFormat = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
         final SimpleDateFormat requestFormat = new SimpleDateFormat(context.getString(R.string.date_format_request), Locale.ENGLISH);
@@ -140,7 +176,76 @@ public class Utils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return null;
+        return "";
+    }
+
+    public static String getSystemDay(Context context) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
+        Calendar cal = Calendar.getInstance();
+        return dateFormatter.format(cal.getTime());
+    }
+
+    //Return Yesterday
+    private String getYesterday(Context context) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, -1);
+        return dateFormatter.format(cal.getTime());
+    }
+
+    //Return Tomorrow
+    private String getTomorrowDay(Context context) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, 1);
+        return dateFormatter.format(cal.getTime());
+    }
+
+    public static String getBeforeDate(Context context, String date) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
+        Calendar minDate = Calendar.getInstance();
+        try {
+            Date _date = dateFormatter.parse(date);
+            minDate.setTimeInMillis(_date.getTime());
+            minDate.add(Calendar.DATE, -1);
+            return dateFormatter.format(minDate.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static String getAfterDate(Context context, String date) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
+        Calendar minDate = Calendar.getInstance();
+        try {
+            Date _date = dateFormatter.parse(date);
+            minDate.setTimeInMillis(_date.getTime());
+            minDate.add(Calendar.DATE, 1);
+            return dateFormatter.format(minDate.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static int compareDate(Context context, String currentDate, String withDate) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
+        try {
+            Date _currentDate = dateFormatter.parse(currentDate);
+            Date _withDate = dateFormatter.parse(withDate);
+
+            if (_currentDate.after(_withDate)) {
+                return 3; // currentDate > withDate
+            } else if (_currentDate.equals(_withDate)) {
+                return 2; // currentDate = withDate
+            } else {
+                return 1; // currentDate < withDate
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public static String getDisplayLanguage() {
@@ -176,7 +281,7 @@ public class Utils {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
-    private static float convertPixelToDP(float pixel) {
+    public static float convertPixelToDP(float pixel) {
         float dpi = Resources.getSystem().getDisplayMetrics().densityDpi;
         return pixel * 160 / dpi;
     }
@@ -388,16 +493,133 @@ public class Utils {
         return bitmap;
     }
 
-    public static int[] getPromotionInfoForm(int sn) {
-        int[] discount = new int[3];
+    public static boolean checkRoomTypeDiscount(RoomApplyPromotion roomApplyPromotion, int roomTypeSn, int roomType) {
+        if (roomApplyPromotion == null)
+            return false;
+        long[] roomTypeSnList = roomApplyPromotion.getRoomTypeSnList();
+        if (roomTypeSnList == null || roomTypeSnList.length == 0) {
+            if (roomType == ParamConstants.ROOM_TYPE_FLASH_SALE)
+                if (roomApplyPromotion.isFlashsale())
+                    return true;
+            if (roomType == ParamConstants.ROOM_TYPE_CINEJOY)
+                if (roomApplyPromotion.isCinejoy())
+                    return true;
+            if (roomType == ParamConstants.ROOM_TYPE_NORMAL)
+                if (roomApplyPromotion.isNormal())
+                    return true;
+        } else {
+            for (long aRoomTypeSnList : roomTypeSnList) {
+                if (roomTypeSn == aRoomTypeSnList)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public static int getPromotionSn(int sn) {
+        if (HotelApplication.mapPromotionInfoForm != null && HotelApplication.mapPromotionInfoForm.size() > 0) {
+            PromotionInfoForm promotionInfoForm = HotelApplication.mapPromotionInfoForm.get(String.valueOf(sn));
+            if (promotionInfoForm != null)
+                return promotionInfoForm.getPromotionSn();
+        }
+        return 0;
+    }
+
+    public static int[] getPromotionInfoForm(int sn, int priceHourly, int priceOvernight, int priceDaily, int bonusFirstHour) {
+        int[] discount = new int[4];
         if (HotelApplication.mapPromotionInfoForm != null && HotelApplication.mapPromotionInfoForm.size() > 0) {
             PromotionInfoForm promotionInfoForm = HotelApplication.mapPromotionInfoForm.get(String.valueOf(sn));
             if (promotionInfoForm != null) {
-                discount[0] = promotionInfoForm.getMaxHourlyDiscountMoney();
-                discount[1] = promotionInfoForm.getMaxOvernightDiscountMoney();
-                discount[2] = promotionInfoForm.getMaxDailyDiscountMoney();
+                discount[0] = getCalculatePrice( //Hourly
+                        priceHourly,
+                        promotionInfoForm.getMaxHourlyDiscountMoney(),
+                        promotionInfoForm.getMaxHourlyDiscountPercent(),
+                        promotionInfoForm.getMaxHourlyPercent());//promotionInfoForm.getMaxHourlyDiscountMoney();
+                discount[1] = getCalculatePrice( //Overnight
+                        priceOvernight,
+                        promotionInfoForm.getMaxOvernightDiscountMoney(),
+                        promotionInfoForm.getMaxOvernightDiscountPercent(),
+                        promotionInfoForm.getMaxOvernightPercent());//promotionInfoForm.getMaxOvernightDiscountMoney();
+                discount[2] = getCalculatePrice( //Daily
+                        priceDaily,
+                        promotionInfoForm.getMaxDailyDiscountMoney(),
+                        promotionInfoForm.getMaxDailyDiscountPercent(),
+                        promotionInfoForm.getMaxDailyPercent());//promotionInfoForm.getMaxDailyDiscountMoney();
+                discount[3] = getCalculatePrice( //CineJoy
+                        priceHourly + bonusFirstHour,
+                        promotionInfoForm.getMaxHourlyDiscountCineMoney(),
+                        promotionInfoForm.getMaxHourlyDiscountPercent(),
+                        promotionInfoForm.getMaxHourlyPercent());
             }
         }
         return discount;
+    }
+
+    private static int getCalculatePrice(int price, int maxDiscountMoney, int maxDiscountMoneyPercent, int percent) {
+        int value = 0;
+        if (maxDiscountMoney > 0 /*Both*/ && percent > 0) {
+            value = getCalculateBoth(price, percent, maxDiscountMoneyPercent, maxDiscountMoney);
+        } else if (percent > 0 /*Only Percent*/ && maxDiscountMoney <= 0) {
+            value = getCalculatePercent(price, percent, maxDiscountMoneyPercent);
+        } else if (percent <= 0 /*Only Money*/ && maxDiscountMoney > 0) {
+            value = maxDiscountMoney;
+        }
+        return value;
+    }
+
+    private static int getCalculatePercent(int price, int percent, int maxMoneyPercent) {
+        int money = (price * percent) / 100;
+        if (money > maxMoneyPercent) {
+            money = maxMoneyPercent;
+        }
+        return money;
+    }
+
+    private static int getCalculateBoth(int price, int percent, int maxMoneyPercent, int maxDiscountMoney) {
+        int moneyPercent = getCalculatePercent(price, percent, maxMoneyPercent);
+        if (moneyPercent < maxDiscountMoney) {
+            moneyPercent = maxDiscountMoney;
+        }
+        return moneyPercent;
+    }
+
+
+    public static boolean isNumberPhone(String number) {
+        Pattern pattern = Pattern.compile("^[0-9]*$");
+        Matcher matcher = pattern.matcher(number);
+        if (!matcher.matches()) {
+            return false;
+            //return "Chuỗi nhập vào không phải là số!";
+        } else if (number.length() == 10 || number.length() == 11) {
+            if (number.length() == 10) {
+                if (number.substring(0, 2).equals("09")) {
+                    return true;
+                    //return "Số điện thoại hợp lệ";
+                } else {
+                    return false;
+                    //return "số điện thoại không hợp lệ!";
+                }
+            } else if (number.substring(0, 2).equals("01")) {
+                return true;
+                //return "Số điện thoại hợp lệ";
+            } else {
+                return false;
+                //return "số điện thoại không hợp lệ!";
+            }
+        } else {
+            return false;
+            //return "Độ dài chuỗi không hợp lệ!";
+        }
+    }
+
+    public static String getClientIp() {
+        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        String ip;
+        if (wm != null) {
+            ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        } else {
+            ip = "";
+        }
+        return ip;
     }
 }

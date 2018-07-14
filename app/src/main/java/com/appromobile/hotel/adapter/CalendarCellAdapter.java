@@ -22,7 +22,6 @@ import java.util.Locale;
  * Created by xuanquach on 8/5/15.
  */
 public class CalendarCellAdapter extends BaseAdapter {
-    private static final String tag = "CalendarCellAdapter";
     private final Context _context;
     private final List<String> list;
     private static final int DAY_OFFSET = 1;

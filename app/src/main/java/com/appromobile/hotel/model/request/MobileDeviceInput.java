@@ -11,6 +11,7 @@ public class MobileDeviceInput {
     private String tokenId;
     private String appVersion;
     private String phoneModel;
+    private String deviceCode;
 
     public String getAppVersion() {
         return appVersion;
@@ -66,5 +67,14 @@ public class MobileDeviceInput {
 
     public void setTokenId(String tokenId) {
         this.tokenId = tokenId;
+    }
+
+    public String getDeviceCode() {
+        return deviceCode;
+    }
+
+    public MobileDeviceInput setDeviceCode(String deviceCode) {
+        this.deviceCode = deviceCode;
+        return this;
     }
 }

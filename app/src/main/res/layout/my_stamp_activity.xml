@@ -23,7 +23,7 @@
             android:paddingStart="6dp"
             android:src="@drawable/back" />
 
-        <com.appromobile.hotel.widgets.TextViewSFMedium
+        <com.appromobile.hotel.widgets.TextViewSFHeavy
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -33,7 +33,7 @@
             android:maxLines="1"
             android:text="@string/txt_6_12_stamp"
             android:textColor="@color/wh"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp_18" />
     </LinearLayout>
 
     <RelativeLayout
@@ -48,7 +48,7 @@
             android:gravity="center"
             android:text="@string/txt_6_12_stamp_no"
             android:textColor="@color/org"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/imgNoData"
@@ -58,7 +58,8 @@
             android:layout_below="@+id/txtNoData"
             android:layout_centerInParent="true"
             android:contentDescription="@string/img_decscription"
-            android:src="@drawable/icon_stamp_green" />
+            android:src="@drawable/icon_stamp_green"
+            android:visibility="gone"/>
 
         <ListView
             android:id="@+id/lvStamp"

@@ -1,8 +1,6 @@
 package com.appromobile.hotel.adapter;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -13,15 +11,11 @@ import android.widget.TextView;
 
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.UrlParams;
-import com.appromobile.hotel.model.view.HotelDetailForm;
 import com.appromobile.hotel.model.view.HotelImageForm;
 import com.appromobile.hotel.model.view.RoomTypeForm;
-import com.appromobile.hotel.utils.PictureUtils;
-import com.appromobile.hotel.utils.Utils;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.appromobile.hotel.utils.ParamConstants;
+import com.appromobile.hotel.picture.PictureGlide;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -36,7 +30,7 @@ public class FullImageDetailAdapter extends PagerAdapter {
         this.context = context;
         this.data = data;
         this.listRoomTypeForm = listRoomTypeForm;
-        PictureUtils.getInstance().clearCache(context);
+        PictureGlide.getInstance().clearCache(context);
     }
 
     @Override
@@ -62,8 +56,10 @@ public class FullImageDetailAdapter extends PagerAdapter {
 
         HotelImageForm hotelImageForm = data.get(position);
 
-        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + hotelImageForm.getSn() + "&fileName=" + hotelImageForm.getCustomizeName();
-        PictureUtils.getInstance().load(
+        //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?imageKey?hotelImageSn=" + hotelImageForm.getSn() + "&fileName=" + hotelImageForm.getCustomizeName();
+        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + hotelImageForm.getImageKey();
+
+        PictureGlide.getInstance().show(
                 url,
                 context.getResources().getDisplayMetrics().widthPixels,
                 context.getResources().getDisplayMetrics().heightPixels,
@@ -75,13 +71,18 @@ public class FullImageDetailAdapter extends PagerAdapter {
         * Check Room type Locked.
         */
         int sn = hotelImageForm.getRoomTypeSn();
-        for (int i = 0; i < listRoomTypeForm.size(); i++){
-            if (sn == listRoomTypeForm.get(i).getSn()){
-                if (listRoomTypeForm.get(i).isLocked()){
+        for (int i = 0; i < listRoomTypeForm.size(); i++) {
+            if (sn == listRoomTypeForm.get(i).getSn()) {
+
+                /*
+            * Check Room type Locked
+            */
+                if (listRoomTypeForm.get(i).getStatus() == ParamConstants.LOCK_TODAY) {
                     imgLocked.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     imgLocked.setVisibility(View.GONE);
                 }
+
             }
         }
 

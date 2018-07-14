@@ -10,17 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "appro_hotel.db";
-    public static final int DATABASE_VERSION = 2;
-    private static SQLiteDatabase myDataBase;
+    private static final int DATABASE_VERSION = 2;
 
-    public DataBaseHelper(Context context) {
+
+    DataBaseHelper(Context context) {
 
         super(context, DB_NAME, null, DATABASE_VERSION);
-    }
-
-
-    public SQLiteDatabase getSQLiteDatabase(){
-        return myDataBase;
     }
 
     @Override

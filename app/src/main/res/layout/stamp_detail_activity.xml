@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lg"
@@ -7,7 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +48,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:layout_marginLeft="@dimen/margin_12"
+                android:layout_marginRight="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_8"
                 android:background="@drawable/box_qa_white_bg"
                 android:orientation="horizontal"
                 android:padding="@dimen/margin_12">
@@ -65,130 +69,266 @@
 
             </LinearLayout>
 
-            <!--Point Collection-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_margin="@dimen/margin_12"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:layout_marginLeft="@dimen/margin_12"
+                android:layout_marginRight="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_4"
                 android:background="@drawable/box_qa_white_bg"
-                android:baselineAligned="false"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
                 android:padding="@dimen/margin_8"
-                android:weightSum="10">
-
-                <!--Stamp1-->
+                android:orientation="vertical">
+                <!--Point Collection-->
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/imgStamp1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:contentDescription="@string/img_decscription" />
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
 
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:id="@+id/tvStamp1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <!--Stamp1-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
                         android:gravity="center"
-                        android:textSize="@dimen/sp_10" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <!--Stamp2-->
+                        <ImageView
+                            android:id="@+id/imgStamp1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <!--Stamp2-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imgStamp2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <!--Stamp3-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imgStamp3"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <!--Stamp4-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imgStamp4"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <!--Stamp5-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imgStamp5"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!--Point Collection-->
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/imgStamp2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:contentDescription="@string/img_decscription" />
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
 
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:id="@+id/tvStamp2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <!--Stamp1-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
                         android:gravity="center"
-                        android:textSize="@dimen/sp_10" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <!--Stamp3-->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/imgStamp3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:contentDescription="@string/img_decscription" />
+                        <ImageView
+                            android:id="@+id/imgStamp6"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
 
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:id="@+id/tvStamp3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <!--Stamp2-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
                         android:gravity="center"
-                        android:textSize="@dimen/sp_10" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <!--Stamp4-->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/imgStamp4"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:contentDescription="@string/img_decscription" />
+                        <ImageView
+                            android:id="@+id/imgStamp7"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
 
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:id="@+id/tvStamp4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <!--Stamp3-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
                         android:gravity="center"
-                        android:textSize="@dimen/sp_10" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <!--Stamp5-->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/imgStamp5"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:contentDescription="@string/img_decscription" />
+                        <ImageView
+                            android:id="@+id/imgStamp8"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
 
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:id="@+id/tvStamp5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <!--Stamp4-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
                         android:gravity="center"
-                        android:textSize="@dimen/sp_10" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
+                        <ImageView
+                            android:id="@+id/imgStamp9"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <!--Stamp5-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imgStamp10"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="@string/img_decscription" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvStamp10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
             <!--Value Stamp-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:layout_marginLeft="@dimen/margin_12"
+                android:layout_marginRight="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_4"
                 android:background="@drawable/box_qa_white_bg"
                 android:padding="@dimen/margin_12">
 
@@ -212,7 +352,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:layout_marginLeft="@dimen/margin_12"
+                android:layout_marginRight="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_4"
                 android:background="@drawable/box_qa_white_bg"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_12">
@@ -221,7 +364,8 @@
                     android:id="@+id/tvTermsOfuse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_16" />
+                    android:padding="@dimen/margin_16"
+                    android:textSize="@dimen/sp_16" />
 
             </LinearLayout>
         </LinearLayout>
@@ -232,8 +376,7 @@
         android:id="@+id/btnRedeem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/margin_4"
         android:background="@drawable/box_qa_white_bg"
         android:paddingBottom="@dimen/margin_8"
@@ -242,4 +385,4 @@
         android:paddingTop="@dimen/margin_8"
         android:text="@string/txt_6_12_stamp_redeem" />
 
-</RelativeLayout>
+</LinearLayout>

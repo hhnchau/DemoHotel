@@ -61,6 +61,7 @@ public class BookHotelNowActivity extends BaseActivity implements View.OnClickLi
                 HotelForm hotelForm = hotelForms.get(position);
                 try {
                     if(hotelForm.getRoomTypeFormList()!=null && hotelForm.getRoomTypeFormList().size()>0) {
+
                         HotelDetailForm hotelDetailForm = new HotelDetailForm();
                         hotelDetailForm.setSn(hotelForm.getSn());
                         hotelDetailForm.setName(hotelForm.getName());

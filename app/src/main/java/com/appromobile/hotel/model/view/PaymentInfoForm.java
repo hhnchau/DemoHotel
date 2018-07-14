@@ -2,6 +2,9 @@ package com.appromobile.hotel.model.view;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
+
+import com.appromobile.hotel.utils.Utils;
 
 /**
  * Created by xuan on 12/15/2016.

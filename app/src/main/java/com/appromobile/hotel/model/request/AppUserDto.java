@@ -17,6 +17,7 @@ public class AppUserDto implements Parcelable{
     private String mobileUserId;
     private String verifyCode;
     private String inviteCode;
+    private ViewCrmNotificationDto viewCrmDto;
 
     public AppUserDto(){}
 
@@ -100,6 +101,14 @@ public class AppUserDto implements Parcelable{
         this.verifyCode = verifyCode;
     }
 
+    public ViewCrmNotificationDto getViewCrmDto() {
+        return viewCrmDto;
+    }
+
+    public void setViewCrmDto(ViewCrmNotificationDto viewCrmDto) {
+        this.viewCrmDto = viewCrmDto;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -117,6 +126,7 @@ public class AppUserDto implements Parcelable{
         dest.writeString(this.mobileUserId);
         dest.writeString(this.verifyCode);
         dest.writeString(this.inviteCode);
+        dest.writeParcelable(this.viewCrmDto, flags);
     }
 
     protected AppUserDto(Parcel in) {
@@ -130,6 +140,7 @@ public class AppUserDto implements Parcelable{
         this.mobileUserId = in.readString();
         this.verifyCode = in.readString();
         this.inviteCode = in.readString();
+        this.viewCrmDto = in.readParcelable(ViewCrmNotificationDto.class.getClassLoader());
     }
 
     public static final Creator<AppUserDto> CREATOR = new Creator<AppUserDto>() {

@@ -27,6 +27,7 @@ public class BannerForm {
     private int sn;
     private String title;
     private String targetInfo;
+    private String imageKey;
 
     public BannerForm() {
     }
@@ -133,5 +134,14 @@ public class BannerForm {
 
     public void setTargetInfo(String targetInfo) {
         this.targetInfo = targetInfo;
+    }
+
+    public String getImageKey() {
+        return imageKey;
+    }
+
+    public BannerForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
     }
 }

@@ -5,11 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appromobile.hotel.BuildConfig;
@@ -17,14 +18,19 @@ import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.controllerApi.ControllerApi;
 import com.appromobile.hotel.api.controllerApi.ResultApi;
+import com.appromobile.hotel.dialog.CallbackVerify;
+import com.appromobile.hotel.dialog.DialogVerify;
 import com.appromobile.hotel.enums.Gender;
 import com.appromobile.hotel.enums.SignupType;
 import com.appromobile.hotel.gcm.FirebaseUtils;
+import com.appromobile.hotel.model.request.AppUserDto;
 import com.appromobile.hotel.model.request.AppUserSocialDto;
+import com.appromobile.hotel.model.request.LoginDto;
 import com.appromobile.hotel.model.request.LogoutDto;
 import com.appromobile.hotel.model.request.MobileDeviceInput;
 import com.appromobile.hotel.model.request.SendSmsDto;
 import com.appromobile.hotel.model.request.SocialLoginDto;
+import com.appromobile.hotel.model.request.ViewCrmNotificationDto;
 import com.appromobile.hotel.model.view.ApiSettingForm;
 import com.appromobile.hotel.model.view.AppUserForm;
 import com.appromobile.hotel.model.view.RestResult;
@@ -33,24 +39,23 @@ import com.appromobile.hotel.utils.DialogUtils;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.UtilityValidate;
 import com.appromobile.hotel.utils.Utils;
-import com.appromobile.hotel.widgets.EditTextSFRegular;
-import com.appromobile.hotel.widgets.TextViewSFBold;
-import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.jaredrummler.android.device.DeviceName;
+
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import io.fabric.sdk.android.Fabric;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,19 +65,23 @@ import retrofit2.Response;
  */
 public class MemberProfileSocialActivity extends BaseActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private AppUserSocialDto appUserDto;
-    private TextViewSFRegular tvFemale, tvMale, tvBirthday, btnOK, tvMessage;
-    private ImageView imgValidateEmail;
-    private TextViewSFBold btnCheckDuplicateNickName;
-    private EditTextSFRegular txtNickname, txtAddress, txtMobile, txtEmail, txtVerifyCode;
+    private TextView tvFemale, tvMale, btnOK;
+    private EditText txtNickname, txtMobile, txtEmail, tvBirthday, txtInviteCode, focus;
     private ImageView btnClose;
-    boolean isNicknameValid = false;
-    //    boolean isEmailValid =false;
     private Gender gender;
-    ImageView chkFemale, chkMale;
-    TextViewSFBold btnGetCode;
-    Timer timer = new Timer();
-    private LinearLayout inviteCodeArea;
-    private EditTextSFRegular txtInviteCode;
+    private ImageView chkFemale, chkMale;
+
+    private ImageView imgValidateMail, imgValidateNickname, imgValidateMobile, imgValidateBirthday, imgValidateInvite;
+    private TextInputLayout inputLayoutMail, inputLayoutNickname, inputLayoutMobile, inputLayoutBirthday, inputLayoutInvite;
+    private boolean isValidateEmail = false;
+    private boolean isNicknameValid = false;
+    private boolean isMobileValid = false;
+    private boolean isBirthday = false;
+    private boolean isInvite = false;
+
+    private boolean isManual = false;
+    private boolean isSend = false;
+
 
     @Override
     public void setScreenName() {
@@ -83,35 +92,40 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setScreenName();
-        try {
-            Fabric.with(this, new Crashlytics());
-        } catch (Exception e) {
-        }
-
         setContentView(R.layout.member_profile_social_activity);
 
+        String action = getIntent().getAction();
+        if (action != null && action.equals("manual")) {
+            isManual = true;
+        }
         appUserDto = getIntent().getParcelableExtra("AppUserSocialDto");
 
-        txtInviteCode =  findViewById(R.id.txtInviteCodeSocial);
-        inviteCodeArea = findViewById(R.id.viewInviteCodeSocial);
-        btnGetCode =  findViewById(R.id.btnGetCode);
-        txtVerifyCode =  findViewById(R.id.txtVerifyCode);
-        chkFemale =  findViewById(R.id.chkFemale);
-        chkMale =  findViewById(R.id.chkMale);
-        btnOK =  findViewById(R.id.btnOK);
-        imgValidateEmail =  findViewById(R.id.imgValidateEmail);
-        btnCheckDuplicateNickName =  findViewById(R.id.btnCheckDuplicateNickName);
+        imgValidateMail = findViewById(R.id.imgValidateEmail);
+        imgValidateNickname = findViewById(R.id.imgValidateNickName);
+        imgValidateMobile = findViewById(R.id.imgValidateMobile);
+        imgValidateBirthday = findViewById(R.id.imgValidateBirthday);
+        imgValidateInvite = findViewById(R.id.imgValidateInvite);
+
+        inputLayoutMail = findViewById(R.id.input_layout_mail);
+        inputLayoutNickname = findViewById(R.id.input_layout_nickname);
+        inputLayoutMobile = findViewById(R.id.input_layout_mobile);
+        inputLayoutBirthday = findViewById(R.id.input_layout_birthday);
+        inputLayoutInvite = findViewById(R.id.input_layout_invite);
+        focus = findViewById(R.id.focus);
+
+
+        txtInviteCode = findViewById(R.id.txtInviteCodeSocial);
+        chkFemale = findViewById(R.id.chkFemale);
+        chkMale = findViewById(R.id.chkMale);
+        btnOK = findViewById(R.id.btnOK);
+
         tvFemale = findViewById(R.id.tvFemale);
         tvMale = findViewById(R.id.tvMale);
-        tvBirthday =  findViewById(R.id.tvBirthday);
-        btnClose =  findViewById(R.id.btnClose);
-        tvMessage =  findViewById(R.id.tvMessage);
-        txtNickname =  findViewById(R.id.txtNickname);
-        txtAddress =  findViewById(R.id.txtAddress);
-        txtMobile =  findViewById(R.id.txtMobile);
+        tvBirthday = findViewById(R.id.tvBirthday);
+        btnClose = findViewById(R.id.btnClose);
+        txtNickname = findViewById(R.id.txtNickname);
+        txtMobile = findViewById(R.id.txtMobile);
         txtEmail = findViewById(R.id.txtEmail);
-
-        btnCheckDuplicateNickName.setOnClickListener(this);
         chkFemale.setOnClickListener(this);
         chkMale.setOnClickListener(this);
         btnOK.setOnClickListener(this);
@@ -119,72 +133,247 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
         tvFemale.setOnClickListener(this);
         tvMale.setOnClickListener(this);
         tvBirthday.setOnClickListener(this);
-        btnGetCode.setOnClickListener(this);
         Utils.showKeyboard(this);
-        txtNickname.addTextChangedListener(new TextWatcher() {
+
+
+        //Check Email
+        txtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                isNicknameValid = false;
-//                btnOK.setEnabled(false);
-//                btnOK.setBackgroundColor(getResources().getColor(R.color.button_color_disable));
-            }
-        });
-
-        tvBirthday.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tvMessage.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        txtEmail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!txtEmail.getText().toString().equals("")) {
-                    if (!UtilityValidate.isEmailValid(txtEmail.getText().toString())) {
-                        tvMessage.setText(getString(R.string.email_format_not_valid));
-                        tvMessage.setVisibility(View.VISIBLE);
-                        imgValidateEmail.setImageResource(R.drawable.cancel);
-                    } else {
-                        tvMessage.setVisibility(View.GONE);
-                        imgValidateEmail.setImageResource(R.drawable.check);
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    imgValidateMail.setVisibility(View.GONE);
+                    if (!isManual) {
+                        if (txtEmail.getText().toString().trim().equals("")) {
+                            checkDuplicateEmail();
+                        } else {
+                            isValidateEmail = true;
+                        }
                     }
                 } else {
-                    imgValidateEmail.setImageResource(R.drawable.cancel);
+                    if (txtEmail.getText() != null && txtEmail.getText().toString().equals("")) {
+                        imgValidateMail.setVisibility(View.VISIBLE);
+                    }
+                    inputLayoutMail.setErrorEnabled(false);
+                }
+            }
+        });
+
+        //Check Nickname
+        txtNickname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    imgValidateNickname.setVisibility(View.GONE);
+                    checkDuplicateNickname();
+                } else {
+                    imgValidateNickname.setVisibility(View.VISIBLE);
+                    inputLayoutNickname.setErrorEnabled(false);
+                }
+            }
+        });
+
+        //Check Mobile
+        txtMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    imgValidateMobile.setVisibility(View.GONE);
+                    checkDuplicateMobile();
+                } else {
+                    imgValidateMobile.setVisibility(View.VISIBLE);
+                    inputLayoutMobile.setErrorEnabled(false);
+                }
+            }
+        });
+
+        //Check Birthday
+
+        //Check Invite
+
+        initData(appUserDto);
+    }
+
+    //Check Email
+    private void checkDuplicateEmail() {
+
+        if (txtEmail.getText().toString().equals("")) {
+            inputLayoutMail.setError(getString(R.string.please_input_email));
+            isValidateEmail = false;
+            return;
+        }
+        if (!UtilityValidate.isEmailValid(txtEmail.getText().toString())) {
+            inputLayoutMail.setError(getString(R.string.email_format_not_valid));
+            isValidateEmail = false;
+            return;
+        }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", txtEmail.getText().toString());
+
+        DialogUtils.showLoadingProgress(this, false);
+        HotelApplication.serviceApi.checkUserIdInSytem(params, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+                if (response.isSuccessful()) {
+                    RestResult restResult = response.body();
+                    if (restResult != null && restResult.getOtherInfo().trim().equals("0")) {
+
+                        //OK
+                        isValidateEmail = true;
+
+                    } else {
+
+                        //Exist
+                        isValidateEmail = false;
+                        inputLayoutMail.setError(getString(R.string.email_already_exists));
+                    }
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                isValidateEmail = false;
+                Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
             }
         });
-        initData();
+    }
+
+    //Check Nickname
+    private void checkDuplicateNickname() {
+        final String nickName = txtNickname.getText().toString().trim();
+        if (nickName.equals("")) {
+            inputLayoutNickname.setError(getString(R.string.please_input_nickname));
+            isNicknameValid = false;
+            return;
+        }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("nickName", nickName);
+
+        DialogUtils.showLoadingProgress(this, false);
+        HotelApplication.serviceApi.checkNickNameInSytem(params, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+                if (response.isSuccessful()) {
+                    RestResult restResult = response.body();
+                    if (restResult != null && restResult.getOtherInfo().trim().equals("0")) {
+                        isNicknameValid = true;
+                    } else {
+
+                        isNicknameValid = true;
+                        txtNickname.setText(nickName + random());
+                        //inputLayoutMail.setError(getString(R.string.nickname_already_exists));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                isNicknameValid = false;
+                Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    //Check Mobile
+    private void checkDuplicateMobile() {
+        if (txtMobile.getText().toString().equals("")) {
+            inputLayoutMobile.setError(getString(R.string.please_input_mobile));
+            isMobileValid = false;
+            return;
+        }
+
+        String phone = txtMobile.getText().toString();
+        DialogUtils.showLoadingProgress(this, false);
+        ControllerApi.getmInstance().checkMobileInSystem(this, phone, new ResultApi() {
+            @Override
+            public void resultApi(Object object) {
+                DialogUtils.hideLoadingProgress();
+                RestResult restResult = (RestResult) object;
+                if (restResult != null) {
+                    if (restResult.getResult() == 1) {
+                        //Ok
+                        isMobileValid = true;
+
+                        if (isSend)
+                            sendSms(true);
+
+                    } else if (restResult.getResult() == 0) {
+                        //Exist
+                        isMobileValid = false;
+                        inputLayoutMobile.setError(getString(R.string.mobile_already_exists));
+                    }
+                } else {
+                    isMobileValid = false;
+                }
+            }
+        });
+    }
+
+    //Check Birthday
+    private void checkBirthday() {
+
+    }
+
+    //Check invite
+    private void checkInvite() {
+
+    }
+
+    private void initData(AppUserSocialDto _appUserSocialDto) {
+        if (_appUserSocialDto != null) {
+            String email = _appUserSocialDto.getEmail();
+            if (email != null && !email.equals("")) {
+                txtEmail.setText(email);
+                txtEmail.setEnabled(false);
+            } else {
+                txtEmail.setEnabled(true);
+            }
+
+            String nickname = _appUserSocialDto.getNickName();
+            if (nickname != null && !nickname.equals("")) {
+                txtNickname.setText(nickname);
+                checkDuplicateNickname();
+            }
+
+            String mobile = _appUserSocialDto.getMobile();
+            if (mobile != null && !mobile.equals("")) {
+                txtMobile.setText(mobile);
+                checkDuplicateMobile();
+            }
+
+
+            String birthday = _appUserSocialDto.getBirthday();
+            if (birthday != null) {
+                Calendar calendar = Calendar.getInstance();
+                try {
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
+                    calendar.setTimeInMillis(simpleDateFormat.parse(birthday).getTime());
+                } catch (Exception e) {
+                }
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_view), Locale.ENGLISH);
+
+                tvBirthday.setText(simpleDateFormat.format(calendar.getTime()));
+            }
+
+            gender = Gender.toType(_appUserSocialDto.getGender());
+            setupGenderView();
+        }
+
+    }
+
+    private void setupGenderView() {
+        if (gender == Gender.Male) {
+            chkMale.setImageResource(R.drawable.checkbox_selected);
+            chkFemale.setImageResource(R.drawable.checkbox);
+        } else if (gender == Gender.Female) {
+            chkFemale.setImageResource(R.drawable.checkbox_selected);
+            chkMale.setImageResource(R.drawable.checkbox);
+        }
     }
 
     private void logout() {
@@ -208,58 +397,28 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
         });
     }
 
-
-    private void initData() {
-        txtNickname.setText(appUserDto.getNickName());
-        txtEmail.setText(appUserDto.getEmail());
-        if (!txtEmail.getText().toString().equals("")) {
-            txtEmail.setEnabled(false);
-//            isEmailValid = true;
-            txtNickname.requestFocus();
-        } else {
-            txtEmail.requestFocus();
-        }
-        Calendar calendar = Calendar.getInstance();
-        try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request));
-            calendar.setTimeInMillis(simpleDateFormat.parse(appUserDto.getBirthday()).getTime());
-        } catch (Exception e) {
-        }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_view));
-        tvBirthday.setText(simpleDateFormat.format(calendar.getTime()));
-        gender = Gender.toType(appUserDto.getGender());
-        setupGenderView();
-        if (appUserDto.getMobile() == null || appUserDto.getMobile().equals("")) {
-            inviteCodeArea.setVisibility(View.VISIBLE);
-        } else {
-            inviteCodeArea.setVisibility(View.GONE);
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
 
-    private void setupGenderView() {
-        if (gender == Gender.Male) {
-            chkMale.setImageResource(R.drawable.checkbox_selected);
-            chkFemale.setImageResource(R.drawable.checkbox);
-        } else {
-            chkFemale.setImageResource(R.drawable.checkbox_selected);
-            chkMale.setImageResource(R.drawable.checkbox);
-        }
-    }
 
     @Override
     public void onClick(View v) {
         Utils.hideKeyboard(this);
         switch (v.getId()) {
-            case R.id.btnClose: {
+            case R.id.btnClose:
                 logout();
-
                 break;
-            }
             case R.id.btnOK:
-                sendSignup();
-                break;
-            case R.id.btnCheckDuplicateNickName:
-                checkDuplicateNickname();
+                if (!isSend) {
+                    isSend = true;
+                    requestFocus(focus);
+                    handleBtnOk();
+                } else {
+                    DialogVerify.getInstance().show();
+                }
                 break;
             case R.id.chkFemale:
             case R.id.tvFemale:
@@ -274,127 +433,102 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
             case R.id.tvBirthday:
                 showDateTimeChoose();
                 break;
-            case R.id.btnGetCode:
-                sendPhoneToVerify();
-                break;
         }
     }
 
-    private void sendPhoneToVerify() {
-        if (txtMobile.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_phone_number));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
+    private void handleBtnOk() {
+        if (!isManual) {
+            if (txtEmail.getText().toString().trim().equals("")) {
+                checkDuplicateEmail();
+            } else {
+                isValidateEmail = true;
+            }
+        } else {
+            isValidateEmail = true;
         }
+        checkDuplicateNickname();
+        //checkDuplicateMobile();
+    }
 
-        SendSmsDto sendSmsDto = new SendSmsDto();
-        sendSmsDto.setMobile(txtMobile.getText().toString());
-        sendSmsDto.setMobileUserId(HotelApplication.DEVICE_ID);
-        DialogUtils.showLoadingProgress(this, false);
-        HotelApplication.serviceApi.sendVerifyCode(sendSmsDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+    private void showDialogVerify(String error) {
+        Utils.showKeyboard(this);
+        DialogVerify.getInstance().create(this, error, new CallbackVerify() {
             @Override
-            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
-                DialogUtils.hideLoadingProgress();
-                if (response.isSuccessful()) {
-                    RestResult restResult = response.body();
-                    if (restResult != null) {
-                        if (restResult.getResult() == 1) {
-                            btnGetCode.setVisibility(View.GONE);
-                            int timeIntervalGetCode = 60;
-                            try {
-                                timeIntervalGetCode = HotelApplication.apiSettingForm.getTimeIntervalGetCode();
-                            } catch (Exception e) {
-                                timeIntervalGetCode = 60;
-                            }
-                            Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.verify_code_button, timeIntervalGetCode), Toast.LENGTH_LONG).show();
-                            timer.schedule(new TimerTask() {
-                                @Override
-                                public void run() {
-                                    btnGetCode.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            btnGetCode.setVisibility(View.VISIBLE);
-                                        }
-                                    });
-                                }
-                            }, 1000 * timeIntervalGetCode);
-
-                        } else if (restResult.getResult() == 12) {
-                            Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.number_is_wrong_format), Toast.LENGTH_LONG).show();
-                        } else if (restResult.getResult() == 13) {
-                            Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.server_cannot_send_sms), Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(MemberProfileSocialActivity.this, restResult.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
+            public void onVerify(String s) {
+                if (s != null) {
+                    checkVerifyCode(txtMobile.getText().toString(), s);
+                    Utils.hideKeyboard(MemberProfileSocialActivity.this);
                 } else {
+                    //Send sms Again
+                    sendSms(false);
+                }
+            }
+        });
+    }
+
+    private void sendSms(final boolean isNew) {
+        if (isValidateEmail && isNicknameValid && isMobileValid) {
+
+            SendSmsDto sendSmsDto = new SendSmsDto();
+            sendSmsDto.setMobile(txtMobile.getText().toString());
+            sendSmsDto.setMobileUserId(HotelApplication.DEVICE_ID);
+            DialogUtils.showLoadingProgress(this, false);
+            HotelApplication.serviceApi.sendVerifyCode(sendSmsDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+                @Override
+                public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                    DialogUtils.hideLoadingProgress();
+                    if (response.isSuccessful()) {
+                        RestResult restResult = response.body();
+                        if (restResult != null) {
+                            if (restResult.getResult() == 1) {
+
+                                if (isNew)
+                                    showDialogVerify(null);
+                                else
+                                    Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.txt_7_2_resend_sucessful), Toast.LENGTH_SHORT).show();
+
+                            } else if (restResult.getResult() == 12) {
+                                isMobileValid = false;
+                                inputLayoutMobile.setError(getString(R.string.number_is_wrong_format));
+                            } else if (restResult.getResult() == 13) {
+                                Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.server_cannot_send_sms), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MemberProfileSocialActivity.this, restResult.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    } else {
+                        Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<RestResult> call, Throwable t) {
+                    DialogUtils.hideLoadingProgress();
                     Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
                 }
-            }
-
-            @Override
-            public void onFailure(Call<RestResult> call, Throwable t) {
-                DialogUtils.hideLoadingProgress();
-                Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
-            }
-        });
+            });
+        }
     }
 
-    private void checkDuplicateEmail() {
-        if (txtEmail.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_email));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (!UtilityValidate.isEmailValid(txtEmail.getText().toString())) {
-            tvMessage.setText(getString(R.string.email_format_not_valid));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("userId", txtEmail.getText().toString());
-
-        DialogUtils.showLoadingProgress(this, false);
-        HotelApplication.serviceApi.checkUserIdInSytem(params, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+    private void checkVerifyCode(String _phone, final String _verify) {
+        ControllerApi.getmInstance().checkVerifyCode(this, _phone, _verify, new ResultApi() {
             @Override
-            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
-                DialogUtils.hideLoadingProgress();
-                if (response.isSuccessful()) {
-                    RestResult restResult = response.body();
-                    if (restResult != null && restResult.getOtherInfo().trim().equals("0")) {
-//                        isEmailValid = true;
-                        tvMessage.setText("");
-                        tvMessage.setVisibility(View.GONE);
-                        Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.the_email_is_available), Toast.LENGTH_LONG).show();
+            public void resultApi(Object object) {
+                RestResult restResult = (RestResult) object;
+                if (restResult != null) {
+                    if (restResult.getResult() == 1) {
+                        if (isManual) {
+                            createNewAppUser(_verify);
+                        } else {
+                            createNewAppUserViaSocialApp(_verify);
+                        }
                     } else {
-//                        isEmailValid = false;
-                        tvMessage.setVisibility(View.VISIBLE);
-                        tvMessage.setText(getString(R.string.email_already_exists));
+                        //Not match
+                        showDialogVerify(getString(R.string.msg_7_2_verify_code_not_match));
                     }
                 }
-                checkFormValidate();
-            }
-
-
-            @Override
-            public void onFailure(Call<RestResult> call, Throwable t) {
-                DialogUtils.hideLoadingProgress();
-//                isEmailValid = false;
-                checkFormValidate();
-                Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void checkFormValidate() {
-        if (isNicknameValid) {
-//            btnOK.setEnabled(true);
-//            btnOK.setBackgroundColor(getResources().getColor(R.color.button_color_enable));
-        } else {
-//            btnOK.setEnabled(false);
-//            btnOK.setBackgroundColor(getResources().getColor(R.color.button_color_disable));
-        }
     }
 
     private void showDateTimeChoose() {
@@ -407,99 +541,12 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
         DateTimeDialogUtils.showDatePickerDialog(this, tvBirthday, minYear, maxYear);
     }
 
-    private void checkDuplicateNickname() {
-        if (txtNickname.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_nickname));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("nickName", txtNickname.getText().toString());
-
-        DialogUtils.showLoadingProgress(this, false);
-        HotelApplication.serviceApi.checkNickNameInSytem(params, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
-            @Override
-            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
-                DialogUtils.hideLoadingProgress();
-                if (response.isSuccessful()) {
-                    RestResult restResult = response.body();
-                    if (restResult != null && restResult.getOtherInfo().trim().equals("0")) {
-                        isNicknameValid = true;
-                        tvMessage.setText("");
-                        tvMessage.setVisibility(View.GONE);
-                        Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.the_nickname_is_available), Toast.LENGTH_LONG).show();
-                        checkFormValidate();
-                    } else {
-                        isNicknameValid = false;
-                        tvMessage.setText(getString(R.string.nickname_already_exists));
-                        tvMessage.setVisibility(View.VISIBLE);
-                        checkFormValidate();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RestResult> call, Throwable t) {
-                DialogUtils.hideLoadingProgress();
-                isNicknameValid = false;
-                Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void sendSignup() {
-        if (txtEmail.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_email));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-//        if(!isEmailValid){
-//            tvMessage.setText(getString(R.string.please_duplicate_check_email));
-//            tvMessage.setVisibility(View.VISIBLE);
-//            return;
-//        }
-        if (!UtilityValidate.isEmailValid(txtEmail.getText().toString())) {
-            tvMessage.setText(getString(R.string.email_format_not_valid));
-            tvMessage.setVisibility(View.VISIBLE);
-            imgValidateEmail.setImageResource(R.drawable.cancel);
-            return;
-        }
-
-        if (txtNickname.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_nickname));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (!isNicknameValid) {
-            tvMessage.setText(getString(R.string.please_check_nickname_first));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        if (tvBirthday.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_choose_birthday));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        if (txtMobile.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_phone_number));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        if (txtVerifyCode.getText().toString().equals("")) {
-            tvMessage.setText(getString(R.string.please_input_verify_code));
-            tvMessage.setVisibility(View.VISIBLE);
-            return;
-        }
+    private void createNewAppUserViaSocialApp(String verify) {
 
         appUserDto.setNickName(txtNickname.getText().toString());
         appUserDto.setGender(gender.getType());
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_view));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_view), Locale.ENGLISH);
         try {
             Date date = simpleDateFormat.parse(tvBirthday.getText().toString());
             calendar.setTimeInMillis(date.getTime());
@@ -507,13 +554,18 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
             e.printStackTrace();
         }
 
-        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request));
+        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
         appUserDto.setBirthday(simpleDateFormat.format(calendar.getTime()));
         appUserDto.setEmail(txtEmail.getText().toString());
-        appUserDto.setAddress(txtAddress.getText().toString());
         appUserDto.setMobile(txtMobile.getText().toString());
-        appUserDto.setVerifyCode(txtVerifyCode.getText().toString());
+        appUserDto.setVerifyCode(verify);
         appUserDto.setInviteCode(txtInviteCode.getText().toString());
+
+        appUserDto.setViewCrmDto(new ViewCrmNotificationDto(
+                (long) PreferenceUtils.getSnNotifyCrm(this),
+                PreferenceUtils.getTypeCrm(this),
+                2));
+
         DialogUtils.showLoadingProgress(this, false);
 
         HotelApplication.serviceApi.createNewAppUserViaSocialApp(appUserDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
@@ -524,10 +576,10 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
                     RestResult restResult = response.body();
                     if (restResult != null) {
                         if (restResult.getResult() == 1) {
-                            loginAfterSignup();
-                        } else if (response.body().getResult() == 19) {
+                            loginAfterSignupSocail();
+                        } else if (restResult.getResult() == 19) {
                             Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.verify_code_expired), Toast.LENGTH_LONG).show();
-                        } else if (response.body().getResult() == 20) {
+                        } else if (restResult.getResult() == 20) {
                             Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.verify_code_not_match), Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(MemberProfileSocialActivity.this, restResult.getMessage(), Toast.LENGTH_LONG).show();
@@ -544,7 +596,67 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
         });
     }
 
-    private void loginAfterSignup() {
+    private void createNewAppUser(String verify) {
+
+        AppUserDto _appUserDto = new AppUserDto();
+
+        _appUserDto.setNickName(txtNickname.getText().toString());
+        _appUserDto.setGender(gender.getType());
+        _appUserDto.setMobileUserId(HotelApplication.DEVICE_ID);
+        _appUserDto.setVerifyCode(verify);
+        _appUserDto.setInviteCode(txtInviteCode.getText().toString());
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_view), Locale.ENGLISH);
+        try {
+            Date date = simpleDateFormat.parse(tvBirthday.getText().toString());
+            calendar.setTimeInMillis(date.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        simpleDateFormat = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
+        _appUserDto.setBirthday(simpleDateFormat.format(calendar.getTime()));
+
+        _appUserDto.setMobile(txtMobile.getText().toString());
+        _appUserDto.setUserId(txtEmail.getText().toString());
+        _appUserDto.setPassword(appUserDto.getPassword());
+
+        _appUserDto.setViewCrmDto(new ViewCrmNotificationDto(
+                (long) PreferenceUtils.getSnNotifyCrm(this),
+                PreferenceUtils.getTypeCrm(this),
+                2));
+
+        DialogUtils.showLoadingProgress(this, false);
+        HotelApplication.serviceApi.createNewAppUser(_appUserDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+
+                DialogUtils.hideLoadingProgress();
+                if (response.isSuccessful()) {
+                    RestResult restResult = response.body();
+                    if (restResult != null) {
+                        if (restResult.getResult() == 1) {
+                            loginAfterSignup();
+                        } else if (restResult.getResult() == 19) {
+                            Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.verify_code_expired), Toast.LENGTH_LONG).show();
+                        } else if (restResult.getResult() == 20) {
+                            Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.verify_code_not_match), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MemberProfileSocialActivity.this, restResult.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private void loginAfterSignupSocail() {
         SocialLoginDto loginDto = new SocialLoginDto();
         loginDto.setMobileUserId(HotelApplication.DEVICE_ID);
         loginDto.setViaApp(appUserDto.getViaApp());
@@ -565,7 +677,42 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
                         getAppUserForm();
                     } else {
                         DialogUtils.showMessageDialog(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server));
-                        //DialogUtils.showMessageDialog(MemberProfileSocialActivity.this, getString(R.string.incorrect_email_or_password_please_try_again));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                DialogUtils.hideLoadingProgress();
+                DialogUtils.showMessageDialog(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server));
+            }
+        });
+    }
+
+    private void loginAfterSignup() {
+        final LoginDto loginDto = new LoginDto();
+        loginDto.setMobileUserId(HotelApplication.DEVICE_ID);
+        loginDto.setUserId(appUserDto.getEmail());
+        loginDto.setPassword(appUserDto.getPassword());
+        loginDto.setCache(false);
+        DialogUtils.showLoadingProgress(this, false);
+        HotelApplication.serviceApi.login(loginDto, HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+                DialogUtils.hideLoadingProgress();
+                if (response.isSuccessful()) {
+                    RestResult restResult = response.body();
+                    if (restResult != null && restResult.getResult() == 1) {
+                        PreferenceUtils.setUserId(MemberProfileSocialActivity.this, loginDto.getUserId());
+                        PreferenceUtils.setPassword(MemberProfileSocialActivity.this, loginDto.getPassword());
+
+                        PreferenceUtils.setToken(MemberProfileSocialActivity.this, restResult.getOtherInfo());
+                        PreferenceUtils.setLoginType(MemberProfileSocialActivity.this, SignupType.Manual);
+                        PreferenceUtils.setAutoLogin(MemberProfileSocialActivity.this, true);
+                        updateTokenToServer();
+                        getAppUserForm();
+                    } else {
+                        DialogUtils.showMessageDialog(MemberProfileSocialActivity.this, getString(R.string.cannot_connect_to_server));
                     }
                 }
             }
@@ -597,9 +744,8 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
                     AppUserForm appUserForm = response.body();
                     if (appUserForm != null) {
                         PreferenceUtils.setAppUser(MemberProfileSocialActivity.this, appUserForm);
-//                        Intent intentResult = new Intent();
-//                        setResult(Activity.RESULT_OK, intentResult);
-//                        finish();
+
+                        Toast.makeText(MemberProfileSocialActivity.this, getString(R.string.msg_7_2_sign_up_successful), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(MemberProfileSocialActivity.this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -625,6 +771,7 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
         mobileDeviceInput.setPhoneModel(DeviceName.getDeviceName());
         mobileDeviceInput.setOsVersion(Build.VERSION.RELEASE);
         mobileDeviceInput.setTokenId(FirebaseUtils.getRegistrationId(this));
+        mobileDeviceInput.setDeviceCode(HotelApplication.ID);
         HotelApplication.serviceApi.updateAppUserToken(mobileDeviceInput, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
             @Override
             public void onResponse(Call<RestResult> call, Response<RestResult> response) {
@@ -647,10 +794,7 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        try {
-            timer.cancel();
-        } catch (Exception e) {
-        }
+
     }
 
     @Override
@@ -666,6 +810,13 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    private int random() {
+        int min = 0;
+        int max = 100;
+        Random r = new Random();
+        return r.nextInt(max - min + 1) + min;
     }
 
     @Override
@@ -686,4 +837,5 @@ public class MemberProfileSocialActivity extends BaseActivity implements View.On
             HotelApplication.googleApiClient.disconnect();
         }
     }
+
 }

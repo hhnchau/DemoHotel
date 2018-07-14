@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.adapter.HistoryAdapter;
+import com.appromobile.hotel.api.controllerApi.ControllerApi;
+import com.appromobile.hotel.api.controllerApi.ResultApi;
 import com.appromobile.hotel.model.view.AppUserForm;
 import com.appromobile.hotel.model.view.NotificationData;
 import com.appromobile.hotel.model.view.UserBookingForm;
@@ -35,20 +37,22 @@ public class HistoryActivity extends BaseActivity {
     boolean isNotification = false;
     NotificationData notificationData;
     List<UserBookingForm> userBookingForms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setScreenName();
         try {
             Fabric.with(this, new Crashlytics());
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
         appUserForm = PreferenceUtils.getAppUser(this);
         setContentView(R.layout.history_activity);
-        lvHistory =  findViewById(R.id.lvHistory);
+        lvHistory = findViewById(R.id.lvHistory);
         isNotification = getIntent().getBooleanExtra("NOTIFICATON_SEND", false);
 
-        if(isNotification){
+        if (isNotification) {
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 notificationData = bundle.getParcelable("NotificationData");
@@ -66,16 +70,28 @@ public class HistoryActivity extends BaseActivity {
         lvHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HistoryActivity.this, ReservationDetailActivity.class);
-                intent.putExtra("UserBookingForm", userBookingForms.get(position));
-                startActivity(intent);
+
+                ControllerApi.getmInstance().findUserBookingDetail(HistoryActivity.this, userBookingForms.get(position).getSn(), true, new ResultApi() {
+                    @Override
+                    public void resultApi(Object object) {
+                        //hide loading
+                        DialogUtils.hideLoadingProgress();
+                        //result
+                        UserBookingForm userBookingForm = (UserBookingForm) object;
+
+                        Intent detail = new Intent(HistoryActivity.this, ReservationDetailActivity.class);
+                        detail.putExtra("UserBookingForm", userBookingForm);
+                        detail.putExtra(Booking_Successful.FLAG_SHOW_REWARD_CHECKIN, false);
+                        startActivity(detail);
+                    }
+                });
             }
         });
     }
 
     private void initData() {
         DialogUtils.showLoadingProgress(this, false);
-        Map<String, Object> params=new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
         params.put("appUserSn", appUserForm.getSn());
         params.put("offset", 0);
         params.put("limit", 100);
@@ -83,16 +99,16 @@ public class HistoryActivity extends BaseActivity {
             @Override
             public void onResponse(Call<List<UserBookingForm>> call, Response<List<UserBookingForm>> response) {
                 DialogUtils.hideLoadingProgress();
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     userBookingForms = response.body();
                     HistoryAdapter historyAdapter = new HistoryAdapter(HistoryActivity.this, userBookingForms);
                     lvHistory.setAdapter(historyAdapter);
 
-                    if(isNotification){
+                    if (isNotification) {
                         Intent intent = new Intent(HistoryActivity.this, ReservationDetailActivity.class);
                         intent.putExtra("UserBookingForm", userBookingForms.get(findHistoryIndex(notificationData.getSn())));
                         startActivity(intent);
-                        isNotification=false;
+                        isNotification = false;
                         finish();
                     }
                 }
@@ -106,9 +122,9 @@ public class HistoryActivity extends BaseActivity {
         });
     }
 
-    public int findHistoryIndex(int sn){
-        for(int i=0;i<userBookingForms.size();i++){
-            if(userBookingForms.get(i).getSn()==sn){
+    public int findHistoryIndex(int sn) {
+        for (int i = 0; i < userBookingForms.size(); i++) {
+            if (userBookingForms.get(i).getSn() == sn) {
                 return i;
             }
         }
@@ -124,14 +140,13 @@ public class HistoryActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!PreferenceUtils.getToken(this).equals(""))
-        {
+        if (!PreferenceUtils.getToken(this).equals("")) {
             initData();
         }
     }
 
     @Override
     public void setScreenName() {
-        this.screenName="SSetHistory";
+        this.screenName = "SSetHistory";
     }
 }

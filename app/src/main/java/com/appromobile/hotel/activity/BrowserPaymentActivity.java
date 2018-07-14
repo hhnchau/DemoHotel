@@ -3,9 +3,7 @@ package com.appromobile.hotel.activity;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.text.format.Formatter;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -29,6 +27,7 @@ import com.appromobile.hotel.utils.DialogUtils;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.PreferenceUtils;
+import com.appromobile.hotel.utils.Utils;
 import com.appromobile.hotel.widgets.TextViewSFBold;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
 
@@ -46,13 +45,14 @@ import retrofit2.Response;
 public class BrowserPaymentActivity extends BaseActivity {
     private WebView wvContent;
     private PaymentInfoForm entry;
-    private int userBookingSn;
+    private long userBookingSn;
     private String methodPayment;
     private int status = RESULT_CANCELED;
     private String FLAG_SHOW_REWARD_CHECKIN = "FLAG_SHOW_REWARD_CHECKIN";
     private boolean FLAG_REWARD;
     private boolean isPayNow;
     private boolean isFlashSale = false;
+    private boolean isNewPayment = false;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -74,9 +74,10 @@ public class BrowserPaymentActivity extends BaseActivity {
         if (bundle != null) {
             isPayNow = bundle.getBoolean("IS_PAY_NOW", false);
             entry = bundle.getParcelable("PaymentInfoForm");
-            userBookingSn = bundle.getInt("userBookingSn", 0);
+            userBookingSn = bundle.getLong("userBookingSn");
             methodPayment = bundle.getString("METHOD_PAYMENT");
             isFlashSale = bundle.getBoolean("FLASH_SALE", false);
+            isNewPayment = bundle.getBoolean("New_Payment", false);
         }
 
         CreateOderRequest createOderRequest = new CreateOderRequest();
@@ -85,140 +86,130 @@ public class BrowserPaymentActivity extends BaseActivity {
         createOderRequest.setTotalAmount(entry.getTotalAmount());
         createOderRequest.setMerchantCode(entry.getMerchantCode());
 
-        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        if (wm != null) {
-            String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-            createOderRequest.setClientIP(ip);
-            createOderRequest.setCustName(entry.getNickName());
-            createOderRequest.setCustDOB(entry.getBirthday());
-            createOderRequest.setCustPhone(entry.getMobile());
-            createOderRequest.setCustMail(entry.getEmail());
-            createOderRequest.setPasscode(entry.getPasscode());
-            createOderRequest.setChecksum(entry.getChecksum());
-            createOderRequest.setCustGender(entry.getGender());
-            createOderRequest.setCustAddress(entry.getAddress());
-            createOderRequest.setErrorURL(entry.getErrorUrl());
-            createOderRequest.setRedirectURL(entry.getRedirectUrl());
-            createOderRequest.setCancelURL(entry.getCancelUrl());
-            createOderRequest.setDescription(String.valueOf(userBookingSn));
+        createOderRequest.setClientIP(Utils.getClientIp());
+        createOderRequest.setCustName(entry.getNickName());
+        createOderRequest.setCustDOB(entry.getBirthday());
+        createOderRequest.setCustPhone(entry.getMobile());
+        createOderRequest.setCustMail(entry.getEmail());
+        createOderRequest.setPasscode(entry.getPasscode());
+        createOderRequest.setChecksum(entry.getChecksum());
+        createOderRequest.setCustGender(entry.getGender());
+        createOderRequest.setCustAddress(entry.getAddress());
+        createOderRequest.setErrorURL(entry.getErrorUrl());
+        createOderRequest.setRedirectURL(entry.getRedirectUrl());
+        createOderRequest.setCancelURL(entry.getCancelUrl());
+        createOderRequest.setDescription(String.valueOf(userBookingSn));
 
-            try {
-                String url = entry.getCreateOrderLink();
-//            Gson gson = new Gson();
-//            String postData = gson.toJson(createOderRequest);
+        try {
+            String url = entry.getCreateOrderLink();
 
-                DialogUtils.showLoadingProgress(this, false);
-                HotelApplication.serviceApi.get123PayURL(url, createOderRequest.getMapValues()).enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        DialogUtils.hideLoadingProgress();
-                        ResponseBody res = response.body();
-                        if (response.isSuccessful() && res != null) {
-                            try {
-                                String result = res.string();
-                                MyLog.writeLog("123PayResult: " + result);
-                                JSONArray jsonObject = new JSONArray(result);
+            DialogUtils.showLoadingProgress(this, false);
+            HotelApplication.serviceApi.get123PayURL(url, createOderRequest.getMapValues()).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    DialogUtils.hideLoadingProgress();
+                    ResponseBody res = response.body();
+                    if (response.isSuccessful() && res != null) {
+                        try {
+                            String result = res.string();
+                            MyLog.writeLog("123PayResult: " + result);
+                            JSONArray jsonObject = new JSONArray(result);
 
-                                String redirectURL = jsonObject.getString(2);
+                            String redirectURL = jsonObject.getString(2);
 
-                                wvContent.loadUrl(redirectURL);
-                            } catch (Exception e) {
-                            }
-                        } else {
-                            MyLog.writeLog("123PayResult: Fail");
+                            wvContent.loadUrl(redirectURL);
+                        } catch (Exception e) {
                         }
+                    } else {
+                        MyLog.writeLog("123PayResult: Fail");
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        DialogUtils.hideLoadingProgress();
-                        t.printStackTrace();
-                    }
-                });
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    DialogUtils.hideLoadingProgress();
+                    t.printStackTrace();
+                }
+            });
 
-            } catch (Exception e) {
-                MyLog.writeLog("123PayResult: Fail" + e);
-            }
+        } catch (Exception e) {
+            MyLog.writeLog("123PayResult: Fail" + e);
         }
     }
 
     private void updatePaymentResult(final int index) {
         UpdatePaymentDto updatePaymentDto = new UpdatePaymentDto();
-        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        if (wm != null) {
-            String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
-            updatePaymentDto.setClientip(ip);
-            //updatePaymentDto.setTransactionId(Integer.parseInt(entry.getTransactionId()));
-            updatePaymentDto.setTransactionId2(entry.getTransactionId());
+        updatePaymentDto.setClientip(Utils.getClientIp());
+        //updatePaymentDto.setTransactionId(Integer.parseInt(entry.getTransactionId()));
+        updatePaymentDto.setTransactionId2(entry.getTransactionId());
 
-            HotelApplication.serviceApi.updatePaymentResult(updatePaymentDto, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
-                @Override
-                public void onResponse(Call<RestResult> call, Response<RestResult> response) {
+        HotelApplication.serviceApi.updatePaymentResult(updatePaymentDto, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<RestResult>() {
+            @Override
+            public void onResponse(Call<RestResult> call, Response<RestResult> response) {
 
-                    RestResult restResult = response.body();
-                    if (response.isSuccessful() && restResult != null) {
-                        MyLog.writeLog("updatePaymentResult: OK");
+                RestResult restResult = response.body();
+                if (response.isSuccessful() && restResult != null) {
+                    MyLog.writeLog("updatePaymentResult: OK");
 
                     /*
                     / Callback From API
                     */
-                        if (index == 1) {
-                            String messsage;
-                            if (restResult.getOtherInfo().equals("1")) {
-                                messsage = getString(R.string.msg_3_9_payment_successful);
-                                status = RESULT_OK;
-                                //Set Flash Sale
-                                if (isFlashSale) {
-                                    HotelApplication.isFlashSaleChange = true;
-                                }
-                            } else {
-                                messsage = getMessageMethodPayment();
-                                status = RESULT_CANCELED;
+                    if (index == 1) {
+                        String messsage;
+                        if (restResult.getOtherInfo().equals("1")) {
+                            messsage = getString(R.string.msg_3_9_payment_successful);
+                            status = RESULT_OK;
+                            //Set Flash Sale
+                            if (isFlashSale) {
+                                HotelApplication.isFlashSaleChange = true;
                             }
+                        } else {
+                            messsage = getMessageMethodPayment();
+                            status = RESULT_CANCELED;
+                        }
 
-                            final Dialog dialog = new Dialog(BrowserPaymentActivity.this, R.style.dialog_full_transparent_background);
-                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog.setContentView(R.layout.message_dialog);
-                            Window window = dialog.getWindow();
-                            if (window != null) {
-                                WindowManager.LayoutParams wlp = window.getAttributes();
-                                wlp.gravity = Gravity.CENTER;
-                                window.setAttributes(wlp);
-                                dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-                                dialog.show();
+                        final Dialog dialog = new Dialog(BrowserPaymentActivity.this, R.style.dialog_full_transparent_background);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.message_dialog);
+                        Window window = dialog.getWindow();
+                        if (window != null) {
+                            WindowManager.LayoutParams wlp = window.getAttributes();
+                            wlp.gravity = Gravity.CENTER;
+                            window.setAttributes(wlp);
+                            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+                            dialog.show();
+                        }
+                        TextViewSFRegular tvMessage = dialog.findViewById(R.id.tvMessage);
+                        tvMessage.setText(messsage);
+                        TextViewSFBold btnOK = dialog.findViewById(R.id.btnOK);
+                        btnOK.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                setResult(status);
+                                checkPaymentMethod(status);
+                                finish();
                             }
-                            TextViewSFRegular tvMessage = dialog.findViewById(R.id.tvMessage);
-                            tvMessage.setText(messsage);
-                            TextViewSFBold btnOK = dialog.findViewById(R.id.btnOK);
-                            btnOK.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                    setResult(status);
-                                    gotoReservationDetail(status);
-                                    finish();
-                                }
-                            });
+                        });
                         /*
                         / Callback From onBackPress
                         */
-                        } else if (index == -1) {
-                            //call Api
-                            gotoReservationDetail(status);
-                        }
-                    } else {
-                        MyLog.writeLog("updatePaymentResult: Fail");
+                    } else if (index == -1) {
+                        //call Api
+                        checkPaymentMethod(status);
                     }
-
+                } else {
+                    MyLog.writeLog("updatePaymentResult: Fail");
                 }
 
-                @Override
-                public void onFailure(Call<RestResult> call, Throwable t) {
-                    MyLog.writeLog("updatePaymentResult: Fail Unknown");
-                }
-            });
-        }
+            }
+
+            @Override
+            public void onFailure(Call<RestResult> call, Throwable t) {
+                MyLog.writeLog("updatePaymentResult: Fail Unknown");
+            }
+        });
     }
 
     @Override
@@ -229,7 +220,6 @@ public class BrowserPaymentActivity extends BaseActivity {
     private class MyWebClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            System.out.println("URLResponse: " + url);
 
             if (url.startsWith(entry.getRedirectUrl())) {
 
@@ -262,7 +252,11 @@ public class BrowserPaymentActivity extends BaseActivity {
         });
     }
 
-    private void gotoReservationDetail(int status) {
+    private void checkPaymentMethod(int status) {
+        if (status == RESULT_CANCELED && isNewPayment){
+            finish();
+            return;
+        }
         //Check Payment always Online
         if (methodPayment != null && methodPayment.equals(ParamConstants.METHOD_ALWAYS_PAY_ONLINE) || methodPayment != null && methodPayment.equals(ParamConstants.METHOD_PAY_ONLINE_IN_DAY) || isFlashSale) {
 
@@ -297,7 +291,7 @@ public class BrowserPaymentActivity extends BaseActivity {
 
             }
 
-        // Check Payment can Pay at Hotel
+            // Check Payment can Pay at Hotel
         } else {
 
             //close Activity Reservation

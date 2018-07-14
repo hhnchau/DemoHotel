@@ -14,6 +14,8 @@ public class UserBookingDto {
     private int type;
     private String clientip;
     private int redeemValue;
+    private String mobile;
+    private int paymentMethod; //1: Pay At Hotel, 2: Pay Via 123, 3:Pay Via Payoo ,
 
     public String getCheckInDatePlan() {
         return checkInDatePlan;
@@ -89,5 +91,21 @@ public class UserBookingDto {
 
     public void setRedeemValue(int redeemValue) {
         this.redeemValue = redeemValue;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public int getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(int paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

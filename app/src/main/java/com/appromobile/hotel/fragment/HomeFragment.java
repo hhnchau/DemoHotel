@@ -1,5 +1,6 @@
 package com.appromobile.hotel.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -39,21 +40,22 @@ import com.appromobile.hotel.adapter.PointViewAdapter;
 import com.appromobile.hotel.api.controllerApi.ControllerApi;
 import com.appromobile.hotel.api.controllerApi.ResultApiList;
 import com.appromobile.hotel.api.controllerApi.CallbackPromotionInfoForm;
+import com.appromobile.hotel.dialog.DialogSuspend;
 import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.enums.SortType;
 import com.appromobile.hotel.model.view.BannerForm;
 import com.appromobile.hotel.model.view.HotelForm;
 import com.appromobile.hotel.model.view.PromotionInfoForm;
 import com.appromobile.hotel.model.view.UserAreaFavoriteForm;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.DialogCallback;
 import com.appromobile.hotel.utils.DialogUtils;
-import com.appromobile.hotel.utils.GlideApp;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.TimerUtils;
+import com.appromobile.hotel.utils.Utils;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -74,16 +76,15 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     private HotelListAdapter adapter;
     private TextViewSFRegular tvLocation;
     private TextView tvNoResult;
-    private TextViewSFRegular tvMyFavorite;
-    private LinearLayout dropdownAreaSetting;
-    private TextView tvChooseArea;
     private TextViewSFRegular tvAreaSelected;
+    private TextView tvChooseArea;
+    private TextViewSFRegular tvMyFavorite;
     private TextView tvNearby;
+    private LinearLayout dropdownAreaSetting;
     private ListView lvFavorite;
     private int offset = 0;
     boolean isEndList = false;
     private ImageView imgDropDownArea;
-    private int scrollStateCurrent;
     private List<HotelForm> hotelForms = new ArrayList<>();
     private ViewPager vpAdvert;
     private RecyclerView lvPoint;
@@ -101,11 +102,12 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
     //Flash Sale
     private View headerFlashSale;
-    private RelativeLayout containerIndicator;
-    private View indicator;
     private ViewPager viewPagerFlasfSale;
     private List<HotelForm> listFlashSale;
     private AdapterFlashSale adapterFlashSale;
+
+    private RelativeLayout containerIndicator;
+    private View indicator;
 
     private int pageScrollStateFlashSale = 0;
     private int currentFlashSale = 0;
@@ -126,7 +128,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.home_fragment, container, false);
         lvHotel = rootView.findViewById(R.id.lvHotel);
         vpAdvert = rootView.findViewById(R.id.vpAdvert);
@@ -407,7 +408,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                     @Override
                     public void map(Map<String, PromotionInfoForm> map) {
 
-                            HotelApplication.mapPromotionInfoForm = map;
+                        HotelApplication.mapPromotionInfoForm = map;
 
                         if ((sortType == SortType.DISTANCE.getType() || sortType == SortType.DEEPLINK_DISTRICT.getType()) && ditrictSn != null) {
                             MyLog.writeLog("--||||-->Get All Hotel List In District<--||||--");
@@ -420,7 +421,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
                     }
                 });
-            }else {
+            } else {
 
                 if ((sortType == SortType.DISTANCE.getType() || sortType == SortType.DEEPLINK_DISTRICT.getType()) && ditrictSn != null) {
                     MyLog.writeLog("--||||-->Get All Hotel List In District<--||||--");
@@ -448,25 +449,29 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
             @Override
             public void resultApilist(List<Object> list) {
 
-                listFlashSale = (List<HotelForm>) (Object) list;
-                if (listFlashSale.size() > 0) {
-                    totalFlashSale = listFlashSale.size();
-                    adapterFlashSale = new AdapterFlashSale(listFlashSale, getFragmentManager());
-                    viewPagerFlasfSale.setAdapter(adapterFlashSale);
-                    viewPagerFlasfSale.setOffscreenPageLimit(3);
-                    createStatusbarFlashSale();
-                    //adapterFlashSale.notifyDataSetChanged();
+                Activity activity = getActivity();
+                if (activity != null && isAdded()) {
+                    listFlashSale = (List<HotelForm>) (Object) list;
+                    if (listFlashSale.size() > 0) {
+                        totalFlashSale = listFlashSale.size();
+                        adapterFlashSale = new AdapterFlashSale(listFlashSale, getFragmentManager());
+                        viewPagerFlasfSale.setAdapter(adapterFlashSale);
+                        viewPagerFlasfSale.setOffscreenPageLimit(3);
+                        createStatusbarFlashSale();
+                        //adapterFlashSale.notifyDataSetChanged();
 
-                    //Add FlashSale in Header
-                    if (lvHotel.getHeaderViewsCount() <= 0) {
-                        lvHotel.addHeaderView(headerFlashSale, null, false);
-                        AbsListView.LayoutParams headerViewParams = new AbsListView.LayoutParams(ViewPager.LayoutParams.MATCH_PARENT, (int) getResources().getDimension(R.dimen.hotel_list_height) + 70); //70 = height text Flash Sale
-                        headerFlashSale.setLayoutParams(headerViewParams);
-                    }
-                } else {
-                    //Non Flash Sale
-                    if (lvHotel.getHeaderViewsCount() > 0) {
-                        lvHotel.removeHeaderView(headerFlashSale);
+                        //Add FlashSale in Header
+                        if (lvHotel.getHeaderViewsCount() <= 0) {
+                            lvHotel.addHeaderView(headerFlashSale, null, false);
+                            int height = (int) HomeFragment.this.getResources().getDimension(R.dimen.hotel_list_height);
+                            AbsListView.LayoutParams headerViewParams = new AbsListView.LayoutParams(ViewPager.LayoutParams.MATCH_PARENT, height + 70); //70 = height text Flash Sale
+                            headerFlashSale.setLayoutParams(headerViewParams);
+                        }
+                    } else {
+                        //Non Flash Sale
+                        if (lvHotel.getHeaderViewsCount() > 0) {
+                            lvHotel.removeHeaderView(headerFlashSale);
+                        }
                     }
                 }
             }
@@ -477,7 +482,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     //Status bar for Flash Sale
     private void createStatusbarFlashSale() {
         if (viewPagerFlasfSale.getAdapter() != null && viewPagerFlasfSale.getAdapter().getCount() > 1) {
-            int screenWidth = getResources().getDisplayMetrics().widthPixels - 2 * getResources().getDimensionPixelSize(R.dimen.dp_12); // For margin
+            int margin = (int) getResources().getDimension(R.dimen.dp_12);
+            int screenWidth = (int) Utils.getScreenWidthPixel() - (2 * margin); // For margin
             final int widthBar = screenWidth / viewPagerFlasfSale.getAdapter().getCount();
             indicator.getLayoutParams().width = widthBar + 12;
             indicator.requestLayout();
@@ -538,6 +544,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
             //list only 1
             containerIndicator.setVisibility(View.INVISIBLE);
         }
+
     }
 
 
@@ -847,16 +854,15 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         ImageView img = headerNoContract.findViewById(R.id.imgNoContractHotel);
 
         if (HotelApplication.isEnglish) {
-            GlideApp.with(img.getContext()).load(R.drawable.no_hotel_english).placeholder(R.drawable.no_hotel_english).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .into(img);
+            PictureGlide.getInstance().show(R.drawable.no_hotel_english, img);
         } else {
-            GlideApp.with(img.getContext()).load(R.drawable.no_hotel_vn).placeholder(R.drawable.no_hotel_vn).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .into(img);
+            PictureGlide.getInstance().show(R.drawable.no_hotel_vn, img);
         }
 
         lvHotel.addHeaderView(headerNoContract);
         startAnimation();
     }
+
 
     /*
     * Goto HotelDetailActivity
@@ -871,13 +877,22 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 position = position - countHeader;
             }
             if (position >= 0) {
-                Intent intent = new Intent(getActivity(), HotelDetailActivity.class);
-                intent.putExtra("sn", hotelForms.get(position).getSn());
-                intent.putExtra("RoomAvailable", hotelForms.get(position).getRoomAvailable());
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                if (hotelForms.get(position).getHotelStatus() == ContractType.SUSPEND.getType()) {
+                    //Suspended
+                    showDialogSuspended();
+                } else {
+                    Intent intent = new Intent(getActivity(), HotelDetailActivity.class);
+                    intent.putExtra("sn", hotelForms.get(position).getSn());
+                    intent.putExtra("RoomAvailable", hotelForms.get(position).getRoomAvailable());
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                }
             }
         }
+    }
+
+    private void showDialogSuspended() {
+        DialogSuspend.getInstance().show(getActivity());
     }
 
     @Override
@@ -899,6 +914,12 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     public void onRefreshData() {
         super.onRefreshData();
+        if (getActivity() != null) {
+            tvNearby.setText(getActivity().getString(R.string.near_by));
+            tvAreaSelected.setText(getActivity().getString(R.string.near_by));
+            tvChooseArea.setText(getActivity().getString(R.string.choose_area));
+        }
+
         DialogUtils.showLoadingProgress(getContext(), false);
         offset = 0;
         if (hotelForms != null) {

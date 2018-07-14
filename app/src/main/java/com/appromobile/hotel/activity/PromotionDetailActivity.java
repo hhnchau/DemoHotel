@@ -16,24 +16,28 @@ import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.dialog.CallbackDialag;
 import com.appromobile.hotel.dialog.DialagWebview;
+import com.appromobile.hotel.model.view.CouponIssuedForm;
 import com.appromobile.hotel.model.view.PromotionForm;
 import com.appromobile.hotel.model.view.RestResult;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.DialogCallback;
 import com.appromobile.hotel.utils.DialogUtils;
-import com.appromobile.hotel.utils.GlideApp;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
 import com.appromobile.hotel.widgets.TextViewSFBold;
 import com.appromobile.hotel.widgets.TextViewSFHeavy;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import io.fabric.sdk.android.Fabric;
@@ -144,8 +148,8 @@ public class PromotionDetailActivity extends BaseActivity {
     }
 
     private void initPromotion() {
-        SimpleDateFormat formatApi = new SimpleDateFormat(getString(R.string.date_format_request));
-        SimpleDateFormat formatView = new SimpleDateFormat(getString(R.string.date_format_view));
+        SimpleDateFormat formatApi = new SimpleDateFormat(getString(R.string.date_format_request), Locale.ENGLISH);
+        SimpleDateFormat formatView = new SimpleDateFormat(getString(R.string.date_format_view), Locale.ENGLISH);
         try {
             Date start = formatApi.parse(promotionForm.getApplyStart());
             Date end = formatApi.parse(promotionForm.getApplyEnd());
@@ -233,12 +237,14 @@ public class PromotionDetailActivity extends BaseActivity {
         try {
 
             int promotionImageSn = 0;
+            String imageKey = "";
 
             try {
                 if (promotionForm.getPromotionImageFormList() != null) {
                     for (int i = 0; i < promotionForm.getPromotionImageFormList().size(); i++) {
                         if (promotionForm.getPromotionImageFormList().get(i).getTypeDisplay() == LOAD_TYPE_DISPLAY_REQUEST) {
                             promotionImageSn = promotionForm.getPromotionImageFormList().get(i).getSn();
+                            imageKey = promotionForm.getPromotionImageFormList().get(i).getImageKey();
                         }
                     }
                 }
@@ -246,12 +252,10 @@ public class PromotionDetailActivity extends BaseActivity {
                 MyLog.writeLog("promotionImageSn" + e);
             }
 
-            String url = UrlParams.MAIN_URL + "/hotelapi/promotion/download/downloadPromotionImage?promotionImageSn=" + promotionImageSn;
-            GlideApp
-                    .with(img.getContext())
-                    .load(url)
-                    .override(getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width), getResources().getDimensionPixelSize(R.dimen.promotion_item_height))
-                    .into(img);
+            //String url = UrlParams.MAIN_URL + "/hotelapi/promotion/download/downloadPromotionImage?promotionImageSn=" + promotionImageSn;
+            String url = UrlParams.MAIN_URL + "/hotelapi/promotion/download/promotionImage/" + imageKey;
+
+            PictureGlide.getInstance().show(url, getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width), getResources().getDimensionPixelSize(R.dimen.promotion_item_height), R.drawable.loading_big, img);
 
         } catch (Exception e) {
             MyLog.writeLog("promotionImageSn" + e);
@@ -275,6 +279,7 @@ public class PromotionDetailActivity extends BaseActivity {
                 RestResult restResult = response.body();
                 if (response.isSuccessful() && restResult != null) {
                     if (restResult.getResult() == 1) {
+
                         //Check Event/Promotion
                         if (promotionForm.getType() == 2) {
                             //Event
@@ -298,7 +303,18 @@ public class PromotionDetailActivity extends BaseActivity {
                         } else {
                             //Promotion
                             Toast.makeText(PromotionDetailActivity.this, getString(R.string.applied_sucessful), Toast.LENGTH_LONG).show();
-                            setResult(RESULT_OK);
+
+                            //Callback for Activity Result
+//                            String s = restResult.getOtherInfo();
+//                            if (s != null && !s.equals("")) {
+//                                Gson gson = new Gson();
+//                                List<CouponIssuedForm> couponIssuedFormList = gson.fromJson(s, new TypeToken<List<CouponIssuedForm>>(){}.getType());
+//                                Intent intent = new Intent();
+//                                intent.putExtra("CouponIndex", couponIssuedFormList.get(0));
+//                                setResult(RESULT_OK, intent);
+//                            } else {
+                                setResult(RESULT_OK);
+                            //}
                             finish();
                         }
                     } else {

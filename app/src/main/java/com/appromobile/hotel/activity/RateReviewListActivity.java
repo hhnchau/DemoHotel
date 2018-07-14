@@ -1,6 +1,7 @@
 package com.appromobile.hotel.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.adapter.RateReviewListAdapter;
+import com.appromobile.hotel.dialog.CallbackDialag;
+import com.appromobile.hotel.dialog.Dialag;
 import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.model.view.HotelDetailForm;
 import com.appromobile.hotel.model.view.UserReviewForm;
@@ -193,14 +196,9 @@ public class RateReviewListActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (!PreferenceUtils.getToken(RateReviewListActivity.this).equals("")) {
-                    Intent intent = new Intent(RateReviewListActivity.this, ReservationActivity.class);
-                    intent.putExtra("HotelDetailForm", hotelDetailForm);
-                    startActivityForResult(intent, CALL_BOOKING);
-                    intent.putExtra("RoomTypeIndex", 0);
-                    overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                    gotoReservation();
                 } else {
-                    Intent intent = new Intent(RateReviewListActivity.this, LoginActivity.class);
-                    startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOME);
+                    showDialogGuestBooking();
                 }
             }
         });
@@ -208,13 +206,42 @@ public class RateReviewListActivity extends BaseActivity {
         initHotelData();
     }
 
+    private void showDialogGuestBooking() {
+        Dialag.getInstance().show(this, false, true, false, null, getString(R.string.msg_3_9_book_as_guest), getString(R.string.login_button), getString(R.string.txt_3_9_book_as_guest), null, Dialag.BTN_MIDDLE, new CallbackDialag() {
+            @Override
+            public void button1() { //goto LogIn
+                Intent intent = new Intent(RateReviewListActivity.this, LoginActivity.class);
+                startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOME);
+            }
+
+            @Override
+            public void button2() { //Continues
+                gotoReservation();
+            }
+
+            @Override
+            public void button3(Dialog dialog) {
+
+            }
+        });
+    }
+
+    private void gotoReservation(){
+        Intent intent = new Intent(RateReviewListActivity.this, ReservationActivity.class);
+        intent.putExtra("HotelDetailForm", hotelDetailForm);
+        startActivityForResult(intent, CALL_BOOKING);
+        intent.putExtra("RoomTypeIndex", 0);
+        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+    }
+
+
     private void initData() {
         if (hotelDetailForm != null) {
             Map<String, Object> params = new HashMap<>();
             params.put("hotelSn", hotelDetailForm.getSn());
             params.put("offset", offset);
             params.put("limit", HotelApplication.LIMIT_REQUEST);
-            System.out.println("TimeMeasurableBeginApi: " + Calendar.getInstance().getTimeInMillis());
+
             HotelApplication.serviceApi.findUserReviewList(params, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<List<UserReviewForm>>() {
                 @Override
                 public void onResponse(Call<List<UserReviewForm>> call, Response<List<UserReviewForm>> response) {
@@ -272,64 +299,60 @@ public class RateReviewListActivity extends BaseActivity {
     }
 
     private void initHotelData() {
-//        DialogUtils.showLoadingProgress(this, false);
-        Map<String, Object> params = new HashMap<>();
-        params.put("hotelSn", hotelDetailForm.getSn());
-        //new version 4.0 for trial hotel
-        params.put("version", "4.0");
-        HotelApplication.serviceApi.getHotelDetail(params, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<HotelDetailForm>() {
-            @Override
-            public void onResponse(Call<HotelDetailForm> call, Response<HotelDetailForm> response) {
-//                DialogUtils.hideLoadingProgress();
-                if (response.isSuccessful()) {
-                    hotelDetailForm = response.body();
-                    if (hotelDetailForm != null) {
-                        tvTotalReview.setText(String.valueOf(hotelDetailForm.getTotalReview()));
-                        int numStar = (int) hotelDetailForm.getAverageMark();
-                        if (numStar > 5) {
-                            numStar = 5;
-                        }
-                        if (numStar < 0) {
-                            numStar = 0;
-                        }
-                        for (ImageView star : stars) {
-                            star.setImageResource(R.drawable.review_star);
-                        }
-                        if (0 < hotelDetailForm.getAverageMark() && hotelDetailForm.getAverageMark() <= 5) {
-                            for (int i = 0; i < numStar; i++) {
-                                stars[i].setImageResource(R.drawable.review_star_fill);
+        if (hotelDetailForm != null) {
+            Map<String, Object> params = new HashMap<>();
+            params.put("hotelSn", hotelDetailForm.getSn());
+            //new version 4.0 for trial hotel
+            params.put("version", "4.0");
+            HotelApplication.serviceApi.getHotelDetail(params, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<HotelDetailForm>() {
+                @Override
+                public void onResponse(Call<HotelDetailForm> call, Response<HotelDetailForm> response) {
+
+                    if (response.isSuccessful()) {
+                        hotelDetailForm = response.body();
+                        if (hotelDetailForm != null) {
+                            tvTotalReview.setText(String.valueOf(hotelDetailForm.getTotalReview()));
+                            int numStar = (int) hotelDetailForm.getAverageMark();
+                            if (numStar > 5) {
+                                numStar = 5;
                             }
-                            if (numStar < stars.length) {
-                                if (numStar != hotelDetailForm.getAverageMark()) {
-                                    stars[numStar].setImageResource(R.drawable.review_star_half);
+                            if (numStar < 0) {
+                                numStar = 0;
+                            }
+                            for (ImageView star : stars) {
+                                star.setImageResource(R.drawable.review_star);
+                            }
+                            if (0 < hotelDetailForm.getAverageMark() && hotelDetailForm.getAverageMark() <= 5) {
+                                for (int i = 0; i < numStar; i++) {
+                                    stars[i].setImageResource(R.drawable.review_star_fill);
+                                }
+                                if (numStar < stars.length) {
+                                    if (numStar != hotelDetailForm.getAverageMark()) {
+                                        stars[numStar].setImageResource(R.drawable.review_star_half);
+                                    }
                                 }
                             }
                         }
-                    }
-                } else if (response.code() == 401) {
-                    if (!isRequestingLogin) {
-                        DialogUtils.showExpiredDialog(RateReviewListActivity.this, new DialogCallback() {
-                            @Override
-                            public void finished() {
-                                Intent intent = new Intent(RateReviewListActivity.this, LoginActivity.class);
-                                startActivityForResult(intent, LOGIN_REVIEW_LIST_REQUEST_LIKE);
-                            }
-                        });
-                        isRequestingLogin = true;
+                    } else if (response.code() == 401) {
+                        if (!isRequestingLogin) {
+                            DialogUtils.showExpiredDialog(RateReviewListActivity.this, new DialogCallback() {
+                                @Override
+                                public void finished() {
+                                    Intent intent = new Intent(RateReviewListActivity.this, LoginActivity.class);
+                                    startActivityForResult(intent, LOGIN_REVIEW_LIST_REQUEST_LIKE);
+                                }
+                            });
+                            isRequestingLogin = true;
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<HotelDetailForm> call, Throwable t) {
+                @Override
+                public void onFailure(Call<HotelDetailForm> call, Throwable t) {
 //                DialogUtils.hideLoadingProgress();
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+                }
+            });
+        }
     }
 
     @Override
@@ -374,4 +397,10 @@ public class RateReviewListActivity extends BaseActivity {
         overridePendingTransition(R.anim.stable, R.anim.left_to_right);
     }
 
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if(rateReviewListActivity != null)
+//            rateReviewListActivity = null;
+//    }
 }

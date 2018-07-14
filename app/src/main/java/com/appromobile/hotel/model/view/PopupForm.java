@@ -29,7 +29,9 @@ public class PopupForm {
     private String targetName;
     private int targetSn;
     private String title;
-    String targetInfo;
+    private String targetInfo;
+    private int maxView;
+    private String imageKey;
 
     public PopupForm() {
     }
@@ -168,5 +170,22 @@ public class PopupForm {
 
     public void setCanApply(boolean canApply) {
         this.canApply = canApply;
+    }
+
+    public int getMaxView() {
+        return maxView;
+    }
+
+    public void setMaxView(int maxView) {
+        this.maxView = maxView;
+    }
+
+    public String getImageKey() {
+        return imageKey;
+    }
+
+    public PopupForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
     }
 }

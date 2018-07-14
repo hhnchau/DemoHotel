@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.enums.CouponStatus;
@@ -21,6 +22,7 @@ import com.appromobile.hotel.widgets.TextViewSFRegular;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by xuan on 7/12/2016.
@@ -34,8 +36,8 @@ public class CouponAdapter extends BaseAdapter {
     public CouponAdapter(Context context, List<CouponIssuedForm> data) {
         this.data = data;
         this.context = context;
-        formatApi = new SimpleDateFormat(context.getString(R.string.date_format_request));
-        formatView = new SimpleDateFormat(context.getString(R.string.date_format_view));
+        formatApi = new SimpleDateFormat(context.getString(R.string.date_format_request), Locale.ENGLISH);
+        formatView = new SimpleDateFormat(context.getString(R.string.date_format_view), Locale.ENGLISH);
     }
 
     @Override
@@ -69,12 +71,14 @@ public class CouponAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.tvDiscount = convertView.findViewById(R.id.tvDiscount);
             viewHolder.tvTimeValid = convertView.findViewById(R.id.tvTimeValid);
-            viewHolder.tvStatus =  convertView.findViewById(R.id.tvStatus);
-            viewHolder.imgTriangle =  convertView.findViewById(R.id.imgTriangle);
-            viewHolder.boxItem =  convertView.findViewById(R.id.boxItem);
-            viewHolder.boxCoupon =  convertView.findViewById(R.id.boxCoupon);
-            viewHolder.tvCurrency =  convertView.findViewById(R.id.tvCurrency);
+            viewHolder.tvStatus = convertView.findViewById(R.id.tvStatus);
+            viewHolder.imgTriangle = convertView.findViewById(R.id.imgTriangle);
+            viewHolder.boxItem = convertView.findViewById(R.id.boxItem);
+            viewHolder.boxCoupon = convertView.findViewById(R.id.boxCoupon);
+            viewHolder.tvCurrency = convertView.findViewById(R.id.tvCurrency);
+            viewHolder.boxDiscount = convertView.findViewById(R.id.boxDiscount);
             viewHolder.tvCouponName = convertView.findViewById(R.id.tvCouponName);
+            viewHolder.tvCineDiscount = convertView.findViewById(R.id.tvCineDiscount);
             // store the holder with the view.
             convertView.setTag(viewHolder);
 
@@ -85,12 +89,7 @@ public class CouponAdapter extends BaseAdapter {
         }
 
         CouponIssuedForm couponIssuedForm = data.get(position);
-//        test
-//        if(position==1){
-//            couponIssuedForm.setUsed(1);
-//        }else if(position==2){
-//            couponIssuedForm.setUsed(2);
-//        }
+
         viewHolder.tvTimeValid.setText(couponIssuedForm.getStart() + "~" + couponIssuedForm.getEnd());
         try {
             Date start = formatApi.parse(couponIssuedForm.getStart());
@@ -104,9 +103,21 @@ public class CouponAdapter extends BaseAdapter {
 
         //Check Discount type
         if (couponIssuedForm.getDiscountType() == ParamConstants.DISCOUNT_PERCENT) {
+            viewHolder.tvCineDiscount.setVisibility(View.GONE);
             viewHolder.tvDiscount.setText(context.getString(R.string.discount) + ": " + couponIssuedForm.getDiscount() + " " + context.getString(R.string.percent));
         } else {
             viewHolder.tvDiscount.setText(Utils.formatCurrency(couponIssuedForm.getDiscount()) + " " + context.getString(R.string.currency));
+            if (couponIssuedForm.getDiscount() > 0)
+                viewHolder.boxDiscount.setVisibility(View.VISIBLE);
+            else
+                viewHolder.boxDiscount.setVisibility(View.GONE);
+
+
+            //Discount CineJoy
+            if (couponIssuedForm.getCineDiscount() > 0) {
+                viewHolder.tvCineDiscount.setVisibility(View.VISIBLE);
+                viewHolder.tvCineDiscount.setText(Utils.formatCurrency(couponIssuedForm.getCineDiscount()) + " " + context.getString(R.string.currency) + "(" + context.getString(R.string.txt_3_9_cinejoy_room_only) + ")");
+            }
         }
 
         if (couponIssuedForm.getUsed() == CouponStatus.Valid.ordinal()) {
@@ -139,6 +150,16 @@ public class CouponAdapter extends BaseAdapter {
             viewHolder.boxCoupon.setBackgroundResource(R.drawable.box_coupon_grey_bg);
             viewHolder.tvCouponName.setTextColor(context.getResources().getColor(R.color.bk));
             viewHolder.tvStatus.setText(context.getString(R.string.expired));
+        }else if (couponIssuedForm.getUsed() == CouponStatus.Temp.ordinal()){
+            viewHolder.tvDiscount.setTextColor(Color.BLACK);
+            viewHolder.tvTimeValid.setTextColor(Color.BLACK);
+            viewHolder.tvCurrency.setTextColor(Color.BLACK);
+            viewHolder.tvStatus.setTextColor(Color.WHITE);
+            viewHolder.imgTriangle.setVisibility(View.GONE);
+            viewHolder.boxItem.setBackgroundColor(context.getResources().getColor(R.color.red));
+            viewHolder.boxCoupon.setBackgroundResource(R.drawable.box_coupon_white_bg);
+            viewHolder.tvCouponName.setTextColor(context.getResources().getColor(R.color.bk));
+            viewHolder.tvStatus.setText(context.getString(R.string.txt_3_9_coming_soon));
         }
 
 
@@ -150,9 +171,11 @@ public class CouponAdapter extends BaseAdapter {
         TextViewSFRegular tvTimeValid;
         TextViewSFRegular tvCurrency;
         TextViewSFRegular tvCouponName;
+        TextView tvCineDiscount;
         TextViewSFBold tvStatus;
         LinearLayout boxItem;
         LinearLayout boxCoupon;
         ImageView imgTriangle;
+        LinearLayout boxDiscount;
     }
 }

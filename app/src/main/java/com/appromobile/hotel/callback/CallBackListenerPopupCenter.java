@@ -7,6 +7,6 @@ import android.app.Dialog;
  */
 
 public interface CallBackListenerPopupCenter {
-    void onSeeDetail(String targetInfo);
+    void onSeeDetail(String targetInfo, int targetSn, int action);
     void onGetCoupon(int targetSn, Dialog dialog);
 }

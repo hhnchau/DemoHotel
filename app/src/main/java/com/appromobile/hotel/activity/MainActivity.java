@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.location.Location;
@@ -39,6 +40,7 @@ import com.appromobile.hotel.api.controllerApi.ResultApi;
 import com.appromobile.hotel.callback.CallBackListenerPopupCenter;
 import com.appromobile.hotel.dialog.CallbackDialag;
 import com.appromobile.hotel.dialog.Dialag;
+import com.appromobile.hotel.dialog.DialogSignUp;
 import com.appromobile.hotel.dialog.PromotionPopup;
 import com.appromobile.hotel.enums.FragmentType;
 import com.appromobile.hotel.enums.InviteFriendType;
@@ -68,7 +70,7 @@ import com.appromobile.hotel.utils.DialogCallback;
 import com.appromobile.hotel.utils.DialogUtils;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
-import com.appromobile.hotel.utils.PictureUtils;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
 import com.appromobile.hotel.widgets.TextViewSFRegular;
@@ -77,10 +79,12 @@ import com.dm.zbar.android.scanner.ZBarConstants;
 import com.dm.zbar.android.scanner.ZBarScannerActivity;
 import com.google.gson.Gson;
 import com.nex3z.notificationbadge.NotificationBadge;
+import com.skyfishjy.library.RippleBackground;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import io.fabric.sdk.android.Fabric;
@@ -107,6 +111,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView tvHotelNamePopup, tvAddressPopup, tvReview;
     private TextView tvPriceStatus, tvPriceHourlyNormal, tvPriceHourlyDiscount, tvPriceOvenightNormal, tvPriceOvernightDiscount;
     private LinearLayout boxHourly;
+    private TextView txtLabelPriceHourly;
+    private TextView tvSupperSaleNormal;
+    private TextView tvSupperSaleDiscount;
 
     private boolean
             isFilterAvailable = false,
@@ -134,7 +141,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-        PictureUtils.getInstance().clearCache(this);
+        PictureGlide.getInstance().clearCache(this);
     }
 
     @Override
@@ -145,6 +152,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        String language = PreferenceUtils.getLanguage(this);
+
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+
         Intent closeAppIntent = getIntent();
         if (closeAppIntent != null && closeAppIntent.getAction() != null && closeAppIntent.getAction().equals(ParamConstants.INTENT_ACTION_CLOSE_APP)) {
             finish();
@@ -225,6 +243,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             tvPriceHourlyDiscount = findViewById(R.id.tvPriceHourlyDiscount);
             tvPriceOvenightNormal = findViewById(R.id.tvPriceOvernightNormal);
             tvPriceOvernightDiscount = findViewById(R.id.tvPriceOvernightDiscount);
+
+            txtLabelPriceHourly = findViewById(R.id.label_price_hourly);
+
+            tvSupperSaleNormal = findViewById(R.id.tvSupperSaleNormal);
+            tvSupperSaleDiscount = findViewById(R.id.tvSupperSaleDiscount);
 
             boxHourly = findViewById(R.id.boxHourly);
 
@@ -325,7 +348,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
             // Popup Info + Check when receive Notify ---> don't show popup
             if (!isNotification) {
-                ControllerApi.getmInstance().findPopupInfo(this, PreferenceUtils.getToken(this), new ResultApi() {
+                ControllerApi.getmInstance().findPopupInfoList(this, PreferenceUtils.getToken(this), new ResultApi() {
                     @Override
                     public void resultApi(Object object) {
                         if (object != null) {
@@ -337,7 +360,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     }
                 });
             }
+
+            /*
+            * Introduce
+            */
+            if (PreferenceUtils.getIntroduce(this)&& PreferenceUtils.getToken(this).equals("")) {
+                gotoIntroduce();
+            }
         }
+
     }
 
 
@@ -351,36 +382,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * !null --------> open webView with link = targetInfo
      */
     private void resolvePopupData(PopupApiForm popupApiForm) {
+
+        List<PopupForm> listPopupForm = popupApiForm.getPopupList();
+        if (listPopupForm != null && listPopupForm.size() > 0) {
+
+            showNewPromotionPopup(listPopupForm);
+        }
+
         if (popupApiForm.getPopup() != null) {
             PopupForm popup = popupApiForm.getPopup();
             popupTargetSn = popup.getTargetSn();
 
-            int getCouponButtonStatus = ParamConstants.BUTTON_INVISIBLE;
-            int seeDetailButtonStatus = ParamConstants.BUTTON_SHOW;
-
             if (popup.getAction() == PopupForm.ACTION_INVITE) { // ==2
                 //Invite Friend
                 checkAndShowInviteDialog(popup);
-            } else {
-                if (popup.getAction() == PopupForm.ACTION_PROMOTION) { //==1
-                    if (!popup.isApplied() && popup.isCanApply()) {
-                        getCouponButtonStatus = ParamConstants.BUTTON_SHOW;
-                    } else if (!popup.isCanApply()) {
-                        getCouponButtonStatus = ParamConstants.BUTTON_HIDE;
-
-                    }
-                } else {
-                    // Hide Button Get Coupon
-                    getCouponButtonStatus = ParamConstants.BUTTON_HIDE;
-                    if (popup.getAction() == PopupForm.ACTION_LINK && (popup.getTargetInfo() == null || popup.getTargetInfo().equals(""))) {
-                        // Hide Button See Detail
-                        seeDetailButtonStatus = ParamConstants.BUTTON_HIDE;
-                    }
-                }
-                /*
-                * Popup Center
-                */
-                showNewPromotionPopup(popup, getCouponButtonStatus, seeDetailButtonStatus);
             }
         }
 
@@ -405,52 +420,49 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /*
     *  Popup Center show
     */
-    private void showNewPromotionPopup(final PopupForm popup, final int statusButtonGetCoupon, final int statusButtonSeeDetail) {
+    private void showNewPromotionPopup(final List<PopupForm> listPopup) {
         setButtonName("SPopCenter");
-        new Handler().postDelayed(new Runnable() {
+        PromotionPopup.getInstance().showNew(MainActivity.this, listPopup, new CallBackListenerPopupCenter() {
             @Override
-            public void run() {
-                PromotionPopup.getInstance().showNew(MainActivity.this, popup, statusButtonGetCoupon, statusButtonSeeDetail, new CallBackListenerPopupCenter() {
-                    @Override
-                    public void onSeeDetail(String targetInfo) {
-                        int action = popup.getAction();
-                        if (action == PopupForm.ACTION_LINK && targetInfo != null) {
-                            //Goto Webview
-                            MyLog.writeLog("");
-                        } else if (action == PopupForm.ACTION_HOTEL) {
+            public void onSeeDetail(String targetInfo, int targetSn, int action) {
+                if (action == PopupForm.ACTION_LINK && targetInfo != null) {
+                    //Goto Webview
+                    MyLog.writeLog("");
+                } else if (action == PopupForm.ACTION_HOTEL) {
 
-                            gotoHotelDetailDeepLink(popup.getTargetSn());
+                    gotoHotelDetailDeepLink(targetSn);
 
-                        } else if (action == PopupForm.ACTION_NOTICE) {
+                } else if (action == PopupForm.ACTION_NOTICE) {
 
-                            //Goto View Detail
-                            gotoNoticeDetailFromPoup(popup.getTargetSn());
+                    //Goto View Detail
+                    gotoNoticeDetailFromPoup(targetSn);
 
-                        } else if (action == PopupForm.ACTION_PROMOTION || action == PopupForm.ACTION_EVENT) {
+                } else if (action == PopupForm.ACTION_PROMOTION || action == PopupForm.ACTION_EVENT) {
 
-                            //Goto Promotion Detail
-                            gotoPromotionDetail(popup.getTargetSn(), popup.getAction());
+                    //Goto Promotion Detail
+                    gotoPromotionDetail(targetSn, action);
 
-                        } else if (action == PopupForm.ACTION_DISTRICT) {
+                } else if (action == PopupForm.ACTION_DISTRICT) {
 
-                            if (targetInfo != null) {
+                    if (targetInfo != null) {
 
-                                Intent intent = new Intent(MainActivity.this, IntentTemp.class);
-                                intent.setAction(ParamConstants.ACTION_CHANGE_AREA);
-                                intent.putExtra(ParamConstants.ACTION_CHANGE_AREA, targetInfo);
-                                startActivityForResult(intent, ParamConstants.REQUEST_CHANGE_AREA);
+                        Intent intent = new Intent(MainActivity.this, IntentTemp.class);
+                        intent.setAction(ParamConstants.ACTION_CHANGE_AREA);
+                        intent.putExtra(ParamConstants.ACTION_CHANGE_AREA, targetInfo);
+                        startActivityForResult(intent, ParamConstants.REQUEST_CHANGE_AREA);
 
-                            }
-                        }
                     }
-
-                    @Override
-                    public void onGetCoupon(int targetSn, Dialog dialog) {
-                        checkAndApplyCoupon(targetSn, dialog);
-                    }
-                });
+                }
             }
-        }, 100);
+
+            @Override
+            public void onGetCoupon(int targetSn, Dialog dialog) {
+                popupTargetSn = targetSn;
+                checkAndApplyCoupon(targetSn, dialog);
+            }
+        });
+
+
     }
 
     private void handleChangeDistrict(String targetInfo) {
@@ -475,6 +487,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         } else {
             startIntent(SplashActivity.class, true, null, null);
         }
+    }
+
+    private void gotoIntroduce() {
+        Intent intro = new Intent(this, IntroduceActivity.class);
+        startActivity(intro);
     }
 
     private void gotoPromotionDetail(int sn, int action) {
@@ -645,17 +662,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case NotificationType.HOTEL_DETAIL:
                 gotoHotelDetailDeepLink(notificationData.getSn());
+                break;
             case NotificationType.STAMP:
                 handleStamp(notificationData);
+                break;
+            case NotificationType.CRM:
+                //Stop Introduce
+                PreferenceUtils.setIntroduce(MainActivity.this, false);
+                //Update CRM
+                ControllerApi.getmInstance().updateViewNotificationCrm(notificationData.getSn(), PreferenceUtils.getTypeCrm(this));
+                //Goto Login Page
+                gotoLoginScreen(ParamConstants.REQUEST_LOGIN_MY_PAGE);
                 break;
         }
     }
 
-    private void handleStamp(NotificationData notificationData){
-        if (notificationData != null){
-            if (notificationData.getHotelSn() >0){
+    private void handleStamp(NotificationData notificationData) {
+        if (notificationData != null) {
+            if (notificationData.getHotelSn() > 0) {
                 gotoStampDetail(notificationData.getHotelSn());
-            }else {
+            } else {
                 gotoReservationDetail(notificationData.getSn());
             }
         }
@@ -670,13 +696,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void gotoStampDetail(long hotelSn){
+    private void gotoStampDetail(long hotelSn) {
         Intent resultIntent = new Intent(this, StampDetailActivity.class);
         resultIntent.putExtra("hotelSn", hotelSn);
         startActivity(resultIntent);
     }
 
-    private void gotoReservationDetail(int userBookingSn){
+    private void gotoReservationDetail(int userBookingSn) {
 
         ControllerApi.getmInstance().findUserBookingDetail(MainActivity.this, userBookingSn, true, new ResultApi() {
             @Override
@@ -788,6 +814,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
 
         super.onDestroy();
+
+        DialogUtils.hideLoadingProgress();
+        PromotionPopup.getInstance().dismiss();
     }
 
     @Override
@@ -827,6 +856,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         CheckLocation checkLocation = new CheckLocation(this);
         if (checkLocation.getStatusLocation()) {
             checkLocationChange();
+        }
+
+        final RippleBackground rippleBackground = findViewById(R.id.ripple);
+        final ImageButton imgRipple = findViewById(R.id.btnRippleSignUp);
+        if (PreferenceUtils.getRipple(this) && PreferenceUtils.getToken(this).equals("")) {
+            rippleBackground.startRippleAnimation();
+            imgRipple.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PreferenceUtils.setRipple(MainActivity.this, false);
+                    rippleBackground.stopRippleAnimation();
+                    rippleBackground.setVisibility(View.GONE);
+                    imgRipple.setVisibility(View.GONE);
+                    DialogSignUp.getInstance().show(MainActivity.this);
+                }
+            });
+        } else {
+            PreferenceUtils.setRipple(this, false);
+            rippleBackground.stopRippleAnimation();
+            rippleBackground.setVisibility(View.GONE);
+            imgRipple.setVisibility(View.GONE);
         }
     }
 
@@ -1668,7 +1718,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             if (resultCode == Activity.RESULT_OK) {
                 showTab(FragmentType.MY_PAGE);
                 try {
-                    findFragment(FragmentType.HOME).requestAreaSetting(false);
+                    //Change Language
+                    findFragment(FragmentType.HOME).onRefreshData();
+                    //findFragment(FragmentType.HOME).requestAreaSetting(false);
                 } catch (Exception e) {
                     MyLog.writeLog("MainActivity onActivityResult-------------------------------> " + e);
                 }
@@ -1793,7 +1845,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         tvAddressPopup.setText(hotelForm.getAddress());
 
         //Set Rating
-        int rate = (int) hotelForm.getAverageMark() * 2;
+        double rate = hotelForm.getAverageMark();
         if (rate <= 0) {
             tvReview.setVisibility(View.GONE);
         } else {
@@ -1806,11 +1858,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             RoomTypeForm roomTypeForm = hotelForm.getFlashSaleRoomTypeForm();
             if (roomTypeForm != null) {
                 int rooms = roomTypeForm.getAvailableRoom();
-                String s;
-                if (rooms > 0) {
-                    s = String.format(getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
-                } else {
-                    s = getString(R.string.txt_2_flashsale_sold_out);
+                String s = "";
+
+                int superSale = roomTypeForm.getGo2joyFlashSaleDiscount();
+                int priceOvernightDiscount = roomTypeForm.getPriceOvernight();
+                if (superSale > 0) {
+                    priceOvernightDiscount = priceOvernightDiscount - superSale;
+                    if (rooms > 0) {
+                        //if (rooms <= 5)
+                        s = getString(R.string.txt_2_super_flashsale_room_left, String.valueOf(rooms));
+                    } else {
+                        s = getString(R.string.txt_2_super_flashsale_sold_out);
+                    }
+                } else { // normal
+                    if (rooms > 0) {
+                        if (rooms <= 5) {
+                            s = String.format(getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
+                        }
+                    } else {
+                        s = getString(R.string.txt_2_flashsale_sold_out);
+                    }
                 }
                 //Set Price Status
                 tvPriceStatus.setVisibility(View.VISIBLE);
@@ -1829,10 +1896,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 tvPriceOvenightNormal.setPaintFlags(tvPriceOvenightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
                 //Set Price Overnight Discount
-                tvPriceOvernightDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+                //Feature92
+                if (superSale > 0){
+
+                    tvSupperSaleNormal.setVisibility(View.VISIBLE);
+                    tvSupperSaleNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                    tvSupperSaleNormal.setPaintFlags(tvSupperSaleNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    tvSupperSaleDiscount.setVisibility(View.VISIBLE);
+                    tvSupperSaleDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+                    tvPriceOvernightDiscount.setVisibility(View.GONE);
+
+                }
 
             }
         } else {
+
+            tvSupperSaleNormal.setVisibility(View.GONE);
+            tvSupperSaleDiscount.setVisibility(View.GONE);
+            tvPriceOvernightDiscount.setVisibility(View.VISIBLE);
 
             imgIconPromotion1.setVisibility(View.GONE);
             boxHourly.setVisibility(View.VISIBLE);
@@ -1841,7 +1926,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             tvPriceStatus.setText("");
 
             //--------------Set Price------------
-            int[] discount = Utils.getPromotionInfoForm(hotelForm.getSn());
+            int[] discount = Utils.getPromotionInfoForm(
+                    hotelForm.getSn(),
+                    hotelForm.getLowestPrice(),
+                    hotelForm.getLowestPriceOvernight(),
+                    0,
+                    0);
+
+            //-------------Set Label Hourly---------------
+            String s = getString(R.string.txt_2_flashsale_hourly_price, String.valueOf(hotelForm.getFirstHours()));
+            txtLabelPriceHourly.setText(s);
 
             if (discount[0] > 0 || discount[1] > 0) {
 
@@ -1927,8 +2021,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
 
 
-        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelHomeImage?hotelSn=" + hotelForm.getSn() + "&fileName=" + hotelForm.getHomeImageName();
-        PictureUtils.getInstance().load(
+        //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelHomeImage?hotelSn=" + hotelForm.getSn() + "&fileName=" + hotelForm.getHomeImageName();
+        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + hotelForm.getImageKey();
+
+        PictureGlide.getInstance().show(
                 url,
                 getResources().getDimensionPixelSize(R.dimen.hotel_popup_width),
                 getResources().getDimensionPixelSize(R.dimen.hotel_popup_height),

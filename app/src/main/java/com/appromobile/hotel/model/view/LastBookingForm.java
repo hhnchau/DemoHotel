@@ -17,6 +17,7 @@ public class LastBookingForm implements Parcelable {
     private int hotelSn;
     private int roomTypeSn;
     private int sn;
+    private String imageKey;
 
     public int getBookingNo() {
         return bookingNo;
@@ -90,7 +91,14 @@ public class LastBookingForm implements Parcelable {
         this.sn = sn;
     }
 
+    public String getImageKey() {
+        return imageKey;
+    }
 
+    public LastBookingForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
+    }
 
     @Override
     public int describeContents() {
@@ -108,6 +116,7 @@ public class LastBookingForm implements Parcelable {
         dest.writeInt(this.hotelSn);
         dest.writeInt(this.roomTypeSn);
         dest.writeInt(this.sn);
+        dest.writeString(this.imageKey);
     }
 
     public LastBookingForm() {
@@ -123,6 +132,7 @@ public class LastBookingForm implements Parcelable {
         this.hotelSn = in.readInt();
         this.roomTypeSn = in.readInt();
         this.sn = in.readInt();
+        this.imageKey = in.readString();
     }
 
     public static final Parcelable.Creator<LastBookingForm> CREATOR = new Parcelable.Creator<LastBookingForm>() {

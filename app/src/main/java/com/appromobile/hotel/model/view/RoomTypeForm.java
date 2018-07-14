@@ -33,12 +33,18 @@ public class RoomTypeForm implements Parcelable {
     private List roomFormList;
     private String roomType;
     private String shortName;
-    private int status;
+    private int status; //1 -> active, 2->Lock Today
     private int countExifImage;
     private boolean locked;
     private int square;
     private int bedType;
     private List<RoomView> roomViewList;
+    private int bonusFirstHours;
+    private int bonusAdditionalHours;
+    private int bonusCommissionPercent;
+    private int go2joyFlashSaleDiscount;
+    private int mode;
+    private String imageKey;
 
     public RoomTypeForm() {
     }
@@ -73,6 +79,12 @@ public class RoomTypeForm implements Parcelable {
         square = in.readInt();
         bedType = in.readInt();
         roomViewList = in.createTypedArrayList(RoomView.CREATOR);
+        bonusFirstHours = in.readInt();
+        bonusAdditionalHours = in.readInt();
+        bonusCommissionPercent = in.readInt();
+        go2joyFlashSaleDiscount = in.readInt();
+        mode = in.readInt();
+        imageKey = in.readString();
     }
 
     public static final Creator<RoomTypeForm> CREATOR = new Creator<RoomTypeForm>() {
@@ -318,6 +330,57 @@ public class RoomTypeForm implements Parcelable {
         return roomViewList;
     }
 
+    public int getBonusFirstHours() {
+        return bonusFirstHours;
+    }
+
+    public void setBonusFirstHours(int bonusFirstHours) {
+        this.bonusFirstHours = bonusFirstHours;
+    }
+
+    public int getBonusAdditionalHours() {
+        return bonusAdditionalHours;
+    }
+
+    public void setBonusAdditionalHours(int bonusAdditionalHours) {
+        this.bonusAdditionalHours = bonusAdditionalHours;
+    }
+
+    public String getImageKey() {
+        return imageKey;
+    }
+
+    public RoomTypeForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
+    }
+
+    public int getBonusCommissionPercent() {
+        return bonusCommissionPercent;
+    }
+
+    public void setBonusCommissionPercent(int bonusCommissionPercent) {
+        this.bonusCommissionPercent = bonusCommissionPercent;
+    }
+
+    public int getMode() {
+        return mode;
+    }
+
+    public RoomTypeForm setMode(int mode) {
+        this.mode = mode;
+        return this;
+    }
+
+    public int getGo2joyFlashSaleDiscount() {
+        return go2joyFlashSaleDiscount;
+    }
+
+    public RoomTypeForm setGo2joyFlashSaleDiscount(int go2joyFlashSaleDiscount) {
+        this.go2joyFlashSaleDiscount = go2joyFlashSaleDiscount;
+        return this;
+    }
+
     public void setRoomViewList(List<RoomView> roomViewList) {
         this.roomViewList = roomViewList;
     }
@@ -326,6 +389,14 @@ public class RoomTypeForm implements Parcelable {
     public boolean isFlashSale() {
         boolean result = false;
         if (roomType != null && roomType.equals("FlashSale")) {
+            result = true;
+        }
+        return result;
+    }
+
+    public boolean isCinema(){
+        boolean result = false;
+        if (roomType != null && roomType.equals("CineJoy")) {
             result = true;
         }
         return result;
@@ -402,5 +473,11 @@ public class RoomTypeForm implements Parcelable {
         parcel.writeInt(square);
         parcel.writeInt(bedType);
         parcel.writeTypedList(roomViewList);
+        parcel.writeInt(bonusFirstHours);
+        parcel.writeInt(bonusAdditionalHours);
+        parcel.writeInt(bonusCommissionPercent);
+        parcel.writeInt(go2joyFlashSaleDiscount);
+        parcel.writeInt(mode);
+        parcel.writeString(imageKey);
     }
 }

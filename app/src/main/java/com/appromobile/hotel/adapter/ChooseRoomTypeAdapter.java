@@ -12,22 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.model.view.HotelDetailForm;
-import com.appromobile.hotel.model.view.PromotionInfoForm;
 import com.appromobile.hotel.model.view.RoomTypeForm;
 
-import com.appromobile.hotel.model.view.RoomView;
-import com.appromobile.hotel.utils.GlideApp;
-import com.appromobile.hotel.utils.PictureUtils;
+import com.appromobile.hotel.utils.ParamConstants;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.Utils;
-import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import java.util.List;
 
 
 /**
@@ -44,7 +36,7 @@ public class ChooseRoomTypeAdapter extends BaseAdapter {
         this.context = context;
         this.lvParent = lvParent;
         this.selectedIndex = selectedIndex;
-        PictureUtils.getInstance().clearCache(context);
+        PictureGlide.getInstance().clearCache(context);
     }
 
     @Override
@@ -87,8 +79,15 @@ public class ChooseRoomTypeAdapter extends BaseAdapter {
             viewHolder.txtLocked = convertView.findViewById(R.id.roomtype_locked);
 
             viewHolder.boxHourly = convertView.findViewById(R.id.boxHourly);
+            viewHolder.boxOvernight = convertView.findViewById(R.id.boxOvernight);
 
             viewHolder.imgFlashSale = convertView.findViewById(R.id.roomty_flashsale);
+
+            viewHolder.txtLabelPriceHourly = convertView.findViewById(R.id.label_price_hourly);
+
+            viewHolder.tvSupperSaleNormal = convertView.findViewById(R.id.tvSupperSaleNormal);
+
+            viewHolder.tvSupperSaleDiscount = convertView.findViewById(R.id.tvSupperSaleDiscount);
 
             convertView.setTag(viewHolder);
 
@@ -109,11 +108,26 @@ public class ChooseRoomTypeAdapter extends BaseAdapter {
                 viewHolder.imgFlashSale.setImageResource(R.drawable.icon_sale);
 
                 int rooms = roomTypeForm.getAvailableRoom();
-                String s;
-                if (rooms > 0) {
-                    s = String.format(context.getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
-                } else {
-                    s = context.getString(R.string.txt_2_flashsale_sold_out);
+                String s = "";
+
+                int superSale = roomTypeForm.getGo2joyFlashSaleDiscount();
+                int priceOvernightDiscount = roomTypeForm.getPriceOvernight();
+                if (superSale > 0) {
+                    priceOvernightDiscount = priceOvernightDiscount - superSale;
+                    if (rooms > 0) {
+                        //if (rooms <= 5)
+                        s = context.getString(R.string.txt_2_super_flashsale_room_left, String.valueOf(rooms));
+                    } else {
+                        s = context.getString(R.string.txt_2_super_flashsale_sold_out);
+                    }
+                } else { // normal
+                    if (rooms > 0) {
+                        if (rooms <= 5) {
+                            s = String.format(context.getString(R.string.txt_2_flashsale_room_left), String.valueOf(rooms));
+                        }
+                    } else {
+                        s = context.getString(R.string.txt_2_flashsale_sold_out);
+                    }
                 }
                 //Set Price Status
                 viewHolder.tvPriceStatus.setVisibility(View.VISIBLE);
@@ -121,39 +135,109 @@ public class ChooseRoomTypeAdapter extends BaseAdapter {
 
                 viewHolder.boxHourly.setVisibility(View.GONE);
 
-                //Set Price Overnight Normal
-                viewHolder.tvPriceOvernightNormal.setVisibility(View.VISIBLE);
-                viewHolder.tvPriceOvernightNormal.setText(Utils.formatCurrency(data.getLowestPriceOvernight()));
-                //StrikeThrough
-                viewHolder.tvPriceOvernightNormal.setPaintFlags(viewHolder.tvPriceOvernightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                if (!Utils.checkRoomTypeDiscount(data.getRoomApplyPromotion(), roomTypeForm.getSn(), ParamConstants.ROOM_TYPE_FLASH_SALE)) {
+                /*
+                 * NO DISCOUNT
+                 */
 
-                //Set Price Overnight Discount
-                viewHolder.tvPriceOvernightDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                    //Set Price Overnight Normal
+                    viewHolder.tvPriceOvernightNormal.setVisibility(View.VISIBLE);
+                    viewHolder.tvPriceOvernightNormal.setText(Utils.formatCurrency(data.getLowestPriceOvernight()));
+                    //StrikeThrough
+                    viewHolder.tvPriceOvernightNormal.setPaintFlags(viewHolder.tvPriceOvernightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    //Set Price Overnight Discount
+                    viewHolder.tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+                } else {
+
+                /*
+                 *  DISCOUNT
+                 */
+
+
+                    //Set Price Overnight Normal
+                    viewHolder.tvPriceOvernightNormal.setVisibility(View.VISIBLE);
+                    viewHolder.tvPriceOvernightNormal.setText(Utils.formatCurrency(data.getLowestPriceOvernight()));
+                    //StrikeThrough
+                    viewHolder.tvPriceOvernightNormal.setPaintFlags(viewHolder.tvPriceOvernightNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    //Set Price Overnight Discount
+                    viewHolder.tvPriceOvernightDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+                }
+
+                //Feature92
+                if (superSale > 0){
+
+                    viewHolder.tvSupperSaleNormal.setVisibility(View.VISIBLE);
+                    viewHolder.tvSupperSaleNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceOvernight()));
+                    viewHolder.tvSupperSaleNormal.setPaintFlags(viewHolder.tvSupperSaleNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    viewHolder.tvSupperSaleDiscount.setVisibility(View.VISIBLE);
+                    viewHolder.tvSupperSaleDiscount.setText(Utils.formatCurrency(priceOvernightDiscount));
+
+                    viewHolder.tvPriceOvernightDiscount.setVisibility(View.GONE);
+
+                }
 
             } else {
 
+                viewHolder.tvSupperSaleDiscount.setVisibility(View.GONE);
+                viewHolder.tvSupperSaleNormal.setVisibility(View.GONE);
+                viewHolder.tvPriceOvernightDiscount.setVisibility(View.VISIBLE);
                 viewHolder.imgFlashSale.setVisibility(View.GONE);
                 viewHolder.boxHourly.setVisibility(View.VISIBLE);
 
                 //--------------Set Price------------
-                int[] discount = Utils.getPromotionInfoForm(roomTypeForm.getHotelSn());
+
+                if (roomTypeForm.isCinema()) {
+                    viewHolder.boxOvernight.setVisibility(View.GONE);
+                } else {
+                    viewHolder.boxOvernight.setVisibility(View.VISIBLE);
+                }
+
+                int[] discount = Utils.getPromotionInfoForm(
+                        roomTypeForm.getHotelSn(),
+                        roomTypeForm.getPriceFirstHours(),
+                        roomTypeForm.getPriceOvernight(),
+                        roomTypeForm.getPriceOneDay(),
+                        roomTypeForm.getBonusFirstHours());
+
+                //-------------Set Label Hourly---------------
+                String s = context.getString(R.string.txt_2_flashsale_hourly_price, String.valueOf(roomTypeForm.getFirstHours()));
+                viewHolder.txtLabelPriceHourly.setText(s);
 
                 if (discount[0] > 0 || discount[1] > 0) {
 
                     //Set Price Status
                     viewHolder.tvPriceStatus.setText(context.getString(R.string.txt_2_coupon_applied));
+                    boolean isPromotion = Utils.checkRoomTypeDiscount(data.getRoomApplyPromotion(), roomTypeForm.getSn(), ParamConstants.ROOM_TYPE_NORMAL);
+                    if (isPromotion){
+                        viewHolder.tvPriceStatus.setVisibility(View.VISIBLE);
+                    }else {
+                        viewHolder.tvPriceStatus.setVisibility(View.GONE);
+                    }
 
                     //Hourly
-                    if (discount[0] > 0) {
+                    if (discount[0] > 0 && isPromotion) {
                         int priceHourlyDiscount = roomTypeForm.getPriceFirstHours() - discount[0];
-
+                        if (roomTypeForm.isCinema()) {
+                            priceHourlyDiscount = roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours() - discount[3];
+                        }
                         if (priceHourlyDiscount < 0) {
                             priceHourlyDiscount = 0;
                         }
 
                         //Set Price Hourly Normal
                         viewHolder.tvPriceHourlyNormal.setVisibility(View.VISIBLE);
-                        viewHolder.tvPriceHourlyNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                        if (roomTypeForm.isCinema()) {
+                            viewHolder.tvPriceHourlyNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours()));
+                            if (discount[3] <= 0)
+                                viewHolder.tvPriceHourlyNormal.setVisibility(View.GONE);
+                        } else {
+                            viewHolder.tvPriceHourlyNormal.setVisibility(View.VISIBLE);
+                            viewHolder.tvPriceHourlyNormal.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                        }
                         //StrikeThrough
                         viewHolder.tvPriceHourlyNormal.setPaintFlags(viewHolder.tvPriceHourlyNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
@@ -164,13 +248,18 @@ public class ChooseRoomTypeAdapter extends BaseAdapter {
 
                         //Set Price Hourly Normal
                         viewHolder.tvPriceHourlyNormal.setVisibility(View.GONE);
-                        //Set Price Hourly Discount
-                        viewHolder.tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                        if (roomTypeForm.isCinema()) {
+                            //Set Price Hourly Discount
+                            viewHolder.tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours()));
+                        } else {
+                            //Set Price Hourly Discount
+                            viewHolder.tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                        }
 
                     }
 
                     //Overnight
-                    if (discount[1] > 0) {
+                    if (discount[1] > 0 && isPromotion) {
                         int priceOvernightDiscount = roomTypeForm.getPriceOvernight() - discount[1];
 
                         if (priceOvernightDiscount < 0) {
@@ -201,7 +290,11 @@ public class ChooseRoomTypeAdapter extends BaseAdapter {
                     //Set Price Hourly Normal
                     viewHolder.tvPriceHourlyNormal.setVisibility(View.GONE);
                     //Set Price Hourly Discount
-                    viewHolder.tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                    if (roomTypeForm.isCinema()) {
+                        viewHolder.tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours() + roomTypeForm.getBonusFirstHours()));
+                    } else {
+                        viewHolder.tvPriceHourlyDiscount.setText(Utils.formatCurrency(roomTypeForm.getPriceFirstHours()));
+                    }
 
                     //Set Price Overnight Normal
                     viewHolder.tvPriceOvernightNormal.setVisibility(View.GONE);
@@ -213,30 +306,33 @@ public class ChooseRoomTypeAdapter extends BaseAdapter {
 
             }
 
-            final String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + data.getRoomTypeList().get(position).getHomeImageSn() + "&fileName=" + data.getRoomTypeList().get(position).getHomeImageSn();
-            PictureUtils.getInstance().load(
+            //final String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + data.getRoomTypeList().get(position).getHomeImageSn() + "&fileName=" + data.getRoomTypeList().get(position).getHomeImageSn();
+            String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" +data.getRoomTypeList().get(position).getImageKey();
+
+            PictureGlide.getInstance().show(
                     url,
                     context.getResources().getDimensionPixelSize(R.dimen.roomtype_height),
                     context.getResources().getDimensionPixelSize(R.dimen.roomtype_height),
                     R.drawable.loading_big,
                     viewHolder.imgRoom
             );
-        }
 
-        if (this.selectedIndex == position) {
-            viewHolder.imgChecked.setImageResource(R.drawable.checkbox_selected);
-        } else {
-            viewHolder.imgChecked.setImageResource(R.drawable.checkbox);
-        }
 
-        /*
-        * Check Room Type Locked.
-        */
-        if (roomTypeForm != null && roomTypeForm.isLocked()) {
-            viewHolder.txtLocked.setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.txtLocked.setVisibility(View.GONE);
+            if (this.selectedIndex == position) {
+                viewHolder.imgChecked.setImageResource(R.drawable.checkbox_selected);
+            } else {
+                viewHolder.imgChecked.setImageResource(R.drawable.checkbox);
+            }
 
+
+            /*
+            * Check Room type Locked
+            */
+            if (roomTypeForm.getStatus() == ParamConstants.LOCK_TODAY) {
+                viewHolder.txtLocked.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.txtLocked.setVisibility(View.GONE);
+            }
         }
 
         return convertView;
@@ -251,7 +347,11 @@ public class ChooseRoomTypeAdapter extends BaseAdapter {
 
         private TextView tvPriceStatus, tvPriceHourlyNormal, tvPriceHourlyDiscount, tvPriceOvernightNormal, tvPriceOvernightDiscount;
         private LinearLayout boxHourly;
+        private LinearLayout boxOvernight;
         private ImageView imgFlashSale;
+        private TextView txtLabelPriceHourly;
+        private TextView tvSupperSaleNormal;
+        private TextView tvSupperSaleDiscount;
 
     }
 

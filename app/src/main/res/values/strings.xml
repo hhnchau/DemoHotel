@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--<string name="payoo_merchant_id">672</string>-->
+    <!--<string name="payoo_secret_key">vU4ASM#xd_xZxNm</string>-->
     <string name="app_name">Go2Joy</string>
     <string name="img_decscription"> </string>
     <string name="menu_home">Home</string>
@@ -133,8 +135,8 @@
     <string name="detail_view">View</string>
     <string name="favorited">Favorited</string>
     <string name="unfavorited">Unfavorited</string>
-    <string name="search_title">Search</string>
-    <string name="search_hint_text">Search...</string>
+    <string name="search_title">Search Hotel</string>
+    <string name="search_hint_text">Search by name, address…</string>
     <string name="call_hotel">Do you want to call</string>
     <string name="email_sign_up">Email Sign-up</string>
     <string name="duplicate_check">Duplicate check</string>
@@ -161,8 +163,10 @@
     <string name="optional">(Optional)</string>
     <string name="mobile">Mobile</string>
     <string name="please_input_nickname">Please input nickname</string>
+    <string name="please_input_mobile">Please input phone number</string>
     <string name="the_nickname_is_available">The nickname is ready to register.</string>
     <string name="nickname_already_exists">Nickname already exists</string>
+    <string name="mobile_already_exists">Phone number already exists</string>
     <string name="please_check_nickname_first">Please check nickname first.</string>
     <string name="please_choose_birthday">Please choose birthday</string>
     <string name="forgot_my_password">Forgot My Password</string>
@@ -406,18 +410,18 @@
     <string name="msg_3_9_promotion_time_frame_2">This coupon is just applied from 8AM-8PM, Mon to Fri. Please choose your time again!</string>
     <string name="txt_3_9_coupon_not_enough_condition_2">Validity: 8AM-8PM of Mon-Fri</string>
     <string name="msg_6_9_3_notification_message">Service Agreement has just been updated.\nSee detail.</string>
-    <string name ="msg_6_9_3_popup_exit_agreement_page">I read and agree with Go2Joy Service Agreement.</string>
-    <string name ="msg_6_9_3_see_detail">See detail</string>
-    <string name ="btn_6_9_3_agree">Agree</string>
-    <string name ="btn_6_9_3_cancel">Cancel</string>
-    <string name ="btn_6_9_3_back">Back</string>
-    <string name ="msg_6_9_3_cancel_message">You didn\'t agree with the updated Service Agreement. App will be terminated in your phone.</string>
-    <string name ="msg_6_3_1_booking_was_canceled">Your reservation has been cancelled due to hotel room unavailability. Please book another room.</string>
-    <string name ="txt_6_3_1_booking_now_show">No show</string>
+    <string name="msg_6_9_3_popup_exit_agreement_page">I read and agree with Go2Joy Service Agreement.</string>
+    <string name="msg_6_9_3_see_detail">See detail</string>
+    <string name="btn_6_9_3_agree">Agree</string>
+    <string name="btn_6_9_3_cancel">Cancel</string>
+    <string name="btn_6_9_3_back">Back</string>
+    <string name="msg_6_9_3_cancel_message">You didn\'t agree with the updated Service Agreement. App will be terminated in your phone.</string>
+    <string name="msg_6_3_1_booking_was_canceled">Your reservation has been cancelled due to hotel room unavailability. Please book another room.</string>
+    <string name="txt_6_3_1_booking_now_show">No show</string>
     <string name="btn_12_2_get_coupon">Get coupon</string>
     <string name="msg_6_3_1_check_in_successful">Check-in successful. Enjoy!</string>
     <string name="txt_4_1_1_flashsale_label">FlashSale</string>
-    <string name="msg_3_9_flashsale_soldout">Phòng FlashSale đã hết. Vui lòng đặt phòng khác.</string>
+    <string name="msg_3_9_flashsale_soldout">Flash sale room is fully booked. Please choose another Room type.</string>
     <string name="txt_6_3_1_cancel_policy">See Cancellation policy in Hotel info.</string>
     <string name="txt_3_2_overnight_time">Overnight from </string>
     <string name="txt_3_2_checkout_time">Daily check-out time: until </string>
@@ -426,7 +430,7 @@
     <string name="txt_2_flashfale_title">FLASH SALE</string>
     <string name="txt_6_about_us">About Us</string>
     <string name="txt_6_3_1_checkin_code">Check-in code:</string>
-    <string name="txt_6_3_1_checkin_code_message">Áp dụng khi sử dụng coupon</string>
+    <string name="txt_6_3_1_checkin_code_message">Apply for coupon redeem</string>
     <string name="txt_6_3_1_paid_amount">Paid amount</string>
     <string name="msg_12_2_join_event_successful">You have just registered successfully the event "Try your luck - Win kool phone" to celebrate "10.000 Go2Joy App download". We will announce the lucky draw result in our fanpage www.facebook.com/go2joy.hotels from 22 to 30 Oct. Good luck!</string>
     <string name="txt_2_join">Join</string>
@@ -436,7 +440,7 @@
     <string name="notification_birthday_7_days">Your birthday coupon coupon_money will be expired on coupon_date. Hurry up! Book a hotel and enjoy with our coupon! Have fun!</string>
     <string name="txt_5_2_birthday_issued">days from issued date</string>
     <string name="msg_3_1_soldout_room">Sorry, this room is overbooked now, please choose your time again</string>
-    <string name="txt_3_1_soldout_room">Sold out</string>
+    <string name="txt_3_1_soldout_room">Sold out today</string>
     <string name="msg_3_9_promotion_time_frame_4">This coupon is not applied for this time. Please choose your time again!</string>
     <string name="notification_flashsale">HOT! Keep calm and catch our Flash Sale! New hotel deals up to 80%. Available nowhere else and limited time. Book now with Go2Joy App!</string>
     <string name="txt_2_flashsale_room_left">FlashSale %s room(s) left</string>
@@ -446,16 +450,17 @@
     <string name="txt_3_2_bed">Bed(s): </string>
     <string name="txt_3_2_views">View: </string>
     <string name="txt_3_2_description">Description: </string>
-    <string name="txt_3_2_book_now">Book now! </string>
+    <string name="txt_3_2_book_now">Book now!</string>
     <string name="txt_2_flashsale_overnight_price">Overnight</string>
-    <string name="txt_2_flashsale_hourly_price">Hourly</string>
+    <string name="txt_2_flashsale_hourly_price">%1$s first hour(s)</string>
+    <string name="txt_2_additional_hour">Additional %1$s hour(s)</string>
     <string name="txt_2_flashsale_daily_price">Daily</string>
     <string name="vnd">VND</string>
     <string name="txt_6_12_stamp_hotel">Hotel Stamp</string>
     <string name="txt_6_12_stamp">My Stamp</string>
     <string name="txt_6_12_stamp_collection">Stamp Collection</string>
     <string name="txt_6_12_stamp_redeem">Redeem</string>
-    <string name="txt_6_12_stamp_value">Redeem value</string>
+    <string name="txt_6_12_stamp_value">Stamp redeem</string>
     <string name="txt_6_12_stamp_policy">Stamp Policy</string>
     <string name="txt_6_12_stamp_no">You have no Stamp yet. Please make a booking at hotel with Stamp icon to enjoy the benefit.</string>
     <string name="txt_6_12_stamp_policy_number">Number of Stamps to redeem</string>
@@ -476,4 +481,140 @@
     <string name="notification_stamp_one_day_expire">Congrats! You have enough Stamp to redeem. 1 of your Stamp will be expired tonight! Redeem now for your booking with Go2Joy. Check My Stamp for details.</string>
     <string name="txt_6_12_stamp_continue">Continue</string>
     <string name="msg_6_12_tip_stamp">See details about Stamp</string>
+    <string name="txt_1_4_payoo_code">Payoo Code: </string>
+    <string name="msg_3_9_pos_payment">Your Payoo code: </string>
+    <string name="msg_2_suspended_status_hotel">Booking for this hotel is suspended for revision. Please choose other hotels. </string>
+    <string name="msg_7_2_verify_phone">Please wait for a moment to receive verify code</string>
+    <string name="msg_7_2_sign_up_successful">Congrats! Signed up successful!</string>
+    <string name="txt_3_9_book_as_guest">Book as guest</string>
+    <string name="msg_3_9_book_as_guest">Log in to get more promotion. Or book as guest.</string>
+    <string name="msg_3_9_input_phone_number">Please input phone number to confirm booking</string>
+    <string name="txt_3_9_sign_up_coupon">Log-in for more Coupon!</string>
+    <string name="txt_3_9_sign_up_stamp">Log-in for more Stamp!</string>
+    <string name="txt_3_9_sign_up_now">Đăng nhập ngay</string>
+    <string name="msg_7_2_verify_code_not_match">Verify code does not match</string>
+    <string name="msg_6_12_redeem_not_yet_checkin">This booking is not qualified for 1 Stamp because you haven\'t checked-in yet for your redeem booking.</string>
+    <string name="txt_3_9_cinejoy_room_only">CineJoy room</string>
+    <string name="max_discount">Maximum:</string>
+    <string name="clock_error">Time invalid. Please select again</string>
+    <string name="notification_stamp_finish">Your Stamp collection of hotel %1$s will be expired in %2$s days. Please redeem your stamp soon.</string>
+    <string name="notification_stamp_open_again">The Stamp collection of hotel %1$s now open again. Let enjoy!</string>
+    <string name="txt_6_12_policy_finish_stamp">In case the hotel stops Stamp program, users will be notified 30 days in advance. For users having no stamp yet: New stamp will not be issued. For users having at least 1 stamp: 30 days to collect enough stamps and redeem. After 30 days, all stamps will no longer be valid.</string>
+    <string name="txt_6_13_my_point">My point</string>
+
+    <string name="txt_6_13_earned">Earned</string>
+    <string name="txt_6_13_expired">Expired</string>
+    <string name="txt_6_13_total_effective">Total effective</string>
+    <string name="txt_6_13_total_earned">Total earned</string>
+    <string name="txt_6_13_total_spent">Total spent</string>
+    <string name="txt_6_13_total_expired">Total expired</string>
+    <string name="txt_6_13_exchange_gift">Exchange gift</string>
+    <string name="msg_6_13_no_point">You have no Point yet. Please make a booking to collect points and enjoy the benefit..</string>
+
+    <string name="msg_6_13_terms_and_condition"><![CDATA[
+    <html>
+        <head></head>
+        <bodystyle text-align:justify="">
+            <body>
+
+            	<br>Term and Condition
+                    <br> &nbsp; 1. How to earn points?
+                        <br>  &nbsp; &nbsp; - Payment on App: 1,000 VND = 30 points
+                        <br>  &nbsp; &nbsp; - Payment at the hotel: 1,000 VND = 20 points
+                        <br>  &nbsp; &nbsp; - The amount of <1,000 VND is rounded to zero
+                        <br>  &nbsp; &nbsp; - The amount of payment after deducting the discount such as coupon, flash sale, stamp redeem, point redeem, direct discount…
+                        <br>  &nbsp; &nbsp; - Validity: 12 months
+                <br> &nbsp; 2. How to redeem points?
+                        <br>  &nbsp; &nbsp; - To get discount on payment: 1,000 points = 1,000 VND
+                        <br>  &nbsp; &nbsp; - To get other products/services of the hotel or associated partners (according to separate regulations)
+                        <br>  &nbsp; &nbsp; - Minimum accumulated points: 50,000 points.
+
+            </body>
+        </bodystyle>
+    </html>
+    ]]></string>
+
+    <string name="txt_6_13_use_point">Use point</string>
+    <string name="txt_6_13_refund">Un-use point</string>
+    <string name="txt_6_13_mileage_amount_value">Point redeem</string>
+    <string name="msg_6_13_exchange_point_to_money">You have just used %1$s points to get %2$s discount. Your total payment is %3$s. Do you want to continue??</string>
+    <string name="txt_6_13_point">Point</string>
+    <string name="txt_2_super_flashsale_room_left">Go2Joy SUPER FlashSale %1$s room(s) left</string>
+    <string name="txt_2_super_flashsale_sold_out">Go2Joy SUPER FlashSale sold out</string>
+    <string name="notification_flashsale_start_now">HOT! Right now, Flash Sale %1$s at hotel %2$s, only %3$s room(s). Exclusive at Go2Joy. Open App now and catch the deal!</string>
+    <string name="notification_flashsale_start_later">Shocking deal for night owl! From %1$s tonight, Flash Sale %2$s at hotel %3$s, only %4$s room(s). Exclusive at Go2Joy. Open App and catch the deal!</string>
+
+    <string name="txt_6_14_1_notification_on">All notifications</string>
+    <string name="txt_6_14_1_notification_limited_1">Flash Sale notification anytime and other notifications before 9pm.</string>
+    <string name="txt_6_14_1_notification_limited_2">Only notifications before 9pm.</string>
+    <string name="txt_6_14_1_notification_off">No notification</string>
+
+    <string-array name="list_notification_setting">
+        <item>@string/txt_6_14_1_notification_on</item>
+        <item>@string/txt_6_14_1_notification_limited_1</item>
+        <item>@string/txt_6_14_1_notification_limited_2</item>
+        <item>@string/txt_6_14_1_notification_off</item>
+    </string-array>
+
+    <string name="txt_6_14_general_setting">General Settings</string>
+    <string name="txt_6_14_notification_setting">Notification Setting</string>
+    <string name="txt_6_14_language_setting">Language Setting</string>
+
+    <string-array name="list_my_setting">
+        <item>@string/account_setting</item>
+        <item>@string/txt_6_14_notification_setting</item>
+        <item>@string/txt_6_14_language_setting</item>
+        <item>@string/txt_6_1_logout</item>
+    </string-array>
+
+    <string name="txt_6_14_2_language_english">English</string>
+    <string name="txt_6_14_2_language_vietnamese">Vietnamese</string>
+
+    <string-array name="list_my_language">
+        <item>@string/txt_6_14_2_language_english</item>
+        <item>@string/txt_6_14_2_language_vietnamese</item>
+    </string-array>
+
+    <string name="txt_6_14_setting_notification_on">On</string>
+    <string name="txt_6_14_setting_notification_limited">Limited</string>
+    <string name="txt_6_14_setting_notification_off">Off</string>
+
+    <string name="txt_16_by">By</string>
+    <string name="txt_16_payoo_paystore">Payoo Pay@Store</string>
+    <string name="txt_16_payoo">Payoo</string>
+    <string name="txt_16_hotel">Hotel</string>
+    <string name="txt_16_123pay">123Pay</string>
+
+    <string name="txt_6_15_start">START</string>
+    <string name="txt_6_15_skip">NEXT</string>
+    <string name="txt_6_15_sign_up">SIGN-UP NOW</string>
+    <string name="txt_6_15_flash_sale_title">FLASHSALE</string>
+    <string name="txt_6_15_flash_sale_content">Limited and exclusive at Go2Joy</string>
+    <string name="txt_6_15_stamp_title">STAMP COLLECTION</string>
+    <string name="txt_6_15_stamp_content">More booking, more benefit</string>
+    <string name="txt_6_15_promotion_title">NEW DEAL EVERYDAY</string>
+    <string name="txt_6_15_promotion_content">Only at Go2Joy</string>
+    <string name="txt_6_15_booking_title">FLEXIBLE BOOKING</string>
+    <string name="txt_6_15_booking_content">Hourly or Overnight</string>
+    <string name="txt_6_15_map_title">QUICK SEARCH</string>
+    <string name="txt_6_15_map_content">Choose your favourite hotel in the map</string>
+    <string name="txt_6_15_sign_up_alert">Sign-up to get Promotion</string>
+    <string name="txt_6_15_promotion_alert">Promotion</string>
+    <string name="txt_6_15_flashsale_alert">FlashSale</string>
+    <string name="txt_6_15_stamp_alert">Stamp</string>
+    <string name="txt_6_15_title_alert">We have many promotion waiting for you. \nSign-up and grab it!</string>
+    <string name="txt_6_15_sign_up_now">Create account now!</string>
+    <string name="txt_6_15_login_using">Or Log-In using</string>
+    <string name="txt_6_15_login_now">Log-In now!</string>
+    <string name="txt_6_15_get_more_coupon">Want to get more COUPON</string>
+    <string name="txt_6_15_forgot_password">Forgot your password?</string>
+    <string name="txt_6_15_sign_up_using">Or Sign-up using</string>
+    <string name="search_flashsale_hotels">Flash sale</string>
+    <string name="search_promotion_hotels">Promotion </string>
+    <string name="search_history_search">History search</string>
+    <string name="txt_7_2_resend">Re-send code</string>
+    <string name="txt_7_2_resend_sucessful">Re-send successfully. Please check your SMS.</string>
+    <string name="txt_3_9_coming_soon">Coming soon!</string>
+    <string name="txt_3_9_new">Apply now!</string>
+
 </resources>

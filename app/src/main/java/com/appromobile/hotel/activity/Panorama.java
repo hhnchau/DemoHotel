@@ -304,7 +304,34 @@ public class Panorama extends BaseActivity implements View.OnClickListener {
                         //tvRoomPromotion.setText("");
 
                         //--------------Set Price------------
-                        int[] discount = Utils.getPromotionInfoForm(roomTypeForm.getHotelSn());
+                        int[] discount = Utils.getPromotionInfoForm(
+                                roomTypeForm.getHotelSn(),
+                                roomTypeForm.getPriceFirstHours(),
+                                roomTypeForm.getPriceOvernight(),
+                                roomTypeForm.getPriceOneDay(),
+                                roomTypeForm.getBonusFirstHours());
+
+                        //-------------Set Label Hourly---------------
+                        TextView txtLabelPriceHourly = findViewById(R.id.label_price_hourly);
+                        String s = getString(R.string.txt_2_flashsale_hourly_price, String.valueOf(roomTypeForm.getFirstHours()));
+                        txtLabelPriceHourly.setText(s);
+
+                        //--------------Set Addition Hour------------
+                        LinearLayout boxAdditionHour = findViewById(R.id.boxAdditionHour);
+                        boxAdditionHour.setVisibility(View.VISIBLE);
+
+                        //Label
+                        TextView labelAdditionHourly = findViewById(R.id.labelAdditionHourly);
+                        s = getString(R.string.txt_2_additional_hour, String.valueOf(roomTypeForm.getAdditionalHours()));
+                        labelAdditionHourly.setText(s);
+
+                        //Price
+                        TextView txtAdditionPrice = findViewById(R.id.tvPriceAdditionHourlyDiscounts);
+                        int p = roomTypeForm.getPriceAdditionalHours();
+                        if (roomTypeForm.isCinema()) {
+                            p = p + roomTypeForm.getBonusAdditionalHours();
+                        }
+                        txtAdditionPrice.setText(Utils.formatCurrency(p));
 
                         if (discount[0] > 0 || discount[1] > 0 || discount[2] > 0) {
 
@@ -439,6 +466,7 @@ public class Panorama extends BaseActivity implements View.OnClickListener {
                 }
             } else {
                 Intent intent = new Intent(Panorama.this, ReservationActivity.class);
+
                 intent.putExtra("HotelDetailForm", hotelDetailForm);
                 intent.putExtra("RoomTypeIndex", 0);
                 startActivityForResult(intent, CALL_BOOKING);
@@ -511,14 +539,16 @@ public class Panorama extends BaseActivity implements View.OnClickListener {
         HotelImageForm hotelImageForm = listImagePanorama.get(position);
 
         //Set Panorama
-        loadPanorama(hotelImageForm.getSn(), hotelImageForm.getCustomizeName());
+        //loadPanorama(hotelImageForm.getSn(), hotelImageForm.getCustomizeName());
+        loadPanorama(hotelImageForm.getImageKey(), hotelImageForm.getCustomizeName());
 
         //Update RoomType Info
         updateRoomTypeInfo(position);
     }
 
-    private void loadPanorama(int sn, String customizeName) {
-        final String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + sn + "&fileName=" + customizeName;
+    private void loadPanorama(String sn, String customizeName) {
+        //final String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + sn + "&fileName=" + customizeName;
+        final String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + sn;
         final String higthQuality = "&highQuality=true";
 
         imageLoaderTaskGlide = new ImageLoaderTaskGlide(this, new LoadTaskComplete() {

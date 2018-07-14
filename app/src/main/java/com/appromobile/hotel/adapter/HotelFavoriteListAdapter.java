@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
 import android.location.Location;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,27 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.enums.RoomAvailableType;
-import com.appromobile.hotel.model.request.UserFavoriteDto;
 import com.appromobile.hotel.model.view.HotelForm;
-import com.appromobile.hotel.model.view.PromotionInfoForm;
-import com.appromobile.hotel.model.view.RestResult;
-import com.appromobile.hotel.utils.DialogUtils;
-import com.appromobile.hotel.utils.PictureUtils;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
-import com.bumptech.glide.Glide;
 
-import java.io.File;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by xuan on 7/4/2016.
@@ -58,7 +45,7 @@ public class HotelFavoriteListAdapter extends BaseAdapter {
             newCurrLocation.setLatitude(Double.parseDouble(PreferenceUtils.getLatLocation(context)));
             newCurrLocation.setLongitude(Double.parseDouble(PreferenceUtils.getLongLocation(context)));
         }
-        PictureUtils.getInstance().clearCache(context);
+        PictureGlide.getInstance().clearCache(context);
     }
 
     @Override
@@ -101,29 +88,58 @@ public class HotelFavoriteListAdapter extends BaseAdapter {
         location.setLongitude(hotelForm.getLongitude());
         float distance = location.distanceTo(newCurrLocation);
 
-        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + hotelForm.getHomeImageSn() + "&fileName=" + hotelForm.getHomeImageName();
+        //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + hotelForm.getHomeImageSn() + "&fileName=" + hotelForm.getHomeImageName();
+        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + hotelForm.getImageKey();
 
-        if (hotelForm.getHotelStatus() == ContractType.CONTRACT.getType() || hotelForm.getHotelStatus() == ContractType.TRIAL.getType()) {
+        if (hotelForm.getHotelStatus() == ContractType.CONTRACT.getType() || hotelForm.getHotelStatus() == ContractType.TRIAL.getType() || hotelForm.getHotelStatus() == ContractType.SUSPEND.getType()) {
             viewHolder.imgNew.setVisibility(View.GONE);
             viewHolder.imgHot.setVisibility(View.GONE);
             viewHolder.imgPromotion.setVisibility(View.GONE);
+            viewHolder.icon360.setVisibility(View.GONE);
 
-            //Set Icon Promotion
-            if (hotelForm.getNewHotel() == 1) {
-                viewHolder.imgNew.setVisibility(View.VISIBLE);
-            }
-            if (hotelForm.getHasPromotion() == 1) {
-                viewHolder.imgPromotion.setVisibility(View.VISIBLE);
-            }
-            if (hotelForm.getHotHotel() == 1) {
-                viewHolder.imgHot.setVisibility(View.VISIBLE);
-            }
 
-            if (hotelForm.getRoomAvailable() == RoomAvailableType.Available.getType()) {
-                viewHolder.imgRoomAvailable.setImageResource(R.drawable.room);
+            //Suspend
+            if (hotelForm.getHotelStatus() == ContractType.SUSPEND.getType()) {
+                //Cover
+                viewHolder.suspend.setVisibility(View.VISIBLE);
+                viewHolder.boxHourly.setVisibility(View.GONE);
+                viewHolder.boxOvernight.setVisibility(View.GONE);
+                viewHolder.imgRoomAvailable.setVisibility(View.GONE);
             } else {
-                viewHolder.imgRoomAvailable.setImageResource(R.drawable.no_room);
+                //Cover
+                viewHolder.suspend.setVisibility(View.GONE);
+                viewHolder.boxHourly.setVisibility(View.VISIBLE);
+                viewHolder.boxOvernight.setVisibility(View.VISIBLE);
+                viewHolder.imgRoomAvailable.setVisibility(View.VISIBLE);
+
+
+                //Set Icon Promotion
+                if (hotelForm.getNewHotel() == 1) {
+                    viewHolder.imgNew.setVisibility(View.VISIBLE);
+                }
+                if (hotelForm.getHasPromotion() == 1) {
+                    viewHolder.imgPromotion.setVisibility(View.VISIBLE);
+                }
+                if (hotelForm.getHotHotel() == 1) {
+                    viewHolder.imgHot.setVisibility(View.VISIBLE);
+                }
+
+                /*
+                /Set Icon 360
+                */
+                if (hotelForm.getCountExifImage() > 0) {
+                    viewHolder.icon360.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.icon360.setVisibility(View.GONE);
+                }
+
+                if (hotelForm.getRoomAvailable() == RoomAvailableType.Available.getType()) {
+                    viewHolder.imgRoomAvailable.setImageResource(R.drawable.room);
+                } else {
+                    viewHolder.imgRoomAvailable.setImageResource(R.drawable.no_room);
+                }
             }
+
 
             //Set Hotel Name
             viewHolder.tvNameVip.setText(hotelForm.getName());
@@ -132,7 +148,7 @@ public class HotelFavoriteListAdapter extends BaseAdapter {
             viewHolder.tvDistanceVip.setText(Utils.meterToKm(distance));
 
             //Set Rating
-            int rate = (int) hotelForm.getAverageMark() * 2;
+            double rate =  hotelForm.getAverageMark();
             if (rate <= 0) {
                 viewHolder.tvReview.setVisibility(View.GONE);
             } else {
@@ -141,7 +157,16 @@ public class HotelFavoriteListAdapter extends BaseAdapter {
 
 
             //--------------Set Price------------
-            int[] discount = Utils.getPromotionInfoForm(hotelForm.getSn());
+            int[] discount = Utils.getPromotionInfoForm(
+                    hotelForm.getSn(),
+                    hotelForm.getLowestPrice(),
+                    hotelForm.getLowestPriceOvernight(),
+                    0,
+                    0);
+
+            //-------------Set Label Hourly---------------
+            String s = context.getString(R.string.txt_2_flashsale_hourly_price, String.valueOf(hotelForm.getFirstHours()));
+            viewHolder.txtLabelPriceHourly.setText(s);
 
             if (discount[0] > 0 || discount[1] > 0) {
 
@@ -217,7 +242,7 @@ public class HotelFavoriteListAdapter extends BaseAdapter {
             }
 
 
-            PictureUtils.getInstance().load(
+            PictureGlide.getInstance().show(
                     url,
                     context.getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width),
                     context.getResources().getDimensionPixelSize(R.dimen.hotel_list_height),
@@ -225,14 +250,6 @@ public class HotelFavoriteListAdapter extends BaseAdapter {
                     viewHolder.imgHotelVip
             );
 
-            /*
-            /Set Icon 360
-            */
-            if (hotelForm.getCountExifImage() > 0) {
-                viewHolder.icon360.setVisibility(View.VISIBLE);
-            } else {
-                viewHolder.icon360.setVisibility(View.GONE);
-            }
         }
 
         return convertView;
@@ -254,6 +271,9 @@ public class HotelFavoriteListAdapter extends BaseAdapter {
         private ImageView imgIconPromotion1, imgIconPromotion2, imgIconPromotion3, imgIconPromotion4;
 
         private RelativeLayout boxVipHotel;
+        private LinearLayout boxHourly, boxOvernight;
+        private View suspend;
+        private TextView txtLabelPriceHourly;
     }
 
     private void bindViewNormal(View convertView) {
@@ -286,6 +306,13 @@ public class HotelFavoriteListAdapter extends BaseAdapter {
         viewHolder.imgIconPromotion4 = convertView.findViewById(R.id.imgIconPromotion4);
 
         viewHolder.boxVipHotel = convertView.findViewById(R.id.boxVipHotel);
+
+        viewHolder.boxHourly = convertView.findViewById(R.id.boxHourly);
+        viewHolder.boxOvernight = convertView.findViewById(R.id.boxOvernight);
+
+        viewHolder.suspend = convertView.findViewById(R.id.cover_suspend);
+
+        viewHolder.txtLabelPriceHourly = convertView.findViewById(R.id.label_price_hourly);
 
         convertView.setTag(viewHolder);
 

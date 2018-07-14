@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.activity.MainActivity;
+import com.appromobile.hotel.enums.RoomType;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.Utils;
 
@@ -46,6 +47,8 @@ public class HotelForm implements Parcelable {
     private int countExifImage;
     private int activeStamp;
     private int numToRedeem;
+    private int firstHours;
+    private String imageKey;
 
     public HotelForm() {
     }
@@ -80,6 +83,8 @@ public class HotelForm implements Parcelable {
         countExifImage = in.readInt();
         activeStamp = in.readInt();
         numToRedeem = in.readInt();
+        firstHours = in.readInt();
+        imageKey = in.readString();
     }
 
     @Override
@@ -113,6 +118,8 @@ public class HotelForm implements Parcelable {
         dest.writeInt(countExifImage);
         dest.writeInt(activeStamp);
         dest.writeInt(numToRedeem);
+        dest.writeInt(firstHours);
+        dest.writeString(imageKey);
 
     }
 
@@ -337,8 +344,26 @@ public class HotelForm implements Parcelable {
         return lowestPriceOvernight;
     }
 
+    public int getFirstHours() {
+        return firstHours;
+    }
+
+    public HotelForm setFirstHours(int firstHours) {
+        this.firstHours = firstHours;
+        return this;
+    }
+
     public void setLowestPriceOvernight(int lowestPriceOvernight) {
         this.lowestPriceOvernight = lowestPriceOvernight;
+    }
+
+    public String getImageKey() {
+        return imageKey;
+    }
+
+    public HotelForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
     }
 
     public RoomTypeForm getFlashSaleRoomTypeForm() {
@@ -386,14 +411,25 @@ public class HotelForm implements Parcelable {
     public boolean isFlashSale() {
         boolean result = false;
         if (flashSaleRoomTypeForm != null) {
-            if (flashSaleRoomTypeForm.getNumOfRoom() >0 && flashSaleRoomTypeForm.getSn() > 0 && !flashSaleRoomTypeForm.getName().equals("")){
+            if (flashSaleRoomTypeForm.getNumOfRoom() > 0 && flashSaleRoomTypeForm.getSn() > 0 && !flashSaleRoomTypeForm.getName().equals("")) {
                 result = true;
-            }else {
+            } else {
                 result = false;
             }
 
         }
         return result;
+    }
+
+    public boolean checkFlashSale() {
+        for (int i = 0; i < roomTypeFormList.size(); i++) {
+            if (roomTypeFormList.get(i).getMode() == RoomType.FLASHSALE.getType() &&
+                    roomTypeFormList.get(i).getBookCount() < roomTypeFormList.get(i).getNumOfRoom()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

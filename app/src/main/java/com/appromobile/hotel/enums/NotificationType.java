@@ -16,4 +16,6 @@ public class NotificationType {
     public final static int FLASH_SALE = 9;
     public final static int COUPON_ISSUED = 10;  //ActionType = 1---> msg1, = 2 ---> msg2
     public final static int STAMP = 12;
+    public final static int CRM = 13;
+    public final static int UNINSTALL = 14;
 }

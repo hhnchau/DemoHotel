@@ -111,7 +111,8 @@
                 android:gravity="center"
                 android:text="@string/setting"
                 android:textColor="@color/org"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
@@ -159,10 +160,12 @@
             android:layout_marginRight="12dp"
             android:orientation="vertical">
 
+            <!--Notification-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:visibility="gone">
 
                 <com.appromobile.hotel.widgets.TextViewSFBold
                     android:layout_width="0dp"
@@ -183,6 +186,36 @@
                     android:checked="true"
                     android:textOff=""
                     android:textOn="" />
+            </LinearLayout>
+
+            <!--Settings-->
+            <LinearLayout
+                android:id="@+id/btnMySettings"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/txt_6_14_general_setting"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnMySettingsArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
             </LinearLayout>
 
             <LinearLayout
@@ -277,6 +310,36 @@
 
                 <ImageButton
                     android:id="@+id/btnHistoryArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <!--Point-->
+            <LinearLayout
+                android:id="@+id/btnPoint"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/txt_6_13_my_point"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnPointArrow"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"

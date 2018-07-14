@@ -39,6 +39,9 @@ public class HotelDetailForm implements Parcelable {
     private int lowestPrice;
     private int activeStamp;
     private int numToRedeem;
+    private RoomApplyPromotion roomApplyPromotion;
+    private int firstHours;
+    private String imageKey;
 
     protected HotelDetailForm(Parcel in) {
         address = in.readString();
@@ -71,7 +74,9 @@ public class HotelDetailForm implements Parcelable {
         lowestPriceOvernight = in.readInt();
         activeStamp = in.readInt();
         numToRedeem = in.readInt();
-
+        roomApplyPromotion = in.readParcelable(RoomApplyPromotion.class.getClassLoader());
+        firstHours = in.readInt();
+        imageKey = in.readString();
     }
 
     public static final Creator<HotelDetailForm> CREATOR = new Creator<HotelDetailForm>() {
@@ -333,6 +338,33 @@ public class HotelDetailForm implements Parcelable {
         this.lowestPrice = lowestPrice;
     }
 
+    public RoomApplyPromotion getRoomApplyPromotion() {
+        return roomApplyPromotion;
+    }
+
+    public HotelDetailForm setRoomApplyPromotion(RoomApplyPromotion roomApplyPromotion) {
+        this.roomApplyPromotion = roomApplyPromotion;
+        return this;
+    }
+
+    public int getFirstHours() {
+        return firstHours;
+    }
+
+    public HotelDetailForm setFirstHours(int firstHours) {
+        this.firstHours = firstHours;
+        return this;
+    }
+
+    public String getImageKey() {
+        return imageKey;
+    }
+
+    public HotelDetailForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -370,6 +402,9 @@ public class HotelDetailForm implements Parcelable {
         dest.writeInt(lowestPriceOvernight);
         dest.writeInt(activeStamp);
         dest.writeInt(numToRedeem);
+        dest.writeParcelable(roomApplyPromotion, flags);
+        dest.writeInt(firstHours);
+        dest.writeString(imageKey);
     }
 
     public int checkFlashSale() {
@@ -380,5 +415,24 @@ public class HotelDetailForm implements Parcelable {
             }
         }
         return p;
+    }
+
+    public int checkCineJoy() {
+        int p = -1;
+        for (int i = 0; i < roomTypeList.size(); i++) {
+            if (roomTypeList.get(i).isCinema()) {
+                p = i;
+            }
+        }
+        return p;
+    }
+
+    public RoomTypeForm getFlashSaleRoomTypeForm() {
+        for (int i = 0; i < roomTypeList.size(); i++) {
+            if (roomTypeList.get(i).getRoomType().equals("FlashSale")) {
+                return roomTypeList.get(i);
+            }
+        }
+        return null;
     }
 }

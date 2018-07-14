@@ -12,6 +12,8 @@ import com.appromobile.hotel.HotelApplication;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.adapter.HotelAreaEditAdapter;
 import com.appromobile.hotel.adapter.HotelFavoriteListAdapter;
+import com.appromobile.hotel.dialog.DialogSuspend;
+import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.model.view.HotelForm;
 import com.appromobile.hotel.model.view.UserAreaFavoriteForm;
 import com.appromobile.hotel.utils.DialogCallback;
@@ -57,12 +59,12 @@ public class MyFavoriteActivity extends BaseActivity implements View.OnClickList
 
         setContentView(R.layout.my_favorite_activity);
         txtSetFavArea = findViewById(R.id.txtSetFavArea);
-        tvMessage =  findViewById(R.id.tvMessage);
+        tvMessage = findViewById(R.id.tvMessage);
         findViewById(R.id.btnClose).setOnClickListener(this);
-        btnEdit =  findViewById(R.id.btnEdit);
+        btnEdit = findViewById(R.id.btnEdit);
         btnEdit.setOnClickListener(this);
-        lvFavoriteArea =  findViewById(R.id.lvFavoriteArea);
-        lvFavoriteHotel =  findViewById(R.id.lvFavoriteHotel);
+        lvFavoriteArea = findViewById(R.id.lvFavoriteArea);
+        lvFavoriteHotel = findViewById(R.id.lvFavoriteHotel);
         txtSetFavArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,16 +77,25 @@ public class MyFavoriteActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    Intent intent = new Intent(MyFavoriteActivity.this, HotelDetailActivity.class);
-                    intent.putExtra("sn", hotelForms.get(position).getSn());
-                    intent.putExtra("RoomAvailable", hotelForms.get(position).getRoomAvailable());
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                    if (hotelForms.get(position).getHotelStatus() == ContractType.SUSPEND.getType()) {
+                        //Suspended
+                        showDialogSuspended();
+                    } else {
+                        Intent intent = new Intent(MyFavoriteActivity.this, HotelDetailActivity.class);
+                        intent.putExtra("sn", hotelForms.get(position).getSn());
+                        intent.putExtra("RoomAvailable", hotelForms.get(position).getRoomAvailable());
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    private void showDialogSuspended() {
+        DialogSuspend.getInstance().show(this);
     }
 
     @Override
@@ -140,7 +151,7 @@ public class MyFavoriteActivity extends BaseActivity implements View.OnClickList
             hotelAreaEditAdapter.updateData(userAreaFavoriteForms);
             hotelAreaEditAdapter.notifyDataSetChanged();
         }
-        if(userAreaFavoriteForms.size()==0){
+        if (userAreaFavoriteForms.size() == 0) {
             displaySetFavArea(true);
         }
     }
@@ -171,7 +182,7 @@ public class MyFavoriteActivity extends BaseActivity implements View.OnClickList
             hotelAreaEditAdapter.updateData(userAreaFavoriteForms);
             hotelAreaEditAdapter.notifyDataSetChanged();
         }
-        if(userAreaFavoriteForms.size()!=0){
+        if (userAreaFavoriteForms.size() != 0) {
             displaySetFavArea(false);
         }
     }

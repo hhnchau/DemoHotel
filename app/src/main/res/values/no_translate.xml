@@ -3,7 +3,8 @@
     <string name="latitude_default" translatable="false">10.7629690</string>
     <string name="longitude_default" translatable="false">106.6935420</string>
     <string name="date_format_view" translatable="false">dd/MM/yyyy</string>
-    <string name="month_year_format_view" translatable="false">MM. yyyy</string>
+    <string name="date_format_date" translatable="false">yyyy-MM-dd hh:mm</string>
+    <string name="month_year_format_view" translatable="false">MM.yyyy</string>
     <string name="fb_date_format_view" translatable="false">MM/dd/yyyy</string>
     <string name="google_date_format_view" translatable="false">yyyy-MM-dd</string>
     <string name="date_format_request" translatable="false">yyyy-MM-dd</string>

@@ -1,985 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/wh"
-    android:orientation="vertical">
+    android:background="@color/wh">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@color/org"
-        android:orientation="horizontal"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
-
-        <ImageView
-            android:id="@+id/btnClose"
-            android:layout_width="46dp"
-            android:layout_height="match_parent"
-            android:paddingStart="6dp"
-            android:paddingEnd="18dp"
-            android:src="@drawable/back"
-            android:contentDescription="@string/img_decscription" />
-
-        <com.appromobile.hotel.widgets.TextViewSFHeavy
-            android:id="@+id/tvHotelTitle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="@string/reservation"
-            android:textColor="@color/wh"
-            android:textSize="19sp" />
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:background="@color/wh"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="46dp"
+            android:background="@color/org"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
 
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@color/org_20p"
-                android:gravity="center"
-                android:text="@string/hotel"
-                android:textColor="@color/bk"
-                android:textSize="15sp" />
+            <ImageView
+                android:id="@+id/btnClose"
+                android:layout_width="46dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/img_decscription"
+                android:paddingEnd="18dp"
+                android:paddingStart="6dp"
+                android:src="@drawable/back" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
-                android:background="#FFFFFF"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingLeft="6dp"
-                    android:paddingRight="6dp">
-
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:id="@+id/tvHotelName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:singleLine="true"
-                        android:text="Khách sạn Hoa Nắng"
-                        android:textColor="@color/bk"
-                        android:textSize="15sp" />
-
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:id="@+id/tvAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:singleLine="true"
-                        android:text="41-Lê Trung Nghĩa, P12"
-                        android:textColor="@color/bk"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <com.appromobile.hotel.widgets.TextViewSFBold
-                    android:id="@+id/btnChangeHotel"
-                    android:layout_width="80dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/button_full_wh_bg_org_border"
-                    android:gravity="center"
-                    android:layout_marginEnd="12dp"
-                    android:textSize="15sp"
-                    android:text="@string/change"
-                    android:textColor="@color/org" />
-            </LinearLayout>
-
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@color/org_20p"
-                android:gravity="center"
-                android:text="@string/room_type"
-                android:textColor="@color/bk"
-                android:textSize="15sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="5dp"
-                android:background="#FFFFFF"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingLeft="6dp"
-                    android:paddingRight="6dp">
-
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:id="@+id/tvRoomName"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:text="Cinema Room"
-                        android:textColor="@color/bk"
-                        android:textSize="15sp" />
-                </LinearLayout>
-                <com.appromobile.hotel.widgets.TextViewSFBold
-                    android:id="@+id/btnChangeRoomType"
-                    android:layout_width="80dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/button_full_wh_bg_org_border"
-                    android:gravity="center"
-                    android:layout_marginEnd="12dp"
-                    android:textSize="15sp"
-                    android:text="@string/change"
-                    android:textColor="@color/org" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@color/lg" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="12dp"
-                android:background="#FFFFFF"
+            <com.appromobile.hotel.widgets.TextViewSFHeavy
+                android:id="@+id/tvHotelTitle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/chkHourly"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/checkbox_selected"
-                    android:contentDescription="@string/img_decscription" />
-
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:id="@+id/txt_hourly"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="12dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/hourly"
-                    android:textColor="@color/bk"
-                    android:textSize="15sp" />
-
-                <ImageView
-                    android:id="@+id/chkOvernight"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/checkbox"
-                    android:contentDescription="@string/img_decscription" />
-
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:id="@+id/txt_overnight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="12dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/over_night"
-                    android:textColor="@color/bk"
-                    android:textSize="15sp" />
-
-                <ImageView
-                    android:id="@+id/chkDaily"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/checkbox"
-                    android:contentDescription="@string/img_decscription" />
-
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:id="@+id/txt_daily"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="6dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="@string/daily"
-                    android:textColor="@color/bk"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <!--Hourly-->
-            <LinearLayout
-                android:id="@+id/boxHourly"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:visibility="visible">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginTop="3dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/date"
-                        android:textColor="@color/bk"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:orientation="vertical"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp">
-
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:id="@+id/tvDateHourly"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="10/10/2010"
-                            android:textColor="@color/bk"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!--Today - Tomorrow - other-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_margin="8dp">
-
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/textView_rerservation_today"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/txt_3_9_today"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:textSize="16sp"
-                        android:textColor="@color/org"
-                        android:layout_marginEnd="4dp" />
-
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/textView_rerservation_tomorrow"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/txt_3_9_tomorrow"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:textSize="16sp"
-                        android:textColor="@color/org"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp" />
-
-                    <LinearLayout
-                        android:id="@+id/box_reservation_other"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:layout_marginEnd="4dp">
-
-                        <com.appromobile.hotel.widgets.TextViewSFBold
-                            android:id="@+id/textView_rerservation_other"
-                            android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textColor="@color/org"
-                            android:text="@string/txt_3_9_orther"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/btnDateHourly"
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/date"
-                            android:layout_marginEnd="4dp"
-                            android:contentDescription="@string/img_decscription" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="46dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:gravity="center"
-                            android:text="@string/time_from"
-                            android:textColor="@color/bk"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp">
-
-                            <com.appromobile.hotel.widgets.TextViewSFRegular
-                                android:id="@+id/tvTimeFrom"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:text="19:00"
-                                android:textColor="@color/bk"
-                                android:textSize="15sp" />
-                        </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/btnTimeFrom"
-                            android:layout_width="46dp"
-                            android:layout_height="46dp"
-                            android:layout_gravity="center_horizontal"
-                            android:padding="7dp"
-                            android:src="@drawable/time"
-                            android:contentDescription="@string/img_decscription" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="46dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:background="#FFFFFF"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical|end"
-                            android:text="@string/time_to"
-                            android:textColor="@color/bk"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp">
-
-                            <com.appromobile.hotel.widgets.TextViewSFRegular
-                                android:id="@+id/tvTimeTo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:text="21:00"
-                                android:textColor="@color/bk"
-                                android:textSize="15sp" />
-                        </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/btnTimeTo"
-                            android:layout_width="46dp"
-                            android:layout_height="46dp"
-                            android:layout_gravity="center_horizontal"
-                            android:padding="7dp"
-                            android:src="@drawable/time"
-                            android:contentDescription="@string/img_decscription" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--Daily-->
-            <LinearLayout
-                android:id="@+id/boxDaily"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:visibility="gone">
-
-                <!--From Date-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:background="#FFFFFF"
-                    android:orientation="horizontal">
-
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/date_from"
-                        android:textColor="@color/bk"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:id="@+id/tvDateFrom"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:layout_weight="1"
-                            android:layout_marginStart="3dp"
-                            android:gravity="center_vertical"
-                            android:text="10/10/2010"
-                            android:textColor="@color/bk"
-                            android:textSize="15sp" />
-
-                </LinearLayout>
-
-                <!--Today - Tomorrow - other-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_margin="8dp">
-
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/textView_rerservation_daily_from_today"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/txt_3_9_today"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:textSize="16sp"
-                        android:textColor="@color/org"
-                        android:layout_marginEnd="4dp" />
-
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/textView_rerservation_daily_from_tomorrow"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/txt_3_9_tomorrow"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:textSize="16sp"
-                        android:textColor="@color/org"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp" />
-
-                    <LinearLayout
-                        android:id="@+id/box_reservation_daily_from_other"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:layout_marginStart="4dp">
-
-                        <com.appromobile.hotel.widgets.TextViewSFBold
-                            android:id="@+id/textView_rerservation_daily_from_other"
-                            android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textColor="@color/org"
-                            android:text="@string/txt_3_9_orther"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/btnDateFrom"
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/date"
-                            android:layout_marginEnd="4dp"
-                            android:contentDescription="@string/img_decscription" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!--To Date-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:background="#FFFFFF"
-                    android:orientation="horizontal">
-
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/date_to"
-                        android:textColor="@color/bk"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:id="@+id/tvDateTo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="10.10.2015"
-                            android:textColor="@color/bk"
-                            android:textSize="15sp" />
-
-                </LinearLayout>
-
-                <!--Today - Tomorrow - other-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_margin="8dp">
-
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/textView_rerservation_daily_to_today"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/txt_3_9_today"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:textSize="16sp"
-                        android:textColor="@color/org"
-                        android:layout_marginEnd="4dp" />
-
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/textView_rerservation_daily_to_tomorrow"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/txt_3_9_tomorrow"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:textSize="16sp"
-                        android:textColor="@color/org"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp" />
-
-                    <LinearLayout
-                        android:id="@+id/box_reservation_daily_to_other"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:layout_marginStart="4dp">
-
-                        <com.appromobile.hotel.widgets.TextViewSFBold
-                            android:id="@+id/textView_rerservation_daily_to_other"
-                            android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textColor="@color/org"
-                            android:text="@string/txt_3_9_orther"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/btnDateTo"
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/date"
-                            android:layout_marginEnd="4dp"
-                            android:contentDescription="@string/img_decscription" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!--Overnight-->
-            <LinearLayout
-                android:id="@+id/boxOvernight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:visibility="gone"
-                android:baselineAligned="false">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:background="#FFFFFF"
-                    android:orientation="vertical">
-
-                    <com.appromobile.hotel.widgets.TextViewSFRegular
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/date_from"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@color/bk"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="46dp"
-                        android:gravity="bottom"
-                        android:orientation="horizontal">
-
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:id="@+id/tvDateOvernight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:gravity="center_vertical"
-                            android:minWidth="120dp"
-                            android:text="10/10/2010"
-                            android:layout_marginStart="8dp"
-                            android:textColor="@color/bk"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <!--Today - Tomorrow - other-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_margin="8dp">
-
-                        <com.appromobile.hotel.widgets.TextViewSFBold
-                            android:id="@+id/textView_rerservation_overnight_today"
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/txt_3_9_right_now"
-                            android:background="@drawable/button_full_wh_bg_org_border"
-                            android:textSize="16sp"
-                            android:textColor="@color/org"
-                            android:layout_marginEnd="4dp" />
-
-                        <com.appromobile.hotel.widgets.TextViewSFBold
-                            android:id="@+id/textView_rerservation_overnight_tomorrow"
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/txt_3_9_tonight"
-                            android:background="@drawable/button_full_wh_bg_org_border"
-                            android:textSize="16sp"
-                            android:textColor="@color/org"
-                            android:layout_marginRight="4dp"
-                            android:layout_marginLeft="4dp" />
-
-                        <LinearLayout
-                            android:id="@+id/box_reservation_overnight_other"
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:background="@drawable/button_full_wh_bg_org_border"
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_marginStart="4dp">
-
-                            <com.appromobile.hotel.widgets.TextViewSFBold
-                                android:id="@+id/textView_rerservation_overnight_other"
-                                android:layout_width="0dp"
-                                android:layout_height="30dp"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:textColor="@color/org"
-                                android:text="@string/txt_3_9_orther"
-                                android:textSize="16sp" />
-
-                            <ImageView
-                                android:id="@+id/btnDateOvernight"
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/date"
-                                android:layout_marginEnd="4dp"
-                                android:contentDescription="@string/img_decscription" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!--Coupon-->
-            <LinearLayout
-                android:id="@+id/boxCoupon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/org_20p"
-                    android:gravity="center"
-                    android:text="@string/coupon"
-                    android:textColor="@color/bk"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#FFFFFF"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingStart="6dp"
-                        android:paddingEnd="6dp">
-
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:id="@+id/tvCoupon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:gravity="center_vertical"
-                            android:maxLines="3"
-                            android:text=""
-                            android:textColor="@color/bk"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/btnClearCoupon"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:gravity="center"
-                        android:layout_marginEnd="12dp"
-                        android:textSize="15sp"
-                        android:text="@string/txt_3_6_delete"
-                        android:visibility="gone"
-                        android:textColor="@color/org" />
-
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/btnChooseCoupon"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:gravity="center"
-                        android:layout_marginEnd="12dp"
-                        android:textSize="15sp"
-                        android:text="@string/choose"
-                        android:visibility="gone"
-                        android:textColor="@color/org" />
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/btnChangeCoupon"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:gravity="center"
-                        android:layout_marginEnd="12dp"
-                        android:textSize="15sp"
-                        android:text="@string/change"
-                        android:textColor="@color/org" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--Stamp-->
-            <LinearLayout
-                android:id="@+id/boxStamp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
-
-                <!--Title-->
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/org_20p"
-                    android:gravity="center"
-                    android:text="@string/txt_6_12_stamp_hotel"
-                    android:textColor="@color/bk"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#FFFFFF"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <!--Description-->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:paddingEnd="6dp"
-                        android:paddingStart="6dp">
-
-                        <!--Value Stamp-->
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:id="@+id/tvValueStamp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:gravity="center_vertical"
-                            android:maxLines="3"
-                            android:textColor="@color/bk"
-                            android:textSize="15sp" />
-
-                        <!--Apply-->
-                        <com.appromobile.hotel.widgets.TextViewSFRegular
-                            android:id="@+id/tvApplyStamp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:gravity="center_vertical"
-                            android:maxLines="3"
-                            android:textColor="@color/bk"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <!--Number Stamp-->
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/btnNumberStamp"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="12dp"
-                        android:background="@drawable/box_grey_border"
-                        android:gravity="center"
-                        android:textColor="@color/g"
-                        android:textSize="15sp"
-                        android:visibility="gone" />
-
-                    <!--Redeem-->
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/btnRedeem"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="12dp"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:gravity="center"
-                        android:text="@string/txt_6_12_stamp_redeem"
-                        android:textColor="@color/org"
-                        android:textSize="15sp"
-                        android:visibility="gone" />
-
-                    <!--Not Apply-->
-                    <com.appromobile.hotel.widgets.TextViewSFBold
-                        android:id="@+id/btnNotApply"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="12dp"
-                        android:background="@drawable/button_full_wh_bg_org_border"
-                        android:gravity="center"
-                        android:text="@string/txt_6_12_stamp_not_applied"
-                        android:textColor="@color/org"
-                        android:textSize="14sp"
-                        android:visibility="gone" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:singleLine="true"
+                android:text="@string/reservation"
+                android:textColor="@color/wh"
+                android:textSize="19sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -994,47 +60,1026 @@
                     android:layout_marginTop="12dp"
                     android:background="@color/org_20p"
                     android:gravity="center"
-                    android:text="@string/estimated_hotel_fee"
+                    android:text="@string/hotel"
                     android:textColor="@color/bk"
                     android:textSize="15sp" />
 
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:id="@+id/tvFee"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp">
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvHotelName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:singleLine="true"
+                            android:text="Khách sạn Hoa Nắng"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:singleLine="true"
+                            android:text="41-Lê Trung Nghĩa, P12"
+                            android:textColor="@color/bk"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <com.appromobile.hotel.widgets.TextViewSFBold
+                        android:id="@+id/btnChangeHotel"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/button_full_wh_bg_org_border"
+                        android:gravity="center"
+                        android:text="@string/change"
+                        android:textColor="@color/org"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/org_20p"
                     android:gravity="center"
-                    android:text="0 VND"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:text="@string/room_type"
+                    android:textColor="@color/bk"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp">
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvRoomName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="Cinema Room"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <com.appromobile.hotel.widgets.TextViewSFBold
+                        android:id="@+id/btnChangeRoomType"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/button_full_wh_bg_org_border"
+                        android:gravity="center"
+                        android:text="@string/change"
+                        android:textColor="@color/org"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/lg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/chkHourly"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/checkbox_selected" />
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/txt_hourly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="6dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/hourly"
+                        android:textColor="@color/bk"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/chkOvernight"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/checkbox" />
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/txt_overnight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="6dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/over_night"
+                        android:textColor="@color/bk"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/chkDaily"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/checkbox" />
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/txt_daily"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="@string/daily"
+                        android:textColor="@color/bk"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <!--Hourly-->
+                <LinearLayout
+                    android:id="@+id/boxHourly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/date"
+                            android:textColor="@color/bk"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:orientation="vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <com.appromobile.hotel.widgets.TextViewSFRegular
+                                android:id="@+id/tvDateHourly"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:text="10/10/2010"
+                                android:textColor="@color/bk"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--Today - Tomorrow - other-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/textView_rerservation_today"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_3_9_today"
+                            android:textColor="@color/org"
+                            android:textSize="16sp" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/textView_rerservation_tomorrow"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_3_9_tomorrow"
+                            android:textColor="@color/org"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:id="@+id/box_reservation_other"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.appromobile.hotel.widgets.TextViewSFBold
+                                android:id="@+id/textView_rerservation_other"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/txt_3_9_orther"
+                                android:textColor="@color/org"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/btnDateHourly"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="4dp"
+                                android:contentDescription="@string/img_decscription"
+                                android:src="@drawable/date" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="46dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.appromobile.hotel.widgets.TextViewSFRegular
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:gravity="center"
+                                android:text="@string/time_from"
+                                android:textColor="@color/bk"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp">
+
+                                <com.appromobile.hotel.widgets.TextViewSFRegular
+                                    android:id="@+id/tvTimeFrom"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="19:00"
+                                    android:textColor="@color/bk"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/btnTimeFrom"
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                android:layout_gravity="center_horizontal"
+                                android:contentDescription="@string/img_decscription"
+                                android:padding="7dp"
+                                android:src="@drawable/time" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="46dp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:background="#FFFFFF"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.appromobile.hotel.widgets.TextViewSFRegular
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical|end"
+                                android:text="@string/time_to"
+                                android:textColor="@color/bk"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp">
+
+                                <com.appromobile.hotel.widgets.TextViewSFRegular
+                                    android:id="@+id/tvTimeTo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="21:00"
+                                    android:textColor="@color/bk"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/btnTimeTo"
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                android:layout_gravity="center_horizontal"
+                                android:contentDescription="@string/img_decscription"
+                                android:padding="7dp"
+                                android:src="@drawable/time" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Daily-->
+                <LinearLayout
+                    android:id="@+id/boxDaily"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:visibility="gone">
+
+                    <!--From Date-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:orientation="horizontal">
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/date_from"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvDateFrom"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginStart="3dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="10/10/2010"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!--Today - Tomorrow - other-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/textView_rerservation_daily_from_today"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_3_9_today"
+                            android:textColor="@color/org"
+                            android:textSize="16sp" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/textView_rerservation_daily_from_tomorrow"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_3_9_tomorrow"
+                            android:textColor="@color/org"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:id="@+id/box_reservation_daily_from_other"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.appromobile.hotel.widgets.TextViewSFBold
+                                android:id="@+id/textView_rerservation_daily_from_other"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/txt_3_9_orther"
+                                android:textColor="@color/org"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/btnDateFrom"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="4dp"
+                                android:contentDescription="@string/img_decscription"
+                                android:src="@drawable/date" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!--To Date-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:orientation="horizontal">
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/date_to"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvDateTo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="10.10.2015"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!--Today - Tomorrow - other-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/textView_rerservation_daily_to_today"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_3_9_today"
+                            android:textColor="@color/org"
+                            android:textSize="16sp" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/textView_rerservation_daily_to_tomorrow"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_3_9_tomorrow"
+                            android:textColor="@color/org"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:id="@+id/box_reservation_daily_to_other"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.appromobile.hotel.widgets.TextViewSFBold
+                                android:id="@+id/textView_rerservation_daily_to_other"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/txt_3_9_orther"
+                                android:textColor="@color/org"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/btnDateTo"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="4dp"
+                                android:contentDescription="@string/img_decscription"
+                                android:src="@drawable/date" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--Overnight-->
+                <LinearLayout
+                    android:id="@+id/boxOvernight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:orientation="vertical">
+
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:gravity="center"
+                            android:text="@string/date_from"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:gravity="bottom"
+                            android:orientation="horizontal">
+
+                            <com.appromobile.hotel.widgets.TextViewSFRegular
+                                android:id="@+id/tvDateOvernight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginStart="8dp"
+                                android:gravity="center_vertical"
+                                android:minWidth="120dp"
+                                android:text="10/10/2010"
+                                android:textColor="@color/bk"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <!--Today - Tomorrow - other-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.appromobile.hotel.widgets.TextViewSFBold
+                                android:id="@+id/textView_rerservation_overnight_today"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_full_wh_bg_org_border"
+                                android:gravity="center"
+                                android:text="@string/txt_3_9_right_now"
+                                android:textColor="@color/org"
+                                android:textSize="16sp" />
+
+                            <com.appromobile.hotel.widgets.TextViewSFBold
+                                android:id="@+id/textView_rerservation_overnight_tomorrow"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginRight="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_full_wh_bg_org_border"
+                                android:gravity="center"
+                                android:text="@string/txt_3_9_tonight"
+                                android:textColor="@color/org"
+                                android:textSize="16sp" />
+
+                            <LinearLayout
+                                android:id="@+id/box_reservation_overnight_other"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_full_wh_bg_org_border"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <com.appromobile.hotel.widgets.TextViewSFBold
+                                    android:id="@+id/textView_rerservation_overnight_other"
+                                    android:layout_width="0dp"
+                                    android:layout_height="30dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="@string/txt_3_9_orther"
+                                    android:textColor="@color/org"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/btnDateOvernight"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="4dp"
+                                    android:contentDescription="@string/img_decscription"
+                                    android:src="@drawable/date" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--Coupon-->
+                <LinearLayout
+                    android:id="@+id/boxCoupon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/org_20p"
+                        android:gravity="center"
+                        android:text="@string/coupon"
+                        android:textColor="@color/bk"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="6dp"
+                            android:paddingStart="6dp">
+
+                            <com.appromobile.hotel.widgets.TextViewSFRegular
+                                android:id="@+id/tvCoupon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="center_vertical"
+                                android:maxLines="3"
+                                android:text=""
+                                android:textColor="@color/bk"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/btnClearCoupon"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_3_6_delete"
+                            android:textColor="@color/org"
+                            android:textSize="15sp"
+                            android:visibility="gone" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/btnChooseCoupon"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/choose"
+                            android:textColor="@color/org"
+                            android:textSize="15sp"
+                            android:visibility="gone" />
+
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/btnChangeCoupon"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/change"
+                            android:textColor="@color/org"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--Stamp-->
+                <LinearLayout
+                    android:id="@+id/boxStamp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!--Title-->
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/org_20p"
+                        android:gravity="center"
+                        android:text="@string/txt_6_12_stamp_hotel"
+                        android:textColor="@color/bk"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!--Description-->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingEnd="6dp"
+                            android:paddingStart="6dp">
+
+                            <!--Value Stamp-->
+                            <com.appromobile.hotel.widgets.TextViewSFRegular
+                                android:id="@+id/tvValueStamp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="center_vertical"
+                                android:maxLines="3"
+                                android:textColor="@color/bk"
+                                android:textSize="15sp" />
+
+                            <!--Apply-->
+                            <com.appromobile.hotel.widgets.TextViewSFRegular
+                                android:id="@+id/tvApplyStamp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="center_vertical"
+                                android:maxLines="3"
+                                android:textColor="@color/bk"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <!--Number Stamp-->
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/btnNumberStamp"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/box_grey_border"
+                            android:gravity="center"
+                            android:textColor="@color/g"
+                            android:textSize="15sp"
+                            android:visibility="gone" />
+
+                        <!--Redeem-->
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/btnRedeem"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_6_12_stamp_redeem"
+                            android:textColor="@color/org"
+                            android:textSize="15sp"
+                            android:visibility="gone" />
+
+                        <!--Not Apply-->
+                        <com.appromobile.hotel.widgets.TextViewSFBold
+                            android:id="@+id/btnNotApply"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/button_full_wh_bg_org_border"
+                            android:gravity="center"
+                            android:text="@string/txt_6_12_stamp_not_applied"
+                            android:textColor="@color/org"
+                            android:textSize="14sp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--Total Fee-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/org_20p"
+                        android:gravity="center"
+                        android:text="@string/estimated_hotel_fee"
+                        android:textColor="@color/bk"
+                        android:textSize="15sp" />
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/tvFee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:gravity="center"
+                        android:text="0 VND"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/btnMakeReservation"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/org"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        </ScrollView>
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+        <LinearLayout
+            android:id="@+id/btnMakeReservation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
             android:background="@color/org"
-            android:src="@drawable/calendar_icon"
-            android:visibility="visible"
-            android:contentDescription="@string/img_decscription" />
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-        <com.appromobile.hotel.widgets.TextViewSFBold
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:text="@string/txt_3_2_book_now"
-            android:textColor="@color/wh"
-            android:textSize="16sp" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@color/org"
+                android:contentDescription="@string/img_decscription"
+                android:src="@drawable/calendar_icon"
+                android:visibility="visible" />
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="@string/txt_3_2_book_now"
+                android:textColor="@color/wh"
+                android:textSize="16sp" />
+        </LinearLayout>
+
     </LinearLayout>
-</LinearLayout>
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/float_button_login"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:background="@drawable/float_button_login"
+        android:gravity="center"
+        android:text="@string/txt_3_9_sign_up_now"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:visibility="gone" />
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/float_button_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/dp_75"
+        android:background="@drawable/bg_org"
+        android:padding="@dimen/margin_2"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        android:visibility="gone" />
+
+</RelativeLayout>

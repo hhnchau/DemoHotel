@@ -13,6 +13,7 @@ public class PromotionImageForm implements Parcelable {
     private int promotionSn;
     private int sn;
     private int typeDisplay;
+    private String imageKey;
 
     public int getTypeDisplay() {
         return typeDisplay;
@@ -62,8 +63,14 @@ public class PromotionImageForm implements Parcelable {
         this.sn = sn;
     }
 
+    public String getImageKey() {
+        return imageKey;
+    }
 
-
+    public PromotionImageForm setImageKey(String imageKey) {
+        this.imageKey = imageKey;
+        return this;
+    }
 
     @Override
     public int describeContents() {
@@ -78,6 +85,7 @@ public class PromotionImageForm implements Parcelable {
         dest.writeInt(this.promotionSn);
         dest.writeInt(this.sn);
         dest.writeInt(this.typeDisplay);
+        dest.writeString(this.imageKey);
     }
 
     public PromotionImageForm() {
@@ -90,6 +98,7 @@ public class PromotionImageForm implements Parcelable {
         this.promotionSn = in.readInt();
         this.sn = in.readInt();
         this.typeDisplay = in.readInt();
+        this.imageKey = in.readString();
     }
 
     public static final Creator<PromotionImageForm> CREATOR = new Creator<PromotionImageForm>() {

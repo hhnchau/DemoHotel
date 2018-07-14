@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingLeft="6dp"
+            android:paddingStart="6dp"
             android:text="@string/near_by"
             android:textColor="@color/bk"
             android:textSize="14sp" />
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:gravity="center_vertical"
-        android:paddingLeft="6dp"
+        android:paddingStart="6dp"
         android:text="@string/set_my_favorite_area"
         android:textColor="@color/bk"
         android:textSize="14sp" />
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:divider="@color/bk"
         android:dividerHeight="1dp"
-        android:scrollbars="none"></ListView>
+        android:scrollbars="none"/>
 
     <View
         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingLeft="6dp"
+            android:paddingStart="6dp"
             android:text="@string/choose_area"
             android:textColor="@color/bk"
             android:textSize="14sp" />
@@ -78,6 +78,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:padding="10dp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:contentDescription="@string/img_decscription" />
     </LinearLayout>
 </LinearLayout>

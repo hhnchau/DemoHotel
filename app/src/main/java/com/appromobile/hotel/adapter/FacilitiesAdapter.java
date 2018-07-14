@@ -12,7 +12,8 @@ import android.widget.TextView;
 import com.appromobile.hotel.R;
 import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.model.view.FacilityForm;
-import com.appromobile.hotel.utils.GlideApp;
+import com.appromobile.hotel.picture.PictureGlide;
+
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class FacilitiesAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(data!=null){
+        if (data != null) {
             return data.size();
         }
         return 0;
@@ -49,7 +50,7 @@ public class FacilitiesAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
-        if(convertView==null){
+        if (convertView == null) {
 
             // inflate the layout
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -57,32 +58,33 @@ public class FacilitiesAdapter extends BaseAdapter {
 
             // well set up the ViewHolder
             viewHolder = new ViewHolder();
-            viewHolder.tvName =  convertView.findViewById(R.id.tvName);
-            viewHolder.imgItem =  convertView.findViewById(R.id.imgItem);
+            viewHolder.tvName = convertView.findViewById(R.id.tvName);
+            viewHolder.imgItem = convertView.findViewById(R.id.imgItem);
 
             // store the holder with the view.
             convertView.setTag(viewHolder);
 
-        }else{
+        } else {
             // we've just avoided calling findViewById() on resource everytime
             // just use the viewHolder
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         final FacilityForm facilityForm = data.get(position);
-        viewHolder.tvName.setText(facilityForm.getName());
+        if (facilityForm != null) {
+            viewHolder.tvName.setText(facilityForm.getName());
 
-        String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadFacilityImage?facilitySn=" + facilityForm.getSn() + "&fileName=" + facilityForm.getCustomizePath();
-        GlideApp
-                .with(viewHolder.imgItem.getContext())
-                .load(url)
-                .override(context.getResources().getDimensionPixelSize(R.dimen.facility_width), context.getResources().getDimensionPixelSize(R.dimen.facility_height))
-                .into(viewHolder.imgItem);
+            //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadFacilityImage?facilitySn=" + facilityForm.getSn() + "&fileName=" + facilityForm.getCustomizePath();
+            String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/facilityImage/" + facilityForm.getImageKey();
+
+            PictureGlide.getInstance().show(url, context.getResources().getDimensionPixelSize(R.dimen.facility_width), context.getResources().getDimensionPixelSize(R.dimen.facility_height), R.drawable.loading_small, viewHolder.imgItem);
+
+        }
 
         return convertView;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         TextView tvName;
         ImageView imgItem;
     }

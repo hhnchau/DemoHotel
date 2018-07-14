@@ -6,8 +6,8 @@ import com.appromobile.hotel.HotelApplication;
 
 public class DatabaseConnection {
 
-	public static DataBaseHelper dbHelper;
-	public static SQLiteDatabase database;
+	private static DataBaseHelper dbHelper;
+	static SQLiteDatabase database;
 
 	public static void createDBInstance() {
         if (dbHelper == null && database == null) {

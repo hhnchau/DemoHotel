@@ -17,8 +17,9 @@
             android:id="@+id/btnClose"
             android:layout_width="46dp"
             android:layout_height="match_parent"
-            android:paddingLeft="6dp"
-            android:paddingRight="18dp"
+            android:contentDescription="@string/img_decscription"
+            android:paddingEnd="18dp"
+            android:paddingStart="6dp"
             android:src="@drawable/back" />
 
         <com.appromobile.hotel.widgets.TextViewSFHeavy
@@ -34,350 +35,316 @@
             android:textSize="19sp" />
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="12dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/email"
-                android:textColor="#000000"
-                android:textSize="15sp" />
+            android:layout_height="0dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/wh"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:background="@drawable/box_org_border"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_4">
 
-                <com.appromobile.hotel.widgets.EditTextSFRegular
-                    android:id="@+id/txtEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/wh"
-                    android:enabled="false"
-                    android:gravity="center_vertical"
-                    android:hint="@string/email"
-                    android:paddingLeft="6dp"
-                    android:paddingRight="6dp"
-                    android:singleLine="true"
-                    android:textColor="#000000"
-                    android:textSize="15sp" >
-                    <requestFocus/>
-                </com.appromobile.hotel.widgets.EditTextSFRegular>
-                <ImageView
-                    android:id="@+id/imgValidateEmail"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/cancel"
-                    android:layout_marginRight="12dp"
-                    android:visibility="visible" />
+                <!--Email-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/wh">
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/btnCheckDuplicateEmail"-->
-                    <!--android:layout_width="80dp"-->
-                    <!--android:layout_height="36dp"-->
-                    <!--android:scaleType="fitEnd"-->
-                    <!--android:layout_marginRight="12dp"-->
-                    <!--android:paddingTop="5dp"-->
-                    <!--android:paddingBottom="5dp"-->
-                    <!--android:adjustViewBounds="false"-->
-                    <!--android:src="@drawable/check_text" />-->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_mail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/email">
+
+                        <com.appromobile.hotel.widgets.EditTextSFRegular
+                            android:id="@+id/txtEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:singleLine="true"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/imgValidateEmail"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_32"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/cancel"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <!--NickName-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/wh">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nick_name">
+
+                        <com.appromobile.hotel.widgets.EditTextSFRegular
+                            android:id="@+id/txtNickname"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:singleLine="true"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/imgValidateNickName"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_32"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/cancel"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <!--Mobile-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/wh">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/mobile">
+
+                        <com.appromobile.hotel.widgets.EditTextSFRegular
+                            android:id="@+id/txtMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:singleLine="true"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/imgValidateMobile"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_32"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/cancel"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="6dp"
-            android:orientation="horizontal">
-
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/nick_name"
-                android:textColor="#000000"
-                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/wh"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@drawable/box_qa_white_bg"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_4">
 
-                <com.appromobile.hotel.widgets.EditTextSFRegular
-                    android:id="@+id/txtNickname"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/wh"
-                    android:gravity="center_vertical"
-                    android:hint="@string/nick_name"
-                    android:imeOptions="actionNext"
-                    android:paddingLeft="6dp"
-                    android:singleLine="true"
-                    android:textColor="#000000"
-                    android:textSize="15sp">
+                <!--Gender-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp">
 
-                    <requestFocus />
-                </com.appromobile.hotel.widgets.EditTextSFRegular>
+                    <!--                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                                            android:layout_width="80dp"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center_vertical"
+                                            android:text="@string/gender"
+                                            android:textColor="#000000"
+                                            android:textSize="15sp" />-->
 
-                <ImageView
-                    android:id="@+id/btnCheckDuplicateNickName"
-                    android:layout_width="80dp"
-                    android:layout_height="36dp"
-                    android:scaleType="fitEnd"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:layout_marginRight="12dp"
-                    android:adjustViewBounds="false"
-                    android:src="@drawable/check_text" />
-            </LinearLayout>
-        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="6dp"
-            android:orientation="horizontal">
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/female"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp" />
 
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/gender"
-                android:textColor="#000000"
-                android:textSize="15sp" />
+                        <ImageView
+                            android:id="@+id/chkFemale"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="6dp"
+                            android:contentDescription="@string/img_decscription"
+                            android:src="@drawable/checkbox_selected" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#FFFFFF"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                        <com.appromobile.hotel.widgets.TextViewSFRegular
+                            android:id="@+id/tvMale"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/male"
+                            android:textColor="@color/bk"
+                            android:textSize="15sp" />
 
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:id="@+id/tvFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/female"
-                    android:textColor="@color/bk"
-                    android:textSize="15sp" />
+                        <ImageView
+                            android:id="@+id/chkMale"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="6dp"
+                            android:contentDescription="@string/img_decscription"
+                            android:src="@drawable/checkbox" />
+                    </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/chkFemale"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="6dp"
-                    android:src="@drawable/checkbox_selected" />
+                </LinearLayout>
 
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:id="@+id/tvMale"
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:gravity="center_vertical|right"
-                    android:text="@string/male"
-                    android:textColor="@color/bk"
-                    android:textSize="15sp" />
+                <!--Birthday-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/wh">
 
-                <ImageView
-                    android:id="@+id/chkMale"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="6dp"
-                    android:src="@drawable/checkbox" />
-            </LinearLayout>
-        </LinearLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/birthday">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+                        <com.appromobile.hotel.widgets.EditTextSFRegular
+                            android:id="@+id/tvBirthday"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:singleLine="true"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </android.support.design.widget.TextInputLayout>
 
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/birthday"
-                android:textColor="#000000"
-                android:textSize="15sp" />
+                    <ImageView
+                        android:id="@+id/imgValidateBirthday"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_32"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/cancel"
+                        android:visibility="gone" />
 
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:id="@+id/tvBirthday"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/wh"
-                android:gravity="center_vertical"
-                android:hint="@string/date_format"
-                android:text=""
-                android:paddingLeft="5dp"
-                android:singleLine="true"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-        </LinearLayout>
+                </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/address"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-            <com.appromobile.hotel.widgets.EditTextSFRegular
-                android:id="@+id/txtAddress"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/wh"
-                android:gravity="center_vertical"
-                android:hint="@string/optional"
-                android:imeOptions="actionNext"
-                android:paddingLeft="6dp"
-                android:singleLine="true"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/mobile"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/wh"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <com.appromobile.hotel.widgets.EditTextSFRegular
-                    android:id="@+id/txtMobile"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/wh"
-                    android:gravity="center_vertical"
-                    android:imeOptions="actionNext"
-                    android:paddingLeft="6dp"
-                    android:hint="@string/required"
-                    android:phoneNumber="true"
-                    android:singleLine="true"
-                    android:textColor="#000000"
-                    android:textSize="15sp" />
-
-                <com.appromobile.hotel.widgets.TextViewSFMedium
-                    android:layout_width="wrap_content"
-                    android:text="@string/get_code"
-                    android:gravity="center"
-                    android:id="@+id/btnGetCode"
-                    android:textSize="13sp"
-                    android:textColor="@color/org"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                <!--Invite Code-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/org_button_bg"
-                    android:layout_height="30dp" />
+                    android:background="@color/wh">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_invite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/invite_code">
+
+                        <com.appromobile.hotel.widgets.EditTextSFRegular
+                            android:id="@+id/txtInviteCodeSocial"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:singleLine="true"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/imgValidateInvite"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_32"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/cancel"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
             </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:id="@+id/boxVerifyCode"
-            android:layout_marginTop="5dp"
-            android:visibility="gone"
-            android:orientation="horizontal">
 
-            <com.appromobile.hotel.widgets.TextViewSFRegular
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/verify_code"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-            <com.appromobile.hotel.widgets.EditTextSFRegular
-                android:id="@+id/txtVerifyCode"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/wh"
-                android:gravity="center_vertical"
-                android:hint="@string/required"
-                android:imeOptions="actionDone"
-                android:paddingLeft="6dp"
-                android:phoneNumber="true"
-                android:singleLine="true"
-                android:textColor="#000000"
-                android:textSize="15sp" />
         </LinearLayout>
 
-        <com.appromobile.hotel.widgets.TextViewSFRegular
-            android:id="@+id/tvMessage"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/error_box_red_bg"
-            android:gravity="center"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:text=""
-            android:textColor="#ff0000"
-            android:textSize="13sp"
-            android:visibility="gone" />
-    </LinearLayout>
+    </ScrollView>
 
+    <!--btn OK-->
     <com.appromobile.hotel.widgets.TextViewSFRegular
         android:id="@+id/btnOK"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="22dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/btn_login_selector"
         android:gravity="center"
         android:text="@string/ok"
         android:textColor="@color/login_text_selector"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/focus"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:inputType="none" />
+
 </LinearLayout>

@@ -40,10 +40,11 @@ import com.appromobile.hotel.api.UrlParams;
 import com.appromobile.hotel.api.controllerApi.CallbackPromotionInfoForm;
 import com.appromobile.hotel.api.controllerApi.ControllerApi;
 import com.appromobile.hotel.api.controllerApi.ResultApi;
+import com.appromobile.hotel.dialog.CallbackDialag;
+import com.appromobile.hotel.dialog.Dialag;
 import com.appromobile.hotel.dialog.DialogStamp;
 import com.appromobile.hotel.enums.ContractType;
 import com.appromobile.hotel.enums.ShareType;
-import com.appromobile.hotel.enums.SortType;
 import com.appromobile.hotel.model.request.UserFavoriteDto;
 import com.appromobile.hotel.model.view.FacilityForm;
 import com.appromobile.hotel.model.view.HotelDetailForm;
@@ -54,18 +55,16 @@ import com.appromobile.hotel.model.view.PromotionInfoForm;
 import com.appromobile.hotel.model.view.RestResult;
 import com.appromobile.hotel.model.view.RoomTypeForm;
 import com.appromobile.hotel.model.view.UserStampForm;
+import com.appromobile.hotel.picture.PicturePicasso;
 import com.appromobile.hotel.utils.DialogCallback;
 import com.appromobile.hotel.utils.DialogUtils;
-import com.appromobile.hotel.utils.GlideApp;
 import com.appromobile.hotel.utils.MyLog;
 import com.appromobile.hotel.utils.ParamConstants;
-import com.appromobile.hotel.utils.PictureUtils;
+import com.appromobile.hotel.picture.PictureGlide;
 import com.appromobile.hotel.utils.PreferenceUtils;
 import com.appromobile.hotel.utils.ShareUtils;
 import com.appromobile.hotel.utils.Utils;
 import com.appromobile.hotel.widgets.TextViewSFBold;
-import com.appromobile.hotel.widgets.TextViewSFRegular;
-import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
 import com.tooltip.Tooltip;
 
@@ -97,7 +96,7 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
     private LinearLayout boxHotelInfo;
     private RelativeLayout btnLike;
     private int sn;
-    private TextViewSFRegular tvMessage;
+    private TextView tvMessage;
     private List<NoticeForm> noticeForms = null;
     private static int LOGIN_DETAIL_REQUEST_LIKE = 1000;
     private ScrollView mainScroll;
@@ -113,7 +112,7 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
     private int roomAvailable;
     private boolean isNotification = false;
     private NotificationData notificationData;
-    private TextViewSFRegular tvCommonRule;
+    private TextView tvCommonRule;
     private View lineCommon;
     public static Activity hotelDetailActivity;
 
@@ -398,7 +397,7 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
         DialogUtils.showLoadingProgress(this, false);
         Map<String, Object> params = new HashMap<>();
         params.put("hotelSn", sn);
-        //params.put("version", "4.0");
+        params.put("promotionSn", Utils.getPromotionSn(sn));
 
         HotelApplication.serviceApi.getHotelDetail(params, PreferenceUtils.getToken(this), HotelApplication.DEVICE_ID).enqueue(new Callback<HotelDetailForm>() {
             @Override
@@ -450,12 +449,12 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
         if (hotelDetailForm != null) {
 
             //Set Stamp
-            if (hotelDetailForm.getNumToRedeem() > 0){
+            if (hotelDetailForm.getNumToRedeem() > 0) {
                 iconStamp.setVisibility(View.VISIBLE);
                 tvNumStamp.setText(hotelDetailForm.getActiveStamp() + "/" + hotelDetailForm.getNumToRedeem());
                 //Create Tooltip
                 createViewTooltip(iconStamp);
-            }else {
+            } else {
                 iconStamp.setVisibility(View.GONE);
             }
 
@@ -490,8 +489,9 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
                 / Set ImageView
                 */
                 String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImage?hotelImageSn=" + 0 + "&fileName=" + "default_image";
+                //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=" + ;
 
-                PictureUtils.getInstance().load(
+                PictureGlide.getInstance().show(
                         url,
                         getResources().getDimensionPixelSize(R.dimen.hotel_item_contract_width),
                         getResources().getDimensionPixelSize(R.dimen.hotel_detail_image_height),
@@ -587,7 +587,7 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
 
                         }
                     });
-                }else{
+                } else {
 
                     //Set Room Type
                     roomTypeListAdapter = new RoomTypeListAdapter(this, hotelDetailForm);
@@ -672,19 +672,17 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
 
                 for (int i = 0; i < hotelDetailForm.getFacilityFormList().size(); i++) {
                     View imageLayout = getLayoutInflater().inflate(R.layout.facility_item, null);
-                    ImageView imgVIew =  imageLayout.findViewById(R.id.imgItem);
-                    TextView txtView =  imageLayout.findViewById(R.id.tvName);
+                    ImageView imgVIew = imageLayout.findViewById(R.id.imgItem);
+                    TextView txtView = imageLayout.findViewById(R.id.tvName);
 
                     FacilityForm facilityForm = hotelDetailForm.getFacilityFormList().get(i);
 
 
                     String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadFacilityImage?facilitySn=" + facilityForm.getSn() + "&fileName=" + facilityForm.getCustomizePath();
+                    //String url = UrlParams.MAIN_URL + "/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey="
 
-                    GlideApp
-                            .with(imgVIew.getContext())
-                            .load(url)
-                            .override(getResources().getDimensionPixelSize(R.dimen.facility_width), getResources().getDimensionPixelSize(R.dimen.facility_height))
-                            .into(imgVIew);
+                    PicturePicasso.getInstance().show(imgVIew, url);
+
                     txtView.setText(facilityForm.getName());
 
                     container.addView(imageLayout, itemParams);
@@ -810,15 +808,39 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
 
     private void gotoBooking() {
         if (!PreferenceUtils.getToken(this).equals("")) {
-            Intent intent = new Intent(this, ReservationActivity.class);
-            intent.putExtra("HotelDetailForm", hotelDetailForm);
-            intent.putExtra("RoomTypeIndex", getRoomTypeIndexAvailable());
-            startActivityForResult(intent, CALL_BOOKING);
-            overridePendingTransition(R.anim.right_to_left, R.anim.stable);
+            gotoReservation();
         } else {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOTEL_DETAIL);
+            showDialogGuestBooking();
         }
+    }
+
+    private void showDialogGuestBooking() {
+        Dialag.getInstance().show(this, false, true, false, null, getString(R.string.msg_3_9_book_as_guest), getString(R.string.login_button), getString(R.string.txt_3_9_book_as_guest), null, Dialag.BTN_MIDDLE, new CallbackDialag() {
+            @Override
+            public void button1() { //goto LogIn
+                Intent intent = new Intent(HotelDetailActivity.this, LoginActivity.class);
+                startActivityForResult(intent, ParamConstants.REQUEST_LOGIN_HOTEL_DETAIL);
+            }
+
+            @Override
+            public void button2() { //Continues
+                gotoReservation();
+            }
+
+            @Override
+            public void button3(Dialog dialog) {
+
+            }
+        });
+    }
+
+    private void gotoReservation() {
+        Intent intent = new Intent(this, ReservationActivity.class);
+
+        intent.putExtra("HotelDetailForm", hotelDetailForm);
+        intent.putExtra("RoomTypeIndex", getRoomTypeIndexAvailable());
+        startActivityForResult(intent, CALL_BOOKING);
+        overridePendingTransition(R.anim.right_to_left, R.anim.stable);
     }
 
     //Check room type available
@@ -928,7 +950,7 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
         TextViewSFBold btnNo = dialog.findViewById(R.id.btnNo);
         btnNo.setText(getString(R.string.cancel));
         btnYes.setText(getString(R.string.ok));
-        TextViewSFRegular tvMessage = dialog.findViewById(R.id.tvMessage);
+        TextView tvMessage = dialog.findViewById(R.id.tvMessage);
         String phoneNumber = hotelDetailForm.getPhone();
         if (hotelDetailForm.getAreaCode() != null) {
             phoneNumber = hotelDetailForm.getAreaCode() + phoneNumber;
@@ -1219,10 +1241,10 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onStart() {
         super.onStart();
-        PictureUtils.getInstance().clearCache(this);
+        PictureGlide.getInstance().clearCache(this);
     }
 
-    private void createViewTooltip(RelativeLayout iconStamp){
+    private void createViewTooltip(RelativeLayout iconStamp) {
         final Tooltip tooltip = new Tooltip.Builder(iconStamp, R.style.Tooltip)
                 .setDismissOnClick(true)
                 .setCornerRadius(20f)
@@ -1247,8 +1269,15 @@ public class HotelDetailActivity extends BaseActivity implements View.OnClickLis
                     DialogStamp.getInstance().show(HotelDetailActivity.this, userStampForm);
                 }
             });
-        }else {
+        } else {
             DialogStamp.getInstance().show(this, userStampForm);
         }
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if (hotelDetailActivity != null)
+//            hotelDetailActivity = null;
+//    }
 }

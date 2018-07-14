@@ -44,7 +44,7 @@
                     android:textColor="@color/wh"
                     android:textSize="16sp" />
 
-                <!--Check-in Code-->
+                <!--Booking ID-->
                 <com.appromobile.hotel.widgets.TextViewSFRegular
                     android:id="@+id/tvcheckinCode"
                     android:layout_width="match_parent"
@@ -142,6 +142,16 @@
                     android:textColor="@color/wh"
                     android:textSize="16sp" />
 
+                <!--Point-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvPointDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_6_13_mileage_amount_value"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
                 <!--total-->
                 <com.appromobile.hotel.widgets.TextViewSFRegular
                     android:id="@+id/tvTotalPayment"
@@ -151,6 +161,17 @@
                     android:text="@string/txt_1_4_total_payment"
                     android:textColor="@color/wh"
                     android:textSize="16sp" />
+
+                <!--PayAtStore-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvByPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_total_payment"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -183,6 +204,17 @@
                         android:textSize="16sp"
                         android:visibility="gone" />
                 </LinearLayout>
+
+                <!--Payoo Code-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/textView_item_recent_booking_payoo_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_payoo_code"
+                    android:textColor="@color/org"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
 
                 <com.appromobile.hotel.widgets.TextViewSFRegular
                     android:id="@+id/textView_item_recent_booking_reservation_status"

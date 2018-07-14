@@ -19,270 +19,283 @@
         android:textSize="14sp"
         android:visibility="gone" />
 
-    <!--New Contracted Hotel-->
     <RelativeLayout
-        android:id="@+id/boxVipHotel"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/hotel_list_height">
-
-        <!--Image default-->
-        <ImageView
-            android:id="@+id/imgHotelVip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <!--New Contracted Hotel-->
+        <RelativeLayout
+            android:id="@+id/boxVipHotel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:adjustViewBounds="false"
-            android:scaleType="fitXY"
-            android:src="@drawable/loading_big"
-            tools:ignore="ContentDescription" />
+            android:layout_height="@dimen/hotel_list_height">
 
-        <!--Promotion icon-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/hotel_list_promotion_item_height"
-            android:layout_marginStart="@dimen/margin_12"
-            android:layout_marginTop="@dimen/margin_6"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <!--Promotion1-->
+            <!--Image default-->
             <ImageView
-                android:id="@+id/imgIconPromotion1"
-                android:layout_width="60dp"
-                android:layout_height="@dimen/hotel_list_promotion_item_height"
-                android:layout_marginEnd="@dimen/margin_12"
+                android:id="@+id/imgHotelVip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:adjustViewBounds="false"
                 android:scaleType="fitXY"
-                android:src="@drawable/icon_360"
-                tools:ignore="ContentDescription"
-                android:visibility="gone"/>
-            <!--Promotion2-->
-            <ImageView
-                android:id="@+id/imgIconPromotion2"
-                android:layout_width="@dimen/hotel_list_promotion_item_height"
-                android:layout_height="@dimen/hotel_list_promotion_item_height"
-                android:layout_marginEnd="@dimen/margin_12"
-                android:adjustViewBounds="false"
-                android:scaleType="fitXY"
-                android:src="@drawable/icon_360"
-                tools:ignore="ContentDescription"
-                android:visibility="gone"/>
-            <!--Promotion3-->
-            <ImageView
-                android:id="@+id/imgIconPromotion3"
-                android:layout_width="@dimen/hotel_list_promotion_item_height"
-                android:layout_height="@dimen/hotel_list_promotion_item_height"
-                android:layout_marginEnd="@dimen/margin_12"
-                android:adjustViewBounds="false"
-                android:scaleType="fitXY"
-                android:src="@drawable/icon_360"
-                tools:ignore="ContentDescription"
-                android:visibility="gone"/>
-            <!--Promotion4-->
-            <ImageView
-                android:id="@+id/imgIconPromotion4"
-                android:layout_width="@dimen/hotel_list_promotion_item_height"
-                android:layout_height="@dimen/hotel_list_promotion_item_height"
-                android:layout_marginEnd="@dimen/margin_12"
-                android:adjustViewBounds="false"
-                android:scaleType="fitXY"
-                android:src="@drawable/icon_360"
-                tools:ignore="ContentDescription"
-                android:visibility="gone"/>
-            <!--Stamp-->
-            <RelativeLayout
-                android:id="@+id/iconStamp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:gravity="center"
-                android:background="@drawable/icon_stamp_green"
-                android:visibility="gone">
+                android:src="@drawable/loading_big"
+                tools:ignore="ContentDescription" />
 
-                <com.appromobile.hotel.widgets.TextViewSFMedium
-                    android:id="@+id/tvNumStamp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:maxLength="3"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <!--Hotel Information-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/hotel_list_info_height"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/hotel_list_item_background"
-            android:orientation="vertical">
-
-            <!--Hotel Price Area-->
+            <!--Promotion icon-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/hotel_list_info_price_height"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:layout_height="@dimen/hotel_list_promotion_item_height"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_6"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <!--Promotion1-->
+                <ImageView
+                    android:id="@+id/imgIconPromotion1"
+                    android:layout_width="60dp"
+                    android:layout_height="@dimen/hotel_list_promotion_item_height"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:adjustViewBounds="false"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_360"
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription" />
+                <!--Promotion2-->
+                <ImageView
+                    android:id="@+id/imgIconPromotion2"
+                    android:layout_width="@dimen/hotel_list_promotion_item_height"
+                    android:layout_height="@dimen/hotel_list_promotion_item_height"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:adjustViewBounds="false"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_360"
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription" />
+                <!--Promotion3-->
+                <ImageView
+                    android:id="@+id/imgIconPromotion3"
+                    android:layout_width="@dimen/hotel_list_promotion_item_height"
+                    android:layout_height="@dimen/hotel_list_promotion_item_height"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:adjustViewBounds="false"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_360"
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription" />
+                <!--Promotion4-->
+                <ImageView
+                    android:id="@+id/imgIconPromotion4"
+                    android:layout_width="@dimen/hotel_list_promotion_item_height"
+                    android:layout_height="@dimen/hotel_list_promotion_item_height"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:adjustViewBounds="false"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_360"
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription" />
+                <!--Stamp-->
+                <RelativeLayout
+                    android:id="@+id/iconStamp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/icon_stamp_green"
+                    android:gravity="center"
+                    android:visibility="gone">
 
-                <!--Other promotion Area-->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.3"
-                    android:gravity="bottom"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/margin_4"
-                    android:paddingEnd="@dimen/margin_8"
-                    android:paddingStart="@dimen/margin_12"
-                    tools:ignore="RtlSymmetry">
-
-
-                    <!--360 icon-->
-                    <ImageView
-                        android:id="@+id/item_hotel_icon_360"
-                        android:layout_width="@dimen/hotel_list_promotion_item_height"
-                        android:layout_height="@dimen/hotel_list_promotion_item_height"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:adjustViewBounds="false"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/icon_360"
-                        tools:ignore="ContentDescription"
-                        android:visibility="gone"/>
-
-                    <!--Other promotion-->
                     <com.appromobile.hotel.widgets.TextViewSFMedium
-                        android:id="@+id/tvOtherPromotion"
+                        android:id="@+id/tvNumStamp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:maxLines="2"
-                        android:text="Tặng 1 chai nước"
-                        android:textColor="@color/wh"
-                        android:textSize="@dimen/hotel_list_text_size_normal"
-                        android:visibility="gone" />
+                        android:gravity="center"
+                        android:lines="1"
+                        android:maxLength="4"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
-                    <!--Icon Promotion-->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:orientation="horizontal">
-                        <!--Available-->
-                        <ImageView
-                            android:id="@+id/imgRoomAvailable"
-                            android:layout_width="@dimen/hotel_list_new_item_height"
-                            android:layout_height="@dimen/hotel_list_new_item_height"
-                            android:src="@drawable/room"
-                            android:contentDescription="@string/img_decscription" />
-                        <!--Promotion-->
-                        <ImageView
-                            android:id="@+id/imgPromotion"
-                            android:layout_width="@dimen/hotel_list_new_item_height"
-                            android:layout_height="@dimen/hotel_list_new_item_height"
-                            android:layout_marginEnd="6dp"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/p"
-                            android:contentDescription="@string/img_decscription" />
-                        <!--New-->
-                        <ImageView
-                            android:id="@+id/imgNew"
-                            android:layout_width="@dimen/hotel_list_new_item_height"
-                            android:layout_height="@dimen/hotel_list_new_item_height"
-                            android:layout_marginEnd="6dp"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/n"
-                            android:contentDescription="@string/img_decscription" />
-                        <!--Hot-->
-                        <ImageView
-                            android:id="@+id/imgHot"
-                            android:layout_width="@dimen/hotel_list_new_item_height"
-                            android:layout_height="@dimen/hotel_list_new_item_height"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/h"
-                            android:contentDescription="@string/img_decscription" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!--Box Price-->
-                <include
-                    layout="@layout/price_hotel_description"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/margin_4"
-                    android:layout_marginEnd="@dimen/margin_12"
-                    android:layout_weight="6.7" />
+                </RelativeLayout>
 
             </LinearLayout>
 
-            <!--Line-->
-            <View
+            <!--Hotel Information-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/hotel_list_item_background"
+                android:orientation="vertical">
 
-            <!--Box Hotel Name-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/hotel_list_info_name_height"
-                android:paddingEnd="@dimen/margin_12"
-                android:paddingStart="@dimen/margin_12">
-
-                <!--Review-->
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:id="@+id/txtReview"
-                    android:layout_width="@dimen/hotel_list_info_review_height"
-                    android:layout_height="@dimen/hotel_list_info_review_height"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/icon_review"
-                    android:gravity="center"
-                    android:text="18"
-                    android:textColor="@color/wh"
-                    android:textSize="@dimen/hotel_list_text_size_normal" />
-                <!--HotelName Vip-->
-                <com.appromobile.hotel.widgets.TextViewSFHeavy
-                    android:id="@+id/tvNameVip"
-                    android:layout_width="wrap_content"
+                <!--Hotel Price Area-->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_8"
-                    android:layout_toEndOf="@id/txtReview"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="Bonita Tô Hiến Thành"
-                    android:textColor="@color/wh"
-                    android:textSize="@dimen/hotel_list_text_size_big" />
-                <!--Distance Vip-->
-                <com.appromobile.hotel.widgets.TextViewSFRegular
-                    android:id="@+id/tvDistanceVip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="22m"
-                    android:textColor="@color/wh"
-                    android:textSize="@dimen/sp_14" />
-                <!--Icon Location-->
-                <ImageView
-                    android:layout_width="@dimen/hotel_list_info_distance_height"
-                    android:layout_height="@dimen/hotel_list_info_distance_height"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/margin_6"
-                    android:layout_toStartOf="@+id/tvDistanceVip"
-                    android:src="@drawable/mapicon_big_org"
-                    android:contentDescription="@string/img_decscription" />
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
 
-            </RelativeLayout>
+                    <!--Other promotion Area-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.3"
+                        android:gravity="bottom"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/margin_4"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_12"
+                        tools:ignore="RtlSymmetry">
 
-        </LinearLayout>
 
+                        <!--360 icon-->
+                        <ImageView
+                            android:id="@+id/item_hotel_icon_360"
+                            android:layout_width="@dimen/hotel_list_promotion_item_height"
+                            android:layout_height="@dimen/hotel_list_promotion_item_height"
+                            android:layout_marginBottom="@dimen/margin_4"
+                            android:adjustViewBounds="false"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/icon_360"
+                            android:visibility="gone"
+                            tools:ignore="ContentDescription" />
+
+                        <!--Other promotion-->
+                        <com.appromobile.hotel.widgets.TextViewSFMedium
+                            android:id="@+id/tvOtherPromotion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_4"
+                            android:maxLines="2"
+                            android:text="Tặng 1 chai nước"
+                            android:textColor="@color/wh"
+                            android:textSize="@dimen/hotel_list_text_size_normal"
+                            android:visibility="gone" />
+
+                        <!--Icon Promotion-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_4"
+                            android:orientation="horizontal">
+                            <!--Available-->
+                            <ImageView
+                                android:id="@+id/imgRoomAvailable"
+                                android:layout_width="@dimen/hotel_list_new_item_height"
+                                android:layout_height="@dimen/hotel_list_new_item_height"
+                                android:contentDescription="@string/img_decscription"
+                                android:src="@drawable/room" />
+                            <!--Promotion-->
+                            <ImageView
+                                android:id="@+id/imgPromotion"
+                                android:layout_width="@dimen/hotel_list_new_item_height"
+                                android:layout_height="@dimen/hotel_list_new_item_height"
+                                android:layout_marginEnd="6dp"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/img_decscription"
+                                android:src="@drawable/p" />
+                            <!--New-->
+                            <ImageView
+                                android:id="@+id/imgNew"
+                                android:layout_width="@dimen/hotel_list_new_item_height"
+                                android:layout_height="@dimen/hotel_list_new_item_height"
+                                android:layout_marginEnd="6dp"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/img_decscription"
+                                android:src="@drawable/n" />
+                            <!--Hot-->
+                            <ImageView
+                                android:id="@+id/imgHot"
+                                android:layout_width="@dimen/hotel_list_new_item_height"
+                                android:layout_height="@dimen/hotel_list_new_item_height"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/img_decscription"
+                                android:src="@drawable/h" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--Box Price-->
+                    <include
+                        layout="@layout/price_hotel_description"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/margin_4"
+                        android:layout_marginEnd="@dimen/margin_12"
+                        android:layout_weight="6.7" />
+
+                </LinearLayout>
+
+                <!--Line-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <!--Box Hotel Name-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hotel_list_info_name_height"
+                    android:paddingEnd="@dimen/margin_12"
+                    android:paddingStart="@dimen/margin_12">
+
+                    <!--Review-->
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/txtReview"
+                        android:layout_width="@dimen/hotel_list_info_review_height"
+                        android:layout_height="@dimen/hotel_list_info_review_height"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/icon_review"
+                        android:gravity="center"
+                        android:text="18"
+                        android:textColor="@color/wh"
+                        android:textSize="@dimen/hotel_list_text_size_normal" />
+                    <!--HotelName Vip-->
+                    <com.appromobile.hotel.widgets.TextViewSFHeavy
+                        android:id="@+id/tvNameVip"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_8"
+                        android:layout_marginEnd="@dimen/margin_56"
+                        android:layout_toEndOf="@id/txtReview"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="Bonita Tô Hiến Thành"
+                        android:textColor="@color/wh"
+                        android:textSize="@dimen/hotel_list_text_size_big" />
+                    <!--Distance Vip-->
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/tvDistanceVip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="22m"
+                        android:textColor="@color/wh"
+                        android:textSize="@dimen/sp_14" />
+                    <!--Icon Location-->
+                    <ImageView
+                        android:layout_width="@dimen/hotel_list_info_distance_height"
+                        android:layout_height="@dimen/hotel_list_info_distance_height"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_6"
+                        android:layout_toStartOf="@+id/tvDistanceVip"
+                        android:contentDescription="@string/img_decscription"
+                        android:src="@drawable/mapicon_big_org" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <!--Cover-->
+        <View
+            android:id="@+id/cover_suspend"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hotel_list_height"
+            android:background="@color/bk_50p"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <!--Not Contact-->
@@ -303,9 +316,9 @@
                 android:layout_width="@dimen/image_width_general"
                 android:layout_height="@dimen/hotel_list_general"
                 android:adjustViewBounds="false"
+                android:contentDescription="@string/img_decscription"
                 android:scaleType="centerCrop"
-                android:src="@drawable/loading_small"
-                android:contentDescription="@string/img_decscription" />
+                android:src="@drawable/loading_small" />
 
             <LinearLayout
                 android:layout_width="26dp"
@@ -319,8 +332,8 @@
                     android:id="@+id/imgRoomAvailableNonVip"
                     android:layout_width="14dp"
                     android:layout_height="14dp"
-                    android:src="@drawable/room"
-                    android:contentDescription="@string/img_decscription" />
+                    android:contentDescription="@string/img_decscription"
+                    android:src="@drawable/room" />
 
             </LinearLayout>
 
@@ -335,8 +348,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -351,41 +364,41 @@
                         android:id="@+id/btnStarNonVip1"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
+                        android:contentDescription="@string/img_decscription"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/review_star"
-                        android:contentDescription="@string/img_decscription" />
+                        android:src="@drawable/review_star" />
 
                     <ImageView
                         android:id="@+id/btnStarNonVip2"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
+                        android:contentDescription="@string/img_decscription"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/review_star"
-                        android:contentDescription="@string/img_decscription" />
+                        android:src="@drawable/review_star" />
 
                     <ImageView
                         android:id="@+id/btnStarNonVip3"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
+                        android:contentDescription="@string/img_decscription"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/review_star"
-                        android:contentDescription="@string/img_decscription" />
+                        android:src="@drawable/review_star" />
 
                     <ImageView
                         android:id="@+id/btnStarNonVip4"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
+                        android:contentDescription="@string/img_decscription"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/review_star"
-                        android:contentDescription="@string/img_decscription" />
+                        android:src="@drawable/review_star" />
 
                     <ImageView
                         android:id="@+id/btnStarNonVip5"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
+                        android:contentDescription="@string/img_decscription"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/review_star"
-                        android:contentDescription="@string/img_decscription" />
+                        android:src="@drawable/review_star" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -397,8 +410,8 @@
                             android:layout_width="14dp"
                             android:layout_height="14dp"
                             android:layout_marginStart="6dp"
-                            android:src="@drawable/mapicon"
-                            android:contentDescription="@string/img_decscription" />
+                            android:contentDescription="@string/img_decscription"
+                            android:src="@drawable/mapicon" />
 
                         <com.appromobile.hotel.widgets.TextViewSFRegular
                             android:id="@+id/tvDistanceNonVip"

@@ -26,6 +26,7 @@ public class CouponIssuedForm implements Parcelable {
     private int discountType;
     private int maxDiscount;// 0: No limit ,
     private int canUse;
+    private int cineDiscount;
     private CouponConditionForm couponConditionForm;
     private String couponMemo;
 
@@ -51,6 +52,7 @@ public class CouponIssuedForm implements Parcelable {
         discountType = in.readInt();
         maxDiscount = in.readInt();
         canUse = in.readInt();
+        cineDiscount = in.readInt();
         couponConditionForm = in.readParcelable(CouponConditionForm.class.getClassLoader());
         couponMemo = in.readString();
     }
@@ -92,6 +94,7 @@ public class CouponIssuedForm implements Parcelable {
         dest.writeInt(discountType);
         dest.writeInt(maxDiscount);
         dest.writeInt(canUse);
+        dest.writeInt(cineDiscount);
         dest.writeParcelable(couponConditionForm, flags);
         dest.writeString(couponMemo);
     }
@@ -238,6 +241,14 @@ public class CouponIssuedForm implements Parcelable {
 
     public void setCanUse(int canUse) {
         this.canUse = canUse;
+    }
+
+    public int getCineDiscount() {
+        return cineDiscount;
+    }
+
+    public void setCineDiscount(int cineDiscount) {
+        this.cineDiscount = cineDiscount;
     }
 
     public CouponConditionForm getCouponConditionForm() {

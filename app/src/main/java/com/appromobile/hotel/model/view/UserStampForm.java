@@ -41,6 +41,15 @@ public class UserStampForm {
 
     private List<StampIssuedForm> stampIssuedFormList;
 
+    private int numStampLocked;
+
+    private int redeemType; //1:money  2: percent
+
+    private int maxRedeem;
+
+    private int numBeforeEnd;
+
+
     public UserStampForm() {
     }
 
@@ -178,5 +187,37 @@ public class UserStampForm {
 
     public void setStampIssuedFormList(List<StampIssuedForm> stampIssuedFormList) {
         this.stampIssuedFormList = stampIssuedFormList;
+    }
+
+    public int getNumStampLocked() {
+        return numStampLocked;
+    }
+
+    public void setNumStampLocked(int numStampLocked) {
+        this.numStampLocked = numStampLocked;
+    }
+
+    public int getRedeemType() {
+        return redeemType;
+    }
+
+    public void setRedeemType(int redeemType) {
+        this.redeemType = redeemType;
+    }
+
+    public int getMaxRedeem() {
+        return maxRedeem;
+    }
+
+    public void setMaxRedeem(int maxRedeem) {
+        this.maxRedeem = maxRedeem;
+    }
+
+    public int getNumBeforeEnd() {
+        return numBeforeEnd;
+    }
+
+    public void setNumBeforeEnd(int numBeforeEnd) {
+        this.numBeforeEnd = numBeforeEnd;
     }
 }
