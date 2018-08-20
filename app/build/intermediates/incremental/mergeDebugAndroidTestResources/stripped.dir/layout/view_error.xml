@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:gravity="center"
+  android:padding="16dp">
+
+  <android.support.v7.widget.AppCompatTextView
+    android:id="@+id/text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:textAlignment="center"
+    tools:text="@string/message_error_payment_tokens" />
+
+  <android.support.v7.widget.AppCompatButton
+    android:id="@+id/action"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/background_button"
+    android:enabled="true"
+    android:text="@string/text_retry"
+    android:textColor="@android:color/white" />
+</LinearLayout>

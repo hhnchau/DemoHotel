@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_signup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bk_50p">
+
+
+    <LinearLayout
+        android:id="@+id/cw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/cardview_bg"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_marginStart="@dimen/margin_16"
+        android:orientation="vertical">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_6_15_title_alert"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:textColor="@color/bk_85p"
+            android:gravity="center"
+            android:textSize="@dimen/sp_14"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bk_50p"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginStart="@dimen/margin_64"
+            android:layout_marginEnd="@dimen/margin_64" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/margin_16"
+            android:weightSum="3"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/logo_promotion"
+                    android:contentDescription="@string/img_decscription" />
+
+                <com.appromobile.hotel.widgets.TextViewSFHeavy
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/org"
+                    android:gravity="center"
+                    android:text="@string/txt_6_15_promotion_alert"
+                    android:textSize="@dimen/sp_16"/>
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bk_85p"
+                    android:gravity="center"
+                    android:text="@string/txt_6_15_promotion_content"
+                    android:textSize="@dimen/sp_14"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/logo_flash_sale"
+                    android:contentDescription="@string/img_decscription" />
+
+                <com.appromobile.hotel.widgets.TextViewSFHeavy
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/org"
+                    android:gravity="center"
+                    android:text="@string/txt_6_15_flashsale_alert"
+                    android:textSize="@dimen/sp_16"/>
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bk_85p"
+                    android:gravity="center"
+                    android:text="@string/txt_6_15_flash_sale_content"
+                    android:textSize="@dimen/sp_14"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/logo_stamp"
+                    android:contentDescription="@string/img_decscription" />
+
+                <com.appromobile.hotel.widgets.TextViewSFHeavy
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/org"
+                    android:gravity="center"
+                    android:text="@string/txt_6_15_stamp_alert"
+                    android:textSize="@dimen/sp_16"/>
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bk_85p"
+                    android:gravity="center"
+                    android:text="@string/txt_6_15_stamp_content"
+                    android:textSize="@dimen/sp_14"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.appromobile.hotel.widgets.TextViewSFHeavy
+            android:id="@+id/tvSignupNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_6_15_sign_up_alert"
+            android:background="@drawable/btn_org_radius_bottom"
+            android:textColor="@color/wh"
+            android:padding="@dimen/margin_6"
+            android:textSize="@dimen/sp_18"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@id/cw"
+        android:layout_marginTop="-40dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_signup"
+        android:contentDescription="@string/img_decscription" />
+
+
+</RelativeLayout>

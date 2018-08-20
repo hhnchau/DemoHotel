@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/wh"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="12dp"
+            android:textColor="@color/bk"
+            android:textSize="14sp" />
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="12dp"
+            android:textColor="#000000"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/bk" />
+</LinearLayout>

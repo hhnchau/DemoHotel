@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="transition_bottom_bar_height">56dip</dimen>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/org</item>
+        <item name="colorPrimaryDark">@color/org</item>
+        <item name="colorAccent">@color/org</item>
+        <!--<item name="windowActionBarOverlay">false</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+</resources>

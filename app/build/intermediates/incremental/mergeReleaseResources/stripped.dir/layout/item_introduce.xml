@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--Banner-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:background="@color/org"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/intro_top"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/img_decscription"
+            android:src="@drawable/intro_top5" />
+
+        <ImageView
+            android:id="@+id/intro_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_below="@+id/intro_top"
+            android:contentDescription="@string/img_decscription"
+            android:src="@drawable/intro_promotion" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.appromobile.hotel.widgets.TextViewSFHeavy
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/org"
+            android:textSize="@dimen/sp_18" />
+
+        <com.appromobile.hotel.widgets.TextViewSFMedium
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/bk_50p"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+</LinearLayout>

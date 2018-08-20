@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <include
+    android:id="@+id/bottom_bar"
+    layout="@layout/bottom_bar" />
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/bottom_bar">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="8dp">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+          android:id="@+id/text_card_info_label"
+          android:text="@string/info_title_table_card"
+          style="@style/PayooTextCardHeaderStyle" />
+
+        <LinearLayout style="@style/PayooLayoutCardStyle">
+
+          <LinearLayout
+            android:id="@+id/layout_card_holder_name"
+            android:visibility="gone"
+            tools:visibility="visible"
+            style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_card_holder_name_label"
+              android:layout_height="wrap_content"
+              android:text="@string/card_holder_name"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_card_holder_name"
+              tools:text="TRAN NGOC LAM TRAN NGOC LAM"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+
+          <LinearLayout
+            android:id="@+id/layout_card_type"
+            android:visibility="visible"
+            style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_card_type_label"
+              android:text="@string/card_type"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_card_type"
+              tools:text="Thẻ nội địa"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+
+          <LinearLayout style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_card_number_label"
+              android:text="@string/card_number"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_card_number"
+              tools:text="9704 7443 2833 9991 029"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+
+          <LinearLayout
+            android:id="@+id/layout_issuance_date"
+            android:visibility="gone"
+            tools:visibility="visible"
+            style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_issuance_date_label"
+              android:text="@string/issuance_date"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_issuance_date"
+              android:text="**/**"
+              tools:ignore="HardcodedText"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+
+          <LinearLayout
+            android:id="@+id/layout_expiration_date"
+            android:visibility="gone"
+            tools:visibility="visible"
+            style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_expiration_date_label"
+              android:text="@string/expiration_date"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_expiration_date"
+              android:text="**/**"
+              tools:ignore="HardcodedText"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+        </LinearLayout>
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/layout_card_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:visibility="visible">
+
+        <android.support.v7.widget.AppCompatTextView
+          android:id="@+id/text_customer_info_label"
+          android:text="@string/info_title_table_contact"
+          style="@style/PayooTextCardHeaderStyle" />
+
+        <LinearLayout style="@style/PayooLayoutCardStyle">
+
+          <LinearLayout style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_phone_label"
+              android:text="@string/phone"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_phone"
+              tools:text="0904795315"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+
+          <LinearLayout style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_email_label"
+              android:text="@string/email"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_email"
+              tools:text="tranngoclam288@gmail.com"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+        </LinearLayout>
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+          android:id="@+id/text_payment_info_label"
+          android:text="@string/info_title_table_payment"
+          style="@style/PayooTextCardHeaderStyle" />
+
+        <LinearLayout style="@style/PayooLayoutCardStyle">
+
+          <LinearLayout style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_payment_label"
+              android:text="@string/payment"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_payment"
+              tools:text="29.000.000 đ"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+
+          <LinearLayout style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_fee_label"
+              android:text="@string/fee"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_fee"
+              tools:text="1.000.000 đ"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+
+          <LinearLayout style="@style/PayooLayoutTextConfirmStyle">
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_total_label"
+              android:text="@string/total"
+              style="@style/PayooTextConfirmTitleStyle" />
+
+            <android.support.v7.widget.AppCompatTextView
+              android:id="@+id/text_total"
+              tools:text="20.000.000 đ"
+              style="@style/PayooTextConfirmContentStyle" />
+          </LinearLayout>
+        </LinearLayout>
+      </LinearLayout>
+    </LinearLayout>
+  </ScrollView>
+</RelativeLayout>

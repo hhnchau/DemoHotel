@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="66dp"
+  android:layout_alignParentBottom="true"
+  android:layout_gravity="bottom"
+  android:paddingLeft="4dp"
+  android:paddingRight="4dp"
+  android:paddingTop="4dp">
+
+  <android.support.v7.widget.AppCompatTextView
+    android:id="@+id/text_estimated_amount_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/text_estimated_amount"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_marginLeft="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_toLeftOf="@+id/button_continue"
+    android:layout_toStartOf="@+id/button_continue"
+    android:text="@string/estimated_amount"
+    style="@style/TextAppearance.AppCompat.Body1" />
+
+  <vn.payoo.paymentsdk.ui.widget.PayooCurrencyTextView
+    android:id="@+id/text_estimated_amount"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_toLeftOf="@+id/button_continue"
+    android:layout_toStartOf="@+id/button_continue"
+    android:textStyle="bold"
+    tools:text="2.000.000.000đ" />
+
+  <android.support.v7.widget.AppCompatButton
+    android:id="@+id/button_continue"
+    android:layout_width="160dp"
+    android:layout_height="48dp"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginEnd="8dp"
+    android:layout_marginRight="8dp"
+    android:background="@drawable/background_button"
+    android:text="@string/button_title_continue"
+    android:textColor="@android:color/white" />
+</RelativeLayout>

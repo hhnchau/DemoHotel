@@ -1,0 +1,110 @@
+[
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\com_facebook_button_text_color.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\color\\com_facebook_button_text_color.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_btn_colored_text_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_disable_only_material_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_seek_thumb.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\login_text_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\color\\login_text_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_search_url_text.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_search_url_text.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_switch_track.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_btn_colored_borderless_text_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_hint_foreground_material_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\color\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_default.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_tint_default.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_btn_checkable.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\common_google_signin_btn_tint.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\color\\common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_hint_foreground_material_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\design_error.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\color\\design_error.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_disable_only_material_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\com_facebook_send_button_text_color.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-share-4.34.0.aar\\c9c6d01c28cc21e9f05f313c3bef3626\\res\\color\\com_facebook_send_button_text_color.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\design_tint_password_toggle.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\color\\design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\color\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_spinner.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_tint_spinner.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_edittext.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color\\abc_tint_edittext.xml"
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    }
+]

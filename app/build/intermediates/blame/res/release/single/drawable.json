@@ -1,0 +1,886 @@
+[
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_auth_dialog_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\drawable\\com_facebook_auth_dialog_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\label_green.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\label_green.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_360.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_360.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_text_light_focused.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_promotion_grey.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ic_promotion_grey.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_icon_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_vector_test.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_vector_test.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_close.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_close.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\design_password_eye.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\drawable\\design_password_eye.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_spinner_textfield_background_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_item_background_holo_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_promotion_red.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ic_promotion_red.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\marker_gray_new.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\marker_gray_new.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\rounded_org_no_fill.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\rounded_org_no_fill.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_coupon_white_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_coupon_white_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\marker_green_new.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\marker_green_new.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\marker_red.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\marker_red.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_wh.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_wh.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_text_light_normal.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_login_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-login-4.34.0.aar\\48d74f61646705f5c59335ef26e83bc7\\res\\drawable\\com_facebook_button_login_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_org_border.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_org_border.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\tooltip_frame_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\tooltip_frame_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\dot_active.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\dot_active.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ratingbar_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ratingbar_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_borderless_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\home_icon_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\home_icon_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\pay_123.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\pay_123.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_send_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-share-4.34.0.aar\\c9c6d01c28cc21e9f05f313c3bef3626\\res\\drawable\\com_facebook_button_send_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\locked.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\locked.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\dot_non_active_org.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\dot_non_active_org.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\logo_flash_sale.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\logo_flash_sale.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\edittext_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\edittext_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\badge_bg_with_shadow.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\badge_bg_with_shadow.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\button_full_wh_bg_org_border.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\button_full_wh_bg_org_border.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\check_org.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\check_org.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_grey_border.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_grey_border.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\org_box.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\org_box.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ratingbar_indicator_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ratingbar_small_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\org_button_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\org_button_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_sale.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_sale.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\circle_clicked_bg_80.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\circle_clicked_bg_80.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_go_search_api_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\mypape_icon_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\mypape_icon_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_back.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_back.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\button_full_org_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\button_full_org_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\clock_circle_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\clock_circle_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\cardview_rectangle.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\cardview_rectangle.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\marker_green.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\marker_green.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_qa_white_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_qa_white_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_promotion.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_promotion.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_seekbar_tick_mark_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_icon.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\drawable\\com_facebook_button_icon.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_top1.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_top1.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_icon_light_focused.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_login_logo.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-login-4.34.0.aar\\48d74f61646705f5c59335ef26e83bc7\\res\\drawable\\com_facebook_button_login_logo.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\background_bank.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\background_bank.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\background_button.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\background_button.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_login_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_login_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_icon_disabled.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\button_signup_register_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\button_signup_register_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_arrow_back.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_arrow_back.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\button_full_wh_bg_org_20_border.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\button_full_wh_bg_org_20_border.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_top2.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_top2.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\dot_non_active.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\dot_non_active.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_seekbar_thumb_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\marker_red_new.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\marker_red_new.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_search_api_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\my_page_item_border.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\my_page_item_border.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_text_disabled.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\logo_signup.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\logo_signup.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\anim_loading.gif",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\anim_loading.gif"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\guide.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\guide.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_qa_org_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_qa_org_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ripple_normal_button.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ripple_normal_button.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\navigation_empty_icon.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\drawable\\navigation_empty_icon.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\hotel_list_item_background.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\hotel_list_item_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_org_right_radius.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_org_right_radius.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\rounded_white.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\rounded_white.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\toggle_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\toggle_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_stamp_inactive.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_stamp_inactive.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\button_full_wh_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\button_full_wh_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_ab_back_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_text_dark_focused.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_textfield_search_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\event_icon_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\event_icon_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_seekbar_track_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_promotion_green.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ic_promotion_green.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_favicon_blue.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\drawable\\com_facebook_favicon_blue.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\checkbox_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\checkbox_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\background_card.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\background_card.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\gender_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\gender_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_book.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_book.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_menu_overflow_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\next_org.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\next_org.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\design_fab_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\drawable\\design_fab_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\error_box_red_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\error_box_red_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\payoo.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\payoo.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_next.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_next.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\marker_gray.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\marker_gray.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\logout_org.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\logout_org.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_google_plus.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ic_google_plus.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_history_grey.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ic_history_grey.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\label_org.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\label_org.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\bg_booking.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\bg_booking.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\hotel_detail_call.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\hotel_detail_call.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_payment_wallet.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_payment_wallet.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\listview_divider.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\listview_divider.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\sort_org_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\sort_org_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\popup_btn_gray.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\popup_btn_gray.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_stamp.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_stamp.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\popup_text.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\popup_text.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_auth_dialog_cancel_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\drawable\\com_facebook_auth_dialog_cancel_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\drawable\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_clear_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_history_green.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ic_history_green.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\bg_org.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\bg_org.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\cardview_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\cardview_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\logo_stamp.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\logo_stamp.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\no_hotel_english.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\no_hotel_english.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_tab1_white_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_tab1_white_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_payment_domestic.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_payment_domestic.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\radio_check_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\radio_check_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\hotel_detail_map.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\hotel_detail_map.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\no_hotel_vn.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\no_hotel_vn.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_send_button_icon.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-share-4.34.0.aar\\c9c6d01c28cc21e9f05f313c3bef3626\\res\\drawable\\com_facebook_send_button_icon.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_arrow_drop_down_wrapped.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_arrow_drop_down_wrapped.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_org.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_org.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_map.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_map.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_radio_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\pay_at_hotel.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\pay_at_hotel.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\introduce_bottom.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\introduce_bottom.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_tab0_white_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_tab0_white_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_tab_indicator_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_stamp_green.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_stamp_green.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\marker_org_new.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\marker_org_new.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\label_red.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\label_red.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\introduce_top.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\introduce_top.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_text_cursor_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\map_icon_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\map_icon_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_arrow_drop_down.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_arrow_drop_down.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_top3.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_top3.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\messenger_button_blue_bg_round.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\drawable\\messenger_button_blue_bg_round.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\float_button_login.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\float_button_login.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_my_location.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_my_location.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\toggle_white_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\toggle_white_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_white_left_radius.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_white_left_radius.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\rounded_gray.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\rounded_gray.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\circle_click_no_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\circle_click_no_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_facebook.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ic_facebook.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\logo_promotion.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\logo_promotion.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_org_wh_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_org_wh_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_payment_store.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_payment_store.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\hotel_detail_view.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\hotel_detail_view.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ok.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ok.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_stamp_active.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_stamp_active.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\popup_btn_org.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\popup_btn_org.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\progressbar_custom.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\progressbar_custom.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\design_snackbar_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\drawable\\design_snackbar_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\splash_logo.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\splash_logo.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_voice_search_api_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\nb_badge_bg.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\notification-badge-0.2.0.aar\\354d2ae77fcb38ea4d291596897e36f7\\res\\drawable\\nb_badge_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_auth_dialog_header_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\drawable\\com_facebook_auth_dialog_header_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ripple_org_button.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ripple_org_button.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_close_wrapped.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_close_wrapped.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\am_pm_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\am_pm_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_icon_dark.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\promotion_payment.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\promotion_payment.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\icon_review.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\icon_review.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_history_red.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\ic_history_red.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_next_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_next_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\calendar_button_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\calendar_button_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\logo.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\logo.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_red_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_red_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\drawable\\com_facebook_button_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_org_radius_bottom.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_org_radius_bottom.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_top4.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_top4.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_black_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_black_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_text_dark_normal.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_check_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\ic_payment_credit.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\drawable\\ic_payment_credit.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\messenger_button_white_bg_round.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\drawable\\messenger_button_white_bg_round.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_icon_dark_focused.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_like_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\drawable\\com_facebook_button_like_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\box_coupon_grey_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\box_coupon_grey_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_icon_light_normal.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\dot_active_org.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\dot_active_org.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\passcode_edittext_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\passcode_edittext_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\rounded_org.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\rounded_org.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_booking.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_booking.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_flashsale.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_flashsale.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\greenprogress.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\greenprogress.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\intro_top5.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\intro_top5.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\messenger_button_white_bg_selector.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\drawable\\messenger_button_white_bg_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\messenger_button_blue_bg_selector.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\drawable\\messenger_button_blue_bg_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_login_silver_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-login-4.34.0.aar\\48d74f61646705f5c59335ef26e83bc7\\res\\drawable\\com_facebook_button_login_silver_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\tooltip_frame_light.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\drawable\\tooltip_frame_light.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\circle_clicked_bg.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\circle_clicked_bg.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\common_google_signin_btn_icon_dark_normal.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\46317871cfcc3228aed3ce7180a86cc3\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\marker_org.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\marker_org.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_back_selector.xml",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable\\btn_back_selector.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable\\rippleable.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\sdk-common-1.80.0.aar\\260e1cf5cfb4376326ccde0c48520463\\res\\drawable\\rippleable.xml"
+    }
+]

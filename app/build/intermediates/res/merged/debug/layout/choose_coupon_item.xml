@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/boxItem"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#6bc72a"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_weight="7.5"
+            android:background="@drawable/box_coupon_white_bg"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <!--Title-->
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:id="@+id/tvCouponName"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:layout_marginStart="@dimen/margin_8"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:textColor="@color/org"
+                android:textSize="@dimen/sp_16"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_8"
+                android:layout_marginRight="@dimen/margin_8"
+                android:orientation="vertical"
+                android:textSize="@dimen/sp_14">
+
+                <!--Price-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvDiscount"
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bk"
+                    android:textSize="@dimen/sp_14"/>
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvCineDiscount"
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bk"
+                    android:visibility="gone"
+                    android:textSize="@dimen/sp_14"/>
+
+            </LinearLayout>
+
+            <!--Time-->
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:id="@+id/tvTimeValid"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_8"
+                android:layout_marginRight="@dimen/margin_8"
+                android:textColor="@color/bk"
+                android:textSize="@dimen/sp_14"/>
+
+            <!--Condition-->
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:id="@+id/tvCouponCondition"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_8"
+                android:layout_marginRight="@dimen/margin_8"
+                android:textColor="@color/bk"
+                android:visibility="gone"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5">
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/valid"
+                android:textColor="@color/wh"
+                android:textSize="@dimen/sp_16" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgChecked"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:padding="5dp"
+        android:src="@drawable/checkbox"
+        android:contentDescription="@string/img_decscription"
+        android:visibility="gone"/>
+
+    <com.appromobile.hotel.widgets.TextViewSFBold
+        android:id="@+id/textView_coupon_can_use"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/bk_50p"
+        android:gravity="center"
+        android:padding="@dimen/margin_8"
+        android:text="@string/txt_3_9_coupon_can_not_use"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        android:visibility="gone" />
+
+</FrameLayout>

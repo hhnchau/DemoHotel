@@ -1,0 +1,1309 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+MERGED from [com.android.databinding:adapters:1.3.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\adapters-1.3.1.aar\72c9a9ddd7f24612cca906865597bd86\AndroidManifest.xml:17:1-26:12
+MERGED from [com.android.databinding:library:1.3.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\library-1.3.1.aar\68459135186a82842322fc86d932fb4b\AndroidManifest.xml:17:1-26:12
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.8] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-2.6.8.aar\8fa51c40919ef239c93adde405334fc9\AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:17:1-31:12
+MERGED from [com.nex3z:notification-badge:0.2.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\notification-badge-0.2.0.aar\354d2ae77fcb38ea4d291596897e36f7\AndroidManifest.xml:2:1-17:12
+MERGED from [com.facebook.android:facebook-android-sdk:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.34.0.aar\63c7796c48e353b693085cac55253a45\AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-login:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-login-4.34.0.aar\48d74f61646705f5c59335ef26e83bc7\AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-share:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-share-4.34.0.aar\c9c6d01c28cc21e9f05f313c3bef3626\AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:21:1-37:12
+MERGED from [com.android.support:appcompat-v7:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\f98e3744f244aa4b1621521886b9f574\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\d71b4849dae7a8093ca9aa8eb0da33aa\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-location:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-12.0.1.aar\7ab51c9a7357fa9a4406241d3b47416f\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:17:1-39:12
+MERGED from [com.google.android.gms:play-services-places:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-12.0.1.aar\4465329ebeb8c5882149553b2eb186e4\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:17:1-32:12
+MERGED from [com.android.support:cardview-v7:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.0.2.aar\5dc9f9813c79fbe1bfa74c9ed98fdee1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:17:1-32:12
+MERGED from [com.google.firebase:firebase-messaging:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\f4ebed96ef3a9647e3ca66193f6b2108\AndroidManifest.xml:17:1-37:12
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\a4feacf2294bfe98ecbaffe4fa90e8d6\AndroidManifest.xml:2:1-6:12
+MERGED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-22:12
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\library-1.0.1.aar\3e92ee14e834ea78d6428d739cffab36\AndroidManifest.xml:2:1-13:12
+MERGED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:2:1-52:12
+MERGED from [com.google.vr:sdk-panowidget:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-panowidget-1.80.0.aar\c4a6b861ee748eadaaf20a720f221253\AndroidManifest.xml:2:1-4:12
+MERGED from [com.jaredrummler:android-device-names:1.1.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\android-device-names-1.1.5.aar\e3f79d71702679d9f651b91dea63e2db\AndroidManifest.xml:2:1-9:12
+MERGED from [com.github.vihtarb:tooltip:0.1.9] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\tooltip-0.1.9.aar\55bece222cd8219cd4062fba026faccd\AndroidManifest.xml:2:1-14:12
+MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.2.10] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\android-gif-drawable-1.2.10.aar\c8655d6579a387f07084f3c12ea87d12\AndroidManifest.xml:2:1-11:12
+MERGED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:2:1-22:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.2.aar\2ece1b54dc4ff35888d82700cb165107\AndroidManifest.xml:15:1-21:12
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\658e6bad39a7c3bf1bbfa2b8b686d3db\AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-12.0.1.aar\17c7075fd4aba4d2efac9edfe9fba771\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-12.0.1.aar\9fb5971d3aa5f818f60fc8bfe89522b2\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:17:1-54:12
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:17:1-59:12
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:2:1-15:12
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\b4de8cd2ccecf91999204b806c855735\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\352bd06698734b33d5fdd9873fec1b44\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\323f7e3e3a259ec5517bd2a8c7a9b6ad\AndroidManifest.xml:17:1-22:12
+MERGED from [com.crashlytics.sdk.android:beta:1.2.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\beta-1.2.5.aar\173e098fe66f9095ca848f4f10f8abbd\AndroidManifest.xml:2:1-13:12
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.3.17.aar\b645864849bbb31d99d3db60db8d5723\AndroidManifest.xml:45:1-56:12
+MERGED from [com.crashlytics.sdk.android:answers:1.3.13] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\answers-1.3.13.aar\50be5fd5a5b4074825df069927b34dcb\AndroidManifest.xml:2:1-13:12
+MERGED from [io.fabric.sdk.android:fabric:1.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\fabric-1.3.17.aar\bd8222539ddb6785feb818794b02542c\AndroidManifest.xml:22:1-33:12
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\f81b2702621dfc5431e9c1e6e3b1cd7c\AndroidManifest.xml:17:1-28:12
+MERGED from [com.facebook.android:facebook-places:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-places-4.34.0.aar\2f07d15502f6e13db6a44096229274c7\AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-applinks:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.34.0.aar\62f663f19cc196988a957bafd87e2516\AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-messenger:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.34.0.aar\73273152dc50ae714849a7d0eb7f6219\AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:21:1-35:12
+MERGED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:21:1-53:12
+MERGED from [com.android.support:support-fragment:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-fragment-27.0.2.aar\e6c5b25ab90fec2fee30fcbc61f619f8\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.0.2.aar\04c36ee583ee52a42ab07dcb49a2c475\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customtabs:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\customtabs-27.0.2.aar\50f0de7a2bf2c0e285ada5614b024142\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\eaa1b8e3b88224e5930d14f0b816b75f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.0.2.aar\2a6ce108aa840c0ac2889d568c680189\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.0.2.aar\2092a53cf0726ef195f45b893e7649f2\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.0.2.aar\d8803a9c297cd4e56bf0af62e48d1a5c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\63f50a49efc3489db32abbca944e5b78\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-location-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-license-12.0.1.aar\e18d68ae9b6df342dd8958d9a9ac316b\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-maps-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-license-12.0.1.aar\72667896779346271ca38908795613e9\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-auth-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-license-12.0.1.aar\030b0bb9baa0ecacddcba2bd5dc161f9\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-messaging-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-license-12.0.1.aar\c2058331d7a754cdda3b4f0eb25adb6f\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-places-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-license-12.0.1.aar\df29d81e13f06706094a821ae24a2289\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.vr:sdk-commonwidget:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-commonwidget-1.80.0.aar\7ba52c8ee863a0ff09ddcddabf45aad2\AndroidManifest.xml:2:1-4:12
+MERGED from [com.google.android.gms:play-services-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-license-12.0.1.aar\e454fd56ca5343d406b7d6f4eca573e5\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\424f4c906783bcad0c1fcf22f59f39e3\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\e8f123dd3a32243ac7055993b4b6b6ec\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-license-12.0.1.aar\a95c8b00504d3a2e21832df24ff62932\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-auth-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-license-12.0.1.aar\33cb23314cc4bd7b52d29ef6e860fdcc\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\1eed0fdcf12ef3b9de4454988ef89e8f\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\2de0a69c3553c5017cce06e83e60274f\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\a290ff58ed0fb5b6a94f70fc36b9854e\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.vr:sdk-common:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-common-1.80.0.aar\260e1cf5cfb4376326ccde0c48520463\AndroidManifest.xml:2:1-4:12
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\950dcc56541686c4b48c533672f0abbc\AndroidManifest.xml:17:1-24:12
+MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\84d16cdde7b338634a3823bcf210455e\AndroidManifest.xml:17:1-24:12
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+	package
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:4:5-36
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:1-438:12
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:2:11-69
+permission#com.appromobile.hotel.permission.MAPS_RECEIVE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:6:5-8:47
+	android:protectionLevel
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:8:9-44
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:7:9-69
+uses-permission#android.permission.CALL_PHONE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:10:5-69
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:10:22-66
+uses-permission#com.appromobile.hotel.permission.MAPS_RECEIVE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:11:5-85
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:11:22-82
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:12:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:13:22-77
+uses-permission#android.permission.INTERNET
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:14:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.8] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-2.6.8.aar\8fa51c40919ef239c93adde405334fc9\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.8] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-2.6.8.aar\8fa51c40919ef239c93adde405334fc9\AndroidManifest.xml:9:5-67
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:24:5-67
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:23:5-67
+MERGED from [com.crashlytics.sdk.android:beta:1.2.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\beta-1.2.5.aar\173e098fe66f9095ca848f4f10f8abbd\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:beta:1.2.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\beta-1.2.5.aar\173e098fe66f9095ca848f4f10f8abbd\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.3.17.aar\b645864849bbb31d99d3db60db8d5723\AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.3.17.aar\b645864849bbb31d99d3db60db8d5723\AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.3.13] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\answers-1.3.13.aar\50be5fd5a5b4074825df069927b34dcb\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.3.13] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\answers-1.3.13.aar\50be5fd5a5b4074825df069927b34dcb\AndroidManifest.xml:9:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\fabric-1.3.17.aar\bd8222539ddb6785feb818794b02542c\AndroidManifest.xml:29:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\fabric-1.3.17.aar\bd8222539ddb6785feb818794b02542c\AndroidManifest.xml:29:5-67
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:14:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:15:5-79
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:22:5-79
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:15:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:16:5-68
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:24:5-68
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:16:22-65
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:17:5-76
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:17:22-73
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:18:5-79
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:18:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:19:5-81
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:19:22-78
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:20:5-82
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:26:5-82
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:20:22-79
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:21:5-71
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:21:22-68
+uses-permission#android.permission.USE_CREDENTIALS
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:22:5-74
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:22:22-71
+uses-permission#android.permission.CAMERA
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:23:5-65
+MERGED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-65
+MERGED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-65
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:23:22-62
+uses-feature#0x00020000
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:26:5-28:35
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:26:5-28:35
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:26:5-28:35
+	android:glEsVersion
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:27:9-41
+	android:required
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:28:9-32
+application
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:30:5-436:19
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.8] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-2.6.8.aar\8fa51c40919ef239c93adde405334fc9\AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.8] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-2.6.8.aar\8fa51c40919ef239c93adde405334fc9\AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:25:5-29:19
+MERGED from [com.nex3z:notification-badge:0.2.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\notification-badge-0.2.0.aar\354d2ae77fcb38ea4d291596897e36f7\AndroidManifest.xml:11:5-15:19
+MERGED from [com.nex3z:notification-badge:0.2.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\notification-badge-0.2.0.aar\354d2ae77fcb38ea4d291596897e36f7\AndroidManifest.xml:11:5-15:19
+MERGED from [com.facebook.android:facebook-android-sdk:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.34.0.aar\63c7796c48e353b693085cac55253a45\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-android-sdk:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.34.0.aar\63c7796c48e353b693085cac55253a45\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-login:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-login-4.34.0.aar\48d74f61646705f5c59335ef26e83bc7\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-login:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-login-4.34.0.aar\48d74f61646705f5c59335ef26e83bc7\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-share:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-share-4.34.0.aar\c9c6d01c28cc21e9f05f313c3bef3626\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-share:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-share-4.34.0.aar\c9c6d01c28cc21e9f05f313c3bef3626\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:28:5-35:19
+MERGED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:28:5-35:19
+MERGED from [com.google.android.gms:play-services-location:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-12.0.1.aar\7ab51c9a7357fa9a4406241d3b47416f\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-12.0.1.aar\7ab51c9a7357fa9a4406241d3b47416f\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:22:5-37:19
+MERGED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:22:5-37:19
+MERGED from [com.google.android.gms:play-services-places:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-12.0.1.aar\4465329ebeb8c5882149553b2eb186e4\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-12.0.1.aar\4465329ebeb8c5882149553b2eb186e4\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:30:5-20
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:30:5-20
+MERGED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:22:5-30:19
+MERGED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:22:5-30:19
+MERGED from [com.google.firebase:firebase-messaging:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\f4ebed96ef3a9647e3ca66193f6b2108\AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-messaging:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\f4ebed96ef3a9647e3ca66193f6b2108\AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\a4feacf2294bfe98ecbaffe4fa90e8d6\AndroidManifest.xml:5:5-20
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\a4feacf2294bfe98ecbaffe4fa90e8d6\AndroidManifest.xml:5:5-20
+MERGED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-20:19
+MERGED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-20:19
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\library-1.0.1.aar\3e92ee14e834ea78d6428d739cffab36\AndroidManifest.xml:11:5-20
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\library-1.0.1.aar\3e92ee14e834ea78d6428d739cffab36\AndroidManifest.xml:11:5-20
+MERGED from [com.github.vihtarb:tooltip:0.1.9] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\tooltip-0.1.9.aar\55bece222cd8219cd4062fba026faccd\AndroidManifest.xml:12:5-20
+MERGED from [com.github.vihtarb:tooltip:0.1.9] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\tooltip-0.1.9.aar\55bece222cd8219cd4062fba026faccd\AndroidManifest.xml:12:5-20
+MERGED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:11:5-20:19
+MERGED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:11:5-20:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\658e6bad39a7c3bf1bbfa2b8b686d3db\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\658e6bad39a7c3bf1bbfa2b8b686d3db\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:27:5-52:19
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:27:5-52:19
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:27:5-38:19
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:27:5-38:19
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:34:5-57:19
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:34:5-57:19
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:7:5-13:19
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:7:5-13:19
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\b4de8cd2ccecf91999204b806c855735\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\b4de8cd2ccecf91999204b806c855735\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\352bd06698734b33d5fdd9873fec1b44\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\352bd06698734b33d5fdd9873fec1b44\AndroidManifest.xml:22:5-26:19
+MERGED from [com.crashlytics.sdk.android:beta:1.2.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\beta-1.2.5.aar\173e098fe66f9095ca848f4f10f8abbd\AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:beta:1.2.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\beta-1.2.5.aar\173e098fe66f9095ca848f4f10f8abbd\AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.3.17.aar\b645864849bbb31d99d3db60db8d5723\AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.3.17.aar\b645864849bbb31d99d3db60db8d5723\AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.3.13] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\answers-1.3.13.aar\50be5fd5a5b4074825df069927b34dcb\AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.3.13] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\answers-1.3.13.aar\50be5fd5a5b4074825df069927b34dcb\AndroidManifest.xml:11:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\fabric-1.3.17.aar\bd8222539ddb6785feb818794b02542c\AndroidManifest.xml:31:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\fabric-1.3.17.aar\bd8222539ddb6785feb818794b02542c\AndroidManifest.xml:31:5-20
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\f81b2702621dfc5431e9c1e6e3b1cd7c\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\f81b2702621dfc5431e9c1e6e3b1cd7c\AndroidManifest.xml:22:5-26:19
+MERGED from [com.facebook.android:facebook-places:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-places-4.34.0.aar\2f07d15502f6e13db6a44096229274c7\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-places:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-places-4.34.0.aar\2f07d15502f6e13db6a44096229274c7\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-applinks:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.34.0.aar\62f663f19cc196988a957bafd87e2516\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-applinks:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.34.0.aar\62f663f19cc196988a957bafd87e2516\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-messenger:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.34.0.aar\73273152dc50ae714849a7d0eb7f6219\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-messenger:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.34.0.aar\73273152dc50ae714849a7d0eb7f6219\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:28:5-33:19
+MERGED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:28:5-33:19
+MERGED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:28:5-51:19
+MERGED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:28:5-51:19
+MERGED from [com.google.android.gms:play-services-location-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-license-12.0.1.aar\e18d68ae9b6df342dd8958d9a9ac316b\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-location-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-license-12.0.1.aar\e18d68ae9b6df342dd8958d9a9ac316b\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-maps-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-license-12.0.1.aar\72667896779346271ca38908795613e9\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-maps-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-license-12.0.1.aar\72667896779346271ca38908795613e9\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-auth-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-license-12.0.1.aar\030b0bb9baa0ecacddcba2bd5dc161f9\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-auth-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-license-12.0.1.aar\030b0bb9baa0ecacddcba2bd5dc161f9\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-messaging-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-license-12.0.1.aar\c2058331d7a754cdda3b4f0eb25adb6f\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-messaging-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-license-12.0.1.aar\c2058331d7a754cdda3b4f0eb25adb6f\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-license-12.0.1.aar\df29d81e13f06706094a821ae24a2289\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-license-12.0.1.aar\df29d81e13f06706094a821ae24a2289\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-license-12.0.1.aar\e454fd56ca5343d406b7d6f4eca573e5\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-license-12.0.1.aar\e454fd56ca5343d406b7d6f4eca573e5\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\424f4c906783bcad0c1fcf22f59f39e3\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\424f4c906783bcad0c1fcf22f59f39e3\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\e8f123dd3a32243ac7055993b4b6b6ec\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\e8f123dd3a32243ac7055993b4b6b6ec\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-auth-api-phone-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-license-12.0.1.aar\a95c8b00504d3a2e21832df24ff62932\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-auth-api-phone-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-license-12.0.1.aar\a95c8b00504d3a2e21832df24ff62932\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-auth-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-license-12.0.1.aar\33cb23314cc4bd7b52d29ef6e860fdcc\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-auth-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-license-12.0.1.aar\33cb23314cc4bd7b52d29ef6e860fdcc\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\1eed0fdcf12ef3b9de4454988ef89e8f\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\1eed0fdcf12ef3b9de4454988ef89e8f\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\2de0a69c3553c5017cce06e83e60274f\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\2de0a69c3553c5017cce06e83e60274f\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\a290ff58ed0fb5b6a94f70fc36b9854e\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\a290ff58ed0fb5b6a94f70fc36b9854e\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\950dcc56541686c4b48c533672f0abbc\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\950dcc56541686c4b48c533672f0abbc\AndroidManifest.xml:22:5-20
+	android:supportsRtl
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:37:9-35
+	android:label
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:35:9-41
+		REJECTED from [com.nex3z:notification-badge:0.2.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\notification-badge-0.2.0.aar\354d2ae77fcb38ea4d291596897e36f7\AndroidManifest.xml:13:9-41
+		REJECTED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:18-50
+	android:hardwareAccelerated
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:33:9-43
+	android:largeHeap
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:36:9-33
+	android:icon
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:34:9-43
+	android:allowBackup
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:32:9-35
+	android:theme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:38:9-40
+	tools:replace
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:39:9-38
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:31:9-42
+activity#com.appromobile.hotel.activity.SplashActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:41:9-49:20
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:43:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:42:13-52
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:44:13-48:29
+action#android.intent.action.MAIN
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:45:17-69
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:45:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:47:17-77
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:47:27-74
+activity#vn.payoo.paymentsdk.ui.PayooPaymentSdkActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:52:9-61:20
+MERGED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:12:9-16:58
+MERGED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:12:9-16:58
+	android:screenOrientation
+		ADDED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:15:13-49
+	android:launchMode
+		ADDED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:14:13-44
+	android:windowSoftInputMode
+		ADDED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:16:13-55
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:52:19-80
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:53:13-60:29
+	android:autoVerify
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:71:28-53
+action#android.intent.action.VIEW
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:54:17-69
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:54:25-66
+category#android.intent.category.DEFAULT
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:55:17-76
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:55:27-73
+category#android.intent.category.BROWSABLE
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:56:17-78
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:56:27-75
+data
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:57:17-59:52
+	android:host
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:58:21-50
+	android:port
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:161:21-40
+	android:scheme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:59:21-49
+	android:pathPrefix
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:79:21-67
+activity#com.appromobile.hotel.activity.DeeplinkActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:63:9-169:20
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:66:13-49
+	android:excludeFromRecents
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:65:13-46
+	android:theme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:68:13-44
+	android:taskAffinity
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:67:13-36
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:64:13-54
+activity#com.appromobile.hotel.activity.MainActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:172:9-176:46
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:175:13-49
+	android:hardwareAccelerated
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:174:13-47
+	android:theme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:176:13-44
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:173:13-50
+activity#com.appromobile.hotel.activity.BookHotelNowActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:177:9-180:75
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:179:13-49
+	android:theme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:180:13-72
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:178:13-58
+activity#com.appromobile.hotel.activity.WriteReviewActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:181:9-184:75
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:183:13-49
+	android:theme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:184:13-72
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:182:13-57
+activity#com.appromobile.hotel.activity.SearchActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:185:9-187:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:187:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:186:13-52
+activity#com.appromobile.hotel.activity.ReportNewHotelActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:188:9-190:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:190:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:189:13-60
+activity#com.appromobile.hotel.activity.HotelDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:191:9-193:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:193:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:192:13-57
+activity#com.appromobile.hotel.activity.RateReviewActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:194:9-196:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:196:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:195:13-56
+activity#com.appromobile.hotel.activity.ForgotPasswordActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:197:9-199:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:199:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:198:13-60
+activity#com.appromobile.hotel.activity.LoginActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:200:9-202:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:202:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:201:13-51
+activity#com.appromobile.hotel.activity.SignupActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:203:9-205:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:205:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:204:13-52
+activity#com.appromobile.hotel.activity.AreaSettingActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:206:9-208:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:208:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:207:13-57
+activity#com.appromobile.hotel.activity.AccountSettingActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:209:9-212:70
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:211:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:212:13-67
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:210:13-60
+activity#com.appromobile.hotel.activity.HistoryActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:213:9-215:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:215:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:214:13-53
+activity#com.appromobile.hotel.activity.MyCouponActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:216:9-218:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:218:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:217:13-54
+activity#com.appromobile.hotel.activity.InviteFriendActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:219:9-221:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:221:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:220:13-58
+activity#com.appromobile.hotel.activity.RecentBookingActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:222:9-224:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:224:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:223:13-59
+activity#com.appromobile.hotel.activity.MyFavoriteActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:225:9-227:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:227:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:226:13-56
+activity#com.appromobile.hotel.activity.NoticeActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:228:9-230:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:230:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:229:13-52
+activity#com.appromobile.hotel.activity.NoticeDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:231:9-233:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:233:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:232:13-58
+activity#com.appromobile.hotel.activity.NoticeQAActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:234:9-236:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:236:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:235:13-54
+activity#com.appromobile.hotel.activity.TermPrivacyPolicyActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:237:9-239:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:239:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:238:13-63
+activity#com.appromobile.hotel.activity.WebviewDetail
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:240:9-242:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:242:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:241:13-51
+activity#com.appromobile.hotel.activity.MapViewDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:243:9-246:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:246:13-49
+	android:hardwareAccelerated
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:245:13-47
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:244:13-59
+activity#com.appromobile.hotel.activity.MemberProfileActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:247:9-249:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:249:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:248:13-59
+activity#com.appromobile.hotel.activity.RateReviewListActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:250:9-252:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:252:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:251:13-60
+activity#com.appromobile.hotel.activity.UpdateRateReviewActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:253:9-255:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:255:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:254:13-62
+activity#com.appromobile.hotel.activity.RateReviewDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:256:9-258:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:258:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:257:13-62
+activity#com.appromobile.hotel.activity.MemberProfileSocialActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:259:9-261:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:261:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:260:13-65
+activity#com.appromobile.hotel.activity.EditProfileActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:262:9-264:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:264:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:263:13-57
+activity#com.appromobile.hotel.activity.ChooseAreaActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:265:9-267:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:267:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:266:13-56
+activity#com.appromobile.hotel.activity.VersionActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:268:9-270:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:270:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:269:13-53
+activity#com.appromobile.hotel.activity.NoticeAppDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:271:9-273:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:273:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:272:13-61
+activity#com.appromobile.hotel.activity.ChooseCouponActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:274:9-277:75
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:276:13-49
+	android:theme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:277:13-72
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:275:13-58
+activity#com.appromobile.hotel.activity.HotelPhotoDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:278:9-71
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:278:19-68
+activity#com.appromobile.hotel.activity.HotelPhotoRoomTypeDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:279:9-79
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:279:19-76
+activity#com.appromobile.hotel.activity.HotelSearchResultActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:280:9-282:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:282:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:281:13-63
+activity#com.appromobile.hotel.activity.WriteAQuestionActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:283:9-285:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:285:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:284:13-60
+activity#com.appromobile.hotel.activity.BrowserPaymentActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:286:9-288:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:288:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:287:13-60
+activity#com.appromobile.hotel.activity.BrowserActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:289:9-291:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:291:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:290:13-53
+activity#com.appromobile.hotel.activity.QADetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:292:9-294:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:294:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:293:13-54
+activity#com.appromobile.hotel.activity.ChooseLocationActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:295:9-298:67
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:297:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:298:13-64
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:296:13-60
+activity#com.appromobile.hotel.activity.PromotionDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:299:9-302:57
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:301:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:302:13-54
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:300:13-61
+activity#com.appromobile.hotel.activity.RateReviewPopupCheckinActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:303:9-306:57
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:305:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:306:13-54
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:304:13-68
+activity#com.appromobile.hotel.activity.RateReviewPopupNoCheckinActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:307:9-310:57
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:309:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:310:13-54
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:308:13-70
+activity#com.appromobile.hotel.activity.ReservationActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:311:9-314:57
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:313:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:314:13-54
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:312:13-57
+activity#com.appromobile.hotel.activity.ReservationDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:315:9-318:57
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:317:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:318:13-54
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:316:13-63
+activity#com.appromobile.hotel.activity.ChooseRoomTypeActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:319:9-323:57
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:321:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:323:13-54
+	android:theme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:322:13-72
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:320:13-60
+activity#com.facebook.FacebookActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:324:9-327:48
+MERGED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:29:9-32:66
+MERGED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:29:9-32:66
+	android:label
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:327:13-45
+	android:configChanges
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:326:13-96
+	android:theme
+		ADDED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:32:13-63
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:325:13-57
+activity#com.appromobile.hotel.activity.IntentTemp
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:328:9-332:39
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:331:13-49
+	android:excludeFromRecents
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:330:13-46
+	android:taskAffinity
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:332:13-36
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:329:13-48
+activity#com.appromobile.hotel.activity.MyStampActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:333:9-335:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:335:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:334:13-53
+activity#com.appromobile.hotel.activity.StampDetailActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:336:9-338:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:338:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:337:13-57
+activity#com.appromobile.hotel.point.MyPointActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:339:9-341:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:341:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:340:13-50
+activity#com.appromobile.hotel.point.MyGiftActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:342:9-344:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:344:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:343:13-49
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:346:9-348:51
+	android:value
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:348:13-48
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:347:13-58
+meta-data#io.fabric.ApiKey
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:358:9-360:72
+	android:value
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:360:13-69
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:359:13-44
+meta-data#com.google.android.maps.v2.API_KEY
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:362:9-364:71
+	android:value
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:364:13-68
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:363:13-62
+meta-data#com.google.android.gms.version
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:365:9-367:69
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\352bd06698734b33d5fdd9873fec1b44\AndroidManifest.xml:23:9-25:69
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\352bd06698734b33d5fdd9873fec1b44\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:367:13-66
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:366:13-58
+meta-data#com.google.firebase.messaging.default_notification_icon
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:368:9-370:64
+	android:resource
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:370:13-61
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:369:13-83
+service#com.appromobile.hotel.gcm.MyFirebaseMessagingService
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:375:9-379:19
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:375:18-64
+intent-filter#com.google.firebase.MESSAGING_EVENT
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:376:13-378:29
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:377:17-78
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:377:25-75
+service#com.appromobile.hotel.gcm.MyFirebaseInstanceIDService
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:380:9-384:19
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:380:18-65
+intent-filter#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:381:13-383:29
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:382:17-80
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:382:25-77
+meta-data#igaworks_app_key
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:397:9-399:41
+	android:value
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:399:13-38
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:398:13-44
+meta-data#igaworks_hash_key
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:400:9-402:48
+	android:value
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:402:13-45
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:401:13-45
+service#com.appromobile.hotel.gps.GeoCodeService
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:408:9-410:40
+	android:exported
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:410:13-37
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:409:13-47
+activity#com.appromobile.hotel.activity.Billing_Information
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:412:9-414:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:414:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:413:13-57
+activity#com.appromobile.hotel.activity.Paid_At_Hotel
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:415:9-417:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:417:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:416:13-51
+activity#com.appromobile.hotel.activity.Booking_Successful
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:418:9-420:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:420:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:419:13-56
+activity#com.appromobile.hotel.activity.Panorama
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:421:9-422:49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:422:13-46
+activity#com.appromobile.hotel.activity.MySettingsActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:423:9-425:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:425:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:424:13-56
+activity#com.appromobile.hotel.activity.NotificationSettingActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:426:9-428:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:428:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:427:13-65
+activity#com.appromobile.hotel.activity.LanguageSettingActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:429:9-431:52
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:431:13-49
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:430:13-61
+activity#com.appromobile.hotel.activity.IntroduceActivity
+ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:432:9-435:73
+	android:screenOrientation
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:434:13-49
+	android:theme
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:435:13-71
+	android:name
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml:433:13-55
+uses-sdk
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+MERGED from [com.android.databinding:adapters:1.3.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\adapters-1.3.1.aar\72c9a9ddd7f24612cca906865597bd86\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.databinding:adapters:1.3.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\adapters-1.3.1.aar\72c9a9ddd7f24612cca906865597bd86\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.databinding:library:1.3.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\library-1.3.1.aar\68459135186a82842322fc86d932fb4b\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.databinding:library:1.3.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\library-1.3.1.aar\68459135186a82842322fc86d932fb4b\AndroidManifest.xml:22:5-24:41
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.8] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-2.6.8.aar\8fa51c40919ef239c93adde405334fc9\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.8] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-2.6.8.aar\8fa51c40919ef239c93adde405334fc9\AndroidManifest.xml:7:5-43
+MERGED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:21:5-23:62
+MERGED from [com.nex3z:notification-badge:0.2.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\notification-badge-0.2.0.aar\354d2ae77fcb38ea4d291596897e36f7\AndroidManifest.xml:7:5-9:41
+MERGED from [com.nex3z:notification-badge:0.2.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\notification-badge-0.2.0.aar\354d2ae77fcb38ea4d291596897e36f7\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.android:facebook-android-sdk:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.34.0.aar\63c7796c48e353b693085cac55253a45\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-android-sdk:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.34.0.aar\63c7796c48e353b693085cac55253a45\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-login:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-login-4.34.0.aar\48d74f61646705f5c59335ef26e83bc7\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-login:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-login-4.34.0.aar\48d74f61646705f5c59335ef26e83bc7\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-share:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-share-4.34.0.aar\c9c6d01c28cc21e9f05f313c3bef3626\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-share:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-share-4.34.0.aar\c9c6d01c28cc21e9f05f313c3bef3626\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:appcompat-v7:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\f98e3744f244aa4b1621521886b9f574\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\f98e3744f244aa4b1621521886b9f574\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\d71b4849dae7a8093ca9aa8eb0da33aa\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\d71b4849dae7a8093ca9aa8eb0da33aa\AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services-location:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-12.0.1.aar\7ab51c9a7357fa9a4406241d3b47416f\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-12.0.1.aar\7ab51c9a7357fa9a4406241d3b47416f\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-12.0.1.aar\4465329ebeb8c5882149553b2eb186e4\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-12.0.1.aar\4465329ebeb8c5882149553b2eb186e4\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\85f007f40cd6023b9cd9ed16e762ffc9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.0.2.aar\5dc9f9813c79fbe1bfa74c9ed98fdee1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.0.2.aar\5dc9f9813c79fbe1bfa74c9ed98fdee1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\f4ebed96ef3a9647e3ca66193f6b2108\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\f4ebed96ef3a9647e3ca66193f6b2108\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\a4feacf2294bfe98ecbaffe4fa90e8d6\AndroidManifest.xml:4:5-43
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\a4feacf2294bfe98ecbaffe4fa90e8d6\AndroidManifest.xml:4:5-43
+MERGED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:40
+MERGED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:40
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\library-1.0.1.aar\3e92ee14e834ea78d6428d739cffab36\AndroidManifest.xml:7:5-9:41
+MERGED from [com.skyfishjy.ripplebackground:library:1.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\library-1.0.1.aar\3e92ee14e834ea78d6428d739cffab36\AndroidManifest.xml:7:5-9:41
+MERGED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:7:5-9:41
+MERGED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.vr:sdk-panowidget:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-panowidget-1.80.0.aar\c4a6b861ee748eadaaf20a720f221253\AndroidManifest.xml:3:5-73
+MERGED from [com.google.vr:sdk-panowidget:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-panowidget-1.80.0.aar\c4a6b861ee748eadaaf20a720f221253\AndroidManifest.xml:3:5-73
+MERGED from [com.jaredrummler:android-device-names:1.1.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\android-device-names-1.1.5.aar\e3f79d71702679d9f651b91dea63e2db\AndroidManifest.xml:5:5-7:41
+MERGED from [com.jaredrummler:android-device-names:1.1.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\android-device-names-1.1.5.aar\e3f79d71702679d9f651b91dea63e2db\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.vihtarb:tooltip:0.1.9] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\tooltip-0.1.9.aar\55bece222cd8219cd4062fba026faccd\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.vihtarb:tooltip:0.1.9] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\tooltip-0.1.9.aar\55bece222cd8219cd4062fba026faccd\AndroidManifest.xml:8:5-10:41
+MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.2.10] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\android-gif-drawable-1.2.10.aar\c8655d6579a387f07084f3c12ea87d12\AndroidManifest.xml:7:5-9:41
+MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.2.10] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\android-gif-drawable-1.2.10.aar\c8655d6579a387f07084f3c12ea87d12\AndroidManifest.xml:7:5-9:41
+MERGED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:7:5-9:41
+MERGED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:7:5-9:41
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.2.aar\2ece1b54dc4ff35888d82700cb165107\AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.2.aar\2ece1b54dc4ff35888d82700cb165107\AndroidManifest.xml:19:5-43
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\658e6bad39a7c3bf1bbfa2b8b686d3db\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\658e6bad39a7c3bf1bbfa2b8b686d3db\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-12.0.1.aar\17c7075fd4aba4d2efac9edfe9fba771\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-12.0.1.aar\17c7075fd4aba4d2efac9edfe9fba771\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-12.0.1.aar\9fb5971d3aa5f818f60fc8bfe89522b2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-12.0.1.aar\9fb5971d3aa5f818f60fc8bfe89522b2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\b4de8cd2ccecf91999204b806c855735\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\b4de8cd2ccecf91999204b806c855735\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\352bd06698734b33d5fdd9873fec1b44\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\352bd06698734b33d5fdd9873fec1b44\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\323f7e3e3a259ec5517bd2a8c7a9b6ad\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\323f7e3e3a259ec5517bd2a8c7a9b6ad\AndroidManifest.xml:20:5-44
+MERGED from [com.crashlytics.sdk.android:beta:1.2.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\beta-1.2.5.aar\173e098fe66f9095ca848f4f10f8abbd\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:beta:1.2.5] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\beta-1.2.5.aar\173e098fe66f9095ca848f4f10f8abbd\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.3.17.aar\b645864849bbb31d99d3db60db8d5723\AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.3.17.aar\b645864849bbb31d99d3db60db8d5723\AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.3.13] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\answers-1.3.13.aar\50be5fd5a5b4074825df069927b34dcb\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.3.13] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\answers-1.3.13.aar\50be5fd5a5b4074825df069927b34dcb\AndroidManifest.xml:7:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\fabric-1.3.17.aar\bd8222539ddb6785feb818794b02542c\AndroidManifest.xml:27:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.3.17] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\fabric-1.3.17.aar\bd8222539ddb6785feb818794b02542c\AndroidManifest.xml:27:5-43
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\f81b2702621dfc5431e9c1e6e3b1cd7c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\f81b2702621dfc5431e9c1e6e3b1cd7c\AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.android:facebook-places:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-places-4.34.0.aar\2f07d15502f6e13db6a44096229274c7\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-places:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-places-4.34.0.aar\2f07d15502f6e13db6a44096229274c7\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-applinks:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.34.0.aar\62f663f19cc196988a957bafd87e2516\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-applinks:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.34.0.aar\62f663f19cc196988a957bafd87e2516\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-messenger:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.34.0.aar\73273152dc50ae714849a7d0eb7f6219\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-messenger:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.34.0.aar\73273152dc50ae714849a7d0eb7f6219\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:support-fragment:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-fragment-27.0.2.aar\e6c5b25ab90fec2fee30fcbc61f619f8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-fragment-27.0.2.aar\e6c5b25ab90fec2fee30fcbc61f619f8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.0.2.aar\04c36ee583ee52a42ab07dcb49a2c475\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.0.2.aar\04c36ee583ee52a42ab07dcb49a2c475\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customtabs:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\customtabs-27.0.2.aar\50f0de7a2bf2c0e285ada5614b024142\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customtabs:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\customtabs-27.0.2.aar\50f0de7a2bf2c0e285ada5614b024142\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\eaa1b8e3b88224e5930d14f0b816b75f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\eaa1b8e3b88224e5930d14f0b816b75f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.0.2.aar\2a6ce108aa840c0ac2889d568c680189\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.0.2.aar\2a6ce108aa840c0ac2889d568c680189\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.0.2.aar\2092a53cf0726ef195f45b893e7649f2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.0.2.aar\2092a53cf0726ef195f45b893e7649f2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.0.2.aar\d8803a9c297cd4e56bf0af62e48d1a5c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.0.2.aar\d8803a9c297cd4e56bf0af62e48d1a5c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\63f50a49efc3489db32abbca944e5b78\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.0.2] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\63f50a49efc3489db32abbca944e5b78\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-license-12.0.1.aar\e18d68ae9b6df342dd8958d9a9ac316b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-location-license-12.0.1.aar\e18d68ae9b6df342dd8958d9a9ac316b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-license-12.0.1.aar\72667896779346271ca38908795613e9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-maps-license-12.0.1.aar\72667896779346271ca38908795613e9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-auth-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-license-12.0.1.aar\030b0bb9baa0ecacddcba2bd5dc161f9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-auth-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-license-12.0.1.aar\030b0bb9baa0ecacddcba2bd5dc161f9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-license-12.0.1.aar\c2058331d7a754cdda3b4f0eb25adb6f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-license-12.0.1.aar\c2058331d7a754cdda3b4f0eb25adb6f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-license-12.0.1.aar\df29d81e13f06706094a821ae24a2289\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-places-license-12.0.1.aar\df29d81e13f06706094a821ae24a2289\AndroidManifest.xml:20:5-44
+MERGED from [com.google.vr:sdk-commonwidget:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-commonwidget-1.80.0.aar\7ba52c8ee863a0ff09ddcddabf45aad2\AndroidManifest.xml:3:5-73
+MERGED from [com.google.vr:sdk-commonwidget:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-commonwidget-1.80.0.aar\7ba52c8ee863a0ff09ddcddabf45aad2\AndroidManifest.xml:3:5-73
+MERGED from [com.google.android.gms:play-services-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-license-12.0.1.aar\e454fd56ca5343d406b7d6f4eca573e5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-license-12.0.1.aar\e454fd56ca5343d406b7d6f4eca573e5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\424f4c906783bcad0c1fcf22f59f39e3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\424f4c906783bcad0c1fcf22f59f39e3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\e8f123dd3a32243ac7055993b4b6b6ec\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\e8f123dd3a32243ac7055993b4b6b6ec\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-license-12.0.1.aar\a95c8b00504d3a2e21832df24ff62932\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-license-12.0.1.aar\a95c8b00504d3a2e21832df24ff62932\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-license-12.0.1.aar\33cb23314cc4bd7b52d29ef6e860fdcc\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-base-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-license-12.0.1.aar\33cb23314cc4bd7b52d29ef6e860fdcc\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\1eed0fdcf12ef3b9de4454988ef89e8f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\1eed0fdcf12ef3b9de4454988ef89e8f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\2de0a69c3553c5017cce06e83e60274f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\2de0a69c3553c5017cce06e83e60274f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\a290ff58ed0fb5b6a94f70fc36b9854e\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\a290ff58ed0fb5b6a94f70fc36b9854e\AndroidManifest.xml:20:5-44
+MERGED from [com.google.vr:sdk-common:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-common-1.80.0.aar\260e1cf5cfb4376326ccde0c48520463\AndroidManifest.xml:3:5-73
+MERGED from [com.google.vr:sdk-common:1.80.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\sdk-common-1.80.0.aar\260e1cf5cfb4376326ccde0c48520463\AndroidManifest.xml:3:5-73
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\950dcc56541686c4b48c533672f0abbc\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\950dcc56541686c4b48c533672f0abbc\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\84d16cdde7b338634a3823bcf210455e\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\84d16cdde7b338634a3823bcf210455e\AndroidManifest.xml:20:5-22:41
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+		ADDED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Sample\Hotel\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\658e6bad39a7c3bf1bbfa2b8b686d3db\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\658e6bad39a7c3bf1bbfa2b8b686d3db\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\f81b2702621dfc5431e9c1e6e3b1cd7c\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\f81b2702621dfc5431e9c1e6e3b1cd7c\AndroidManifest.xml:23:9-25:38
+	android:value
+		ADDED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:design:26.1.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\a4c1a979fbb817e9d0ecc556ecddf197\AndroidManifest.xml:27:13-51
+activity#com.facebook.CustomTabMainActivity
+ADDED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:33:9-71
+	android:name
+		ADDED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:33:19-68
+activity#com.facebook.CustomTabActivity
+ADDED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:34:9-67
+	android:name
+		ADDED from [com.facebook.android:facebook-common:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-common-4.34.0.aar\61cea0a1b8700460fd81c981cd6d5141\AndroidManifest.xml:34:19-64
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:33:9-36:110
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:35:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\550fe17d3e4bec8eef8e2f940ee7d379\AndroidManifest.xml:34:13-89
+activity#com.google.firebase.auth.internal.FederatedSignInActivity
+ADDED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:23:9-29:75
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:25:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:27:13-48
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:26:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:28:13-102
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:29:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\040bff3df89f3a3aae22abb9c02a5e96\AndroidManifest.xml:24:13-85
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\f4ebed96ef3a9647e3ca66193f6b2108\AndroidManifest.xml:28:9-34:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\f4ebed96ef3a9647e3ca66193f6b2108\AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\f4ebed96ef3a9647e3ca66193f6b2108\AndroidManifest.xml:29:13-82
+uses-feature#android.hardware.camera
+ADDED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:5-60
+	android:name
+		ADDED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:19-57
+activity#com.dm.zbar.android.scanner.ZBarScannerActivity
+ADDED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:9-19:53
+	android:screenOrientation
+		ADDED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:19:13-50
+	android:label
+		ADDED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:18:13-45
+	android:name
+		ADDED from [:zBarScannerLibrary] D:\Sample\Hotel\zBarScannerLibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:13-75
+uses-permission#com.sec.android.provider.badge.permission.READ
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:19:5-86
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:19:22-83
+uses-permission#com.sec.android.provider.badge.permission.WRITE
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:20:5-87
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:20:22-84
+uses-permission#com.htc.launcher.permission.READ_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:23:5-81
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:23:22-78
+uses-permission#com.htc.launcher.permission.UPDATE_SHORTCUT
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:24:5-83
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:24:22-80
+uses-permission#com.sonyericsson.home.permission.BROADCAST_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:27:5-88
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:27:22-85
+uses-permission#com.sonymobile.home.permission.PROVIDER_INSERT_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:28:5-92
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:28:22-89
+uses-permission#com.anddoes.launcher.permission.UPDATE_COUNT
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:31:5-84
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:31:22-81
+uses-permission#com.majeur.launcher.permission.UPDATE_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:34:5-83
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:34:22-80
+uses-permission#com.huawei.android.launcher.permission.CHANGE_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:37:5-91
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:37:22-88
+uses-permission#com.huawei.android.launcher.permission.READ_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:38:5-92
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:38:22-89
+uses-permission#com.huawei.android.launcher.permission.WRITE_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:39:5-93
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:39:22-90
+uses-permission#android.permission.READ_APP_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:42:5-73
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:42:22-70
+uses-permission#com.oppo.launcher.permission.READ_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:45:5-82
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:45:22-79
+uses-permission#com.oppo.launcher.permission.WRITE_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:46:5-83
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:46:22-80
+uses-permission#me.everything.badger.permission.BADGE_COUNT_READ
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:49:5-88
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:49:22-85
+uses-permission#me.everything.badger.permission.BADGE_COUNT_WRITE
+ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:50:5-89
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.16] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.16.aar\3c977504f44b33be58792c2bb4fb863d\AndroidManifest.xml:50:22-86
+activity#vn.payoo.paymentsdk.ui.PayooWebActivity
+ADDED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:17:9-19:52
+	android:screenOrientation
+		ADDED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:19:13-49
+	android:name
+		ADDED from [:payoo-sdk-release-2.0.0:] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\payoo-sdk-release-2.0.0.aar\d4d69bbd8ab96c05d0154e68ce25a01d\AndroidManifest.xml:18:13-67
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\46317871cfcc3228aed3ce7180a86cc3\AndroidManifest.xml:24:13-79
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:28:9-32:20
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:28:9-32:20
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:28:9-32:20
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:30:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:29:13-85
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:33:9-41:20
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:35:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:36:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:37:13-69
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:34:13-100
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:38:13-40:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:39:17-79
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:39:25-76
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:43:9-46:40
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:34:9-37:40
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\50e9fd09285cda3628c164ff7afa5af2\AndroidManifest.xml:34:9-37:40
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:45:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:46:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:44:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:47:9-51:72
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:49:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:50:13-37
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:51:13-69
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\86aad1d2bd2940aa507d1c34220dc1de\AndroidManifest.xml:48:13-87
+permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:28:5-30:47
+	android:protectionLevel
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:30:9-44
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:29:9-63
+permission#com.appromobile.hotel.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:28:5-30:47
+	android:protectionLevel
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:30:9-44
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:29:9-63
+uses-permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:32:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:32:22-76
+uses-permission#com.appromobile.hotel.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:32:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:32:22-76
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:35:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:37:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:38:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:36:13-78
+intent-filter#${applicationId}+com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:39:13-43:29
+intent-filter#com.appromobile.hotel+com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:39:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:40:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:40:25-78
+category#${applicationId}
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:42:17-61
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:42:27-58
+category#com.appromobile.hotel
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:42:17-61
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:42:27-58
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:50:9-56:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:52:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\ad8e908a40a70aad3c3673698564d106\AndroidManifest.xml:51:13-77
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:8:9-12:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:10:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:11:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:12:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\eef8226c615fd3e7d8b89fd1cb737892\AndroidManifest.xml:9:13-77
+provider#com.facebook.marketing.internal.MarketingInitProvider
+ADDED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:29:9-32:40
+	android:authorities
+		ADDED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:31:13-73
+	android:exported
+		ADDED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-marketing:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.34.0.aar\53aa19ef8e3ccc90beda4cae06b01682\AndroidManifest.xml:30:13-81
+provider#com.facebook.internal.FacebookInitProvider
+ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:39:9-42:40
+	android:authorities
+		ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:41:13-72
+	android:exported
+		ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:42:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:40:13-70
+receiver#com.facebook.CurrentAccessTokenExpirationBroadcastReceiver
+ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:44:9-50:20
+	android:exported
+		ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:46:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:45:13-86
+intent-filter#com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED
+ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:47:13-49:29
+action#com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED
+ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:48:17-95
+	android:name
+		ADDED from [com.facebook.android:facebook-core:4.34.0] C:\Users\Chau Huynh\.gradle\caches\transforms-1\files-1.1\facebook-core-4.34.0.aar\ae117eff492b423b5fc592763a97d035\AndroidManifest.xml:48:25-92

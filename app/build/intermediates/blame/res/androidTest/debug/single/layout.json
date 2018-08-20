@@ -1,0 +1,410 @@
+[
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_payoo_web.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\activity_payoo_web.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item_separator.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_payment_international.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\fragment_payment_international.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_loading.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\view_loading.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\messenger_button_send_white_small.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\layout\\messenger_button_send_white_small.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_bottom_sheet_dialog.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\bottom_bar.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\bottom_bar.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\item_payment_token.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\item_payment_token.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_text_input_password_icon.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_text_input_password_icon.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_media_action.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_payment_customer.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\fragment_payment_customer.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\messenger_button_send_white_large.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\layout\\messenger_button_send_white_large.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\messenger_button_send_blue_round.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\layout\\messenger_button_send_blue_round.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_menu_item.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\place_autocomplete_item_prediction.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-12.0.1.aar\\4465329ebeb8c5882149553b2eb186e4\\res\\layout\\place_autocomplete_item_prediction.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_screen_simple.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_action.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_error.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\view_error.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_lines_media.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_payment_domestic.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\fragment_payment_domestic.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_navigation_item.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\com_facebook_login_fragment.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\layout\\com_facebook_login_fragment.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_payment_confirm.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\fragment_payment_confirm.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_badge.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\notification-badge-0.2.0.aar\\354d2ae77fcb38ea4d291596897e36f7\\res\\layout\\notification_badge.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_big_media_narrow_custom.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\com_facebook_tooltip_bubble.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-login-4.34.0.aar\\48d74f61646705f5c59335ef26e83bc7\\res\\layout\\com_facebook_tooltip_bubble.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\com_facebook_smart_device_dialog_fragment.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\layout\\com_facebook_smart_device_dialog_fragment.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_payoo_payment_sdk.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\activity_payoo_payment_sdk.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_navigation_item_header.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\back_button.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\sdk-common-1.80.0.aar\\260e1cf5cfb4376326ccde0c48520463\\res\\layout\\back_button.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_otp.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\dialog_otp.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\messenger_button_send_blue_small.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\layout\\messenger_button_send_blue_small.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\messenger_button_send_blue_large.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\layout\\messenger_button_send_blue_large.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\com_facebook_activity_layout.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\layout\\com_facebook_activity_layout.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_big_media_custom.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_search_view.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\place_autocomplete_item_powered_by_google.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-12.0.1.aar\\4465329ebeb8c5882149553b2eb186e4\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_payment_method.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\fragment_payment_method.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ui_layer.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\sdk-common-1.80.0.aar\\260e1cf5cfb4376326ccde0c48520463\\res\\layout\\ui_layer.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_alert_dialog_title_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\com_facebook_device_auth_dialog_fragment.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.34.0.aar\\61cea0a1b8700460fd81c981cd6d5141\\res\\layout\\com_facebook_device_auth_dialog_fragment.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_menu.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_navigation_menu.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ui_view_embed.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\sdk-commonwidget-1.80.0.aar\\7ba52c8ee863a0ff09ddcddabf45aad2\\res\\layout\\ui_view_embed.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\tooltip.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\tooltip.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_empty.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\view_empty.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_layout_tab_icon.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_big_media.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\transition_view.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\sdk-common-1.80.0.aar\\260e1cf5cfb4376326ccde0c48520463\\res\\layout\\transition_view.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\item_payoo_info.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\item_payoo_info.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_msv_error.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\view_msv_error.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\item_payment_method.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\item_payment_method.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_bottom_navigation_item.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_bottom_navigation_item.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\place_autocomplete_fragment.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-12.0.1.aar\\4465329ebeb8c5882149553b2eb186e4\\res\\layout\\place_autocomplete_fragment.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\place_autocomplete_progress.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-12.0.1.aar\\4465329ebeb8c5882149553b2eb186e4\\res\\layout\\place_autocomplete_progress.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ui_layer_with_portrait_support.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\sdk-common-1.80.0.aar\\260e1cf5cfb4376326ccde0c48520463\\res\\layout\\ui_layer_with_portrait_support.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_layout_snackbar.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_menu_item_action_area.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_menu_item_action_area.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\messenger_button_send_white_round.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-messenger-4.34.0.aar\\73273152dc50ae714849a7d0eb7f6219\\res\\layout\\messenger_button_send_white_round.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_msv_empty.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\view_msv_empty.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_layout_tab_text.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_layout_tab_text.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\item_bank.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\item_bank.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_msv_network.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\view_msv_network.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\settings_button.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\sdk-common-1.80.0.aar\\260e1cf5cfb4376326ccde0c48520463\\res\\layout\\settings_button.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_msv_loading.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\view_msv_loading.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_media_custom.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\eaa1b8e3b88224e5930d14f0b816b75f\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\f98e3744f244aa4b1621521886b9f574\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_layout_snackbar_include.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\a4c1a979fbb817e9d0ecc556ecddf197\\res\\layout\\design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_payment_token.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\payoo-sdk-release-2.0.0.aar\\d4d69bbd8ab96c05d0154e68ce25a01d\\res\\layout\\fragment_payment_token.xml"
+    }
+]

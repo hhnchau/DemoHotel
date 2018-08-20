@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--ViewPager Flash Sale-->
+    <com.appromobile.hotel.widgets.TextViewSFBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lg"
+        android:gravity="center_vertical"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:textColor="@color/bk"
+        android:textSize="14sp"
+        android:text="@string/txt_2_flashfale_title"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/my_viewPager_flash_sale"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!--status bar for viewpager-->
+    <RelativeLayout
+        android:id="@+id/container_indicator_flash_sale"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/bk_15p">
+
+        <View
+            android:id="@+id/indicator_flash_sale"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:background="@color/wh" />
+    </RelativeLayout>
+
+</LinearLayout>

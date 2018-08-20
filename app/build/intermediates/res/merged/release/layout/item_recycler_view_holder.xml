@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/boxHistorySearch"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_8"
+    android:padding="@dimen/margin_4">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="@dimen/margin_32"
+        android:layout_height="@dimen/margin_32"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/img_decscription"
+        android:layout_margin="@dimen/margin_8"/>
+
+    <com.appromobile.hotel.widgets.TextViewSFHeavy
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/img"
+        android:textColor="@color/bk_85p"
+        android:layout_marginStart="@dimen/margin_16"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_toEndOf="@+id/img"
+        android:textColor="@color/bk_50p"
+        android:layout_marginStart="@dimen/margin_16"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+
+</RelativeLayout>

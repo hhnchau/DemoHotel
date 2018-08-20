@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp">
+
+
+            <LinearLayout
+                android:id="@+id/boxData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--bokking id-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvBookingId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_booking_id"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--member id-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvMemberUid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_member_unique_id"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--Booking ID-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvcheckinCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_booking_id"
+                    android:textColor="@color/org"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/wh" />
+
+                <!--date-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_date"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--time-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_time"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/wh" />
+
+                <!--name-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvHotelName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_hotel_name"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--type-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvRoomType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_room_type"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/wh" />
+
+                <!--price-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_price"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--discount-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvCouponDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_coupon_discount"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--Stamp-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvStampDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_6_12_stamp_policy_value"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--Point-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvPointDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_6_13_mileage_amount_value"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--total-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvTotalPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_total_payment"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <!--PayAtStore-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/tvByPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_total_payment"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!--status-->
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/tvPaymentStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_1_4_payment_status"
+                        android:textColor="@color/wh"
+                        android:textSize="16sp" />
+
+                    <!--pay now-->
+                    <com.appromobile.hotel.widgets.TextViewSFBold
+                        android:id="@+id/btnPaynow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_full_org_bg"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:padding="8dp"
+                        android:text="@string/txt_6_3_1_paynow"
+                        android:textColor="@color/wh"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <!--Payoo Code-->
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/textView_item_recent_booking_payoo_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_payoo_code"
+                    android:textColor="@color/org"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/textView_item_recent_booking_reservation_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txt_1_4_total_payment"
+                    android:textColor="@color/wh"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/wh" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

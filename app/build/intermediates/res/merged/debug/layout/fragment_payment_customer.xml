@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <include
+    android:id="@+id/bottom_bar"
+    layout="@layout/bottom_bar" />
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/bottom_bar">
+
+    <LinearLayout
+      android:id="@+id/layout_customer_info"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="8dp">
+
+      <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_customer_info_label"
+        android:text="@string/info_title_table_contact"
+        style="@style/PayooTextCardHeaderStyle" />
+
+      <LinearLayout style="@style/PayooLayoutCardStyle">
+
+        <android.support.v7.widget.AppCompatTextView
+          android:id="@+id/text_phone_label"
+          android:text="@string/phone"
+          style="@style/PayooTextInputTitleStyle" />
+
+        <vn.payoo.paymentsdk.ui.widget.ClearableEditText
+          android:id="@+id/edit_customer_phone"
+          android:imeOptions="actionNext"
+          android:inputType="phone"
+          android:maxLength="11"
+          style="@style/PayooEditTextStyle" />
+
+        <android.support.v7.widget.AppCompatTextView
+          android:id="@+id/text_email_label"
+          android:text="@string/email"
+          style="@style/PayooTextInputTitleStyle" />
+
+        <vn.payoo.paymentsdk.ui.widget.ClearableEditText
+          android:id="@+id/edit_customer_email"
+          android:imeOptions="actionNext"
+          android:inputType="textEmailAddress"
+          style="@style/PayooEditTextStyle" />
+      </LinearLayout>
+    </LinearLayout>
+  </ScrollView>
+</RelativeLayout>

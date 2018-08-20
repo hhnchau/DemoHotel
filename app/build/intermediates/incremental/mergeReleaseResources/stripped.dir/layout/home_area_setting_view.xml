@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:background="@color/wh"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/tvNearby"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="6dp"
+            android:text="@string/near_by"
+            android:textColor="@color/bk"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imgNearby"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="10dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bk" />
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/tvMyFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:gravity="center_vertical"
+        android:paddingStart="6dp"
+        android:text="@string/set_my_favorite_area"
+        android:textColor="@color/bk"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/lvFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="@color/bk"
+        android:dividerHeight="1dp"
+        android:scrollbars="none"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bk" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:id="@+id/tvChooseArea"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="6dp"
+            android:text="@string/choose_area"
+            android:textColor="@color/bk"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imgChooseArea"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:contentDescription="@string/img_decscription" />
+    </LinearLayout>
+</LinearLayout>

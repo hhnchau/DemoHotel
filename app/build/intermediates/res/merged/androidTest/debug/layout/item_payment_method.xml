@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_marginBottom="8dp"
+  android:layout_marginLeft="16dp"
+  android:layout_marginRight="16dp"
+  android:layout_marginTop="8dp"
+  android:orientation="vertical"
+  android:background="@drawable/background_card"
+  android:paddingBottom="16dp"
+  android:paddingEnd="8dp"
+  android:paddingLeft="8dp"
+  android:paddingRight="8dp"
+  android:paddingStart="8dp"
+  android:paddingTop="8dp">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <android.support.v7.widget.AppCompatImageView
+      android:id="@+id/icon"
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      tools:src="@drawable/ic_payment_credit" />
+
+    <android.support.v7.widget.AppCompatTextView
+      android:id="@+id/text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="8dp"
+      android:layout_marginStart="8dp"
+      android:singleLine="true"
+      android:textAllCaps="true"
+      android:textColor="#123654"
+      android:textSize="16sp"
+      android:textStyle="bold"
+      tools:text="@string/payment_method_international_card" />
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/layout_banks"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <android.support.v7.widget.AppCompatTextView
+      android:id="@+id/text_select_bank"
+      android:text="@string/text_select_bank"
+      style="@style/PayooTextCardHeaderStyle" />
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:listitem="@layout/item_bank" />
+  </LinearLayout>
+</LinearLayout>

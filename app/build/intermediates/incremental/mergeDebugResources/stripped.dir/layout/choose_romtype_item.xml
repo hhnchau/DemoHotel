@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/wh"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/imgRoom"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            android:background="#c2c2c2"
+            android:contentDescription="@string/img_decscription"
+            android:scaleType="centerCrop" />
+
+        <!--Room Type Lock-->
+        <com.appromobile.hotel.widgets.TextViewSFMedium
+            android:id="@+id/roomtype_locked"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="2dp"
+            android:background="@drawable/locked"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="@string/txt_3_1_soldout_room"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_8"
+            android:visibility="gone" />
+
+        <!--Flash Sale-->
+        <ImageView
+            android:id="@+id/roomty_flashsale"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_margin="2dp"
+            android:contentDescription="@string/img_decscription"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:id="@+id/tvRoomName"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/bk"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/imgChecked"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:src="@drawable/checkbox"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--Price Status-->
+            <com.appromobile.hotel.widgets.TextViewSFHeavy
+                android:id="@+id/tvPriceStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|end"
+                android:textColor="@color/org"
+                android:textSize="@dimen/hotel_list_text_size_normal" />
+
+            <!--Line 1-->
+            <LinearLayout
+                android:id="@+id/boxHourly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <!--Hourly-->
+                <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:id="@+id/label_price_hourly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_2_flashsale_hourly_price"
+                    android:textColor="@color/bk_50p"
+                    android:textSize="@dimen/hotel_list_text_size_normal" />
+
+                <!--VND-->
+                <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:text="@string/vnd"
+                    android:textColor="@color/bk_50p"
+                    android:textSize="@dimen/hotel_list_text_size_normal" />
+
+                <!--Price Hourly Normal-->
+                <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:id="@+id/tvPriceHourlyNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:textColor="@color/bk_50p"
+                    android:textSize="@dimen/hotel_list_text_size_normal" />
+
+                <!--Price Hourly Discount-->
+                <com.appromobile.hotel.widgets.TextViewSFBold
+                    android:id="@+id/tvPriceHourlyDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:textColor="@color/org"
+                    android:textSize="@dimen/hotel_list_text_size_big" />
+
+            </LinearLayout>
+
+            <!--Line 2-->
+            <LinearLayout
+                android:id="@+id/boxOvernight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <!--Overnight-->
+                <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_2_flashsale_overnight_price"
+                    android:textColor="@color/bk_50p"
+                    android:textSize="@dimen/hotel_list_text_size_normal" />
+
+                <!--VND-->
+                <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:text="@string/vnd"
+                    android:textColor="@color/bk_50p"
+                    android:textSize="@dimen/hotel_list_text_size_normal" />
+
+                <!--Price Overnight Normal-->
+                <com.appromobile.hotel.widgets.TextViewSFMedium
+                    android:id="@+id/tvPriceOvernightNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:textColor="@color/bk_50p"
+                    android:textSize="@dimen/hotel_list_text_size_normal"
+                    android:textStyle="" />
+
+                <!--Price Overnight Discount-->
+                <com.appromobile.hotel.widgets.TextViewSFBold
+                    android:id="@+id/tvPriceOvernightDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:textColor="@color/org"
+                    android:textSize="@dimen/hotel_list_text_size_big" />
+
+            </LinearLayout>
+
+            <!--Price Overnight Normal-->
+            <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:id="@+id/tvSupperSaleNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_4"
+                android:gravity="end"
+                android:textColor="@color/bk_50p"
+                android:textSize="@dimen/hotel_list_text_size_normal"
+                android:textStyle="" />
+
+            <!--Price Overnight Discount-->
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/tvSupperSaleDiscount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_4"
+                android:gravity="end"
+                android:textColor="@color/org"
+                android:textSize="@dimen/hotel_list_text_size_big" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

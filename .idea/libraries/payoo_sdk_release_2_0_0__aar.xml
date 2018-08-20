@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="payoo-sdk-release-2.0.0:@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/payoo-sdk-release-2.0.0.aar/d4d69bbd8ab96c05d0154e68ce25a01d/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/payoo-sdk-release-2.0.0.aar/d4d69bbd8ab96c05d0154e68ce25a01d/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

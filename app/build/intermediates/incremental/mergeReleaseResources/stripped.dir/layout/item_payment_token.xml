@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginBottom="8dp"
+  android:layout_marginLeft="16dp"
+  android:layout_marginRight="16dp"
+  android:layout_marginTop="8dp"
+  android:orientation="vertical"
+  android:background="@drawable/background_card"
+  android:padding="16dp">
+
+  <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.AppCompatImageView
+      android:id="@+id/icon_bank"
+      android:layout_width="80dp"
+      android:layout_height="32dp"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_centerVertical="true"
+      android:layout_margin="0dp"
+      android:background="@drawable/background_bank"
+      android:padding="2dp"
+      style="@style/PayooBankIconStyle" />
+
+    <android.support.v7.widget.AppCompatImageView
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_centerVertical="true" />
+  </RelativeLayout>
+
+  <android.support.v7.widget.AppCompatTextView
+    android:id="@+id/card_number"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:textAllCaps="true"
+    android:textColor="#129fdd"
+    android:textSize="16sp"
+    android:textStyle="bold"
+    tools:text="9704 09** **** 1234" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+
+    <android.support.v7.widget.AppCompatTextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="end"
+      android:text="@string/valid_thru"
+      android:textAllCaps="true"
+      android:textColor="@color/colorPrimaryDark"
+      android:textSize="8sp"
+      android:textStyle="bold"
+      tools:ignore="SmallSp" />
+
+    <android.support.v7.widget.AppCompatTextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="8dp"
+      android:layout_marginStart="8dp"
+      android:text="**/**"
+      android:textAllCaps="true"
+      android:textColor="@color/colorPrimaryDark"
+      android:textSize="15sp"
+      tools:ignore="HardcodedText" />
+  </LinearLayout>
+
+  <android.support.v7.widget.AppCompatTextView
+    android:id="@+id/card_holder_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAllCaps="true"
+    android:textColor="@color/colorPrimaryDark"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    tools:text="TRAN NGOC LAM" />
+</LinearLayout>

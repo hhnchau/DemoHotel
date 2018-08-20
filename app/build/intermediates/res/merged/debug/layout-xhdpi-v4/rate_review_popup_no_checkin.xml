@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bk_85p"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:scaleType="fitCenter"
+        android:src="@drawable/close" />
+
+    <LinearLayout
+        android:id="@+id/frame_popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btnClose"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="34dp"
+        android:paddingRight="34dp">
+
+        <com.appromobile.hotel.widgets.TextViewSFBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/txt_11_1_your_last_booking"
+            android:textColor="@color/wh"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="1"
+            android:background="@color/wh"
+            android:orientation="vertical">
+
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18sp"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/bk"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imgHotel"
+                android:layout_width="173dp"
+                android:layout_height="115dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/loading_small" />
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/tvHotelName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="Hotel Appro"
+                android:textColor="@color/bk"
+                android:textSize="18sp" />
+
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:id="@+id/textViewSFRegular3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@color/org_10"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="@string/txt_11_1_not_checkin_message"
+                android:textColor="@color/bk"
+                android:textSize="14sp" />
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/btnNoVisit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/org"
+                android:gravity="center"
+                android:layout_marginTop="6dp"
+                android:text="@string/txt_11_1_i_did_not_visit"
+                android:textColor="@color/wh"
+                android:textSize="15sp" />
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/btnCheckedIn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/org"
+                android:gravity="center"
+                android:text="@string/txt_11_1_i_checked_in_the_hotel"
+                android:textColor="@color/wh"
+                android:textSize="15sp" />
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/btnNoRoom"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/org"
+                android:gravity="center"
+                android:text="@string/txt_11_1_i_visited_but_no_room"
+                android:textColor="@color/wh"
+                android:textSize="15sp" />
+
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:paddingTop="2dp"
+                android:text="@string/txt_11_1_thanks_helping_us"
+                android:textColor="@color/bk"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

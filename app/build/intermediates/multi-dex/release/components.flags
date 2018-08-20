@@ -1,0 +1,42 @@
+-injars 'D:\Sample\Hotel\app\build\intermediates\transforms\jarMerging\release\0.jar'
+-outjars 'D:\Sample\Hotel\app\build\intermediates\multi-dex\release\componentClasses.jar'
+
+-libraryjars 'D:\SDK\build-tools\26.0.2\lib\shrinkedAndroid.jar'
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontpreverify
+-dontnote **
+-dontwarn **
+-printconfiguration 'D:\Sample\Hotel\app\build\intermediates\multi-dex\release\components.flags'
+
+
+# view AndroidManifest.xml #generated:63
+-keep class com.appromobile.hotel.gps.MyLocationApi {
+    <init>(...);
+}
+
+-keep public class * extends android.app.Instrumentation {
+    <init>();
+}
+
+-keep public class * extends android.app.Application {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.android.tools.ir.** {
+    <fields>;
+    <methods>;
+}

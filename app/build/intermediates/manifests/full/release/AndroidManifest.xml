@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.appromobile.hotel"
+    android:versionCode="95"
+    android:versionName="14.5.7" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="26" />
+
+    <permission
+        android:name="com.appromobile.hotel.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="com.appromobile.hotel.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- <permission -->
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera" /> <!-- for android -->
+    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+    <!-- for Samsung -->
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+
+    <permission
+        android:name="com.appromobile.hotel.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.appromobile.hotel.permission.C2D_MESSAGE" />
+
+    <application
+        android:name="com.appromobile.hotel.gps.MyLocationApi"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.appromobile.hotel.activity.SplashActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Payoo -->
+        <activity
+            android:name="vn.payoo.paymentsdk.ui.PayooPaymentSdkActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="postbacksdkurl"
+                    android:scheme="payoosdk672" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.appromobile.hotel.activity.DeeplinkActivity"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait"
+            android:taskAffinity=""
+            android:theme="@style/AppTheme" >
+
+            <!-- Android 6 -->
+            <intent-filter android:autoVerify="true" >
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="go2joy.vn"
+                    android:pathPrefix="/hotel/share/view/openApp"
+                    android:scheme="http" />
+                <data
+                    android:host="go2joy.vn"
+                    android:pathPrefix="/hotel/share/view/openApp"
+                    android:scheme="https" />
+                <data
+                    android:host="go2joy.vn"
+                    android:pathPrefix="/hotel/openLoginApp"
+                    android:scheme="http" />
+                <data
+                    android:host="go2joy.vn"
+                    android:pathPrefix="/hotel/openLoginApp"
+                    android:scheme="https" />
+            </intent-filter>
+
+            <!-- approhotel - Browser -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- DeepLink -->
+
+                <data
+                    android:host="hotelSn"
+                    android:pathPrefix="/"
+                    android:scheme="approhotel" />
+                <data
+                    android:host="promotionSn"
+                    android:pathPrefix="/"
+                    android:scheme="approhotel" />
+                <data
+                    android:host="districtSn"
+                    android:pathPrefix="/"
+                    android:scheme="approhotel" />
+            </intent-filter>
+
+            <!-- Open App -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="loginapp"
+                    android:scheme="approhotel" />
+            </intent-filter>
+
+            <!-- url - App -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- DeepLink -->
+
+                <data
+                    android:host="go2joy.vn"
+                    android:pathPrefix="/hotel/share/view/openApp"
+                    android:scheme="http" />
+                <data
+                    android:host="go2joy.vn"
+                    android:pathPrefix="/hotel/openLoginApp"
+                    android:scheme="http" />
+            </intent-filter>
+
+            <!-- LOCAL URL -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- DeepLink -->
+
+                <data
+                    android:host="27.74.249.60"
+                    android:pathPrefix="/hotel/share/view/openApp"
+                    android:port="8082"
+                    android:scheme="http" />
+                <data
+                    android:host="27.74.249.60"
+                    android:pathPrefix="/hotel/openLoginApp"
+                    android:port="8082"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+
+        <!-- Activity -->
+        <activity
+            android:name="com.appromobile.hotel.activity.MainActivity"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.appromobile.hotel.activity.BookHotelNowActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.appromobile.hotel.activity.WriteReviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.appromobile.hotel.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.ReportNewHotelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.HotelDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.RateReviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.ForgotPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.AreaSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.AccountSettingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.appromobile.hotel.activity.HistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.MyCouponActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.InviteFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.RecentBookingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.MyFavoriteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.NoticeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.NoticeDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.NoticeQAActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.TermPrivacyPolicyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.WebviewDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.MapViewDetailActivity"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.MemberProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.RateReviewListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.UpdateRateReviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.RateReviewDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.MemberProfileSocialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.ChooseAreaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.VersionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.NoticeAppDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.ChooseCouponActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="com.appromobile.hotel.activity.HotelPhotoDetailActivity" />
+        <activity android:name="com.appromobile.hotel.activity.HotelPhotoRoomTypeDetailActivity" />
+        <activity
+            android:name="com.appromobile.hotel.activity.HotelSearchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.WriteAQuestionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.BrowserPaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.BrowserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.QADetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.ChooseLocationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.appromobile.hotel.activity.PromotionDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.appromobile.hotel.activity.RateReviewPopupCheckinActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.appromobile.hotel.activity.RateReviewPopupNoCheckinActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.appromobile.hotel.activity.ReservationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.appromobile.hotel.activity.ReservationDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.appromobile.hotel.activity.ChooseRoomTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@style/com_facebook_activity_theme" />
+        <activity
+            android:name="com.appromobile.hotel.activity.IntentTemp"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name="com.appromobile.hotel.activity.MyStampActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.StampDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.point.MyPointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.point.MyGiftActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_id" />
+        <!-- <meta-data -->
+        <!-- android:name="com.facebook.sdk.ApplicationName" -->
+        <!-- android:value="@string/app_name" /> -->
+
+
+        <!-- Disable Event Facebook -->
+        <!-- <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" -->
+        <!-- android:value="false"/> -->
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="bc022de9067a5d0d61d139425644a45c8676923e" />
+        <!-- Google Maps Fragment API Key Data -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDAXZPpfl9oNF-MpeglPBuSE1yuadS_BcA" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/go2joy_notification" />
+        <!-- <meta-data -->
+        <!-- android:name="com.google.firebase.messaging.default_notification_color" -->
+        <!-- android:resource="@color/colorAccent" /> -->
+
+        <service android:name="com.appromobile.hotel.gcm.MyFirebaseMessagingService" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.appromobile.hotel.gcm.MyFirebaseInstanceIDService" >
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Appflyer -->
+
+
+        <!-- <receiver -->
+        <!-- android:name="com.appsflyer.MultipleInstallBroadcastReceiver" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.android.vending.INSTALL_REFERRER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+
+        <meta-data
+            android:name="igaworks_app_key"
+            android:value="605710168" />
+        <meta-data
+            android:name="igaworks_hash_key"
+            android:value="cf866c1cf3f64426" />
+
+        <!-- <service -->
+        <!-- android:name=".gps.LocationService" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true" /> -->
+        <service
+            android:name="com.appromobile.hotel.gps.GeoCodeService"
+            android:exported="false" />
+
+        <activity
+            android:name="com.appromobile.hotel.activity.Billing_Information"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.Paid_At_Hotel"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.Booking_Successful"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.appromobile.hotel.activity.Panorama" />
+        <activity
+            android:name="com.appromobile.hotel.activity.MySettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.NotificationSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.LanguageSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.appromobile.hotel.activity.IntroduceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <meta-data
+            android:name="android.support.VERSION"
+            android:value="26.1.0" />
+
+        <activity android:name="com.facebook.CustomTabMainActivity" />
+        <activity android:name="com.facebook.CustomTabActivity" />
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--
+            Service handling Google Sign-In user revocation. For apps that do not integrate with
+            Google Sign-In, this service will never be started.
+        -->
+        <service
+            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+            android:exported="true"
+            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+
+        <activity
+            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--
+             FirebaseMessagingService performs security checks at runtime,
+             no need for explicit permissions despite exported="true"
+        -->
+        <service
+            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+            android:exported="true" >
+            <intent-filter android:priority="-500" >
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="com.dm.zbar.android.scanner.ZBarScannerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="vn.payoo.paymentsdk.ui.PayooWebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INSTALL_PACKAGES" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver
+            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.appromobile.hotel" />
+            </intent-filter>
+        </receiver>
+        <!--
+             FirebaseInstanceIdService performs security checks at runtime,
+             no need for explicit permissions despite exported="true"
+        -->
+        <service
+            android:name="com.google.firebase.iid.FirebaseInstanceIdService"
+            android:exported="true" >
+            <intent-filter android:priority="-500" >
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="com.appromobile.hotel.firebaseinitprovider"
+            android:exported="false"
+            android:initOrder="100" />
+        <provider
+            android:name="com.facebook.marketing.internal.MarketingInitProvider"
+            android:authorities="com.appromobile.hotel.MarketingInitProvider"
+            android:exported="false" />
+        <!--
+         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+         with the application context. This config is merged in with the host app's manifest,
+         but there can only be one provider with the same authority activated at any given
+         point; so if the end user has two or more different apps that use Facebook SDK, only the
+         first one will be able to use the provider. To work around this problem, we use the
+         following placeholder in the authority to identify each host application as if it was
+         a completely different provider.
+        -->
+        <provider
+            android:name="com.facebook.internal.FacebookInitProvider"
+            android:authorities="com.appromobile.hotel.FacebookInitProvider"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

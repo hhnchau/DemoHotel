@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="5">
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/tvGiftName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+    <com.appromobile.hotel.widgets.TextViewSFRegular
+        android:id="@+id/tvPoint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+    <RelativeLayout
+        android:id="@+id/boxChoose"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/imgChoose"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/checkbox_selected"
+            android:contentDescription="@string/img_decscription"
+            android:layout_centerInParent="true"
+            android:gravity="center" />
+        >
+    </RelativeLayout>
+</LinearLayout>

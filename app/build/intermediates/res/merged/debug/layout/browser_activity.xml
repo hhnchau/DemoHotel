@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/org"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="6dp"
+            android:paddingRight="18dp"
+            android:src="@drawable/back" />
+
+        <com.appromobile.hotel.widgets.TextViewSFHeavy
+            android:id="@+id/tvScreenTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/wh"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/wvContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/btnCast"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/chromecast_icon" />
+    </RelativeLayout>
+</LinearLayout>

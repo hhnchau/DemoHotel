@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\63f50a49efc3489db32abbca944e5b78\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21\\place_autocomplete_fragment.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-12.0.1.aar\\4465329ebeb8c5882149553b2eb186e4\\res\\layout-v21\\place_autocomplete_fragment.xml"
+    }
+]

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:text="asd"
+        android:textColor="#000000"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        android:layout_height="50dp" />
+</LinearLayout>

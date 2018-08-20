@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable-watch-v20\\common_google_signin_btn_text_light_normal.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-auth-12.0.1.aar\\550fe17d3e4bec8eef8e2f940ee7d379\\res\\drawable-watch-v20\\common_google_signin_btn_text_light_normal.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable-watch-v20\\common_google_signin_btn_text_dark_normal.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-auth-12.0.1.aar\\550fe17d3e4bec8eef8e2f940ee7d379\\res\\drawable-watch-v20\\common_google_signin_btn_text_dark_normal.xml"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable-watch-v20\\common_google_signin_btn_text_disabled.xml",
+        "source": "C:\\Users\\Chau Huynh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-auth-12.0.1.aar\\550fe17d3e4bec8eef8e2f940ee7d379\\res\\drawable-watch-v20\\common_google_signin_btn_text_disabled.xml"
+    }
+]

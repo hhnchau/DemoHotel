@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/org"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="6dp"
+            android:paddingRight="18dp"
+            android:src="@drawable/back" />
+
+        <com.appromobile.hotel.widgets.TextViewSFHeavy
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/question_answer"
+            android:textColor="@color/wh"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/wh"
+        android:layout_height="wrap_content">
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="match_parent"
+            android:textColor="@color/bk"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:id="@+id/tvTitle"
+            android:text="abc"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:layout_height="49dp" />
+        <View
+            android:background="@color/bk"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="49dp">
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/bk"
+                android:paddingLeft="12dp"
+                android:id="@+id/tvNickname"
+                android:paddingRight="12dp"
+                android:textSize="13sp"
+                android:text="abc"
+                android:gravity="center_vertical"
+                android:layout_height="49dp" />
+            <com.appromobile.hotel.widgets.TextViewSFRegular
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/bk"
+                android:paddingLeft="12dp"
+                android:textSize="13sp"
+                android:text="abc"
+                android:id="@+id/tvDate"
+                android:paddingRight="12dp"
+                android:gravity="center_vertical|right"
+                android:layout_height="49dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvQA"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:dividerHeight="0dp"
+        android:divider="@color/lg"
+        android:layout_weight="1">
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:background="@color/wh"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.appromobile.hotel.widgets.EditTextSFRegular
+            android:id="@+id/txtContent"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:background="@color/lg"
+            android:imeOptions="actionDone"
+            android:singleLine="true" />
+
+        <ImageView
+            android:id="@+id/btnSend"
+            android:layout_width="75dp"
+            android:scaleType="fitEnd"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_height="36dp"
+            android:src="@drawable/send" />
+    </LinearLayout>
+</LinearLayout>

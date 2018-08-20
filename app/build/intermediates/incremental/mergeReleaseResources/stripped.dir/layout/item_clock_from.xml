@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_12">
+
+    <com.appromobile.hotel.widgets.TextViewSFMedium
+        android:id="@+id/tvNumber"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/sp_18"
+        android:gravity="end"
+        android:layout_marginEnd="@dimen/margin_24"
+        android:textColor="@color/wh" />
+</LinearLayout>

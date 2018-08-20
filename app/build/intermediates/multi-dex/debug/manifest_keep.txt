@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:63
+-keep class com.appromobile.hotel.gps.MyLocationApi { <init>(...); }
+

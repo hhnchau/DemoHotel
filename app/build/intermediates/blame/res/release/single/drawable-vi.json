@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable-vi\\anim_loading.gif",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable-vi\\anim_loading.gif"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable-vi\\toggle_off.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable-vi\\toggle_off.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable-vi\\toogle_on.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable-vi\\toogle_on.png"
+    },
+    {
+        "merged": "D:\\Sample\\Hotel\\app\\build\\intermediates\\res\\merged\\release\\drawable-vi\\toggle_off_white.png",
+        "source": "D:\\Sample\\Hotel\\app\\src\\main\\res\\drawable-vi\\toggle_off_white.png"
+    }
+]

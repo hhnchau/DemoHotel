@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lg"
+    android:orientation="vertical">
+
+    <!--Header-->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/org"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/img_decscription"
+            android:paddingEnd="18dp"
+            android:paddingStart="6dp"
+            android:src="@drawable/back" />
+
+        <com.appromobile.hotel.widgets.TextViewSFHeavy
+            android:id="@+id/tvHotelTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/txt_6_13_my_point"
+            android:textColor="@color/wh"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_8"
+        android:layout_marginRight="@dimen/margin_8"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ellipsize="end"
+            android:text="Gift Name"
+            android:maxLines="1" />
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Point"
+            android:maxLines="1" />
+
+        <com.appromobile.hotel.widgets.TextViewSFRegular
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Choose"
+            android:maxLines="1" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:layout_marginStart="@dimen/margin_8"
+        android:background="@drawable/box_qa_white_bg"
+        android:padding="@dimen/margin_4"
+        android:layout_weight="2.3">
+
+        <com.appromobile.hotel.widgets.TextViewSFMedium
+            android:id="@+id/txtNoData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/org"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/list_gift"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_8"
+            android:layout_marginRight="@dimen/margin_8"
+            android:divider="@color/lg"
+            android:dividerHeight="1dp"
+            android:scrollbars="none" />
+    </RelativeLayout>
+
+</LinearLayout>

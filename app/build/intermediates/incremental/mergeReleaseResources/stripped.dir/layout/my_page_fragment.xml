@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="6dp"
+    android:background="#FFFFFF"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:background="@color/lg">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:background="@color/org" />
+
+        <ImageView
+            android:id="@+id/view0"
+            android:layout_width="match_parent"
+            android:layout_height="124dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/id_box"
+            android:contentDescription="@string/img_decscription" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@id/view0"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/org" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/id"
+                        android:textColor="@color/org"
+                        android:textSize="18sp" />
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/tvUserId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text=""
+                        android:textColor="@color/bk"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nick_name"
+                        android:textColor="@color/org"
+                        android:textSize="18sp" />
+
+                    <com.appromobile.hotel.widgets.TextViewSFRegular
+                        android:id="@+id/tvNickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text=""
+                        android:textColor="@color/bk"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.appromobile.hotel.widgets.TextViewSFBold
+                android:id="@+id/btnAccountSetting"
+                android:layout_width="86dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/button_full_wh_bg_org_border"
+                android:gravity="center"
+                android:text="@string/setting"
+                android:textColor="@color/org"
+                android:textSize="16sp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/org"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="12sp"
+                android:textColor="@color/wh"
+                android:textSize="14sp" />
+
+            <com.appromobile.hotel.widgets.TextViewSFMedium
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="12sp"
+                android:textColor="@color/wh"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:id="@+id/mainScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lg"
+        android:scrollbars="none"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:orientation="vertical">
+
+            <!--Notification-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <com.appromobile.hotel.widgets.TextViewSFBold
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/push_notification"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <ToggleButton
+                    android:id="@+id/chkNotification"
+                    android:layout_width="86dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/toggle_selector"
+                    android:checked="true"
+                    android:textOff=""
+                    android:textOn="" />
+            </LinearLayout>
+
+            <!--Settings-->
+            <LinearLayout
+                android:id="@+id/btnMySettings"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/txt_6_14_general_setting"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnMySettingsArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnMyProfile"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/my_profile"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnMyProfileArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnMyFavorite"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/textViewSFRegular2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/my_favorite"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnMyFavoriteArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnHistory"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/txt_6_3_my_booking_title"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/badge_booking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:scaleType="fitCenter"
+                    android:textColor="@color/org"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/btnHistoryArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <!--Point-->
+            <LinearLayout
+                android:id="@+id/btnPoint"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/txt_6_13_my_point"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnPointArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <!--Coupon-->
+            <LinearLayout
+                android:id="@+id/btnCoupon"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/my_coupon"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnCouponArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <!--Stamp-->
+            <LinearLayout
+                android:id="@+id/btnStamp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:text="@string/txt_6_12_stamp"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnStampArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnNoticeQA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/notice_and_qa"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:id="@+id/badge_notice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:scaleType="fitCenter"
+                    android:textColor="@color/org"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/btnNoticeQAArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/btnTermPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/terms_privacy_policy"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnTermPolicyArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/btnInviteFriend"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical"
+                android:visibility="visible">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/invite_friends"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnInviteFriendArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+            <!--Version-->
+            <LinearLayout
+                android:id="@+id/btnVersion"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/version"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnVersionArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+            <!--About Us-->
+            <LinearLayout
+                android:id="@+id/btnAbout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/wh"
+                android:gravity="center_vertical">
+
+                <com.appromobile.hotel.widgets.TextViewSFRegular
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="@string/txt_6_about_us"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btnAboutArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_decscription"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/btn_next_selector" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
